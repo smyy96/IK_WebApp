@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BESMIK.Entities.Concrete
 {
-    public class Sirketler:BaseEntity
+    public class Companies:BaseEntity
     {
         public string Name {  get; set; }  
         public string TitleName { get; set; }
