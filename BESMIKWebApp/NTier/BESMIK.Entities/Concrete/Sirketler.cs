@@ -1,5 +1,4 @@
-﻿using BESMIK.Common;
-using BESMIK.Entities.Abstract;
+﻿using BESMIK.Entities.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +11,7 @@ namespace BESMIK.Entities.Concrete
     public class Sirketler:BaseEntity
     {
         public string Name {  get; set; }  
-        public TitleName TitleName { get; set; }
+        public string TitleName { get; set; }
         public string MersisNumber {  get; set; }
         public string TaxNumber {  get; set; }
         public string TaxAdministration {  get; set; }
