@@ -1,6 +1,7 @@
-﻿namespace BESMIK.BLL;
-
-public class Class1
+﻿namespace BESMIK.BLL
 {
+    public class Class1
+    {
 
+    }
 }
