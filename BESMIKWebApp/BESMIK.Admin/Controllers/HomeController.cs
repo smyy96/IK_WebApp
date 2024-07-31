@@ -1,8 +1,8 @@
-using BESMIK.Admin.Models;
+using BESMIK.ADMIN.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace BESMIK.Admin.Controllers
+namespace BESMIK.ADMIN.Controllers
 {
     public class HomeController : Controller
     {
