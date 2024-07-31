@@ -1,8 +1,8 @@
-using BESMIK.ADMIN.Models;
+using BESMIK.SM.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace BESMIK.ADMIN.Controllers
+namespace BESMIK.SM.Controllers
 {
     public class HomeController : Controller
     {
@@ -15,7 +15,6 @@ namespace BESMIK.ADMIN.Controllers
 
         public IActionResult Index()
         {
-            //deneme
             return View();
         }
 
