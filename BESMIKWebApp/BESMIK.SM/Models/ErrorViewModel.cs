@@ -1,4 +1,4 @@
-namespace BESMIK.ADMIN.Models
+namespace BESMIK.SM.Models
 {
     public class ErrorViewModel
     {
