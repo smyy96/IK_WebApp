@@ -24,6 +24,6 @@ namespace BESMIK.Entities.Concrete
         public DateOnly WorkStartDate { get; set; }
         public Department Department { get; set; }
 
-        public ICollection<Companies> Companies { get; set; } //= new List<Companies>();
+        public ICollection<Company> Companies { get; set; } //= new List<Companies>();
     }
 }
