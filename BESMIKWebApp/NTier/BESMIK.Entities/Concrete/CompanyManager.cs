@@ -17,18 +17,13 @@ namespace BESMIK.Entities.Concrete
         public string Phone { get; set; }
         public string Email { get; set; }
         public string Company { get; set; }
-        //public string Address { get; set; }
         public string? Photo { get; set; }
         public DateOnly BirthDate { get; set; }
         public string BirthPlace { get; set; }
         public string TC { get; set; }
         public DateOnly WorkStartDate { get; set; }
-        //public DateOnly WorkEndDate { get; set; }
-        //public bool IsActive { get; set; }
-        //public string Job { get; set; }
         public Department Department { get; set; }
 
-        //Bir şirketin birden fazla şirket yöneticisi olabilir. Bir şirket yöneticisinin sadece bir şirketi vardır. => 1-n 
-        //Buna göre ilişkiler eklenecektir.
+        public ICollection<Companies> Companies { get; set; } //= new List<Companies>();
     }
 }

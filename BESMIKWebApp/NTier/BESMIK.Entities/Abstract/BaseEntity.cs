@@ -12,7 +12,9 @@ namespace BESMIK.Entities.Abstract
         public int Id { get; set; }
         public DateTime Created { get; set; }
         public DateTime? Updated { get; set; }
-        public int AppUserId { get; set; }
-        public AppUser AppUser { get; set; }
+
+
+        //public int AppUserId { get; set; }
+        //public AppUser AppUser { get; set; }
     }
 }

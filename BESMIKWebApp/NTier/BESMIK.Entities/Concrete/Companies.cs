@@ -15,16 +15,18 @@ namespace BESMIK.Entities.Concrete
         public string MersisNumber {  get; set; }
         public string TaxNumber {  get; set; }
         public string TaxAdministration {  get; set; }
-        public string Logo {  get; set; }
+        public string? Logo {  get; set; }
         public string Phone { get; set; }
         public string Address { get; set; }
         public string Email { get; set; }
         public string EmployeesNumber {  get; set; }
         public DateOnly EstablishmentYear {  get; set; }
-        public DateOnly ContractStartYear {  get; set; }
-        public DateOnly ContractEndYear {  get; set; }
+        public DateOnly? ContractStartYear {  get; set; }
+        public DateOnly? ContractEndYear {  get; set; }
         public bool IsActive { get; set; }
-        public string CompanyManager {  get; set; }
+
+        public int CompanyManagerId { get; set; }
+        public CompanyManager CompanyManager { get; set; } 
 
     }
 }
