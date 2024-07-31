@@ -1,0 +1,6 @@
+@BESMIK.API_HostAddress = http://localhost:5068
+
+GET {{BESMIK.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
