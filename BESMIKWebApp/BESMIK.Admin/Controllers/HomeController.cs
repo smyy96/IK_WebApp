@@ -15,6 +15,7 @@ namespace BESMIK.ADMIN.Controllers
 
         public IActionResult Index()
         {
+            //deneme
             return View();
         }
 
