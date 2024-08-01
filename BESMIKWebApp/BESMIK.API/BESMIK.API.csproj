@@ -15,7 +15,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NTier\BESMIK.DAL\BESMIK.DAL.csproj" />
+    <ProjectReference Include="..\NTier\BESMIK.BLL\BESMIK.BLL.csproj" />
+    <ProjectReference Include="..\NTier\BESMIK.ViewModel\BESMIK.ViewModel.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,8 @@
 ﻿using AutoMapper;
+using AutoMapper.EquivalencyExpression;
+using AutoMapper.Extensions.ExpressionMapping;
+using BESMIK.DAL.Services.Abstract;
+using BESMIK.DTO;
 using BESMIK.Entities.Abstract;
 using BESMIK.ViewModel;
 using System;

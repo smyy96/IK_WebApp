@@ -14,18 +14,22 @@ using System.Threading.Tasks;
 
 namespace BESMIK.DAL.Services.Concrete
 {
-    public class CompanyService : Service<Company, CompanyDto>, ICompanyService
+    public class CompanyService : Service<Company, CompanyDto>
     {
         public CompanyService(CompanyRepo repo) : base(repo)
         {
-            MapperConfiguration config = new MapperConfiguration(config =>
-            {
-                Profile profile = new CompanyProfile();
-                config.AddProfile(profile);
-            });
-
-            base.Mapper = config.CreateMapper();
         }
+
+        //public CompanyService(CompanyRepo repo) : base(repo)
+        //{
+        //    MapperConfiguration config = new MapperConfiguration(config =>
+        //    {
+        //        Profile profile = new CompanyProfile();
+        //        config.AddProfile(profile);
+        //    });
+
+        //    base.Mapper = config.CreateMapper();
+        //}
 
         public IEnumerable<CompanyDto> GetActiveList()
         {

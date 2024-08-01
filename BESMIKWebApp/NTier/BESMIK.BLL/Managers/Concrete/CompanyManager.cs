@@ -1,5 +1,6 @@
 ﻿using BESMIK.BLL.Managers.Abstract;
 using BESMIK.DAL.Services.Concrete;
+using BESMIK.DTO;
 using BESMIK.Entities.Concrete;
 using BESMIK.ViewModel.Company;
 using System;

@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NTier\BESMIK.Common\BESMIK.Common.csproj" />
+    <ProjectReference Include="..\BESMIK.Common\BESMIK.Common.csproj" />
   </ItemGroup>
 
 </Project>

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace BESMIK.DAL.Repository.Concrete
 {
-    public class CompanyRepo : Repo<Company>, ICompanyRepo
+    public class CompanyRepo : Repo<Company>//, ICompanyRepo
     {
         public CompanyRepo(BesmikDbContext dbContext) : base(dbContext)
         {
