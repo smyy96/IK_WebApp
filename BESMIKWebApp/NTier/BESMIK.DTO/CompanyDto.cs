@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BESMIK.DTO
 {
-    public class Company : BaseDto
+    public class CompanyDto : BaseDto
     {
         public string Name { get; set; }
         public string TitleName { get; set; }
@@ -24,7 +24,7 @@ namespace BESMIK.DTO
         public bool IsActive { get; set; }
 
         public int CompanyManagerId { get; set; }
-        public CompanyManager CompanyManager { get; set; }
+        public CompanyManagerDto CompanyManager { get; set; }
 
     }
 }

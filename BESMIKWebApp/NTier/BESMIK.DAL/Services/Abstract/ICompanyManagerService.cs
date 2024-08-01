@@ -8,7 +8,7 @@ namespace BESMIK.DAL.Services.Abstract
 {
     public interface ICompanyManagerService
     {
-        AccountUserDto? FindLoginUser(string username, string password);
+        //AccountUserDto? FindLoginUser(string username, string password);
 
     }
 }

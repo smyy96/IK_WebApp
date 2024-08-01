@@ -2,6 +2,7 @@
 using AutoMapper.EquivalencyExpression;
 using AutoMapper.Extensions.ExpressionMapping;
 using BESMIK.DAL.Repository.Abstract;
+using BESMIK.DTO;
 using BESMIK.Entities.Abstract;
 using System;
 using System.Collections.Generic;
