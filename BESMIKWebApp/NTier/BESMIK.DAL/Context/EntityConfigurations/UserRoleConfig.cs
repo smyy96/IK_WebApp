@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace BESMIK.DAL.EntityConfigurations
+namespace BESMIK.DAL.Context.EntityConfigurations
 {
     public class UserRoleConfig : IEntityTypeConfiguration<IdentityUserRole<int>>
     {
