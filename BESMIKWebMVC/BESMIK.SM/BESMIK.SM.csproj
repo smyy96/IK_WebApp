@@ -58,4 +58,10 @@
     <None Include="wwwroot\scss\extras\hamburgers\.DS_Store" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="BESMIK.ViewModel">
+      <HintPath>..\..\BESMIKWebApp\NTier\BESMIK.ViewModel\obj\Debug\net8.0\BESMIK.ViewModel.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
