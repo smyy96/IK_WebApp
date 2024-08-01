@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BESMIK.DAL.EntityConfigurations
+namespace BESMIK.DAL.Context.EntityConfigurations
 {
     public class UserConfig : IEntityTypeConfiguration<AppUser>
     {
