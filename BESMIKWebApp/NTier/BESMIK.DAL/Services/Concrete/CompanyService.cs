@@ -2,6 +2,8 @@
 using BESMIK.DAL.Repository.Abstract;
 using BESMIK.DAL.Repository.Concrete;
 using BESMIK.DAL.Services.Abstract;
+using BESMIK.DAL.Services.Profiles;
+using BESMIK.DTO;
 using BESMIK.Entities.Concrete;
 using System;
 using System.Collections.Generic;
