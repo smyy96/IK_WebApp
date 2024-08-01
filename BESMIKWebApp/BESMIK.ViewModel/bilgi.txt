@@ -1,0 +1,1 @@
+﻿bunu mvc projesi kullanacak. şimdilik bu solutionda kalsın sonra mvcnin oldugu solitiona tasırız.  ya da oradaki view modelinin içine kopyalarız

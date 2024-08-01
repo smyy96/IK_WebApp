@@ -4,6 +4,7 @@ using BESMIK.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BESMIK.DAL.Migrations
 {
     [DbContext(typeof(BesmikDbContext))]
-    partial class BesmikDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240801094711_Tablo1NIlıski")]
+    partial class Tablo1NIlıski
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -147,7 +150,7 @@ namespace BESMIK.DAL.Migrations
                             Address = "Ankara, Türkiye",
                             BirthDate = new DateOnly(2000, 1, 1),
                             BirthPlace = "Yozgat",
-                            ConcurrencyStamp = "29a88f56-2aad-47bb-8c6e-6a62eed1717c",
+                            ConcurrencyStamp = "56f4b626-ffa3-446b-8ced-ef5b050579e6",
                             Department = 1,
                             Email = "siteyoneticisi@mail.com",
                             EmailConfirmed = true,
@@ -157,11 +160,11 @@ namespace BESMIK.DAL.Migrations
                             Name = "Site",
                             NormalizedEmail = "SITEYONETICISI@MAIL.COM",
                             NormalizedUserName = "SITEYONETICISI",
-                            PasswordHash = "AQAAAAIAAYagAAAAECISDkM0qUYPjpqE23EJ3k+tXagGhw+PGBTcYHUsm68kBfsBz93R5h22h1YCfcySGg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEN7G78mv4PX6+FXkHaFVK5H6lbH1a68NUD3zh5kMqM1ublUWvQAjgUH0tyAW0275fw==",
                             Phone = "+90 123 456 7890",
                             PhoneNumberConfirmed = false,
                             SecondName = "Yöneticisi",
-                            SecurityStamp = "c5b35766-793e-432b-8608-b28b84e9174c",
+                            SecurityStamp = "3b0dbda9-151e-4e54-8a7f-f8072e6ae416",
                             Surname = "Yönetici",
                             Tc = "12345678901",
                             TwoFactorEnabled = false,
@@ -219,10 +222,6 @@ namespace BESMIK.DAL.Migrations
                     b.Property<string>("Phone")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<byte[]>("PictureFile")
-                        .IsRequired()
-                        .HasColumnType("varbinary(max)");
 
                     b.Property<string>("TaxAdministration")
                         .IsRequired()
@@ -286,10 +285,6 @@ namespace BESMIK.DAL.Migrations
 
                     b.Property<string>("Photo")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<byte[]>("PictureFile")
-                        .IsRequired()
-                        .HasColumnType("varbinary(max)");
 
                     b.Property<string>("SecondName")
                         .IsRequired()

@@ -1,14 +1,13 @@
 ﻿using BESMIK.Common;
-using BESMIK.Entities.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BESMIK.Entities.Concrete
+namespace BESMIK.ViewModel.CompanyManager
 {
-    public class CompanyManager : BaseEntity
+    public class CompanyManagerViewModel : BaseViewModel
     {
         public string Name { get; set; }
         public string SecondName { get; set; }
@@ -18,8 +17,10 @@ namespace BESMIK.Entities.Concrete
         public string Email { get; set; }
         public string CompanyName { get; set; }
 
+
         public string? Photo { get; set; }
-        public byte[] PictureFile { get; set; }
+        public byte[]? PictureFile { get; set; }
+
 
         public DateOnly BirthDate { get; set; }
         public string BirthPlace { get; set; }
@@ -27,7 +28,6 @@ namespace BESMIK.Entities.Concrete
         public DateOnly WorkStartDate { get; set; }
         public Department Department { get; set; }
 
-        public int CompanyId { get; set; } 
-        public Company Company { get; set; }
+        public int CompanyId { get; set; }
     }
 }

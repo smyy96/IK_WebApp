@@ -10,17 +10,17 @@ using System.Threading.Tasks;
 
 namespace BESMIK.DAL.Services.Concrete
 {
-    public class CompanyManagerService:Service<CompanyManager, AccountUserDto>, ICompanyManagerService
+    public class CompanyManagerService : Service<CompanyManager, AccountUserDto>, ICompanyManagerService
     {
         public CompanyManagerService(CompanyManagerRepo repo) : base(repo)
-    {
-    }
+        {
+        }
 
-    public AccountUserDto? FindLoginUser(string username, string password)
-    {
-        CompanyManager? companyManager = (base._repo as ICompanyManagerRepo).FindLoginUser(username, password);
+        public AccountUserDto? FindLoginUser(string username, string password)
+        {
+            CompanyManager? companyManager = (base._repo as ICompanyManagerRepo).FindLoginUser(username, password);
 
-        return _mapper.Map<AccountUserDto>(companyManager);
+            return _mapper.Map<AccountUserDto>(companyManager);
+        }
     }
-}
 }
