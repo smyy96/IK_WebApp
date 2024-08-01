@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BESMIK.DTO\BESMIK.DTO.csproj" />
     <ProjectReference Include="..\BESMIK.Entities\BESMIK.Entities.csproj" />
   </ItemGroup>
 
