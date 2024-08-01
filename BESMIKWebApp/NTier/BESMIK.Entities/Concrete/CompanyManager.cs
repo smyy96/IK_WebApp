@@ -19,7 +19,7 @@ namespace BESMIK.Entities.Concrete
         public string CompanyName { get; set; }
 
         public string? Photo { get; set; }
-        public byte[] PictureFile { get; set; }
+        public byte[]? PictureFile { get; set; }
 
         public DateOnly BirthDate { get; set; }
         public string BirthPlace { get; set; }

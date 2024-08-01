@@ -17,7 +17,7 @@ namespace BESMIK.Entities.Concrete
         public string TaxAdministration { get; set; }
 
         public string? Logo { get; set; }
-        public byte[] PictureFile { get; set; }
+        public byte[]? PictureFile { get; set; }
 
         public string Phone { get; set; }
 

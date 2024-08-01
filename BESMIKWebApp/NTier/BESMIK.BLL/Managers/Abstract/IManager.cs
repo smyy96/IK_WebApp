@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BESMIK.DTO;
 using BESMIK.ViewModel;
 using System;
 using System.Collections.Generic;

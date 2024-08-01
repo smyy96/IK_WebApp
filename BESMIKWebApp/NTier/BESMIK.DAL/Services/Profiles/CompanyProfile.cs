@@ -10,15 +10,15 @@ using System.Threading.Tasks;
 
 namespace BESMIK.DAL.Services.Profiles
 {
-    public class CompanyProfile : Profile
+    public class CompanyProfile //: Profile
     {
-        public CompanyProfile()
-        {
-            CreateMap<CompanyDto, Company>().ForMember(dest => dest.CompanyManager, opt => opt.MapFrom(src => src.CompanyManager));
+        //public CompanyProfile()
+        //{
+        //    CreateMap<CompanyDto, Company>().ForMember(dest => dest.CompanyManagers, opt => opt.MapFrom(src => src.CompanyManager));
 
-            CreateMap<Company, CompanyDto>().ForMember(dest => dest.CompanyManager, opt => opt.MapFrom(src => src.CompanyManager));
+        //    CreateMap<Company, CompanyDto>().ForMember(dest => dest.CompanyManager, opt => opt.MapFrom(src => src.CompanyManagers));
 
-            CreateMap<CompanyManagerDto, CompanyManager>().ReverseMap();
-        }
+        //    CreateMap<CompanyManagerDto, CompanyManager>().ReverseMap();
+        //}
     }
 }
