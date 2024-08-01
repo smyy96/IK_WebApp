@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BESMIK.DAL.Services.Profiles
 {
-    public class CompanyProfile:Profile
+    public class CompanyProfile : Profile
     {
         public CompanyProfile()
         {

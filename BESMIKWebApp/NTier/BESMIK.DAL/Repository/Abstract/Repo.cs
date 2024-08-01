@@ -1,5 +1,6 @@
 ﻿using BESMIK.DAL.Context;
 using BESMIK.Entities.Abstract;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,7 @@ namespace BESMIK.DAL.Repository.Abstract
         protected Repo(BesmikDbContext dbContext)
         {
             _dbContext = dbContext;
+            _dbContext.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTrackingWithIdentityResolution; //sc
         }
 
         public int Add(TEntity entity)
@@ -32,7 +34,7 @@ namespace BESMIK.DAL.Repository.Abstract
 
         public virtual TEntity? Get(int id)
         {
-            return _dbContext.Set<TEntity>().Find(id);
+            return _dbContext.Set<TEntity>().AsNoTracking().SingleOrDefault(e => e.Id == id); //sc
         }
 
         public virtual IEnumerable<TEntity> GetAll()

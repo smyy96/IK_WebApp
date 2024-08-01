@@ -7,9 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\BESMIK.ViewModel\BESMIK.ViewModel.csproj" />
-    <ProjectReference Include="..\BESMIK.DAL\BESMIK.DAL.csproj" />
-    <ProjectReference Include="..\BESMIK.DTO\BESMIK.DTO.csproj" />
+    <ProjectReference Include="..\NTier\BESMIK.Common\BESMIK.Common.csproj" />
   </ItemGroup>
 
 </Project>
