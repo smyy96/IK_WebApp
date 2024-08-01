@@ -4,6 +4,7 @@ using BESMIK.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BESMIK.DAL.Migrations
 {
     [DbContext(typeof(BesmikDbContext))]
-    partial class BesmikDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240801051642_SeedDataRole1")]
+    partial class SeedDataRole1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -147,7 +150,7 @@ namespace BESMIK.DAL.Migrations
                             Address = "Ankara, Türkiye",
                             BirthDate = new DateOnly(2000, 1, 1),
                             BirthPlace = "Yozgat",
-                            ConcurrencyStamp = "83287062-2cfa-43a4-86fc-eeba400a7f9d",
+                            ConcurrencyStamp = "a46ec36a-68e6-4a7c-aeb7-fe7578a9dec0",
                             Department = 1,
                             Email = "siteyoneticisi@mail.com",
                             EmailConfirmed = true,
@@ -157,11 +160,11 @@ namespace BESMIK.DAL.Migrations
                             Name = "Site",
                             NormalizedEmail = "SITEYONETICISI@MAIL.COM",
                             NormalizedUserName = "SITEYONETICISI",
-                            PasswordHash = "AQAAAAIAAYagAAAAELNrSj2YyAHyroBsozp/SFGVxzZSpM0c3aSsWNaNP997qBww+HWQ0/N9/XW6dArDbA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEO6rzkrjvwqkj5FjOAMTm7CMi6kMtqXFOug/aBCVJcm9T7T9zeLmvsNOyPSwX1Xb9g==",
                             Phone = "+90 123 456 7890",
                             PhoneNumberConfirmed = false,
                             SecondName = "Yöneticisi",
-                            SecurityStamp = "6b5190e6-c76f-491b-b83c-f6d2b9495668",
+                            SecurityStamp = "30cb386c-5613-4893-bca6-35eeaffdd553",
                             Surname = "Yönetici",
                             Tc = "12345678901",
                             TwoFactorEnabled = false,
@@ -444,13 +447,6 @@ namespace BESMIK.DAL.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            UserId = 1,
-                            RoleId = 1
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
