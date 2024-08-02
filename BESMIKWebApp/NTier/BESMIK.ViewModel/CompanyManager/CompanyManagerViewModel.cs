@@ -11,12 +11,12 @@ namespace BESMIK.ViewModel.CompanyManager
     public class CompanyManagerViewModel : BaseViewModel
     {
         public string Name { get; set; }
-        public string SecondName { get; set; }
+        public string? SecondName { get; set; }
         public string Surname { get; set; }
-        public string SecondSurname { get; set; }
+        public string? SecondSurname { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
-        public string CompanyName { get; set; }
+        public string Profession { get; set; }
 
 
         public string? Photo { get; set; }
