@@ -4,6 +4,7 @@ using BESMIK.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BESMIK.DAL.Migrations
 {
     [DbContext(typeof(BesmikDbContext))]
-    partial class BesmikDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240802104155_PropNullYapma2")]
+    partial class PropNullYapma2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -147,7 +150,7 @@ namespace BESMIK.DAL.Migrations
                             Address = "Ankara, Türkiye",
                             BirthDate = new DateOnly(2000, 1, 1),
                             BirthPlace = "Yozgat",
-                            ConcurrencyStamp = "12aa7d49-a0f2-42a9-845f-f41001d7a0b1",
+                            ConcurrencyStamp = "77f7f885-22f5-4e82-8ef7-5111beda87b0",
                             Department = 1,
                             Email = "siteyoneticisi@mail.com",
                             EmailConfirmed = true,
@@ -157,11 +160,11 @@ namespace BESMIK.DAL.Migrations
                             Name = "Site",
                             NormalizedEmail = "SITEYONETICISI@MAIL.COM",
                             NormalizedUserName = "SITEYONETICISI",
-                            PasswordHash = "AQAAAAIAAYagAAAAEL3JoGTta6LAjO1RwyBz6MLpBjTOWeBRSgbAn2j80MIuWvIP91cQnoHiz0cspUkEig==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEDVAxcvHqUEs6AYDSu4Qrb6/ApRfMvCx7XP40C40J8CJrKP3uIYY7+MlMIPH+ZPZWw==",
                             Phone = "+90 123 456 7890",
                             PhoneNumberConfirmed = false,
                             SecondName = "Yöneticisi",
-                            SecurityStamp = "8335d1ce-4e08-42e7-83f7-fae728c06b7b",
+                            SecurityStamp = "bff7ff09-d247-4873-aca5-f736f8ac0887",
                             Surname = "Yönetici",
                             Tc = "12345678901",
                             TwoFactorEnabled = false,
@@ -365,7 +368,7 @@ namespace BESMIK.DAL.Migrations
                             Email = "ahmet.yilmaz@teknolojiyenilikcileri.com",
                             Name = "Ahmet",
                             Phone = "+90 532 111 2233",
-                            Profession = "Mühendis",
+                            Profession = "Teknoloji Yenilikçileri A.Ş.",
                             SecondName = "Murat",
                             SecondSurname = "Kaya",
                             Surname = "Yılmaz",
@@ -383,7 +386,7 @@ namespace BESMIK.DAL.Migrations
                             Email = "elif.demir@rollinemuhendislik.com",
                             Name = "Elif",
                             Phone = "+90 212 333 4455",
-                            Profession = "Dış Ticaret Sorumlusu",
+                            Profession = "Rolline Mühendislik Ltd.",
                             SecondName = "Nur",
                             SecondSurname = "Yıldız",
                             Surname = "Demir",

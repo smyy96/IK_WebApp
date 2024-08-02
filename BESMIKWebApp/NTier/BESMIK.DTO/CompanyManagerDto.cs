@@ -15,7 +15,7 @@ namespace BESMIK.DTO
         public string SecondSurname { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
-        public string CompanyName { get; set; }
+        public string Profession { get; set; }
         public string? Photo { get; set; }
         public DateOnly BirthDate { get; set; }
         public string BirthPlace { get; set; }
