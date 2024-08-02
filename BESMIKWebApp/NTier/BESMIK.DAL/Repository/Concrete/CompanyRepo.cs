@@ -22,7 +22,7 @@ namespace BESMIK.DAL.Repository.Concrete
         }
         public override Company? Get(int id)
         {
-            return base._dbContext.Companies.Include(c => c.Id).SingleOrDefault(c => c.Id == id);
+            return base._dbContext.Companies.SingleOrDefault(c => c.Id == id);
         }
     }
 }
