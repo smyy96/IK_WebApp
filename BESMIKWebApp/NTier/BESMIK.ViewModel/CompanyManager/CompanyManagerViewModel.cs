@@ -1,4 +1,5 @@
 ﻿using BESMIK.Common;
+using BESMIK.ViewModel.Company;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,5 +30,6 @@ namespace BESMIK.ViewModel.CompanyManager
         public Department Department { get; set; }
 
         public int CompanyId { get; set; }
+        public CompanyViewModel Company { get; set; }       
     }
 }
