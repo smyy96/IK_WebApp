@@ -55,26 +55,67 @@ namespace BESMIK.SM.Controllers
                     return View(model);
                 }
 
-                string fileName = model.FormFile.FileName;
 
-                var dosyadakiFileName = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/companyManager", fileName);
 
-                var konum = dosyadakiFileName;
+                if (model.FormFile != null && model.FormFile.Length > 0)
+                {
+                    string fileName = model.FormFile.FileName;
+                    var dosyadakiFileName = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/companyManager", fileName);
+                    var konum = dosyadakiFileName;
 
-                //Kaydetmek için bir akış ortamı oluşturalım
-                var akisOrtami = new FileStream(konum, FileMode.Create);
-                var memory = new MemoryStream();
+                    // Kaydetmek için bir akış ortamı oluşturalım
+                    using (var akisOrtami = new FileStream(konum, FileMode.Create))
+                    {
+                        await model.FormFile.CopyToAsync(akisOrtami);
+                    }
 
-                //Resmi kaydet
-                model.FormFile.CopyTo(akisOrtami);
-                model.FormFile.CopyTo(memory);
+                    using (var memory = new MemoryStream())
+                    {
+                        await model.FormFile.CopyToAsync(memory);
+                        model.PictureFile = memory.ToArray();
+                    }
 
-                model.Photo = fileName;
-                model.PictureFile = memory.ToArray();
-                model.FormFile = null;
+                    model.Photo = fileName;
+                    model.FormFile = null;
+                }
 
-                akisOrtami.Dispose();
-                memory.Dispose();
+
+
+                if (model.FormFile == null)
+                {
+                    model.Photo = null;
+                    model.PictureFile = null;
+                    model.FormFile = null;
+                }
+
+
+                //string fileName = model.FormFile.FileName;
+
+                //var dosyadakiFileName = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/companyManager", fileName);
+
+                //var konum = dosyadakiFileName;
+
+                ////Kaydetmek için bir akış ortamı oluşturalım
+                //var akisOrtami = new FileStream(konum, FileMode.Create);
+                //var memory = new MemoryStream();
+
+                ////Resmi kaydet
+                //model.FormFile.CopyTo(akisOrtami);
+                //model.FormFile.CopyTo(memory);
+
+                //model.Photo = fileName;
+                //model.PictureFile = memory.ToArray();
+                //model.FormFile = null;
+
+                //akisOrtami.Dispose();
+                //memory.Dispose();
+
+
+                else
+                {
+                    ModelState.AddModelError("FormFile", "Lütfen geçerli bir resim yükleyin");
+                    return View(model);
+                }
 
 
 
@@ -85,9 +126,8 @@ namespace BESMIK.SM.Controllers
                     return RedirectToAction("CompanyManagerList");
                 }
                 else
-                {
-                    // Add a model error based on the response or provide a general error message
-                    ModelState.AddModelError("ApiError", "Failed to add Company Manager. Please try again.");
+                {                    
+                    ModelState.AddModelError("ApiError", "Şirket Yöneticisi eklenemedi. Lütfen tekrar deneyin.");
                     return View(model);
 
                 }
