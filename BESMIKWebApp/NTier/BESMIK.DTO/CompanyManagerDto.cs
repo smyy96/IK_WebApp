@@ -16,7 +16,10 @@ namespace BESMIK.DTO
         public string Phone { get; set; }
         public string Email { get; set; }
         public string Profession { get; set; }
+
         public string? Photo { get; set; }
+        public byte[]? PictureFile { get; set; }
+
         public DateOnly BirthDate { get; set; }
         public string BirthPlace { get; set; }
         public string TC { get; set; }

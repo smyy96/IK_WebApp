@@ -35,5 +35,12 @@ namespace BESMIK.DAL.Services.Concrete
 
         //    return _mapper.Map<AccountUserDto>(companyManager);
         //}
+
+
+        public override IEnumerable<CompanyManagerDto> GetAll()
+        {
+            var companyManagers = _repo.GetAll(); 
+            return _mapper.Map<IEnumerable<CompanyManagerDto>>(companyManagers);
+        }
     }
 }

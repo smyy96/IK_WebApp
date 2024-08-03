@@ -17,7 +17,8 @@ namespace BESMIK.DAL.Services.Profiles
 
             CreateMap<CompanyManager, CompanyManagerDto>().ForMember(dest => dest.Company, opt => opt.MapFrom(src => src.Company));
 
-            CreateMap<CompanyManagerDto, CompanyManager>().ReverseMap();
+            CreateMap<CompanyDto, Company>().ReverseMap();
+
         }
     }
 }

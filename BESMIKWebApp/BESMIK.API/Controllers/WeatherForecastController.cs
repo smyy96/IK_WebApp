@@ -20,13 +20,13 @@ namespace BESMIK.API.Controllers
 
         private readonly BLLCompanyManager _companyManager;
         private CompanyManagerManager _companyManagerMan;
-        // private readonly ILogger<WeatherForecastController> _logger;
+        private readonly ILogger<WeatherForecastController> _logger;
 
-        public WeatherForecastController(BLLCompanyManager companyManager, CompanyManagerManager managerManagerMan )
+        public WeatherForecastController(BLLCompanyManager companyManager, CompanyManagerManager managerManagerMan)
         {
             _companyManager = companyManager;
             _companyManagerMan = managerManagerMan;
-            // _logger = logger;
+            //_logger = logger;
         }
 
         [HttpGet("CompanyList")]

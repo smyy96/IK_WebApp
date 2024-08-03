@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BESMIK.DAL.Services.Concrete;
+using AutoMapper;
+using BESMIK.BLL.Managers.Profiles;
 
 namespace BESMIK.BLL.Managers.Concrete
 {
@@ -15,6 +17,18 @@ namespace BESMIK.BLL.Managers.Concrete
     {
         public CompanyManagerManager(CompanyManagerService service) : base(service)
         {
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile<CompanyManagerProfile>();
+            });
+
+            base._mapper = config.CreateMapper();
+        }
+
+        public override IEnumerable<CompanyManagerViewModel> GetAll()
+        {
+            var dtos = _service.GetAll();
+            return _mapper.Map<IEnumerable<CompanyManagerViewModel>>(dtos);
         }
     }
 }

@@ -15,14 +15,15 @@ namespace BESMIK.SM.Controllers
             _httpClient = httpClient;
         }
 
-        public async Task<IActionResult> Index()
-        {
-            return View(await _httpClient.GetFromJsonAsync<List<CompanyViewModel>>("https://localhost:7136/WeatherForecast/CompanyList"));
-        }
 
-        public IActionResult Privacy()
+        public IActionResult Index()
         {
             return View();
+        }
+
+        public async Task<IActionResult> Privacy()
+        {
+            return View(await _httpClient.GetFromJsonAsync<List<CompanyViewModel>>("https://localhost:7136/WeatherForecast/CompanyList"));
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
