@@ -24,5 +24,6 @@ namespace BESMIK.DAL.Repository.Concrete
         {
             return base._dbContext.Companies.Include(c => c.Id).SingleOrDefault(c => c.Id == id);
         }
+
     }
 }

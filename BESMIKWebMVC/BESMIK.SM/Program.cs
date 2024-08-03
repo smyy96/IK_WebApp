@@ -1,8 +1,18 @@
+using BESMIK.SM.Validations;
+using BESMIK.ViewModel.CompanyManager;
+using FluentValidation;
+using System.Reflection;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddSingleton<HttpClient>();
+
+
+builder.Services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+
+//builder.Services.AddValidatorsFromAssemblyContaining<CompanyManagerViewModelValidator>();
 
 var app = builder.Build();
 

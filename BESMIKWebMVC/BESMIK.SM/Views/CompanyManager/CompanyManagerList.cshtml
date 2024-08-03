@@ -1,0 +1,57 @@
+﻿@model List<CompanyManagerViewModel>
+
+@{
+    Layout = "_AdminLayout";
+}
+
+
+<div class="pagetitle">
+    <h1>Şirket Yöneticisi Ekle</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Anasayfa</a></li>
+            <li class="breadcrumb-item">Şirket Yönetici İşlemleri</li>
+            <li class="breadcrumb-item active">Yönetici Listele</li>
+        </ol>
+    </nav>
+</div>
+
+
+<section class="section">
+    <div class="row">
+        <div class="col-lg-12">
+
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Şirket Yönetici Listesi</h5>
+
+                    <table class="table datatable">
+                        <thead>
+                            <tr>
+                                <th>Yönetici Adı</th>
+                                <th>Yönetici Soyadı</th>
+                                <th>Telefon</th>
+                                <th>E-Mail</th>
+                                <th>Şirket Adı</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (CompanyManagerViewModel item in Model)
+                            {
+                                <tr>
+                                    <td>@item.Name</td>
+                                    <td>@item.Surname</td>
+                                    <td>@item.Phone</td>
+                                    <td>@item.Email</td>
+                                    <td>@item.Company?.Name</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

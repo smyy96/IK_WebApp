@@ -21,10 +21,20 @@ namespace BESMIK.DAL.Repository.Concrete
             throw new NotImplementedException();
         }
 
-        //public override CompanyManager? Get(int id)
-        //{
-        //    return base._dbContext.CompanyManagers.Include(c => c.Name).SingleOrDefault(c => c.Id == id);
-        //}
+        public override CompanyManager? Get(int id)
+        {
+            return base._dbContext.CompanyManagers.Include(c => c.Name).SingleOrDefault(c => c.Id == id);
+        }
+
+
+
+
+        public override IEnumerable<CompanyManager> GetAll()
+        {
+            return base._dbContext.CompanyManagers
+                .Include(c => c.Company) 
+                .ToList();
+        }
     }
 
 }

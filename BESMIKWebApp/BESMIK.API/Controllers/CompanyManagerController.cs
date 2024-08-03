@@ -2,7 +2,9 @@
 using BESMIK.ViewModel.CompanyManager;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 
 namespace BESMIK.API.Controllers
 {
@@ -10,34 +12,63 @@ namespace BESMIK.API.Controllers
     [ApiController]
     public class CompanyManagerController : ControllerBase
     {
+        private readonly CompanyManagerManager _companyManagerService;
+        private readonly CompanyManager _companyManager;
 
-        private CompanyManagerManager _companyManagerManager;
 
-        public CompanyManagerController(CompanyManagerManager companyManagerManager)
+        public CompanyManagerController(CompanyManagerManager companyManagerService, CompanyManager companyManager)
         {
-            _companyManagerManager = companyManagerManager;
+            _companyManagerService = companyManagerService;
+            _companyManager = companyManager;
         }
 
 
-        [HttpGet("CompanyManagerList")] //Şirket yönticisi listeleme
-        public IEnumerable<CompanyManagerViewModel> GetList()
+
+        [HttpGet("CompanyManagerList")]
+        public ActionResult<IEnumerable<CompanyManagerViewModel>> GetList()
         {
-            return _companyManagerManager.GetAll();
+            var managers = _companyManagerService.GetAll();
+            return Ok(managers);
+
         }
 
 
-        [HttpPost("CompanyManagerAdd")] // Şirkey yöneticisi ekleme
+
+        [HttpPost("CompanyManagerAdd")]
         public IActionResult Post([FromBody] CompanyManagerViewModel model)
         {
-            _companyManagerManager.Add(model);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            _companyManagerService.Add(model);
             return Ok(model);
         }
 
-        [HttpGet("GetById/{id}")] // Id ile kişi çekme
+
+
+        [HttpGet("GetById/{id}")]
         public IActionResult GetById(int id)
         {
-            return Ok(_companyManagerManager.Get(id));
+            var manager = _companyManagerService.Get(id);
+            if (manager == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(manager);
         }
+
+
+
+        [HttpGet("CompanyNameList")]
+        public ActionResult<IEnumerable<CompanyManagerViewModel>> CompanyNameList()
+        {
+            var company = _companyManager.GetAll(); //mvcde namelerini çektim
+            return Ok(company);
+        }
+
 
     }
 }

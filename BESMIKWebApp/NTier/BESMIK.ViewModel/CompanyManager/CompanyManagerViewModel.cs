@@ -1,5 +1,6 @@
 ﻿using BESMIK.Common;
 using BESMIK.ViewModel.Company;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,7 @@ namespace BESMIK.ViewModel.CompanyManager
 
         public string? Photo { get; set; }
         public byte[]? PictureFile { get; set; }
+        public IFormFile? FormFile { get; set; }
 
 
         public DateOnly BirthDate { get; set; }
@@ -30,6 +32,6 @@ namespace BESMIK.ViewModel.CompanyManager
         public Department Department { get; set; }
 
         public int CompanyId { get; set; }
-        public CompanyViewModel Company { get; set; }       
+        public CompanyViewModel? Company { get; set; }
     }
 }
