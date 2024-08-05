@@ -23,7 +23,7 @@ namespace BESMIK.DAL.Repository.Concrete
 
         public override CompanyManager? Get(int id)
         {
-            return base._dbContext.CompanyManagers.Include(c => c.Name).SingleOrDefault(c => c.Id == id);
+            return base._dbContext.CompanyManagers.SingleOrDefault(c => c.Id == id);
         }
 
 

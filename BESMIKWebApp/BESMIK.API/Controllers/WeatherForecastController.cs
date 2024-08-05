@@ -42,6 +42,70 @@ namespace BESMIK.API.Controllers
             return _companyManagerMan.GetAll();
         }
 
+        //Þirketi ID'sine göre getirme
+        [HttpGet("Company/{id}")]
+        public IActionResult GetCompany(int id) 
+        {
+            return Ok(_companyManager.Get(id));
+        }
+
+        //Þirket yöneticisini ID'sine göre getirme
+
+        [HttpGet("CompanyManager/{id}")]
+        public IActionResult GetManager(int id)
+        {
+            return Ok(_companyManagerMan.Get(id));
+
+        }
+
+
+        [HttpDelete("DeleteCompany/{id}")]
+        public IActionResult DeleteCompany(int id)
+        {
+            var existingCompany = _companyManager.Get(id);
+            if (existingCompany == null)
+            {
+                return NotFound();
+            }
+            _companyManager.Delete(existingCompany);
+            return NoContent();
+        }
+
+        //[HttpPost("AddCompany")]
+        //public IActionResult AddCompany(CompanyViewModel companyViewModel)
+        //{
+        //    _companyManager.Add(companyViewModel);
+        //    return CreatedAtAction(nameof(GetCompanyById), new { id = companyViewModel.Id }, companyViewModel);
+        //}
+
+        
+
+        ////Þirket yöneticisi ekleme
+        //[HttpPost("AddCompanyManager")]
+        //public ActionResult<CompanyManagerViewModel> AddCompanyManager(CompanyManagerViewModel companyManagerViewModel)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
+        //    _companyManagerMan.Add(companyManagerViewModel);
+        //    return CreatedAtAction(nameof(GetCompanyManagerById), new { id = companyManagerViewModel.Id }, companyManagerViewModel);
+        //}
+
+        //Þirket yöneticisi silme
+
+        [HttpDelete("DeleteCompanyManager")]
+        public ActionResult DeleteCompanyManager(int id)
+        {
+            var companyManager = _companyManagerMan.Get(id);
+            if (companyManager == null)
+            {
+                return NotFound();
+            }
+            _companyManagerMan.Delete(id);
+            return NoContent();
+
+        }
 
         [HttpGet(Name = "GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get()
