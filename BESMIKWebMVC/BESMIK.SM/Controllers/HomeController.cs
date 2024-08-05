@@ -1,10 +1,12 @@
 using BESMIK.SM.Models;
 using BESMIK.ViewModel.Company;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
 namespace BESMIK.SM.Controllers
 {
+    [Authorize(Roles = "Site Yöneticisi")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

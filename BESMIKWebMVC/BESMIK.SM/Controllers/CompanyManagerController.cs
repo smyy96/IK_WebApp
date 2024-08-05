@@ -4,12 +4,14 @@ using BESMIK.ViewModel.CompanyManager;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using FluentValidation.Results;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 
 namespace BESMIK.SM.Controllers
 {
+    [Authorize(Roles = "Site Yöneticisi")]
     public class CompanyManagerController : Controller
     {
         private HttpClient _httpClient;
@@ -89,28 +91,6 @@ namespace BESMIK.SM.Controllers
                 }
 
 
-                //string fileName = model.FormFile.FileName;
-
-                //var dosyadakiFileName = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/companyManager", fileName);
-
-                //var konum = dosyadakiFileName;
-
-                ////Kaydetmek için bir akış ortamı oluşturalım
-                //var akisOrtami = new FileStream(konum, FileMode.Create);
-                //var memory = new MemoryStream();
-
-                ////Resmi kaydet
-                //model.FormFile.CopyTo(akisOrtami);
-                //model.FormFile.CopyTo(memory);
-
-                //model.Photo = fileName;
-                //model.PictureFile = memory.ToArray();
-                //model.FormFile = null;
-
-                //akisOrtami.Dispose();
-                //memory.Dispose();
-
-
                 else
                 {
                     ModelState.AddModelError("FormFile", "Lütfen geçerli bir resim yükleyin");
@@ -147,8 +127,6 @@ namespace BESMIK.SM.Controllers
 
 
 
-
-
         private async Task<byte[]> GetFileBytesAsync(IFormFile file)
         {
             using (var memoryStream = new MemoryStream())
@@ -157,10 +135,6 @@ namespace BESMIK.SM.Controllers
                 return memoryStream.ToArray();
             }
         }
-
-
-
-
 
 
 
@@ -192,3 +166,41 @@ namespace BESMIK.SM.Controllers
 
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                //string fileName = model.FormFile.FileName;
+
+                //var dosyadakiFileName = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/companyManager", fileName);
+
+                //var konum = dosyadakiFileName;
+
+                ////Kaydetmek için bir akış ortamı oluşturalım
+                //var akisOrtami = new FileStream(konum, FileMode.Create);
+                //var memory = new MemoryStream();
+
+                ////Resmi kaydet
+                //model.FormFile.CopyTo(akisOrtami);
+                //model.FormFile.CopyTo(memory);
+
+                //model.Photo = fileName;
+                //model.PictureFile = memory.ToArray();
+                //model.FormFile = null;
+
+                //akisOrtami.Dispose();
+                //memory.Dispose();
