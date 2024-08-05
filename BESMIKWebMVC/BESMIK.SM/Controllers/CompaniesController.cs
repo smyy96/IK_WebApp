@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BESMIK.SM.Controllers
 {
+    [Authorize(Roles = "Site Yöneticisi2")]
     public class CompaniesController : Controller
     {
         public IActionResult Index()

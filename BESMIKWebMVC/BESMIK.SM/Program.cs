@@ -1,6 +1,9 @@
+
+using BESMIK.SM.UserProfileViewComponent;
 using BESMIK.SM.Validations;
 using BESMIK.ViewModel.CompanyManager;
 using FluentValidation;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,11 +11,32 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddSingleton<HttpClient>();
+builder.Services.AddHttpContextAccessor();
 
 
 builder.Services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
-//builder.Services.AddValidatorsFromAssemblyContaining<CompanyManagerViewModelValidator>();
+
+builder.Services.AddSession();
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+            .AddCookie(options =>
+            {
+                options.LoginPath = "/Account/Login"; // Kullanýcý oturum açmamýþsa bu sayfa acýlacak
+                options.AccessDeniedPath = "/Account/AccessDenied"; // Eriþim reddedildiðinde acýlacak sayfa
+            });
+
+builder.Services.AddAuthorization();
+
+builder.Services.AddHttpClient<UserProfileViewComponent>()
+    .ConfigurePrimaryHttpMessageHandler(() =>
+    {
+        var handler = new HttpClientHandler
+        {
+            UseCookies = false // MVC'nin oturum çerezlerini kullanmasýný saðlar
+        };
+        return handler;
+    });
 
 var app = builder.Build();
 
@@ -20,16 +44,18 @@ var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
+app.UseSession(); //session
+
 app.UseRouting();
 
-app.UseAuthorization();
+app.UseAuthentication(); // Kimlik doðrulama
+app.UseAuthorization();  // Yetkilendirme
 
 app.MapControllerRoute(
     name: "default",
