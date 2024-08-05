@@ -71,7 +71,7 @@ namespace BESMIK.API.Controllers
 
 
         [HttpPatch("Guncelle/{username}")]
-        public async Task<IActionResult> Guncelle(string username, [FromBody] SumAppUserUpdateViewModel updatedUser)
+        public async Task<IActionResult> Guncelle(string username, [FromBody] UpdateUserViewModel updatedUser)
         {
             var user = await _userManager.FindByNameAsync(username);
 

@@ -13,13 +13,12 @@ namespace BESMIK.API.Controllers
     [ApiController]
     public class AppUserController : ControllerBase
     {
-        private BesmikDbContext usermanager;
-        private readonly UserManager<Entities.Concrete.AppUser> _userManager;
+        private UserManager<AppUser> _userManager;
 
-        public AppUserController(UserManager<Entities.Concrete.AppUser> userManager, BesmikDbContext context)
+
+        public AppUserController(UserManager<AppUser> userManager)
         {
             _userManager = userManager;
-            usermanager = context;
         }
 
         [HttpGet("GetUserInfo/{name}")]
@@ -51,32 +50,111 @@ namespace BESMIK.API.Controllers
             return Ok(user);
         }
 
-        [HttpPut("Update/{id}")]
-        public async Task <IActionResult> Guncelle(int id, [FromBody] UpdateUserViewModel updateUserViewModel)
+        [HttpPost("Guncelle/{username}")]
+        public async Task<IActionResult> Guncelle(string username, [FromBody] AppUserViewModel updatedUser)
         {
-            //var appUser = await usermanager.AppUsers.FindAsync(id);
 
-            //if (appUser == null)
-            //{
-            //    return NotFound("Kullanıcı bulunamadı.");
-            //}
+            var user = await _userManager.FindByNameAsync(username);
 
-            //if (updateUserViewModel.Photo != null)
-            //    appUser.Photo = updateUserViewModel.Photo;
+            if (user == null)
+            {
+                return NotFound("bulunamaması imkansız");
+            }
 
-            //if (updateUserViewModel.Address != null)
-            //    appUser.Address = updateUserViewModel.Address;
+            //bütün view
+            user.Phone = updatedUser.Phone;
+            user.Address = updatedUser.Address;
+            user.Photo = updatedUser.Photo;
+            user.Name = updatedUser.Name;
+            user.SecondName = updatedUser.SecondName;
+            user.Surname = updatedUser.Surname;
+            user.SecondSurname = updatedUser.SecondSurname;
+            user.BirthDate = updatedUser.BirthDate;
+            user.BirthPlace = updatedUser.BirthPlace;
+            user.Tc = updatedUser.Tc;
+            user.WorkStartDate = updatedUser.WorkStartDate;
+            user.WorkEndDate = updatedUser.WorkEndDate;
+            user.IsActive = updatedUser.IsActive;
+            user.Job = updatedUser.Job;
+            user.Department = updatedUser.Department;
+            user.Email = updatedUser.Email;
 
-            //if (updateUserViewModel.Phone != null)
-            //    appUser.PhoneNumber = updateUserViewModel.Phone;
 
-            //usermanager.AppUsers.Update(appUser);
-            await usermanager.SaveChangesAsync();
+            var result = await _userManager.UpdateAsync(user);
 
-            return NoContent();
+            if (result.Succeeded)
+            {
+                return Ok("güncellendi");
+            }
 
+            return BadRequest(result.Errors.Select(e => e.Description));
         }
 
 
+
+
+        [HttpPatch("Guncelle/{username}")]
+        public async Task<IActionResult> Guncelle(string username, [FromBody] UpdateUserViewModel updatedUser)
+        {
+            var user = await _userManager.FindByNameAsync(username);
+
+            if (user == null)
+            {
+                return NotFound("User not found");
+            }
+
+
+            if (!string.IsNullOrEmpty(updatedUser.Address))
+            {
+                user.Address = updatedUser.Address;
+            }
+
+            if (!string.IsNullOrEmpty(updatedUser.Phone))
+            {
+                user.PhoneNumber = updatedUser.Phone;
+            }
+
+            if (!string.IsNullOrEmpty(updatedUser.Photo))
+            {
+                user.Photo = updatedUser.Photo;
+            }
+
+            var result = await _userManager.UpdateAsync(user);
+
+            if (result.Succeeded)
+            {
+                return Ok("ok");
+            }
+
+            return BadRequest();
+        }
+
     }
 }
+
+
+
+
+
+
+
+
+
+//{
+//    "Phone": "+90 123 456 7890",
+//  "Address": "İstanbul, Türkiye",
+//  "Photo": null,
+//  "Name": "Site",
+//  "SecondName": "Yönetici",
+//  "Surname": "Yöneticisi",
+//  "SecondSurname": null,
+//  "BirthDate": "2000-01-01",
+//  "BirthPlace": "Yozgat",
+//  "Tc": "12345678901",
+//  "WorkStartDate": "1996-01-01",
+//  "WorkEndDate": null,
+//  "IsActive": true,
+//  "Job": "İK",
+//  "Department": 1,
+//  "Email": "siteyoneticisi@gmail.com"
+//}
