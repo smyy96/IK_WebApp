@@ -4,6 +4,7 @@ using AutoMapper.Extensions.ExpressionMapping;
 using BESMIK.DAL.Repository.Abstract;
 using BESMIK.DTO;
 using BESMIK.Entities.Abstract;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -35,6 +35,7 @@ namespace BESMIK.API.Controllers
         public async Task<IActionResult> GetUserInfo(string name)
         {
             var user = await _userManager.FindByNameAsync(name);
+            //await _userManager.
             if (user == null)
             {
                 return NotFound("Kullanıcı bulunamadı.");
