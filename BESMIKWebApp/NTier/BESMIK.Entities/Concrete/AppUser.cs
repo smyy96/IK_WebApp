@@ -24,7 +24,7 @@ namespace BESMIK.Entities.Concrete
         public bool IsActive { get; set; }
         public string Job {  get; set; }
         public Department Department {  get; set; }
-        public string Email { get; set; }
+        //public string Email { get; set; }
         public string? Address { get; set; }
         public string? Phone { get; set; }
 
