@@ -20,15 +20,31 @@ namespace BESMIK.SM.Controllers
             _validator = validator;
         }
 
+        [HttpGet]
         public async Task<IActionResult> CompaniesList()
         {
-            return View(await _httpClient.GetFromJsonAsync<List<CompanyViewModel>>("https://localhost:7136/api/Company/CompanyList"));
+            var companies = await _httpClient.GetFromJsonAsync<List<CompanyViewModel>>("https://localhost:7136/api/Company/CompanyList");
+            return View(companies);
         }
-
 
         public async Task<IActionResult> CompanyAdd()
         {
             return View(new CompanyViewModel());
+        }
+
+        //public async Task<IActionResult> CompanyDetails()
+        //{
+        //    return View(await _httpClient.GetFromJsonAsync<List<CompanyViewModel>>("https://localhost:7136/api/Company/CompanyList"));
+        //}
+        [HttpGet("{id}")]
+        public async Task<IActionResult> CompanyDetails(int id)
+        {
+            var company = await _httpClient.GetFromJsonAsync<CompanyViewModel>($"https://localhost:7136/api/Company/{id}");
+            if (company == null)
+            {
+                return NotFound();
+            }
+            return View(company);
         }
 
         [HttpPost]
@@ -93,7 +109,7 @@ namespace BESMIK.SM.Controllers
 
                 if (response.IsSuccessStatusCode)
                 {
-                    return RedirectToAction("CompanyList");
+                    return RedirectToAction("CompaniesList");
                 }
                 else
                 {
@@ -123,23 +139,5 @@ namespace BESMIK.SM.Controllers
             }
         }
 
-        //Ajax ile company manager doldurma
-        [HttpGet]
-        public async Task<IActionResult> GetCompanyManagers()
-        {
-            //Şirket yönetici adlarını selecte eklemek için
-            var companyManagers = await _httpClient.GetFromJsonAsync<List<CompanyManagerViewModel>>("https://localhost:7136/api/CompanyManager/CompanyManagerList");
-            return Json(companyManagers);
-        }
-
-        public IActionResult Details() 
-        {
-            return View();
-        }
-        
-        public IActionResult Delete() 
-        {
-            return View();
-        }
     }
 }
