@@ -1,7 +1,7 @@
 ﻿@model AppUserViewModel
 
 @{
-
+    Layout = "_AdminLayout";
 }
 
 <h2>Kullanıcı Detay Bilgi</h2>
@@ -16,7 +16,8 @@
             <dd class="col-sm-9">
                 @if (!string.IsNullOrEmpty(Model.Photo))
                 {
-                    <img src="@Model.Photo" alt="Kullanıcı Fotoğrafı" class="img-thumbnail" width="150" />
+                    <td> <img height="60px" width="60px" src="~/images/appUser/@Model.Photo" alt="Resim Yok" /> </td>
+                    <br />
                 }
                 else
                 {

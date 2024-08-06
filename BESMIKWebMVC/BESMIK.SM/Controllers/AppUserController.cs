@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using BESMIK.ViewModel.AppUser;
 using BESMIK.ViewModel;
 using System.Net.Http.Headers;
+using System.Net.Http.Json;
 
 namespace BESMIK.SM.Controllers
 {
@@ -22,7 +23,7 @@ namespace BESMIK.SM.Controllers
         public async Task<IActionResult> Summary()
         {
             string user = HttpContext.User.Identity.Name;
-            return View(await _httpClient.GetFromJsonAsync<AppUserViewModel>("https://localhost:7136/api/AppUser/GetUserInfo/" + user)); 
+            return View(await _httpClient.GetFromJsonAsync<AppUserViewModel>("https://localhost:7136/api/AppUser/GetUserInfo/" + user));
         }
 
 
@@ -46,6 +47,8 @@ namespace BESMIK.SM.Controllers
             {
                 var userInfo = await _httpClient.GetFromJsonAsync<AppUserViewModel>($"https://localhost:7136/api/AppUser/GetUserInfo/{userName}");
 
+                ViewBag.PictureName = userInfo.Photo;
+
                 if (userInfo == null)
                 {
                     return NotFound();
@@ -61,7 +64,7 @@ namespace BESMIK.SM.Controllers
 
         // Kullanıcı bilgilerini güncelleme
         [HttpPost]
-        public async Task<IActionResult> Edit(AppUserViewModel model, IFormFile photo)
+        public async Task<IActionResult> Edit(AppUserViewModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -70,24 +73,36 @@ namespace BESMIK.SM.Controllers
 
             try
             {
-                var content = new MultipartFormDataContent();
+                //buradaki photo resmin adını tutan propumuz picture ise ifromfile dosyamız
 
-                // Modeli JSON olarak ekle
-                var jsonModel = JsonContent.Create(model);
-                content.Add(jsonModel, "userInfo");
-
-                // Fotoğraf varsa ekle
-                if (photo != null && photo.Length > 0)
+                if (model.Picture != null &&
+                    model.Picture.FileName != model.Photo)
                 {
-                    var photoStream = new MemoryStream();
-                    await photo.CopyToAsync(photoStream);
-                    var photoContent = new StreamContent(new MemoryStream(photoStream.ToArray()));
-                    photoContent.Headers.ContentType = new MediaTypeHeaderValue(photo.ContentType);
-                    content.Add(photoContent, "photo", photo.FileName);
-                }
+                    //if (model.Photo != null)
+                    //    ResimSil(model);
 
+                    //dosyanın adını, urun nesnesinin resim adına atayalım
+                    model.Photo = model.Picture.FileName;
+
+                    //Dosyanın kaydedileceği konumu belirleyelim
+                    var konum = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/appUser", model.Photo);
+
+                    //Kaydetmek için bir akış ortamı oluşturalım
+                    var akisOrtami = new FileStream(konum, FileMode.Create);
+
+                    //Resmi kaydet
+                    model.Picture.CopyTo(akisOrtami);
+
+                    //ortamı kapat
+                    akisOrtami.Close();
+
+
+                }
+                model.Picture = null;
+                string user = HttpContext.User.Identity.Name;
                 // API'ye PUT isteği gönder
-                var response = await _httpClient.PutAsync("https://localhost:7136/api/AppUser/Guncelle/", content);
+                var response = await _httpClient.PutAsJsonAsync<AppUserViewModel>($"https://localhost:7136/api/AppUser/Guncelle/{user}", model);
+
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -105,6 +120,27 @@ namespace BESMIK.SM.Controllers
                 return View(model);
             }
         }
+
+
+        //public void ResimSil(AppUserViewModel model)
+        //{
+        //    //bu metod, kendisine parametre olarak gönderilen urunun resmini kullanan başka 
+        //    //ürün yoksa o resmi klasörden silecek
+
+        //    var resmiKullananBaskaVarMi = _db.Menus.Any(u => u.PictureName == menu.PictureName &&
+        //    u.Id != menu.Id);
+        //    if (!resmiKullananBaskaVarMi) //başka yoksa sil
+        //    {
+        //        //resmi bul
+        //        string silinecekResim = Path.Combine(Directory.GetCurrentDirectory(),
+        //            "wwwroot/Images", menu.PictureName);
+
+        //        //o resmi sil.
+        //        System.IO.File.Delete(silinecekResim);
+        //    }
+        //}
+
+
 
 
     }

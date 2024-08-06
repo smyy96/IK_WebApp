@@ -50,7 +50,7 @@ namespace BESMIK.API.Controllers
             return Ok(user);
         }
 
-        [HttpPost("Guncelle/{username}")]
+        [HttpPut("Guncelle/{username}")]
         public async Task<IActionResult> Guncelle(string username, [FromBody] AppUserViewModel updatedUser)
         {
 
