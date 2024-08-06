@@ -1,0 +1,49 @@
+﻿@model AppUserViewModel
+
+@{
+
+}
+<h2>Kullanıcı Özet Bilgi</h2>
+
+<div class="card">
+    <div class="card-header">
+        <h3>@Model.Name @Model.Surname</h3>
+    </div>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3">Fotoğraf</dt>
+            <dd class="col-sm-9">
+                @if (!string.IsNullOrEmpty(Model.Photo))
+                {
+                    <img src="@Model.Photo" alt="Kullanıcı Fotoğrafı" class="img-thumbnail" width="150" />
+                }
+                else
+                {
+                    <span>Fotoğraf mevcut değil</span>
+                }
+            </dd>
+
+            <dt class="col-sm-3">Ad</dt>
+            <dd class="col-sm-9">@Model.Name</dd>
+
+            <dt class="col-sm-3">Soyad</dt>
+            <dd class="col-sm-9">@Model.Surname</dd>
+
+            <dt class="col-sm-3">E-posta</dt>
+            <dd class="col-sm-9">@Model.Email</dd>
+
+            <dt class="col-sm-3">Telefon</dt>
+            <dd class="col-sm-9">@Model.Phone</dd>
+
+            <dt class="col-sm-3">Adres</dt>
+            <dd class="col-sm-9">@Model.Address</dd>
+
+            <dt class="col-sm-3">Meslek</dt>
+            <dd class="col-sm-9">@Model.Job</dd>
+
+            <dt class="col-sm-3">Departman</dt>
+            <dd class="col-sm-9">@Model.Department.ToString()</dd>
+
+        </dl>
+    </div>
+</div>
