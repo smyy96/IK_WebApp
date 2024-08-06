@@ -1,4 +1,5 @@
 ﻿using BESMIK.Common;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,7 @@ namespace BESMIK.ViewModel.AppUser
         public string Surname { get; set; }
         public string? SecondSurname { get; set; }
         public string? Photo { get; set; }
+        public IFormFile? Picture { get; set; }
         public DateOnly BirthDate { get; set; }
         public string? BirthPlace { get; set; }
         public string Tc { get; set; }
