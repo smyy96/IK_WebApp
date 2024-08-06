@@ -4,9 +4,8 @@
     Layout = "_AdminLayout";
 }
 
-
 <div class="pagetitle">
-    <h1>Şirket İşlemleri</h1>
+    <h1>Şirket Listesi</h1>
     <nav>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Anasayfa</a></li>
@@ -16,11 +15,9 @@
     </nav>
 </div>
 
-
 <section class="section">
     <div class="row">
         <div class="col-lg-12">
-
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Şirket Listesi</h5>
@@ -28,28 +25,30 @@
                     <table class="table datatable">
                         <thead>
                             <tr>
-                                <th>Şirket Adı</th>
-                                <th>Şirket Çalışan Sayısı</th>
-                                <th>Telefon</th>
-                                <th>E-Mail</th>                              
-                           </tr>
+                                <th>Şirket Adı</th> @* Bunlar istenilen proplarla değiştirilecek yüksek iht. *@
+                                <th>Şirket Çalışan Sayısı</th> @* Bunlar istenilen proplarla değiştirilecek yüksek iht. *@
+                                <th>Telefon</th> @* Bunlar istenilen proplarla değiştirilecek yüksek iht. *@
+                                <th>E-Mail</th> @* Bunlar istenilen proplarla değiştirilecek yüksek iht. *@
+                                <th>Detaylar</th> @* Bunlar istenilen proplarla değiştirilecek yüksek iht. *@
+                            </tr>
                         </thead>
                         <tbody>
-                            @foreach (CompanyViewModel item in Model)
+                            @foreach (var item in Model)
                             {
                                 <tr>
                                     <td>@item.Name</td>
                                     <td>@item.EmployeesNumber</td>
                                     <td>@item.Phone</td>
                                     <td>@item.Email</td>
-                               </tr>
+                                    <td>
+                                        <a asp-controller="Companies" asp-action="CompanyDetails" asp-route-id="@item.Id" class="btn btn-primary">Detaylar</a>
+                                    </td>
+                                </tr>
                             }
                         </tbody>
                     </table>
-
                 </div>
             </div>
-
         </div>
     </div>
 </section>

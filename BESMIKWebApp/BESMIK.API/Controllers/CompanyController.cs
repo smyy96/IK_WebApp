@@ -31,31 +31,34 @@ namespace BESMIK.API.Controllers
         public IActionResult Post([FromBody] CompanyViewModel companyViewModel)
         {
             _companyManager.Add(companyViewModel);
-            return Created("", companyViewModel);
-
+            return CreatedAtAction(nameof(GetCompany), new { id = companyViewModel.Id }, companyViewModel);
         }
 
         //*--------------------------------------------------------------------------------------------------------------------------------------------*
         //Şirket Listeleme
         [HttpGet("CompanyList")]
-        public IEnumerable<CompanyViewModel> CompanyGet()
+        public ActionResult<IEnumerable<CompanyViewModel>> CompanyGet()
         {
-            return _companyManager.GetAll();
+            return Ok(_companyManager.GetAll());
         }
 
         //*--------------------------------------------------------------------------------------------------------------------------------------------*
         //Şirketi ID'sine göre getirme
-        [HttpGet("Companies/{id}")]
-        public IActionResult GetCompany(int id)
+        [HttpGet("{id}")]
+        public ActionResult<CompanyViewModel> GetCompany(int id)
         {
-            return Ok(_companyManager.Get(id));
+            var company = _companyManager.Get(id);
+            if (company == null)
+            {
+                return NotFound();
+            }
+            return Ok(company);
         }
 
         //*--------------------------------------------------------------------------------------------------------------------------------------------*
         //ID'si seçilen şirketin yöneticilerini getirme
-
-        [HttpGet("Companies/{id}/Managers")]
-        public IActionResult GetCompanyManagers(int id)
+        [HttpGet("{id}/Managers")]
+        public ActionResult<IEnumerable<CompanyManagerViewModel>> GetCompanyManagers(int id)
         {
             var company = _companyManager.Get(id);
             if (company == null)
@@ -64,15 +67,13 @@ namespace BESMIK.API.Controllers
             }
 
             var companyManagers = _companyManagerMan.GetManagersByCompanyID(id);
-            if (!companyManagers.Any())
+            if (companyManagers == null || !companyManagers.Any())
             {
                 return NotFound("No managers found for the specified company ID.");
             }
 
             return Ok(companyManagers);
         }
-
-
 
         //*--------------------------------------------------------------------------------------------------------------------------------------------*
         //Şirket silme, (isterlerde yok)

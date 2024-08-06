@@ -15,14 +15,13 @@
         </ol>
     </nav>
 </div>
-
 <section class="section profile">
     <div class="row">
         <div class="col-xl-12">
             <div class="card">
                 <div class="card-body pt-3">
                     <div class="tab-content pt-2">
-                        <form asp-controller="Company" asp-action="CompanyAdd" method="post" enctype="multipart/form-data">
+                        <form asp-controller="Companies" asp-action="CompanyAdd" method="post" enctype="multipart/form-data">
 
                             <div asp-validation-summary="ModelOnly"></div>
                             <div class="row mb-3">
@@ -55,27 +54,30 @@
                             <div class="row mb-3">
                                 <label for="name" class="col-md-4 col-lg-3 col-form-label">Şirket İsim</label>
                                 <div class="col-md-8 col-lg-9">
-                                    <input name="sirketİsim" type="text" class="form-control" id="sirketİsim" value="@Model.TitleName">
+                                    <input name="TitleName" type="text" class="form-control" id="titleName" value="@Model.TitleName">
+                                    <span asp-validation-for="TitleName" class="form-text text-danger"></span>
                                 </div>
                             </div>
 
                             <div class="row mb-3">
                                 <label for="mersisNumber" class="col-md-4 col-lg-3 col-form-label">Mersis No</label>
                                 <div class="col-md-8 col-lg-9">
-                                    <input name="mersisNumber" type="text" class="form-control" id="mersisNumber" value="@Model.MersisNumber">
+                                    <input name="MersisNumber" type="text" class="form-control" id="mersisNumber" value="@Model.MersisNumber">
                                     <span asp-validation-for="MersisNumber" class="form-text text-danger"></span>
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label for="taxNumber" class="col-md-4 col-lg-3 col-form-label">Vergi No</label>
                                 <div class="col-md-8 col-lg-9">
-                                    <input name="taxNumber" type="text" class="form-control" id="taxNumber" value="@Model.TaxNumber">
+                                    <input name="TaxNumber" type="text" class="form-control" id="taxNumber" value="@Model.TaxNumber">
+                                    <span asp-validation-for="TaxNumber" class="form-text text-danger"></span>
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label for="taxAdministration" class="col-md-4 col-lg-3 col-form-label">Vergi Dairesi</label>
                                 <div class="col-md-8 col-lg-9">
-                                    <input name="taxAdministration" type="text" class="form-control" id="taxAdministration" value="@Model.TaxAdministration">
+                                    <input name="TaxAdministration" type="text" class="form-control" id="taxAdministration" value="@Model.TaxAdministration">
+                                    <span asp-validation-for="TaxAdministration" class="form-text text-danger"></span>
                                 </div>
                             </div>
 
@@ -96,9 +98,9 @@
                             </div>
 
                             <div class="row mb-3">
-                                <label for="employeeNumber" class="col-md-4 col-lg-3 col-form-label">Çalışan Sayısı</label>
+                                <label for="employeesNumber" class="col-md-4 col-lg-3 col-form-label">Çalışan Sayısı</label>
                                 <div class="col-md-8 col-lg-9">
-                                    <input name="employeeNumber" type="text" class="form-control" id="employeeNumber" value="@Model.EmployeesNumber">
+                                    <input name="EmployeesNumber" type="text" class="form-control" id="employeesNumber" value="@Model.EmployeesNumber">
                                     <span asp-validation-for="EmployeesNumber" class="form-text text-danger"></span>
                                 </div>
                             </div>
@@ -106,7 +108,7 @@
                             <div class="row mb-3">
                                 <label for="address" class="col-md-4 col-lg-3 col-form-label">Adres</label>
                                 <div class="col-md-8 col-lg-9">
-                                    <input name="address" type="date" class="form-control" id="address" value="@Model.Address">
+                                    <input name="Address" type="text" class="form-control" id="address" value="@Model.Address">
                                     <span asp-validation-for="Address" class="form-text text-danger"></span>
                                 </div>
                             </div>
@@ -115,7 +117,7 @@
                             <div class="row mb-3">
                                 <label for="establishmentYear" class="col-md-4 col-lg-3 col-form-label">Kuruluş Tarihi</label>
                                 <div class="col-md-8 col-lg-9">
-                                    <input name="establishmentYear" type="text" class="form-control" id="establishmentYear"
+                                    <input name="EstablishmentYear" type="date" class="form-control" id="establishmentYear"
                                            value="@(Model.EstablishmentYear == default(DateOnly) ? DateTime.Now.ToString("yyyy-MM-dd") : new DateTime(Model.EstablishmentYear.Year, Model.EstablishmentYear.Month, Model.EstablishmentYear.Day).ToString("yyyy-MM-dd"))">
                                     <span asp-validation-for="EstablishmentYear" class="form-text text-danger"></span>
                                 </div>
@@ -124,21 +126,21 @@
                             <div class="row mb-3">
                                 <label for="contractStartYear" class="col-md-4 col-lg-3 col-form-label">Sözleşme Başlangıç Tarihi</label>
                                 <div class="col-md-8 col-lg-9">
-                                    <input name="contractStartYear" type="date" class="form-control" id="contractStartYear"
-                                           value="@(Model.ContractStartYear == default(DateOnly) ? DateTime.Now.ToString("yyyy-MM-dd") : new DateTime(Model.ContractStartYear.Value.Year, Model.ContractStartYear.Value.Month, Model.ContractStartYear.Value.Day).ToString("yyyy-MM-dd"))">
+                                    <input name="ContractStartYear" type="date" class="form-control" id="contractStartYear"
+                                           value="@(Model.ContractStartYear.HasValue ? new DateTime(Model.ContractStartYear.Value.Year, Model.ContractStartYear.Value.Month, Model.ContractStartYear.Value.Day).ToString("yyyy-MM-dd") : DateTime.Now.ToString("yyyy-MM-dd"))">
                                     <span asp-validation-for="ContractStartYear" class="form-text text-danger"></span>
                                 </div>
                             </div>
-
 
                             <div class="row mb-3">
                                 <label for="contractEndYear" class="col-md-4 col-lg-3 col-form-label">Sözleşme Bitiş Tarihi</label>
                                 <div class="col-md-8 col-lg-9">
                                     <input name="contractEndYear" type="date" class="form-control" id="contractEndYear"
-                                           value="@(Model.ContractEndYear == default(DateOnly) ? DateTime.Now.ToString("yyyy-MM-dd") : new DateTime(Model.ContractEndYear.Value.Year, Model.ContractEndYear.Value.Month, Model.ContractEndYear.Value.Day).ToString("yyyy-MM-dd"))">
+                                           value="@(Model.ContractEndYear.HasValue ? new DateTime(Model.ContractEndYear.Value.Year, Model.ContractEndYear.Value.Month, Model.ContractEndYear.Value.Day).ToString("yyyy-MM-dd") : DateTime.Now.ToString("yyyy-MM-dd"))">
                                     <span asp-validation-for="ContractEndYear" class="form-text text-danger"></span>
                                 </div>
                             </div>
+
 
                             <div class="row mb-3">
                                 <label for="isActive" class="col-md-4 col-lg-3 col-form-label">Aktiflik Durumu</label>
@@ -161,7 +163,7 @@
 
 
                             <div class="text-center">
-                                <button type="submit" class="btn btn-primary">Değişiklikleri Kaydet</button>
+                                <button type="submit" class="btn btn-primary">Şirketi Ekle</button>
                             </div>
                         </form>
                     </div>
@@ -175,7 +177,7 @@
 @section Scripts {
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    
+
     <script>
         function previewImage(input) {
             if (input.files && input.files[0]) {

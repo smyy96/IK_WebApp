@@ -1,1 +1,83 @@
-﻿
+﻿@model CompanyViewModel
+
+@{
+    Layout = "_AdminLayout";
+}
+
+<div class="pagetitle">
+    <h1>Şirket Detayları</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Anasayfa</a></li>
+            <li class="breadcrumb-item">Şirket İşlemleri</li>
+            <li class="breadcrumb-item active">Şirket Detayları</li>
+        </ol>
+    </nav>
+</div>
+
+<section class="section">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Şirket Detayları</h5>
+
+                    <table class="table">
+                        <tr>
+                            <th>Şirket Adı</th>
+                            <td>@Model.Name</td>
+                        </tr>
+                        <tr>
+                            <th>Şirket Tam Adı</th>
+                            <td>@Model.TitleName</td>
+                        </tr>
+                        <tr>
+                            <th>Şirket Mersis Numarası</th>
+                            <td>@Model.MersisNumber</td>
+                        </tr>
+                        <tr>
+                            <th>Şirket Vergi Numarası</th>
+                            <td>@Model.TaxNumber</td>
+                        </tr>
+                        <tr>
+                            <th>Şirket Vergi Dairesi</th>
+                            <td>@Model.TaxAdministration</td>
+                        </tr>
+                        <tr>
+                            <th>Şirket Telefonu</th>
+                            <td>@Model.Phone</td>
+                        </tr>
+                        <tr>
+                            <th>Şirket Adresi</th>
+                            <td>@Model.Address</td>
+                        </tr>
+                        <tr>
+                            <th>Şirket Email</th>
+                            <td>@Model.Email</td>
+                        </tr>
+                        <tr>
+                            <th>Şirket Çalışan Sayısı</th>
+                            <td>@Model.EmployeesNumber</td>
+                        </tr>
+                        <tr>
+                            <th>Şirket Kuruluş Tarihi</th>
+                            <td>@Model.EstablishmentYear</td>
+                        </tr>
+                        <tr>
+                            <th>Şirket Sözleşme Başlangıç Tarihi</th>
+                            <td>@Model.ContractStartYear</td>
+                        </tr>
+                        <tr>
+                            <th>Şirket Sözleşme Bitiş Tarihi</th>
+                            <td>@Model.ContractEndYear</td>
+                        </tr>
+                        <tr>
+                            <th>Şirket Aktiflik Durumu</th>
+                            <td>@Model.IsActive</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
