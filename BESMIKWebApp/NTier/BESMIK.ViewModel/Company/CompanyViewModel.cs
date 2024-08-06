@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,8 +16,10 @@ namespace BESMIK.ViewModel.Company
         public string TaxAdministration { get; set; }
 
 
-        public string? Logo { get; set; }
-        public byte[] PictureFile { get; set; }
+        public string? Logo { get; set; } //
+        public byte[]? PictureFile { get; set; } // 
+        public IFormFile? FormFile { get; set; } //
+
 
 
         public string Phone { get; set; }
