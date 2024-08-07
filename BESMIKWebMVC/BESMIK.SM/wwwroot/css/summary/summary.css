@@ -1,0 +1,6 @@
+﻿.readonlyBg input[readonly] {
+    background-color: #f0f0f0; /* Açık gri arka plan */
+    border: 1px solid #dcdcdc; /* Açık gri kenarlık */
+    cursor: not-allowed; /* Okunamaz olduğuna işaret eder */
+    color: #666; /* Gri metin rengi */
+}

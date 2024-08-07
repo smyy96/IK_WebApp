@@ -106,7 +106,7 @@ namespace BESMIK.SM.Controllers
 
                 if (response.IsSuccessStatusCode)
                 {
-                    return RedirectToAction("Details");
+                    return RedirectToAction("Summary");
                 }
                 else
                 {

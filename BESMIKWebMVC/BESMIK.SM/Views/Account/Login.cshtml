@@ -13,6 +13,13 @@
             <p class="text-center small">Giriş yapmak için email adresinizi ve şifrenizi giriniz.</p>
         </div>
 
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger">
+                @TempData["ErrorMessage"]
+            </div>
+        }
+
         <form asp-controller="Account" asp-action="Login" method="post" class="row g-3 needs-validation" novalidate>
 
             <div class="col-12">

@@ -1,12 +1,10 @@
 ﻿using BESMIK.ViewModel;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
-using System.Text.Json;
 using System.Text;
-using BESMIK.ViewModel.CompanyManager;
-using System.Net.Http;
+using System.Text.Json;
 
 namespace BESMIK.SM.Controllers
 {
@@ -64,10 +62,11 @@ namespace BESMIK.SM.Controllers
 
                 HttpContext.Session.SetString("BasicAuth", responseViewModel.BasicAuth);
 
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Summary", "AppUser");
             }
 
-            return BadRequest();
+            TempData["ErrorMessage"] = "Kullanıcı bulunamadı veya geçersiz şifre!";
+            return RedirectToAction("Login");
         }
         public async Task<IActionResult> Logout()
         {
