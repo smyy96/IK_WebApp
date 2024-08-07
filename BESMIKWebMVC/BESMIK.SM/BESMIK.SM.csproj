@@ -60,6 +60,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\images\companyManager\" />
+    <Folder Include="wwwroot\images\company\" />
     <Folder Include="wwwroot\img\flaticon\" />
   </ItemGroup>
 
