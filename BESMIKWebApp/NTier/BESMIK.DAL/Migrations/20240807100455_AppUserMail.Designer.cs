@@ -4,6 +4,7 @@ using BESMIK.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BESMIK.DAL.Migrations
 {
     [DbContext(typeof(BesmikDbContext))]
-    partial class BesmikDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240807100455_AppUserMail")]
+    partial class AppUserMail
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -146,21 +149,21 @@ namespace BESMIK.DAL.Migrations
                             Address = "Ankara, Türkiye",
                             BirthDate = new DateOnly(2000, 1, 1),
                             BirthPlace = "Yozgat",
-                            ConcurrencyStamp = "adbc5dd7-3e0b-4a46-8781-47e933eb842a",
+                            ConcurrencyStamp = "23f537b1-ce03-4837-96df-a0dc15997741",
                             Department = 1,
-                            Email = "site.yoneticisi@bilgeadam.com",
+                            Email = "siteyoneticisi@gmail.com",
                             EmailConfirmed = true,
                             IsActive = true,
                             Job = "İK",
                             LockoutEnabled = false,
                             Name = "Site",
-                            NormalizedEmail = "SITE.YONETICISI@BILGEADAM.COM",
+                            NormalizedEmail = "SITEYONETICISI@GMAIL.COM",
                             NormalizedUserName = "SITEYONETICISI",
-                            PasswordHash = "AQAAAAIAAYagAAAAEKyw+qZ/l0bUuoqVMCj3NH0GDHg+SDjD9AYJRLUTV79zb5EFpwyFUYnksSzvcEH+4A==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEJLo/bbu+zfMzWK/1/ziQNFeKyUlOTC8UTD2ZQkMD8HJj20TA8KjyEi4WLb3OCh+dw==",
                             Phone = "+90 123 456 7890",
                             PhoneNumberConfirmed = false,
                             SecondName = "Yöneticisi",
-                            SecurityStamp = "f281a7a4-e9f5-4e87-975f-1770f52907cb",
+                            SecurityStamp = "d765a13a-fd5a-4326-8a2a-7d548b231400",
                             Surname = "Yönetici",
                             Tc = "12345678901",
                             TwoFactorEnabled = false,
