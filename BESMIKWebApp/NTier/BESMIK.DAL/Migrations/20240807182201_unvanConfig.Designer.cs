@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BESMIK.DAL.Migrations
 {
     [DbContext(typeof(BesmikDbContext))]
-    [Migration("20240807121052_CompanyManAddress1")]
-    partial class CompanyManAddress1
+    [Migration("20240807182201_unvanConfig")]
+    partial class unvanConfig
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -149,7 +149,7 @@ namespace BESMIK.DAL.Migrations
                             Address = "Ankara, Türkiye",
                             BirthDate = new DateOnly(2000, 1, 1),
                             BirthPlace = "Yozgat",
-                            ConcurrencyStamp = "6fc1fabc-cb74-4d12-b407-8bfdac539629",
+                            ConcurrencyStamp = "6aba4785-ce52-442c-a838-118e67aba4ea",
                             Department = 1,
                             Email = "site.yoneticisi@bilgeadam.com",
                             EmailConfirmed = true,
@@ -159,11 +159,11 @@ namespace BESMIK.DAL.Migrations
                             Name = "Site",
                             NormalizedEmail = "SITE.YONETICISI@BILGEADAM.COM",
                             NormalizedUserName = "SITEYONETICISI",
-                            PasswordHash = "AQAAAAIAAYagAAAAEBW8+IiPNgdkQrn+SAOiMLv+qZITdDnRdGcoinCKv2S4BsjF/+gsknQKX/ko0hh3qQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEGCQ53oawjrwtYJnBehHsCtXsIH+Mf5Bu5EtZdYwYEuGa6tSFsd5/CC73w9H0+sG/g==",
                             Phone = "+90 123 456 7890",
                             PhoneNumberConfirmed = false,
                             SecondName = "Yöneticisi",
-                            SecurityStamp = "90eee83c-7959-4a82-b34a-6221c80a31e1",
+                            SecurityStamp = "3d86eeaf-c724-41b8-9a97-f3ac33b0636c",
                             Surname = "Yönetici",
                             Tc = "12345678901",
                             TwoFactorEnabled = false,
@@ -257,11 +257,11 @@ namespace BESMIK.DAL.Migrations
                             EstablishmentYear = new DateOnly(2010, 5, 1),
                             IsActive = true,
                             MersisNumber = "1234567890123456",
-                            Name = "Teknoloji Yenilikçileri A.Ş.",
+                            Name = "Teknoloji Yenilikçileri",
                             Phone = "+90 312 555 1234",
                             TaxAdministration = "Ankara",
                             TaxNumber = "1234567890",
-                            TitleName = "Teknoloji Yenilikçileri"
+                            TitleName = "A.Ş."
                         },
                         new
                         {
@@ -275,11 +275,11 @@ namespace BESMIK.DAL.Migrations
                             EstablishmentYear = new DateOnly(2005, 8, 15),
                             IsActive = true,
                             MersisNumber = "9876543210987654",
-                            Name = "Rolline Mühendislik Ltd.",
+                            Name = "Rolline Mühendislik",
                             Phone = "+90 212 444 5678",
                             TaxAdministration = "İstanbul",
                             TaxNumber = "0987654321",
-                            TitleName = "Rolline Mühendislik"
+                            TitleName = " Ltd."
                         });
                 });
 
