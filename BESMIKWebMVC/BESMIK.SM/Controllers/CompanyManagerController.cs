@@ -83,17 +83,12 @@ namespace BESMIK.SM.Controllers
 
 
 
-                if (model.FormFile == null)
+                else if (model.FormFile == null || model.FormFile.Length == 0)
                 {
                     model.Photo = null;
                     model.PictureFile = null;
-                    model.FormFile = null;
-                }
 
-
-                else
-                {
-                    ModelState.AddModelError("FormFile", "Lütfen geçerli bir resim yükleyin");
+                    ModelState.AddModelError("FormFile", "Lütfen geçerli bir resim yükleyin.");
                     return View(model);
                 }
 
