@@ -25,11 +25,11 @@
                     <table class="table datatable">
                         <thead>
                             <tr>
-                                <th>Şirket Logosu</th> @* Bunlar istenilen proplarla değiştirilecek yüksek iht. *@
-                                <th>Şirket Adı</th> @* Bunlar istenilen proplarla değiştirilecek yüksek iht. *@                                
-                                <th>Telefon</th> @* Bunlar istenilen proplarla değiştirilecek yüksek iht. *@
-                                <th>E-Mail</th> @* Bunlar istenilen proplarla değiştirilecek yüksek iht. *@
-                                <th>Detaylar</th> @* Bunlar istenilen proplarla değiştirilecek yüksek iht. *@
+                                <th>Şirket Logosu</th> 
+                                <th>Şirket Adı</th>                            
+                                <th>Telefon</th> 
+                                <th>E-Mail</th> 
+                                <th>Detaylar</th> 
                             </tr>
                         </thead>
                         <tbody>
@@ -37,10 +37,9 @@
                             {
                                 <tr>
                                     <td>
-                                        
-                                        <img src="~/images/appUser/@item.Logo" alt="Profil" style="width: 30px; height: 30px; object-fit: cover; border-radius: 50%;">
+                                        <img id="companyLogoPreview" src="@(item.Logo ?? "/images/company/ornekCompanyLogoJPG.jpg")" alt="Company Logo" style="max-width: 150px; max-height: 150px;" />
                                     </td>
-                                    
+
                                     <td>@item.Name</td>
                                     <td>@item.Phone</td>
                                     <td>@item.Email</td>

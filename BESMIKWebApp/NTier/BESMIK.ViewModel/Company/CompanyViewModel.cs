@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BESMIK.Common;
+using BESMIK.ViewModel.Company;
 
 namespace BESMIK.ViewModel.Company
 {
@@ -16,9 +18,9 @@ namespace BESMIK.ViewModel.Company
         public string TaxAdministration { get; set; }
 
 
-        public string? Logo { get; set; } //Detaylarda olacak mı hangileri olacak
-        public byte[]? PictureFile { get; set; } //Detaylarda olacak mı hangileri olacak
-        public IFormFile? FormFile { get; set; } //Detaylarda olacak mı hangileri olacak
+        public string? Logo { get; set; }
+        public byte[]? PictureFile { get; set; }
+        public IFormFile? FormFile { get; set; }
 
 
 
