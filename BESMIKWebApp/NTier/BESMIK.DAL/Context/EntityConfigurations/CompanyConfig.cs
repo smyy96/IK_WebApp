@@ -18,8 +18,8 @@ namespace BESMIK.DAL.Context.EntityConfigurations
             new Company
             {
                 Id = 1,
-                Name = "Teknoloji Yenilikçileri A.Ş.",
-                TitleName = "Teknoloji Yenilikçileri",
+                Name = "Teknoloji Yenilikçileri",
+                TitleName = "A.Ş.",
                 MersisNumber = "1234567890123456",
                 TaxNumber = "1234567890",
                 TaxAdministration = "Ankara",
@@ -37,8 +37,8 @@ namespace BESMIK.DAL.Context.EntityConfigurations
             new Company
             {
                 Id = 2,
-                Name = "Rolline Mühendislik Ltd.",
-                TitleName = "Rolline Mühendislik",
+                Name = "Rolline Mühendislik",
+                TitleName = " Ltd.",
                 MersisNumber = "9876543210987654",
                 TaxNumber = "0987654321",
                 TaxAdministration = "İstanbul",
