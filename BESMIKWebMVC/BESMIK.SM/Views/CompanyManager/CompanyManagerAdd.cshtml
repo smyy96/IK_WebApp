@@ -112,7 +112,7 @@
                             <div class="row mb-3">
                                 <label for="birthPlace" class="col-md-4 col-lg-3 col-form-label">Doğum Yeri</label>
                                 <div class="col-md-8 col-lg-9">
-                                    <input name="BirthPlace" type="text" class="form-control" id="birthPlace" value="@Model.BirthPlace">                                  
+                                    <input name="BirthPlace" type="text" class="form-control" id="birthPlace" value="@Model.BirthPlace">
                                 </div>
                             </div>
 
@@ -121,6 +121,13 @@
                                 <div class="col-md-8 col-lg-9">
                                     <input name="TC" type="text" class="form-control" id="tc" value="@Model.TC">
                                     <span asp-validation-for="TC" class="form-text text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="address" class="col-md-4 col-lg-3 col-form-label">Adres</label> <div class="col-md-8 col-lg-9">
+                                    <input name="Address" type="text" class="form-control" id="address" value="@Model.Address">
+                                    <span asp-validation-for="Address" class="form-text text-danger"></span>
                                 </div>
                             </div>
 

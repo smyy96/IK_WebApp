@@ -36,6 +36,10 @@ namespace BESMIK.SM.Validations
                .Must(date => date.ToDateTime(new TimeOnly(0, 0)) < DateTime.Today)
                .WithMessage("Doğum Tarihi bugünden küçük olmalıdır");
 
+            RuleFor(x => x.Address)
+                .NotEmpty().WithMessage("Adres alanı boş olamaz")
+                .MaximumLength(250).WithMessage("Adres en fazla 250 karakter olabilir");
+
 
             RuleFor(x => x.WorkStartDate)
                 .NotEmpty().WithMessage("İşe Başlama Tarihi boş olamaz");
