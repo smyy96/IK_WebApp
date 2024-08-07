@@ -24,7 +24,7 @@ namespace BESMIK.ViewModel.CompanyManager
         public byte[]? PictureFile { get; set; }
         public IFormFile? FormFile { get; set; }
 
-
+        public string Address { get; set; }
         public DateOnly BirthDate { get; set; }
         public string BirthPlace { get; set; }
         public string TC { get; set; }

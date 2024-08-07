@@ -21,6 +21,8 @@ namespace BESMIK.Entities.Concrete
         public string? Photo { get; set; }
         public byte[]? PictureFile { get; set; }
 
+
+        public string Address { get; set; }
         public DateOnly BirthDate { get; set; }
         public string BirthPlace { get; set; }
         public string TC { get; set; }
