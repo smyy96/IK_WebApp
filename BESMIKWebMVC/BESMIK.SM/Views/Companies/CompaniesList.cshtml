@@ -8,7 +8,7 @@
     <h1>Şirket Listesi</h1>
     <nav>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Anasayfa</a></li>
+            <li class="breadcrumb-item"><a asp-controller="AppUser" asp-action="Summary">Anasayfa</a></li>
             <li class="breadcrumb-item">Şirket İşlemleri</li>
             <li class="breadcrumb-item active">Şirket Listele</li>
         </ol>
@@ -25,8 +25,8 @@
                     <table class="table datatable">
                         <thead>
                             <tr>
-                                <th>Şirket Adı</th> @* Bunlar istenilen proplarla değiştirilecek yüksek iht. *@
-                                <th>Şirket Çalışan Sayısı</th> @* Bunlar istenilen proplarla değiştirilecek yüksek iht. *@
+                                <th>Şirket Logosu</th> @* Bunlar istenilen proplarla değiştirilecek yüksek iht. *@
+                                <th>Şirket Adı</th> @* Bunlar istenilen proplarla değiştirilecek yüksek iht. *@                                
                                 <th>Telefon</th> @* Bunlar istenilen proplarla değiştirilecek yüksek iht. *@
                                 <th>E-Mail</th> @* Bunlar istenilen proplarla değiştirilecek yüksek iht. *@
                                 <th>Detaylar</th> @* Bunlar istenilen proplarla değiştirilecek yüksek iht. *@
@@ -36,8 +36,12 @@
                             @foreach (var item in Model)
                             {
                                 <tr>
+                                    <td>
+                                        
+                                        <img src="~/images/appUser/@item.Logo" alt="Profil" style="width: 30px; height: 30px; object-fit: cover; border-radius: 50%;">
+                                    </td>
+                                    
                                     <td>@item.Name</td>
-                                    <td>@item.EmployeesNumber</td>
                                     <td>@item.Phone</td>
                                     <td>@item.Email</td>
                                     <td>

@@ -59,6 +59,6 @@ app.UseAuthorization();  // Yetkilendirme
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=AppUser}/{action=Summary}/{id?}");
 
 app.Run();

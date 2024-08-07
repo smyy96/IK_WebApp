@@ -8,7 +8,7 @@
     <h1>Şirket Detayları</h1>
     <nav>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Anasayfa</a></li>
+            <li class="breadcrumb-item"><a asp-controller="AppUser" asp-action="Summary">Anasayfa</a></li>
             <li class="breadcrumb-item">Şirket İşlemleri</li>
             <li class="breadcrumb-item active">Şirket Detayları</li>
         </ol>
@@ -25,11 +25,11 @@
                     <table class="table">
                         <tr>
                             <th>Şirket Adı</th>
-                            <td>@Model.Name</td>
+                            <td>@Model.TitleName</td>
                         </tr>
                         <tr>
-                            <th>Şirket Tam Adı</th>
-                            <td>@Model.TitleName</td>
+                            <th>Şirket Ünvanı</th>
+                            <td>@Model.Name</td>
                         </tr>
                         <tr>
                             <th>Şirket Mersis Numarası</th>
