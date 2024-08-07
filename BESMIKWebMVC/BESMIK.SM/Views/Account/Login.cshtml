@@ -2,6 +2,21 @@
     Layout = "_LoginLayout";
 }
 
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        background: url('../img/humanresources.png') no-repeat center center fixed;
+        background-size: cover;
+    }
+
+    .card {
+        background: rgba(255, 255, 255, 1.0); /* Kart arka planını hafifçe şeffaf yapar */
+        border: none;
+        border-radius: 8px;
+    }
+</style>
 
 
 <div class="card mb-3">
@@ -44,7 +59,7 @@
                 </div>
             </div>
             <div class="col-12">
-                <button class="btn btn-primary w-100" type="submit">Giriş Yap</button>
+                <button class="btn btn-warning w-100" type="submit">Giriş Yap</button>
             </div>
             <div class="col-12">
                 <p class="small mb-0">Hesabınız yok mu? <a href="pages-register.html">Hesap oluşturun</a></p>
