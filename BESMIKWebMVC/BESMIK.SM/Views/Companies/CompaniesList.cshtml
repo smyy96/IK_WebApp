@@ -37,8 +37,12 @@
                             {
                                 <tr>
                                     <td>
-                                        <img id="companyLogoPreview" src="@(item.Logo ?? "/images/company/ornekCompanyLogoJPG.jpg")" alt="Company Logo" style="max-width: 150px; max-height: 150px;" />
+                                        <img id="companyLogoPreview"
+                                             src="@(item.Logo != null ? Url.Content($"~/images/company/{item.Logo}") : Url.Content("~/images/company/ornekCompanyLogo.png"))"
+                                             alt="Company Logo"
+                                             style="width: 40px; height: 40px; object-fit: cover; border-radius: 50%;">
                                     </td>
+
 
                                     <td>@item.Name</td>
                                     <td>@item.Phone</td>
