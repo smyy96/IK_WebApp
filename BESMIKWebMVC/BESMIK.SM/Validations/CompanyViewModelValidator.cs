@@ -42,6 +42,10 @@ namespace BESMIK.SM.Validations
 
             RuleFor(x => x.EstablishmentYear)
                 .NotEmpty().WithMessage("Kuruluş Yılı boş olamaz");
+
+            //RuleFor(x => x.Logo)
+            //    .MaximumLength(100).WithMessage("Logo dosya adı en fazla 100 karakter olabilir")
+            //    .Matches(@"^[a-zA-Z0-9_\-\.]*$").WithMessage("Logo dosya adı sadece harf, rakam, alt çizgi, tire ve nokta içerebilir");
         }
     }
 }

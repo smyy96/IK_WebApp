@@ -27,10 +27,6 @@ namespace BESMIK.SM.Controllers
             return View(companies);
         }
 
-        public async Task<IActionResult> CompanyAdd()
-        {
-            return View(new CompanyViewModel());
-        }
 
         //public async Task<IActionResult> CompanyDetails()
         //{
@@ -46,6 +42,10 @@ namespace BESMIK.SM.Controllers
             }
             return View(company);
         }
+        public async Task<IActionResult> CompanyAdd()
+        {
+            return View(new CompanyViewModel());
+        }
 
         [HttpPost]
         public async Task<IActionResult> CompanyAdd(CompanyViewModel model)
@@ -54,7 +54,7 @@ namespace BESMIK.SM.Controllers
             {
                 ValidationResult result = _validator.Validate(model);
 
-                ModelState.Remove("Photo");
+                ModelState.Remove("Logo");
                 ModelState.Remove("PictureFile");
 
                 if (!ModelState.IsValid)

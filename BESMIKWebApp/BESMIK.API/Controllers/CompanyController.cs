@@ -28,11 +28,23 @@ namespace BESMIK.API.Controllers
         //Şirket ekleme
 
         [HttpPost("AddCompany")]
-        public IActionResult Post([FromBody] CompanyViewModel companyViewModel)
+        public IActionResult Post([FromBody] CompanyViewModel model)
         {
-            _companyManager.Add(companyViewModel);
-            return CreatedAtAction(nameof(GetCompany), new { id = companyViewModel.Id }, companyViewModel);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            _companyManager.Add(model);
+            return Ok(model);
         }
+
+        //[HttpPost("AddCompany")]
+        //public IActionResult Post([FromBody] CompanyViewModel companyViewModel)
+        //{
+        //    _companyManager.Add(companyViewModel);
+        //    return CreatedAtAction(nameof(GetCompany), new { id = companyViewModel.Id }, companyViewModel);
+        //}
 
         //*--------------------------------------------------------------------------------------------------------------------------------------------*
         //Şirket Listeleme
