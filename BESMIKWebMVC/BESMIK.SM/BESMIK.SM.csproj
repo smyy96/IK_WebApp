@@ -65,7 +65,6 @@
     <Folder Include="Areas\CompanyManager\Views\" />
     <Folder Include="Areas\Personal\Data\" />
     <Folder Include="Areas\Personal\Models\" />
-    <Folder Include="Areas\Personal\Views\" />
     <Folder Include="wwwroot\images\companyManager\" />
     <Folder Include="wwwroot\img\flaticon\" />
   </ItemGroup>
