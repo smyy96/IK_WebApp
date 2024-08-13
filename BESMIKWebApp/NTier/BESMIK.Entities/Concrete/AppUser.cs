@@ -31,7 +31,7 @@ namespace BESMIK.Entities.Concrete
 
 
 
-        public ICollection<AppUser> AppUsers { get; set; }
+        public ICollection<Permission> Permissions { get; set; }
 
 
     }
