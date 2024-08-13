@@ -23,6 +23,7 @@ namespace BESMIK.DAL
 
         public DbSet<Permission> Permissions { get; set; }
         public DbSet<Spending> Spendings { get; set; }
+        public DbSet<Advance> Advances { get; set; }
 
 
 
