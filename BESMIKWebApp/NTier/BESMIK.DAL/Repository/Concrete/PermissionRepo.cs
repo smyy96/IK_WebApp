@@ -25,7 +25,7 @@ namespace BESMIK.DAL.Repository.Concrete
         public override IEnumerable<Permission> GetAll()
         {
             return base._dbContext.Permissions
-                .Include(c => c.AppUsers)
+                .Include(c => c.AppUser)
                 .ToList();
         }
 
