@@ -10,6 +10,7 @@ namespace BESMIK.Common
     {
         OnayBekliyor = 1,
         Onaylandı,
-        Reddedildi
+        Reddedildi,
+        IptalEdildi
     }
 }

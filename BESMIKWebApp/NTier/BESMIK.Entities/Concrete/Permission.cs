@@ -11,12 +11,13 @@ namespace BESMIK.Entities.Concrete
 {
     public class Permission : BaseEntity
     {
+        public PermissionType PermissionType { get; set; }
         public DateOnly PermissionStartDate { get; set; }
         public DateOnly PermissionEndDate { get; set; }
+        public DateOnly PermissionRequestDate { get; set; }
         public string OffDaysNumbers { get; set; }
-        public PermissionType PermissionType { get; set; }
         public PermissionStatus PermissionStatus { get; set; }
-
+        public DateOnly PermissionResponseDate { get; set; }
 
 
         public int AppUserId { get; set; }
