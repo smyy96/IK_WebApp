@@ -22,6 +22,7 @@ namespace BESMIK.DAL
         public DbSet<CompanyManager> CompanyManagers { get; set; }
 
         public DbSet<Permission> Permissions { get; set; }
+        public DbSet<Advance> Advances { get; set; }
 
 
 

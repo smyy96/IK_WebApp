@@ -32,6 +32,8 @@ namespace BESMIK.Entities.Concrete
 
 
         public ICollection<Permission> Permissions { get; set; }
+        public ICollection<Advance> Advances { get; set; }
+
 
 
     }
