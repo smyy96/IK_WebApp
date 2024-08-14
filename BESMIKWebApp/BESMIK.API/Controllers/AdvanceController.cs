@@ -4,11 +4,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BESMIK.API.Controllers
 {
-    [ApiController]
     [Route("api/[controller]")]
-    public class AdvanceController : Controller
+    [ApiController]
+    public class AdvanceController : ControllerBase
     {
-        private readonly AdvanceManager _advanceManager; //Advance BLL'den gelecek, isimler muhtemelen farklı olacak
+        private readonly AdvanceManager _advanceManager;
 
         public AdvanceController(AdvanceManager advanceManager)
         {
@@ -37,9 +37,6 @@ namespace BESMIK.API.Controllers
         {
             return Ok(_advanceManager.GetAll());
         }
-        public IActionResult Index()
-        {
-            return View();
-        }
+        
     }
 }
