@@ -1,4 +1,5 @@
-﻿using BESMIK.Entities.Concrete;
+﻿using BESMIK.BLL.Managers.Concrete;
+using BESMIK.Entities.Concrete;
 using BESMIK.ViewModel.Permission;
 using Microsoft.AspNetCore.Mvc;
 

@@ -17,7 +17,7 @@ namespace BESMIK.DAL.Services.Profiles
 
             CreateMap<Spending, SpendingDto>().ForMember(dest => dest.AppUser, opt => opt.MapFrom(src => src.AppUser));
 
-            CreateMap<AppUserDto, AppUser>().ReverseMap();
+            CreateMap<SpendingDto, Spending>().ReverseMap();
 
         }
     }

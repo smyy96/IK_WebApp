@@ -15,7 +15,7 @@ namespace BESMIK.DTO
         public DateOnly PermissionRequestDate { get; set; }
         public string OffDaysNumbers { get; set; }
         public PermissionStatus PermissionStatus { get; set; }
-        public DateOnly PermissionResponseDate { get; set; }
+        public DateOnly? PermissionResponseDate { get; set; }
 
         public int AppUserId { get; set; }
         public AppUserDto AppUser { get; set; }
