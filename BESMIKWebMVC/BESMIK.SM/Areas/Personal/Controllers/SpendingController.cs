@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BESMIK.SM.Areas.Personal.Controllers
 {
+    [Area("Personal")]
     [Authorize(Roles = "Personal")]
     public class SpendingController : Controller
     {
@@ -40,20 +41,44 @@ namespace BESMIK.SM.Areas.Personal.Controllers
                 return View(model);
             }
 
-            
+            try
+            {
+                if (model.Picture != null)
+                {
+                    // Dosyanın adını model'in Photo alanına atayalım
+                    model.SpendingFile = model.Picture.FileName;
 
+                    // Dosyanın kaydedileceği konumu belirleyelim
+                    var konum = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/Spending", model.SpendingFile);
 
+                    // Kaydetmek için bir akış ortamı oluşturalım
+                    using (var akisOrtami = new FileStream(konum, FileMode.Create))
+                    {
+                        // Resmi kaydet
+                        await model.Picture.CopyToAsync(akisOrtami);
+                    }
+                }
 
+                // API'ye POST isteği gönder
+                var response = await _httpClient.PostAsJsonAsync("https://localhost:7136/api/AppUser/Olustur", model);
 
-            return View(model);
+                if (response.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("Summary");
+                }
+                else
+                {
+                    ModelState.AddModelError(string.Empty, "Oluşturma işlemi başarısız oldu.");
+                    return View(model);
+                }
+            }
+            catch (HttpRequestException)
+            {
+                ModelState.AddModelError(string.Empty, "API çağrısında bir hata oluştu.");
+                return View(model);
+            }
 
         }
-
-        public async Task<IActionResult> SpendingDelete()
-        {
-            return View();
-        }
-
 
     }
 }

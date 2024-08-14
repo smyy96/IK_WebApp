@@ -1,5 +1,62 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@using BESMIK.ViewModel.Spending
+@model List<SpendingViewModel>
+
 @{
+    Layout = "_Layout";
 }
+
+
+<div class="pagetitle">
+    <h1>Harcama Ekle</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-controller="Spending" asp-action="SpendingList">Harcama Listele</a></li>
+            <li class="breadcrumb-item">Harcama İşlemleri</li>
+            <li class="breadcrumb-item active">Harcama Listele</li>
+        </ol>
+    </nav>
+</div>
+
+
+<section class="section">
+    <div class="row">
+        <div class="col-lg-12">
+
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Harcama Listesi</h5>
+
+                    <table class="table datatable">
+                        <thead>
+                            <tr>
+                                <th>Harcama Türü</th>
+                                <th>Tutar</th>
+                                <th>Para Birimi</th>
+                                <th>Onay Durumu</th>
+                                <th>Talep Tarihi</th>
+                                <th>Cevaplanma Tarihi</th>
+                                <th>Dosya Ekleme</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (SpendingViewModel item in Model)
+                            {
+                                <tr>
+                                    <td>@item.SpendingType</td>
+                                    <td>@item.Sum</td>
+                                    <td>@item.SpendingCurrency</td>
+                                    <td>@item.SpendingStatus</td>
+                                    <td>@item.SpendingRequestDate</td>
+                                    <td>@item.SpendingResponseDate</td>
+                                    <td>@item.SpendingFile</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
