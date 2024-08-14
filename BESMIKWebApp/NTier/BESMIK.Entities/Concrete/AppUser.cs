@@ -30,6 +30,10 @@ namespace BESMIK.Entities.Concrete
         public string? Phone { get; set; }
 
 
+        public int? CompanyId { get; set; }
+        public Company Company { get; set; }
+
+
 
         public ICollection<Permission> Permissions { get; set; }
         public ICollection<Spending> Spendings { get; set; }

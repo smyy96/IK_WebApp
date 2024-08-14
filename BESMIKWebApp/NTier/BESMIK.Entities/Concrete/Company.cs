@@ -29,6 +29,8 @@ namespace BESMIK.Entities.Concrete
         public DateOnly? ContractEndYear { get; set; }
         public bool IsActive { get; set; }
 
+
+        public ICollection<AppUser> AppUsers { get; set; }
         public ICollection<CompanyManager> CompanyManagers { get; set; } //= new List<CompanyManager>(); 
 
     }

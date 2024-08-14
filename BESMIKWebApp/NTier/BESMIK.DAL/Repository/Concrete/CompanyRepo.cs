@@ -1,4 +1,5 @@
-﻿using BESMIK.DAL.Repository.Abstract;
+﻿
+using BESMIK.DAL.Repository.Abstract;
 using BESMIK.Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
 using System;
