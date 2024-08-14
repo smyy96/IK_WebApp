@@ -13,7 +13,7 @@
 
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-person-fill"></i><span>SİTE YÖNETİCİ İŞLEMLERİ</span><i class="bi bi-chevron-down ms-auto"></i>
+                <i class="bi bi-person-fill"></i><span>PERSONEL İŞLEMLERİ</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
@@ -53,6 +53,11 @@
                         <i class="bi bi-circle"></i><span>İzin Talep</span>
                     </a>
                 </li>
+                <li>
+                    <a asp-controller="Permission" asp-action="PermissionDelete">
+                        <i class="bi bi-circle"></i><span>İzin Talebi Sil</span>
+                    </a>
+                </li>
 
             </ul>
         </li><!-- End Forms Nav -->
@@ -64,16 +69,22 @@
                 <span>Avans Talepleri</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                <li>
-                    <a asp-controller="CompanyManager" asp-action="CompanyManagerAdd">
-                        <i class="bi bi-circle"></i><span>Yönetici Ekle</span>
+                 <li>
+                    <a asp-controller="Advance" asp-action="AdvanceList">
+                        <i class="bi bi-circle"></i><span>Avans Listele</span>
                     </a>
                 </li>
                 <li>
-                    <a asp-controller="CompanyManager" asp-action="CompanyManagerList">
-                        <i class="bi bi-circle"></i><span>Yönetici Listele</span>
+                    <a asp-controller="Advance" asp-action="AdvanceAdd">
+                        <i class="bi bi-circle"></i><span>Avans Talep</span>
                     </a>
                 </li>
+                <li>
+                    <a asp-controller="Advance" asp-action="AdvanceDelete">
+                        <i class="bi bi-circle"></i><span>Avans Talebi Sil</span>
+                    </a>
+                </li>
+
             </ul>
         </li><!-- End Tables Nav -->
         <li class="nav-item">
@@ -84,13 +95,18 @@
             </a>
             <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a asp-controller="CompanyManager" asp-action="CompanyManagerAdd">
-                        <i class="bi bi-circle"></i><span>Yönetici Ekle</span>
+                    <a asp-controller="Spending" asp-action="SpendingList">
+                        <i class="bi bi-circle"></i><span>Harcamaları Listele</span>
                     </a>
                 </li>
                 <li>
-                    <a asp-controller="CompanyManager" asp-action="CompanyManagerList">
-                        <i class="bi bi-circle"></i><span>Yönetici Listele</span>
+                    <a asp-controller="Spending" asp-action="SpendingAdd">
+                        <i class="bi bi-circle"></i><span>Harcama Talep</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="Spending" asp-action="SpendingDelete">
+                        <i class="bi bi-circle"></i><span>Harcama Talebi Sil</span>
                     </a>
                 </li>
             </ul>
