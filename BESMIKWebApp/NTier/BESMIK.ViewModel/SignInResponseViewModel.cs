@@ -10,5 +10,7 @@ namespace BESMIK.ViewModel
     {
         public List<UserClaimViewModel> Claims { get; set; }
         public string BasicAuth { get; set; }
+
+        public string Role { get; set; }
     }
 }

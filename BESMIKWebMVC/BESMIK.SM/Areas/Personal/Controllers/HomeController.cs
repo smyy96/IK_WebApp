@@ -5,7 +5,7 @@ namespace BESMIK.SM.Areas.Personal.Controllers
 {
     [Area("Personal")]
     [Authorize(Roles = "Personel")]
-    public class PersonalHomeController : Controller
+    public class HomeController : Controller
     {
         public IActionResult Index()
         {

@@ -62,7 +62,17 @@ namespace BESMIK.SM.Controllers
 
                 HttpContext.Session.SetString("BasicAuth", responseViewModel.BasicAuth);
 
-                return RedirectToAction("Summary", "AppUser");
+                if (responseViewModel.Role == "Personel")
+                {
+                    return RedirectToAction("Index", "PersonalHome", new { area = "Personal" });
+                }
+
+                else if (responseViewModel.Role == "Site Yöneticisi")
+                {
+                    return RedirectToAction("Summary", "AppUser");
+                }
+
+                
             }
 
             TempData["ErrorMessage"] = "Kullanıcı bulunamadı veya geçersiz şifre!";

@@ -57,8 +57,19 @@ app.UseRouting();
 app.UseAuthentication(); // Kimlik doðrulama
 app.UseAuthorization();  // Yetkilendirme
 
+
+// Rota düzenlemesi
+app.MapControllerRoute(
+    name: "area",
+    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
+
+// Ana rota
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=AppUser}/{action=Summary}/{id?}");
+    pattern: "{controller=Account}/{action=Login}/{id?}");
+
+
+
 
 app.Run();

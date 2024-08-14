@@ -30,7 +30,7 @@ namespace BESMIK.ViewModel.AppUser
         public string? Phone { get; set; }
 
 
-        public int CompanyId { get; set; }
+        public int? CompanyId { get; set; }
         public CompanyViewModel? Company { get; set; }
     }
 }
