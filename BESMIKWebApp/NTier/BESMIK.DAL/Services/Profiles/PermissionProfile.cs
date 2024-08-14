@@ -14,11 +14,11 @@ namespace BESMIK.DAL.Services.Profiles
 
         public PermissionProfile()
         {
-            CreateMap<PermissionDto, Permission>().ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id));
+            CreateMap<PermissionDto, Permission>().ForMember(dest => dest.AppUser, opt => opt.MapFrom(src => src.AppUser));
 
-            CreateMap<Permission, PermissionDto>().ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id));
+            CreateMap<Permission, PermissionDto>().ForMember(dest => dest.AppUser, opt => opt.MapFrom(src => src.AppUser));
 
-            CreateMap<AppUserDto, AppUser>().ReverseMap();
+            CreateMap<PermissionDto, Permission>().ReverseMap();
 
         }
 

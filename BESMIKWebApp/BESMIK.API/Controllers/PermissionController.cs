@@ -1,5 +1,7 @@
-﻿using BESMIK.Entities.Concrete;
+﻿using BESMIK.BLL.Managers.Concrete;
+using BESMIK.Entities.Concrete;
 using BESMIK.ViewModel.Permission;
+using BESMIK.ViewModel.Spending;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BESMIK.API.Controllers
@@ -9,12 +11,10 @@ namespace BESMIK.API.Controllers
     public class PermissionController : Controller
     {
         private readonly PermissionManager _permissionManagerService;
-        private readonly Permission _permission;
 
-        public PermissionController(PermissionManager permissionManagerService, Permission permission)
+        public PermissionController(PermissionManager permissionManagerService)
         {
             _permissionManagerService = permissionManagerService;
-            _permission = permission;
         }
 
         [HttpGet("PermissionList")]
@@ -26,12 +26,13 @@ namespace BESMIK.API.Controllers
         [HttpPost("PermissionAdd")]
         public IActionResult Post([FromBody] PermissionViewModel model) 
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
             _permissionManagerService.Add(model);
-            return Ok();
+            return Ok(model);
         }
+
     }
 }

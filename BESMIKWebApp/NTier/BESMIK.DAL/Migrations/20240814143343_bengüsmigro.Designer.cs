@@ -4,6 +4,7 @@ using BESMIK.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BESMIK.DAL.Migrations
 {
     [DbContext(typeof(BesmikDbContext))]
-    partial class BesmikDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240814143343_bengüsmigro")]
+    partial class bengüsmigro
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -197,7 +200,7 @@ namespace BESMIK.DAL.Migrations
                             Address = "Ankara, Türkiye",
                             BirthDate = new DateOnly(2000, 1, 1),
                             BirthPlace = "Yozgat",
-                            ConcurrencyStamp = "e112502c-3300-4c57-92a0-bc9aa3fb9365",
+                            ConcurrencyStamp = "18ab6d86-6097-40d1-a850-5bb5dd39296a",
                             Department = 1,
                             Email = "site.yoneticisi@bilgeadam.com",
                             EmailConfirmed = true,
@@ -207,11 +210,11 @@ namespace BESMIK.DAL.Migrations
                             Name = "Site",
                             NormalizedEmail = "SITE.YONETICISI@BILGEADAM.COM",
                             NormalizedUserName = "SITEYONETICISI",
-                            PasswordHash = "AQAAAAIAAYagAAAAEN2DRt5J2eyFQQpuFQdmkgiWUjj2uLp5tI8F8Vtqlcpa4aBjIHBS5XYZQtTsP9A0lg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEJCko94mt0O2OTb6fkLNnkZ4VkaQ7mtO2DLWO+0x0xpMDuCNV9JhaFXooW+LuuayWA==",
                             Phone = "+90 123 456 7890",
                             PhoneNumberConfirmed = false,
                             SecondName = "Yöneticisi",
-                            SecurityStamp = "bb8c998f-d21b-4973-836f-01267025cbe3",
+                            SecurityStamp = "dea8db82-eac0-4f2f-947b-6c6e18ddbcd6",
                             Surname = "Yönetici",
                             Tc = "12345678901",
                             TwoFactorEnabled = false,
@@ -226,7 +229,7 @@ namespace BESMIK.DAL.Migrations
                             BirthDate = new DateOnly(1980, 1, 1),
                             BirthPlace = "Ankara",
                             CompanyId = 2,
-                            ConcurrencyStamp = "18c613d8-523c-4849-ae7d-ef73e7f11947",
+                            ConcurrencyStamp = "6da7dc45-e2fc-4944-8ac4-be0911a88d5f",
                             Department = 9,
                             Email = "personel1.personel@bilgeadam.com",
                             EmailConfirmed = true,
@@ -236,10 +239,10 @@ namespace BESMIK.DAL.Migrations
                             Name = "PersonelAdı 1",
                             NormalizedEmail = "PERSONEL1.PERSONEL@BILGEADAM.COM",
                             NormalizedUserName = "PERSONEL1",
-                            PasswordHash = "AQAAAAIAAYagAAAAEEtfedFfv5WP6Da6vK1y2s3w2vN0xhG6sW1ciVYljDV+hxZcvw8iCuSgPQgDZ6TH+g==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEOEGAqhifjrfdp9bDjyFYipciKgyRwDd52TRhVRBCLkkMjX3CYyvSQxl7AAbs6g4Jg==",
                             Phone = "+90 123 456 7890",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "2c7776e1-704c-43f5-bf5a-5406404c0824",
+                            SecurityStamp = "b768b332-be31-4131-b4e3-370503c4262a",
                             Surname = "PersonelSoyadı 1",
                             Tc = "14725836914",
                             TwoFactorEnabled = false,
@@ -497,10 +500,10 @@ namespace BESMIK.DAL.Migrations
                     b.Property<DateOnly>("PermissionEndDate")
                         .HasColumnType("date");
 
-                    b.Property<DateOnly>("PermissionRequestDate")
+                    b.Property<DateOnly?>("PermissionRequestDate")
                         .HasColumnType("date");
 
-                    b.Property<DateOnly?>("PermissionResponseDate")
+                    b.Property<DateOnly>("PermissionResponseDate")
                         .HasColumnType("date");
 
                     b.Property<DateOnly>("PermissionStartDate")

@@ -16,7 +16,8 @@ namespace BESMIK.ViewModel.Permission
         public PermissionType PermissionType { get; set; }
         public PermissionStatus PermissionStatus { get; set; }
 
-
+        public DateOnly PermissionRequestDate { get; set; }
+        public DateOnly? PermissionResponseDate { get; set; }
 
         public int AppUserId { get; set; }
         public AppUserViewModel? AppUser { get; set; }
