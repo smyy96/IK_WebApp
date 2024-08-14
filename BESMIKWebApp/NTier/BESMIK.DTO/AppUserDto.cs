@@ -28,7 +28,7 @@ namespace BESMIK.DTO
         //public PermissionDto Permission { get; set; }
 
 
-        public int CompanyId { get; set; }
+        public int? CompanyId { get; set; }
         public CompanyDto Company { get; set; }
     }
 }

@@ -54,6 +54,8 @@ namespace BESMIK.API.Controllers
                 response.Claims = userClaimViewModel;
                 response.BasicAuth = BasicAuthGenerate(model.Email, model.Password);
 
+                response.Role = _userManager.GetRolesAsync(user).Result.FirstOrDefault();//kullanıcnın rolunu aldım
+
                 return Ok(response);
             }
 
