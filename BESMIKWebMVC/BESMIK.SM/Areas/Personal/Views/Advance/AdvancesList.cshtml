@@ -1,0 +1,56 @@
+﻿@using BESMIK.ViewModel.Advance
+@model List<AdvanceViewModel>
+
+@{
+    Layout = "_AdminLayout";
+}
+
+<div class="pagetitle">
+    <h1>Avans Talepleri Listesi</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-controller="AppUser" asp-action="Summary">Anasayfa</a></li>
+            <li class="breadcrumb-item">Avans Talepleri</li>
+            <li class="breadcrumb-item active">Avans Talepleri Listesi</li>
+        </ol>
+    </nav>
+</div>
+
+<section class="section">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Şirket Listesi</h5>
+
+                    <table class="table datatable">
+                        <thead>
+                            <tr>
+                                <th>Avans Açıklaması</th>
+                                <th>Avans Talep Tarihi</th>
+                                <th>Avans Onay Durumu</th>
+                                <th>Avans Talebi Cevap Tarihi</th>
+                                <th>Avans Miktarı</th>
+                                <th>Avans Talep Türü</th> @* Gerek var mı? *@
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.Description</td>
+                                    <td>@item.AdvanceRequestDate</td>
+                                    <td>@item.ApprovalStatus</td>
+                                    <td>@item.AdvanceResponseDate</td>
+                                    <td>@item.Amount</td>
+                                    <td>@item.AdvanceType</td>
+                                    
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
