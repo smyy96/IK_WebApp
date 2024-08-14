@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BESMIK.DAL.Services.Profiles
 {
-    public class SpendingProfile:Profile
+    public class SpendingProfile: Profile
     {
         public SpendingProfile()
         {
@@ -17,7 +17,9 @@ namespace BESMIK.DAL.Services.Profiles
 
             CreateMap<Spending, SpendingDto>().ForMember(dest => dest.AppUser, opt => opt.MapFrom(src => src.AppUser));
 
-            CreateMap<SpendingDto, Spending>().ReverseMap();
+            //CreateMap<SpendingDto, Spending>().ReverseMap();
+
+            CreateMap<AppUser, AppUserDto>().ReverseMap();
 
         }
     }
