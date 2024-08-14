@@ -1,5 +1,125 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@using BESMIK.ViewModel.Permission
+@model PermissionViewModel
 @{
+    Layout = "_PersonalLayout";
+}
+@* 
+<div class="pagetitle">
+    <h1>Şirket Yöneticisi Ekle</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-controller="AppUser" asp-action="Summary">Anasayfa</a></li>
+            <li class="breadcrumb-item">Şirket Yönetici İşlemleri</li>
+            <li class="breadcrumb-item active">Yönetici Ekle</li>
+        </ol>
+    </nav>
+</div> *@
+
+<section class="section profile">
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-body pt-3">
+                    <div class="tab-content pt-2">
+                        <form asp-controller="Permission" asp-action="PermissionAdd" method="post" enctype="multipart/form-data">
+
+                            <div asp-validation-summary="ModelOnly"></div>
+
+                            <div class="row mb-3">
+                                <label for="permissiontype" class="col-md-4 col-lg-3 col-form-label">İzin Türü</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <select name="PermissionType" class="form-select">
+                                        <option value="">Bir izin türü seçiniz</option>
+                                    </select>
+                                    <span asp-validation-for="PermissionType" class="form-text text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="permissionStartDate" class="col-md-4 col-lg-3 col-form-label">Başlangıç Tarihi</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input name="PermissionStartDate" type="date" class="form-control" id="permissionStartDate"
+                                           value="@(Model.PermissionStartDate == default(DateOnly) ? DateTime.Now.ToString("yyyy-MM-dd") : Model.PermissionStartDate.ToString("yyyy-MM-dd"))">
+                                    <span asp-validation-for="PermissionStartDate" class="form-text text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="permissionEndDate" class="col-md-4 col-lg-3 col-form-label">Bitiş Tarihi</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input name="PermissionEndDate" type="date" class="form-control" id="permissionEndDate"
+                                           value="@(Model.PermissionEndDate == default(DateOnly) ? DateTime.Now.ToString("yyyy-MM-dd") : Model.PermissionEndDate.ToString("yyyy-MM-dd"))">
+                                    <span asp-validation-for="PermissionEndDate" class="form-text text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary">İzin Talebi Oluştur.</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+@section Scripts {
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // sectiona company adlarını yükleme
+            $.get("@Url.Action("GetCompanies", "CompanyManager")", function (data) {
+                var select = $("select[name='CompanyId']");
+                select.empty();
+                select.append('<option value="">Bir şirket seçiniz</option>');
+                $.each(data, function (index, item) {
+                    select.append($('<option>', {
+                        value: item.id,
+                        text: item.name
+                    }));
+                });
+            });
+
+            // sectiona departman adlarını yükleme
+            $.get("@Url.Action("GetDepartments", "CompanyManager")", function (data) {
+                var select = $("select[name='Department']");
+                select.empty();
+                select.append('<option value="">Bir departman seçiniz</option>');
+                $.each(data, function (index, item) {
+                    select.append($('<option>', {
+                        value: item.value,
+                        text: item.text
+                    }));
+                });
+            });
+        });
+    </script>
+
+    <script>
+        // resim secme için
+        function previewImage(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById('profileImagePreview').src = e.target.result;
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        // seccilen resmi kaldırmak için
+        function removeProfileImage() {
+            document.getElementById('profileImagePreview').src = '/img/imageupload1.jpg';
+            document.getElementById('uploadImageInput').value = '';
+        }
+    </script>
+
+
+
+
 }
