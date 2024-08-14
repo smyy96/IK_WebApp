@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BESMIK.DTO;
 using BESMIK.Entities.Concrete;
+using BESMIK.ViewModel.AppUser;
 using BESMIK.ViewModel.Permission;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,10 @@ namespace BESMIK.BLL.Managers.Profiles
 
             CreateMap<PermissionViewModel, PermissionDto>().ForMember(dest => dest.AppUser, opt => opt.MapFrom(src => src.AppUser));
 
-            CreateMap<PermissionDto, PermissionViewModel>().ReverseMap();
+            //CreateMap<PermissionDto, PermissionViewModel>().ReverseMap();
+
+
+            CreateMap<AppUserDto, AppUserViewModel>().ReverseMap();
 
         }
     }

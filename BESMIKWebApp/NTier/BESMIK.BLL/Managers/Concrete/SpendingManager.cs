@@ -22,7 +22,7 @@ namespace BESMIK.BLL.Managers.Concrete
         private readonly BesmikDbContext _context;
         public SpendingManager(SpendingService service, BesmikDbContext context) : base(service)
         {
-                 var config = new MapperConfiguration(cfg =>
+            var config = new MapperConfiguration(cfg =>
             {
                 cfg.AddProfile<SpendingProfile>();
 

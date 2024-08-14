@@ -18,7 +18,9 @@ namespace BESMIK.DAL.Services.Profiles
 
             CreateMap<Permission, PermissionDto>().ForMember(dest => dest.AppUser, opt => opt.MapFrom(src => src.AppUser));
 
-            CreateMap<PermissionDto, Permission>().ReverseMap();
+            //CreateMap<PermissionDto, Permission>().ReverseMap();
+
+            CreateMap<AppUser, AppUserDto>().ReverseMap();
 
         }
 
