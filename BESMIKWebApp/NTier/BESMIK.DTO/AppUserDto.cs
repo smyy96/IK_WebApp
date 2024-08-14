@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BESMIK.DTO
 {
-    public class AppUserDto:BaseDto
+    public class AppUserDto : BaseDto
     {
         public string Name { get; set; }
         public string? SecondName { get; set; }
@@ -25,6 +25,10 @@ namespace BESMIK.DTO
         public string Email { get; set; }
         public string? Address { get; set; }
         public string? Phone { get; set; }
-        public PermissionDto Permission { get; set; }
+        //public PermissionDto Permission { get; set; }
+
+
+        public int CompanyId { get; set; }
+        public CompanyDto Company { get; set; }
     }
 }

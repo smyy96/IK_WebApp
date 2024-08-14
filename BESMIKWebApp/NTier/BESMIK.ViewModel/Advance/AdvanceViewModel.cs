@@ -1,4 +1,5 @@
 ﻿using BESMIK.Common;
+using BESMIK.ViewModel.AppUser;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,10 @@ namespace BESMIK.ViewModel.Advance
         public float Amount { get; set; } 
         public AdvanceCurrency Currency { get; set; } 
         public string Description { get; set; } 
-        public AdvanceType AdvanceType { get; set; } 
-        //public string Avans { get; set; } 
+        public AdvanceType AdvanceType { get; set; }
+
+
+        public int AppUserId { get; set; }
+        public AppUserViewModel? AppUser { get; set; }
     }
 }

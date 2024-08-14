@@ -100,6 +100,21 @@ builder.Services.AddScoped<CompanyManagerManager>();
 
 
 
+builder.Services.AddScoped<PermissionRepo>();
+builder.Services.AddScoped<PermissionService>();
+builder.Services.AddScoped<PermissionManager>();
+
+
+builder.Services.AddScoped<AdvanceRepo>();
+builder.Services.AddScoped<AdvanceService>();
+builder.Services.AddScoped<AdvanceManager>();
+
+
+builder.Services.AddScoped<SpendingRepo>();
+builder.Services.AddScoped<SpendingService>();
+builder.Services.AddScoped<SpendingManager>();
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

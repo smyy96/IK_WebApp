@@ -24,7 +24,8 @@ namespace BESMIK.DTO
         public DateOnly? ContractEndYear { get; set; }
         public bool IsActive { get; set; }
 
-        
 
+        public int CompanyId { get; set; }
+        public CompanyDto Company { get; set; }
     }
 }

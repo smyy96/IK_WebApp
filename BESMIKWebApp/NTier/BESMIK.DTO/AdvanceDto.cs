@@ -17,6 +17,8 @@ namespace BESMIK.DTO
         public string Description { get; set; }
         public AdvanceType AdvanceType { get; set; }
 
-        //public string Avans { get; set; }
+
+        public int AppUserId { get; set; }
+        public AppUserDto AppUser { get; set; }
     }
 }

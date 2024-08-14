@@ -1,4 +1,5 @@
 ﻿using BESMIK.Common;
+using BESMIK.ViewModel.Company;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BESMIK.ViewModel.AppUser
 {
-    public class AppUserViewModel:BaseViewModel
+    public class AppUserViewModel : BaseViewModel
     {
         public string Name { get; set; }
         public string? SecondName { get; set; }
@@ -27,5 +28,9 @@ namespace BESMIK.ViewModel.AppUser
         public string Email { get; set; }
         public string? Address { get; set; }
         public string? Phone { get; set; }
+
+
+        public int CompanyId { get; set; }
+        public CompanyViewModel? Company { get; set; }
     }
 }

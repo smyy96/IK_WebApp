@@ -11,12 +11,11 @@ namespace BESMIK.API.Controllers
     public class SpendingController : Controller
     {
         private readonly SpendingManager _spendingService;
-        private readonly BLL.Managers.Concrete.Spending _spending;
+        //private readonly BLL.Managers.Concrete.Spending _spending; //buna gerek yok sc
 
-        public SpendingController(SpendingManager spendingService, BLL.Managers.Concrete.Spending spending)
+        public SpendingController(SpendingManager spendingService)
         {
             _spendingService = spendingService;
-            _spending = spending;
         }
 
         [HttpGet("SpendingList")]
