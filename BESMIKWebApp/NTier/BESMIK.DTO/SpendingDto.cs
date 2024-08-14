@@ -14,7 +14,7 @@ namespace BESMIK.DTO
         public SpendingCurrency SpendingCurrency { get; set; }
         public SpendingStatus SpendingStatus { get; set; }
         public DateOnly SpendingRequestDate { get; set; }
-        public DateOnly SpendingResponseDate { get; set; }
+        public DateOnly? SpendingResponseDate { get; set; }
         public string? SpendingFile { get; set; }
         public int AppUserId { get; set; }
         public AppUserDto AppUser { get; set; }

@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using BESMIK.BLL.Managers.Abstract;
+using BESMIK.BLL.Managers.Profiles;
 using BESMIK.DAL;
 using BESMIK.DAL.Services.Abstract;
 using BESMIK.DAL.Services.Concrete;
-using BESMIK.DAL.Services.Profiles;
 using BESMIK.DTO;
 using BESMIK.Entities.Concrete;
 using BESMIK.ViewModel.CompanyManager;
@@ -19,8 +19,17 @@ namespace BESMIK.BLL.Managers.Concrete
 {
     public class SpendingManager : Manager<SpendingDto, SpendingViewModel, Spending>
     {
-        public SpendingManager(SpendingService service) : base(service)
+        private readonly BesmikDbContext _context;
+        public SpendingManager(SpendingService service, BesmikDbContext context) : base(service)
         {
+                 var config = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile<SpendingProfile>();
+
+            });
+                _context = context;
+
+            base._mapper = config.CreateMapper();
         }
     }
 }
