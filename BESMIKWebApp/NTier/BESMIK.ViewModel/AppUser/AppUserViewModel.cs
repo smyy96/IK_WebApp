@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BESMIK.ViewModel.AppUser
 {
-    public class AppUserViewModel
+    public class AppUserViewModel:BaseViewModel
     {
         public string Name { get; set; }
         public string? SecondName { get; set; }

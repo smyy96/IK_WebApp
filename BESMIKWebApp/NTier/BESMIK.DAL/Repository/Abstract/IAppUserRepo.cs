@@ -9,7 +9,7 @@ namespace BESMIK.DAL.Repository.Abstract
 {
     public interface IAppUserRepo
     {
-        IEnumerable<CompanyManager> GetActiveList();
+        IEnumerable<AppUser> GetActiveList();
 
     }
 }
