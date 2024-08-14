@@ -1,4 +1,5 @@
-﻿using BESMIK.ViewModel.Advance;
+﻿using BESMIK.BLL.Managers.Concrete;
+using BESMIK.ViewModel.Advance;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BESMIK.API.Controllers
@@ -7,12 +8,12 @@ namespace BESMIK.API.Controllers
     [Route("api/[controller]")]
     public class AdvanceController : Controller
     {
-        //private readonly AdvanceManager _advanceManager; //Advance BLL'den gelecek, isimler muhtemelen farklı olacak
+        private readonly AdvanceManager _advanceManager; //Advance BLL'den gelecek, isimler muhtemelen farklı olacak
 
-        //public AdvanceController(AdvanceManager advanceManager) 
-        //{
-        //    _advanceManager = advanceManager;
-        //}
+        public AdvanceController(AdvanceManager advanceManager)
+        {
+            _advanceManager = advanceManager;
+        }
 
         //*--------------------------------------------------------------------------------------------------------------------------------------------*
         //Avans Talebi ekleme
