@@ -17,20 +17,20 @@ namespace BESMIK.DAL.Services.Concrete
 {
     public class SpendingService : Service<Spending, SpendingDto>
     {
-        public SpendingService(SpendingRepo repo) : base(repo)
-        {
-        }
-
         //public SpendingService(SpendingRepo repo) : base(repo)
         //{
-        //    MapperConfiguration _config = new MapperConfiguration(cfg =>
-        //    {
-        //        cfg.AddExpressionMapping().AddCollectionMappers();
-        //        cfg.AddProfile<SpendingProfile>();
-        //    });
-
-        //    base._mapper = _config.CreateMapper();
         //}
+
+        public SpendingService(SpendingRepo repo) : base(repo)
+        {
+            MapperConfiguration _config = new MapperConfiguration(cfg =>
+            {
+                cfg.AddExpressionMapping().AddCollectionMappers();
+                cfg.AddProfile<SpendingProfile>();
+            });
+
+            base._mapper = _config.CreateMapper();
+        }
 
         //public AccountUserDto? FindLoginUser(string username, string password)
         //{
