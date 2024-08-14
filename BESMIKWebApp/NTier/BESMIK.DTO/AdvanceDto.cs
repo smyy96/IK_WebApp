@@ -12,7 +12,7 @@ namespace BESMIK.DTO
         public DateOnly AdvanceRequestDate { get; set; }
         public AdvanceApprovalStatus ApprovalStatus { get; set; }
         public DateOnly AdvanceResponseDate { get; set; }
-        public int Amount { get; set; }
+        public float Amount { get; set; }
         public AdvanceCurrency Currency { get; set; }
         public string Description { get; set; }
         public AdvanceType AdvanceType { get; set; }
