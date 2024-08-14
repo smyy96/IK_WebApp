@@ -10,7 +10,7 @@ namespace BESMIK.DTO
     public class SpendingDto:BaseDto
     {
         public SpendingType SpendingType { get; set; }
-        public int Sum { get; set; }
+        public float Sum { get; set; }
         public SpendingCurrency SpendingCurrency { get; set; }
         public SpendingStatus SpendingStatus { get; set; }
         public DateOnly SpendingRequestDate { get; set; }

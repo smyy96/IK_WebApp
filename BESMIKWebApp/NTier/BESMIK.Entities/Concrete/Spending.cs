@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace BESMIK.Entities.Concrete
 {
-    public class Spending:BaseEntity
+    public class Spending : BaseEntity
     {
         public SpendingType SpendingType { get; set; }
-        public int Sum {  get; set; }
-        public SpendingCurrency SpendingCurrency {  get; set; }
+        public float Sum { get; set; }
+        public SpendingCurrency SpendingCurrency { get; set; }
         public SpendingStatus SpendingStatus { get; set; }
         public DateOnly SpendingRequestDate { get; set; }
         public DateOnly SpendingResponseDate { get; set; }

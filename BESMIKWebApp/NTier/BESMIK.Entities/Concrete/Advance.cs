@@ -14,17 +14,12 @@ namespace BESMIK.Entities.Concrete
         public DateOnly AdvanceRequestDate { get; set; } // Talep Tarihi
         public AdvanceApprovalStatus ApprovalStatus { get; set; } // Onay Durumu
         public DateOnly AdvanceResponseDate { get; set; } // Cevaplanma Tarihi
-        public int Amount { get; set; } // Tutarı, int or string?
+        public float Amount { get; set; } // Tutarı, int or string?
         public AdvanceCurrency Currency { get; set; } // Para Birimi
         public string Description { get; set; } // Açıklaması
         public AdvanceType AdvanceType { get; set; } //Türü
 
-        //public string Avans { get; set; } // Avans, Bu prop ne anlama geliyor string yazdım ama
-
-        //En fazla 3 maaş avans sınırı nasıl yazılacak
-
-
-
+       
         public int AppUserId { get; set; }
         public AppUser AppUser { get; set; }
 

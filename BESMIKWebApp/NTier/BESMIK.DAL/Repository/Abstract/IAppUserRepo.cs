@@ -1,15 +1,15 @@
-﻿using BESMIK.Entities.Concrete;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿//using BESMIK.Entities.Concrete;
+//using System;
+//using System.Collections.Generic;
+//using System.Linq;
+//using System.Text;
+//using System.Threading.Tasks;
 
-namespace BESMIK.DAL.Repository.Abstract
-{
-    public interface IAppUserRepo
-    {
-        IEnumerable<AppUser> GetActiveList();
+//namespace BESMIK.DAL.Repository.Abstract
+//{
+//    public interface IAppUserRepo
+//    {
+//        IEnumerable<AppUser> GetActiveList();
 
-    }
-}
+//    }
+//}
