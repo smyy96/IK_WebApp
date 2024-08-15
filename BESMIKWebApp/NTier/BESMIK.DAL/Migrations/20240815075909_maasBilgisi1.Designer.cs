@@ -4,6 +4,7 @@ using BESMIK.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BESMIK.DAL.Migrations
 {
     [DbContext(typeof(BesmikDbContext))]
-    partial class BesmikDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240815075909_maasBilgisi1")]
+    partial class maasBilgisi1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -200,7 +203,7 @@ namespace BESMIK.DAL.Migrations
                             Address = "Ankara, Türkiye",
                             BirthDate = new DateOnly(2000, 1, 1),
                             BirthPlace = "Yozgat",
-                            ConcurrencyStamp = "78d590c2-c9f3-43c1-987a-d86bf10c8110",
+                            ConcurrencyStamp = "e609039d-ad05-4dfe-acbb-e473b5eb3eab",
                             Department = 1,
                             Email = "site.yoneticisi@bilgeadam.com",
                             EmailConfirmed = true,
@@ -210,11 +213,11 @@ namespace BESMIK.DAL.Migrations
                             Name = "Site",
                             NormalizedEmail = "SITE.YONETICISI@BILGEADAM.COM",
                             NormalizedUserName = "SITEYONETICISI",
-                            PasswordHash = "AQAAAAIAAYagAAAAEC7jsNhTc8WRSSpiwkDeIe08ByTwfKpgC+Mk5leIT/LMukXFHfV12CqeffbTxOSdGA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEON0C6dJfb/6YJw+zXlQ79FPGi+/yxfZPcUnbkynHsx5S5PLPmHwjjzMRgKLvuyNzA==",
                             Phone = "+90 123 456 7890",
                             PhoneNumberConfirmed = false,
                             SecondName = "Yöneticisi",
-                            SecurityStamp = "bf2ce92e-be2c-4b71-b3a3-3f4b9649e483",
+                            SecurityStamp = "6b1802ec-bb9a-4d38-a231-665e9ef18356",
                             Surname = "Yönetici",
                             Tc = "12345678901",
                             TwoFactorEnabled = false,
@@ -229,22 +232,21 @@ namespace BESMIK.DAL.Migrations
                             BirthDate = new DateOnly(1980, 1, 1),
                             BirthPlace = "Ankara",
                             CompanyId = 2,
-                            ConcurrencyStamp = "41e141c9-bd89-4af2-970d-1af6197a4cb2",
+                            ConcurrencyStamp = "df5d10e6-9ff3-48ad-94d4-bb19b4f145c9",
                             Department = 9,
                             Email = "personel1.personel@bilgeadam.com",
                             EmailConfirmed = true,
                             IsActive = true,
-                            Job = "Bilgisayar Mühendisi",
+                            Job = "İK",
                             LockoutEnabled = false,
-                            Name = "Fadime",
+                            Name = "PersonelAdı 1",
                             NormalizedEmail = "PERSONEL1.PERSONEL@BILGEADAM.COM",
                             NormalizedUserName = "PERSONEL1",
-                            PasswordHash = "AQAAAAIAAYagAAAAEDE7d46ctHwTMRgRpBggEEZU7k/0WQfAjJ65uu8W/1pAAKXOBj5FUhm9k4OxwXeG7Q==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEFEGqg/KuOaO+U8GM+vcs8JgD8R8ogmceJGB+LN4MhNDRFnrnl4pPcDZiJiAphPntA==",
                             Phone = "+90 123 456 7890",
                             PhoneNumberConfirmed = false,
-                            Photo = "AcKedi.jpg",
-                            SecurityStamp = "1a0eeb2c-71a9-4e7d-b358-bcaa6867a84f",
-                            Surname = "Güngörmemiş",
+                            SecurityStamp = "a12592e1-a917-4ebc-bad8-1f0e77de4008",
+                            Surname = "PersonelSoyadı 1",
                             Tc = "14725836914",
                             TwoFactorEnabled = false,
                             UserName = "personel1",

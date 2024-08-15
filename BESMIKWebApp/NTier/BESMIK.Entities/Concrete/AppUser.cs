@@ -28,6 +28,7 @@ namespace BESMIK.Entities.Concrete
         //public string Email { get; set;  //email identitynin içinde zaten var oradan geliyor o yüzden bunu kaldırdım sc
         public string? Address { get; set; }
         public string? Phone { get; set; }
+        public float? Wage { get; set; } //maas bilgisi
 
 
         public int? CompanyId { get; set; }

@@ -18,17 +18,6 @@ namespace BESMIK.API.Controllers
         }
 
 
-        [HttpGet("GetUser")]
-        public async Task<IActionResult> GetUser()
-        {
-            var user = await _userManager.GetUserAsync(HttpContext.User);
-
-            if (user == null)
-            {
-                return NotFound("Kullanıcı bulunamadı.");
-            }
-            return Ok(user);
-        }
 
 
         [HttpGet("GetUserInfo/{name}")]

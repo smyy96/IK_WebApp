@@ -65,6 +65,7 @@ namespace BESMIK.SM.Controllers
                 if (responseViewModel.Role == "Personel")
                 {
                     return RedirectToAction("Index", "PersonalHome", new { area = "Personal" });
+
                 }
 
                 else if (responseViewModel.Role == "Site Yöneticisi")
