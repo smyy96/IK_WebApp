@@ -41,6 +41,18 @@ namespace BESMIK.API.Controllers
             return Ok(model);
         }
 
+        [HttpGet("GetById/{id}")]
+        public IActionResult GetById(int id)
+        {
+            var spending = _spendingService.Get(id);
+            if (spending == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(spending);
+        }
+
 
         //[HttpPost("SpendingAdd")]
         //public IActionResult Post([FromBody] SpendingViewModel model)

@@ -1,4 +1,8 @@
-﻿using BESMIK.ViewModel.CompanyManager;
+﻿using BESMIK.Common;
+using BESMIK.ViewModel.AppUser;
+using BESMIK.ViewModel.Company;
+using BESMIK.ViewModel.CompanyManager;
+using BESMIK.ViewModel.Permission;
 using BESMIK.ViewModel.Spending;
 using FluentValidation;
 using FluentValidation.AspNetCore;
@@ -9,7 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace BESMIK.SM.Areas.Personal.Controllers
 {
     [Area("Personal")]
-    [Authorize(Roles = "Personal")]
+    [Authorize(Roles = "Personel")]
     public class SpendingController : Controller
     {
         private HttpClient _httpClient;
@@ -24,9 +28,14 @@ namespace BESMIK.SM.Areas.Personal.Controllers
         [HttpGet]
         public async Task<IActionResult> SpendingList()
         {
-            return View(await _httpClient.GetFromJsonAsync<List<SpendingViewModel>>("https://localhost:7136/api/CompanyManager/CompanyManagerList"));
-        }
+            //return View(await _httpClient.GetFromJsonAsync<List<SpendingViewModel>>("https://localhost:7136/api/Spending/SpendingList"));
 
+            var user = HttpContext.User.Identity.Name;
+
+            var spendings = await _httpClient.GetFromJsonAsync<List<SpendingViewModel>>($"https://localhost:7136/api/Spending/SpendingList?user={user}");
+
+            return View(spendings);
+        }
 
         public async Task<IActionResult> SpendingAdd()
         {
@@ -36,8 +45,17 @@ namespace BESMIK.SM.Areas.Personal.Controllers
         [HttpPost]
         public async Task<IActionResult> SpendingAdd(SpendingViewModel model)
         {
+            ValidationResult result = _validator.Validate(model);
+
+            ModelState.Remove("SpendingFile");
+
+
             if (!ModelState.IsValid)
             {
+                ModelState.Clear();
+
+                result.AddToModelState(ModelState);
+
                 return View(model);
             }
 
@@ -52,19 +70,30 @@ namespace BESMIK.SM.Areas.Personal.Controllers
                     var konum = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/Spending", model.SpendingFile);
 
                     // Kaydetmek için bir akış ortamı oluşturalım
-                    using (var akisOrtami = new FileStream(konum, FileMode.Create))
-                    {
-                        // Resmi kaydet
-                        await model.Picture.CopyToAsync(akisOrtami);
-                    }
+                    var akisOrtami = new FileStream(konum, FileMode.Create);
+
+                    // Resmi kaydet
+                    model.Picture.CopyToAsync(akisOrtami);
+
+                    akisOrtami.Close();
+
                 }
 
+                model.SpendingStatus = SpendingStatus.OnayBekliyor;
+                model.SpendingRequestDate = DateOnly.FromDateTime(DateTime.UtcNow);
+                model.SpendingResponseDate = null;
+
+                model.Picture = null;
+                string user = HttpContext.User.Identity.Name;
+
+                var request = await _httpClient.GetFromJsonAsync<AppUserViewModel>("https://localhost:7136/api/UserInfo/GetUserInfo/" + user);
+                model.AppUserId = (int) request.Id;
                 // API'ye POST isteği gönder
-                var response = await _httpClient.PostAsJsonAsync("https://localhost:7136/api/AppUser/Olustur", model);
+                var response = await _httpClient.PostAsJsonAsync<SpendingViewModel>("https://localhost:7136/api/Spending/SpendingAdd", model);
 
                 if (response.IsSuccessStatusCode)
                 {
-                    return RedirectToAction("Summary");
+                    return RedirectToAction("SpendingList");
                 }
                 else
                 {
@@ -78,6 +107,28 @@ namespace BESMIK.SM.Areas.Personal.Controllers
                 return View(model);
             }
 
+        }
+
+        [HttpGet]
+        public IActionResult GetSpendingType()
+        {
+            var spendingType = Enum.GetValues(typeof(SpendingType))
+                          .Cast<SpendingType>()
+                          .Select(d => new { Value = ((int)d).ToString(), Text = d.ToString() })
+                          .ToList();
+
+            return Json(spendingType);
+        }
+
+        [HttpGet]
+        public IActionResult GetSpendingCurrency()
+        {
+            var spendingCurrency = Enum.GetValues(typeof(SpendingCurrency))
+                          .Cast<SpendingCurrency>()
+                          .Select(d => new { Value = ((int)d).ToString(), Text = d.ToString() })
+                          .ToList();
+
+            return Json(spendingCurrency);
         }
 
     }
