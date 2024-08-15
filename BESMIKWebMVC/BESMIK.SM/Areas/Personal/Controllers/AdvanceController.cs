@@ -1,10 +1,12 @@
 ﻿using BESMIK.Common;
 using BESMIK.ViewModel.Advance;
+using BESMIK.ViewModel.AppUser;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace BESMIK.SM.Areas.Personal.Controllers
 {
@@ -25,9 +27,21 @@ namespace BESMIK.SM.Areas.Personal.Controllers
         [HttpGet]
         public async Task<IActionResult> AdvancesList()
         {
-            var advances = await _httpClient.GetFromJsonAsync<List<AdvanceViewModel>>("https://localhost:7136/api/Advance/AdvancesList");
+            // Kullanıcının ID'sini al
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (userId == null)
+            {
+                ModelState.AddModelError("UserError", "Kullanıcı ID'si bulunamadı.");
+                return View(new List<AdvanceViewModel>());
+            }
+
+            // Sadece giriş yapan kullanıcının avans taleplerini listele
+            var advances = await _httpClient.GetFromJsonAsync<List<AdvanceViewModel>>($"https://localhost:7136/api/Advance/AdvancesList/{userId}");
+
             return View(advances);
         }
+
 
 
         public async Task<IActionResult> AdvanceAdd()
@@ -40,14 +54,34 @@ namespace BESMIK.SM.Areas.Personal.Controllers
         {
             try
             {
-                ValidationResult result = _validator.Validate(model);                
+                // Kullanıcının ID'sini alın
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // User.Identity'den ID'yi alın
+
+                if (userId == null)
+                {
+                    ModelState.AddModelError("UserError", "Kullanıcı ID'si bulunamadı.");
+                    return View(model);
+                }
+
+                // Kullanıcının bilgilerini API'den alın
+                var userResponse = await _httpClient.GetFromJsonAsync<AppUserViewModel>($"https://localhost:7136/api/Advance/GetUser/{userId}");
+
+                if (userResponse != null)
+                {
+                    model.AppUserId = (int)userResponse.Id; // AppUserId'yi ayarla
+                }
+                else
+                {
+                    ModelState.AddModelError("UserError", "Kullanıcı bilgisi alınamadı.");
+                    return View(model);
+                }
+
+                ValidationResult result = _validator.Validate(model);
 
                 if (!ModelState.IsValid)
                 {
                     ModelState.Clear();
-
                     result.AddToModelState(ModelState);
-
                     return View(model);
                 }
 
@@ -61,18 +95,16 @@ namespace BESMIK.SM.Areas.Personal.Controllers
                 {
                     ModelState.AddModelError("ApiError", "Avans talebi oluşturulamadı. Lütfen tekrar deneyin.");
                     return View(model);
-
                 }
-
             }
             catch (Exception ex)
             {
                 ModelState.AddModelError("GeneralException", ex.Message);
                 ModelState.AddModelError("GeneralInnerException", ex.InnerException?.Message);
                 return View();
-
             }
         }
+
 
         //public async Task<IActionResult> AdvanceDelete()
         //{
@@ -81,7 +113,7 @@ namespace BESMIK.SM.Areas.Personal.Controllers
 
         //Ajax ile company section doldurma
 
-        
+
 
         [HttpGet]
         public IActionResult GetAdvanceApprovalStatus()
