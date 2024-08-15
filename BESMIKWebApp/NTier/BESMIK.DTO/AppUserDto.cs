@@ -27,6 +27,7 @@ namespace BESMIK.DTO
         public string? Phone { get; set; }
         //public PermissionDto Permission { get; set; }
 
+        public float? Wage { get; set; } //maas bilgisi
 
         public int? CompanyId { get; set; }
         public CompanyDto Company { get; set; }

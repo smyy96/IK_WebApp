@@ -16,7 +16,6 @@ builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
-
 builder.Services.AddSession();
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)

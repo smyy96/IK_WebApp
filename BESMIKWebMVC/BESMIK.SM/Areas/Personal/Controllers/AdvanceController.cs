@@ -11,7 +11,7 @@ using System.Security.Claims;
 namespace BESMIK.SM.Areas.Personal.Controllers
 {
     [Area("Personal")]
-    [Authorize(Roles = "Personel")] // Bu ikisi doğru mu yazıldı emin değilim. 
+    [Authorize(Roles = "Personel")] 
 
     public class AdvanceController : Controller
     {
@@ -75,6 +75,25 @@ namespace BESMIK.SM.Areas.Personal.Controllers
                     ModelState.AddModelError("UserError", "Kullanıcı bilgisi alınamadı.");
                     return View(model);
                 }
+
+
+
+
+                // avans limit kontrolü
+                if (userResponse.Wage == null || userResponse.Wage == 0)
+                {
+                    ModelState.AddModelError("SalaryError", "Maaş bilgisi geçerli değil.");
+                }
+                else if (model.Amount > (userResponse.Wage * 3))
+                {
+                    ModelState.AddModelError("Amount", "Avans miktarı maaşınızın 3 katından fazla olamaz.");
+                }
+
+
+
+
+
+
 
                 ValidationResult result = _validator.Validate(model);
 

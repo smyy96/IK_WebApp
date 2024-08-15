@@ -29,6 +29,8 @@ namespace BESMIK.ViewModel.AppUser
         public string? Address { get; set; }
         public string? Phone { get; set; }
 
+        public float? Wage { get; set; } //maas bilgisi
+
 
         public int? CompanyId { get; set; }
         public CompanyViewModel? Company { get; set; }
