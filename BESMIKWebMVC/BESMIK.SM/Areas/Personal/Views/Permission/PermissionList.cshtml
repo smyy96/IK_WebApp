@@ -1,19 +1,18 @@
-﻿@using BESMIK.ViewModel.Permission
-@model List<PermissionViewModel>
+﻿@model List<PermissionViewModel>
 
 @{
     Layout = "_PersonalLayout";
 }
-@* <div class="pagetitle">
-    <h1>İzin Talebinde Bulun</h1>
+<div class="pagetitle">
+    <h1>Profil</h1>
     <nav>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a asp-controller="PersonalAppUser" asp-action="Summary">Anasayfa</a></li>
-            <li class="breadcrumb-item">Şirket Yönetici İşlemleri</li>
-            <li class="breadcrumb-item active">Yönetici Listele</li>
+            <li class="breadcrumb-item"><a asp-area="Personal" asp-controller="Permission" asp-action="PermissionList">İzin</a></li>
+            <li class="breadcrumb-item">İzin İşlemleri</a></li>
+            <li class="breadcrumb-item active">İzin Listle</li>
         </ol>
     </nav>
-</div> *@
+</div><!-- End Page Title -->
 
 <section class="section">
     <div class="row">
