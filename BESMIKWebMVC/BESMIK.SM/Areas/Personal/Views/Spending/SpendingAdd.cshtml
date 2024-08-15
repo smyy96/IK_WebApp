@@ -1,13 +1,13 @@
 ﻿@model SpendingViewModel
 @{
-    Layout = "_Layout";
+    Layout = "_PersonalLayout";
 }
 
 <div class="pagetitle">
     <h1>Harcama Ekle</h1>
     <nav>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a asp-controller="Spending" asp-action="SpendingAdd">Harcama Ekle</a></li>
+            <li class="breadcrumb-item"><a asp-area="Personal" asp-controller="PersonalHome" asp-action="Index">Anasayfa</a></li>
             <li class="breadcrumb-item">Harcama İşlemleri</li>
             <li class="breadcrumb-item active">Harcama Ekle</li>
         </ol>
