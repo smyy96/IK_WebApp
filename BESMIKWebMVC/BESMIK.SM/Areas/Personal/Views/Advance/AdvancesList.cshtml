@@ -21,7 +21,7 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Şirket Listesi</h5>
+                    <h5 class="card-title">Avans Listesi</h5>
 
                     <table class="table datatable">
                         <thead>
@@ -31,7 +31,7 @@
                                 <th>Avans Onay Durumu</th>
                                 <th>Avans Talebi Cevap Tarihi</th>
                                 <th>Avans Miktarı</th>
-                                <th>Avans Talep Türü</th> @* Gerek var mı? *@
+                                <th>Avans Talep Türü</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -41,7 +41,7 @@
                                     <td>@item.Description</td>
                                     <td>@item.AdvanceRequestDate</td>
                                     <td>@item.ApprovalStatus</td>
-                                    <td>@item.AdvanceResponseDate</td>
+                                    <td>@(item.AdvanceResponseDate.HasValue ? item.AdvanceResponseDate.Value.ToString("yyyy-MM-dd") : "Cevap bekleniyor")</td>
                                     <td>@item.Amount</td>
                                     <td>@item.AdvanceType</td>
                                     
