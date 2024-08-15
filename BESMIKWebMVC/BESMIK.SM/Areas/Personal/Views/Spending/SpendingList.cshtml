@@ -1,18 +1,17 @@
-﻿@using BESMIK.ViewModel.Spending
+﻿
 @model List<SpendingViewModel>
 
 @{
-    Layout = "_Layout";
+    Layout = "_PersonalLayout";
 }
 
 
 <div class="pagetitle">
-    <h1>Harcama Ekle</h1>
+    <h1>Harcama Listesi</h1>
     <nav>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a asp-controller="Spending" asp-action="SpendingList">Harcama Listele</a></li>
             <li class="breadcrumb-item">Harcama İşlemleri</li>
-            <li class="breadcrumb-item active">Harcama Listele</li>
+            <li class="breadcrumb-item active"><a asp-controller="Spending" asp-action="SpendingList">Harcama Listele</a></li>
         </ol>
     </nav>
 </div>
