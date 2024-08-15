@@ -38,18 +38,27 @@
             </a>
             <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a asp-controller="Permission" asp-action="PermissionList">
+                    <a asp-area="Personal" asp-controller="Permission" asp-action="PermissionList">
                         <i class="bi bi-circle"></i><span>İzin Listele</span>
                     </a>
                 </li>
                 <li>
-                    <a asp-controller="Permission" asp-action="PermissionAdd">
+                    <a asp-area="Personal" asp-controller="Permission" asp-action="PermissionAdd">
                         <i class="bi bi-circle"></i><span>İzin Talep</span>
                     </a>
                 </li>
                 <li>
-                    <a asp-controller="Permission" asp-action="PermissionDelete">
+                    <a asp-area="Personal" asp-controller="Permission" asp-action="PermissionDelete">
                         <i class="bi bi-circle"></i><span>İzin Talebi Sil</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-area="Personal" asp-controller="Deneme" asp-action="SpendingList">
+                        <i class="bi bi-circle"></i><span>Deneme liste</span>
+                    </a>
+
+                    <a asp-area="Personal" asp-controller="Deneme" asp-action="Index">
+                        <i class="bi bi-circle"></i><span>Deneme liste index</span>
                     </a>
                 </li>
 
