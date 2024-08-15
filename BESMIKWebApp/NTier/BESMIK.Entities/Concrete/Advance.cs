@@ -13,7 +13,7 @@ namespace BESMIK.Entities.Concrete
     {
         public DateOnly AdvanceRequestDate { get; set; } // Talep Tarihi
         public AdvanceApprovalStatus ApprovalStatus { get; set; } // Onay Durumu
-        public DateOnly AdvanceResponseDate { get; set; } // Cevaplanma Tarihi
+        public DateOnly? AdvanceResponseDate { get; set; } // Cevaplanma Tarihi
         public float Amount { get; set; } // Tutarı, int or string?
         public AdvanceCurrency Currency { get; set; } // Para Birimi
         public string Description { get; set; } // Açıklaması
