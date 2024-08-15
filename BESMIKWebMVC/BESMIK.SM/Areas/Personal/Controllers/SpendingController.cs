@@ -1,4 +1,5 @@
 ﻿using BESMIK.Common;
+using BESMIK.ViewModel.Advance;
 using BESMIK.ViewModel.AppUser;
 using BESMIK.ViewModel.Company;
 using BESMIK.ViewModel.CompanyManager;
@@ -9,6 +10,7 @@ using FluentValidation.AspNetCore;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace BESMIK.SM.Areas.Personal.Controllers
 {
@@ -28,13 +30,15 @@ namespace BESMIK.SM.Areas.Personal.Controllers
         [HttpGet]
         public async Task<IActionResult> SpendingList()
         {
-            //return View(await _httpClient.GetFromJsonAsync<List<SpendingViewModel>>("https://localhost:7136/api/Spending/SpendingList"));
-
             var user = HttpContext.User.Identity.Name;
 
-            var spendings = await _httpClient.GetFromJsonAsync<List<SpendingViewModel>>($"https://localhost:7136/api/Spending/SpendingList?user={user}");
+            var request = await _httpClient.GetFromJsonAsync<AppUserViewModel>("https://localhost:7136/api/UserInfo/GetUserInfo/" + user);
 
-            return View(spendings);
+            var spendings = await _httpClient.GetFromJsonAsync<List<SpendingViewModel>>($"https://localhost:7136/api/Spending/SpendingList");
+
+            var list = spendings.Where(n => n.AppUserId == request.Id).ToList();
+
+            return View(list);
         }
 
         public async Task<IActionResult> SpendingAdd()
