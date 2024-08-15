@@ -4,6 +4,7 @@ using BESMIK.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BESMIK.DAL.Migrations
 {
     [DbContext(typeof(BesmikDbContext))]
-    partial class BesmikDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240815101954_personelEkle1")]
+    partial class personelEkle1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -200,7 +203,7 @@ namespace BESMIK.DAL.Migrations
                             Address = "Ankara, Türkiye",
                             BirthDate = new DateOnly(2000, 1, 1),
                             BirthPlace = "Yozgat",
-                            ConcurrencyStamp = "3d6f58f6-219a-407b-9cbd-71d5f3285ede",
+                            ConcurrencyStamp = "07ed98a5-f169-4754-8424-a98a362d7b27",
                             Department = 1,
                             Email = "site.yoneticisi@bilgeadam.com",
                             EmailConfirmed = true,
@@ -210,11 +213,11 @@ namespace BESMIK.DAL.Migrations
                             Name = "Site",
                             NormalizedEmail = "SITE.YONETICISI@BILGEADAM.COM",
                             NormalizedUserName = "SITEYONETICISI",
-                            PasswordHash = "AQAAAAIAAYagAAAAEJowJ4bs10Z3tx+jDke/fVOgMj2tC2s1rZIOZ9qh2BDj/RbOnf7aAawzsamuqFVrIg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEHc0ljg+3o1hQKz2psi9yp3l4q/ZqaTHpQg486L3OqO8ngraGkGpNkG7NesPwzt+JA==",
                             Phone = "+90 123 456 7890",
                             PhoneNumberConfirmed = false,
                             SecondName = "Yöneticisi",
-                            SecurityStamp = "d9737378-9ebb-4c92-8c40-eddfb3abe6d6",
+                            SecurityStamp = "c06598f2-dfff-418f-954d-5caaa0fd8769",
                             Surname = "Yönetici",
                             Tc = "12345678901",
                             TwoFactorEnabled = false,
@@ -229,7 +232,7 @@ namespace BESMIK.DAL.Migrations
                             BirthDate = new DateOnly(1980, 1, 1),
                             BirthPlace = "Ankara",
                             CompanyId = 2,
-                            ConcurrencyStamp = "25e0f12e-f7f7-43da-bb52-4c4858f523c6",
+                            ConcurrencyStamp = "80e74596-294a-4183-9263-da969b330fc3",
                             Department = 9,
                             Email = "personel1.personel@bilgeadam.com",
                             EmailConfirmed = true,
@@ -239,11 +242,11 @@ namespace BESMIK.DAL.Migrations
                             Name = "Fadime",
                             NormalizedEmail = "PERSONEL1.PERSONEL@BILGEADAM.COM",
                             NormalizedUserName = "PERSONEL1",
-                            PasswordHash = "AQAAAAIAAYagAAAAENIsQJMvMW4Zq+3Rb/tFt389U9FoZ4/GTM6oQBqlsZBN6wO4BbX2DCiZMfqorA8yaw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEJD5IYol1I7QZv+nUVf5/Zj6WuHMdoZmR+0Btsngo5I4FOP2jlr9WDKld6gvbdffoQ==",
                             Phone = "+90 123 456 7890",
                             PhoneNumberConfirmed = false,
                             Photo = "AcKedi.jpg",
-                            SecurityStamp = "7aa2e035-5bb2-4263-8a28-4a190d599025",
+                            SecurityStamp = "d935ff2b-f242-4690-8fa9-235deacffa1f",
                             Surname = "Güngörmemiş",
                             Tc = "14725836914",
                             TwoFactorEnabled = false,
@@ -259,7 +262,7 @@ namespace BESMIK.DAL.Migrations
                             BirthDate = new DateOnly(1980, 1, 1),
                             BirthPlace = "Ankara",
                             CompanyId = 2,
-                            ConcurrencyStamp = "b1820591-8fa4-4f5c-82e7-9c624926eb36",
+                            ConcurrencyStamp = "7e90f814-ef3a-4017-8bee-a72e12978f75",
                             Department = 3,
                             Email = "personel2.personel@bilgeadam.com",
                             EmailConfirmed = true,
@@ -269,11 +272,11 @@ namespace BESMIK.DAL.Migrations
                             Name = "Kezban",
                             NormalizedEmail = "PERSONEL2.PERSONEL@BILGEADAM.COM",
                             NormalizedUserName = "PERSONEL2",
-                            PasswordHash = "AQAAAAIAAYagAAAAELvydV+YMib16j4BW846N3YpglK+SCE8oqaaNn0Vm0wlSlybHUUbo8YIy66T48pbdg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEBAG9LitwsffRgPuZQAQd+i6PuwELUSQklyxJKWSEEs+u4KDMAxyVa6c/9nvMDS4GA==",
                             Phone = "+90 123 456 1111",
                             PhoneNumberConfirmed = false,
                             Photo = "AcKedi.jpg",
-                            SecurityStamp = "8634969f-40b5-4e55-a52a-6c38c2fdf105",
+                            SecurityStamp = "3027cfc9-3a49-4dd4-a1f1-d8a5fc126c0b",
                             Surname = "Günyüzü",
                             Tc = "14725836985",
                             TwoFactorEnabled = false,
@@ -744,11 +747,6 @@ namespace BESMIK.DAL.Migrations
                         new
                         {
                             UserId = 2,
-                            RoleId = 3
-                        },
-                        new
-                        {
-                            UserId = 3,
                             RoleId = 3
                         });
                 });

@@ -66,6 +66,32 @@ namespace BESMIK.DAL.Context.EntityConfigurations
                     PasswordHash = hasher.HashPassword(null, "Az*123456"),
                     SecurityStamp = Guid.NewGuid().ToString(),
                     EmailConfirmed = true
+                },
+
+                new AppUser
+                {
+                    Id = 3,
+                    Name = "Kezban",
+                    Surname = "Günyüzü",
+                    UserName = "personel2",
+                    NormalizedUserName = "PERSONEL2",
+                    Email = "personel2.personel@bilgeadam.com",
+                    NormalizedEmail = "PERSONEL2.PERSONEL@BILGEADAM.COM",
+                    BirthDate = new DateOnly(1980, 1, 1),
+                    BirthPlace = "Ankara",
+                    Tc = "14725836985",
+                    WorkStartDate = new DateOnly(2000, 1, 1),
+                    IsActive = true,
+                    Job = "İnşaat Mühendisi",
+                    Department = Department.BilgiTeknolojileri,
+                    Photo = "AcKedi.jpg",
+                    Address = "Ankara, Türkiye",
+                    Phone = "+90 123 456 1111",
+                    Wage = 250000,
+                    CompanyId = 2,
+                    PasswordHash = hasher.HashPassword(null, "Az*123456"),
+                    SecurityStamp = Guid.NewGuid().ToString(),
+                    EmailConfirmed = true
                 }
                 );
 
