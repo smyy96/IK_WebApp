@@ -1,23 +1,24 @@
 ﻿using BESMIK.Common;
-using BESMIK.ViewModel.Company;
+using BESMIK.ViewModel.AppUser;
 using BESMIK.ViewModel.Permission;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.ComponentModel.DataAnnotations;
 using System.Net.Http;
-using ValidationResult = FluentValidation.Results.ValidationResult;
+using System.Net.Http.Headers;
 
 namespace BESMIK.SM.Areas.Personal.Controllers
 {
     [Area("Personal")]
-    //[Authorize(Roles ="Personel")]
+    [Authorize(Roles ="Personel")]
     public class PermissionController : Controller
     {
         private HttpClient _httpClient;
         private IValidator<PermissionViewModel> _validator;
+
+
 
         public PermissionController(HttpClient httpClient, IValidator<PermissionViewModel> validator)
         {
@@ -25,20 +26,20 @@ namespace BESMIK.SM.Areas.Personal.Controllers
             _validator = validator;
         }
 
-        [HttpGet]
         public async Task<IActionResult> PermissionList()
         {
+           
             var user = HttpContext.User.Identity.Name;
-
-            var permissions = await _httpClient.GetFromJsonAsync<List<PermissionViewModel>>("https://localhost:7136/api/Permission/PermissionList/"+user);
+            
+            var permissions = await _httpClient.GetFromJsonAsync<List<PermissionViewModel>>($"https://localhost:7136/api/Permission/PermissionList?user={user}");
 
             return View(permissions);
         }
 
 
-        public async Task<IActionResult> PermissonAdd()
+        public async Task<IActionResult> PermissionAdd()
         {
-            return View();
+            return View(new PermissionViewModel());
         }
 
         [HttpPost]
@@ -48,17 +49,23 @@ namespace BESMIK.SM.Areas.Personal.Controllers
             try
             {
                 ValidationResult result = _validator.Validate(model);
-
-
                 if (!ModelState.IsValid)
                 {
                     ModelState.Clear();
-
-                    model.PermissionStatus = PermissionStatus.OnayBekliyor;
                     result.AddToModelState(ModelState);
-
                     return View(model);
+
                 }
+                var user = HttpContext.User.Identity.Name;
+                var userResponse= await _httpClient.GetFromJsonAsync<AppUserViewModel>("https://localhost:7136/api/AppUser/GetUserInfo/" + user);
+                model.AppUserId = (int)userResponse.Id;
+                model.PermissionStatus = PermissionStatus.OnayBekliyor;
+                DateOnly start = model.PermissionStartDate;
+                DateOnly end = model.PermissionEndDate;
+                int offDaysNumbers = (end.DayNumber - start.DayNumber);
+                string offDaysString = offDaysNumbers.ToString();
+                model.OffDaysNumbers = offDaysString;
+                model.PermissionResponseDate = null;
 
                 var response = await _httpClient.PostAsJsonAsync("https://localhost:7136/api/Permission/PermissionAdd", model);
 
@@ -72,10 +79,7 @@ namespace BESMIK.SM.Areas.Personal.Controllers
                     return View(model);
 
                 }
-
             }
-
-
             catch (Exception ex)
             {
                 ModelState.AddModelError("GeneralException", ex.Message);
@@ -83,25 +87,19 @@ namespace BESMIK.SM.Areas.Personal.Controllers
                 return View();
             }
 
+
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetPermissionType()
+        [HttpGet("GetPermissionTypes")]
+        public IActionResult GetPermissionTypes()
         {
             var types = Enum.GetValues(typeof(PermissionType))
-                          .Cast<PermissionType>()
-                          .Select(d => new { Value = ((int)d).ToString(), Text = d.ToString() })
-                          .ToList();
+                           .Cast<PermissionType>()
+                           .Select(d => new { Value = ((int)d).ToString(), Text = d.ToString() })
+                           .ToList();
 
-            return Json(types);
+            return Ok(types);
         }
-
-
-        public async Task<IActionResult> PermissionDelete()
-        {
-            return View();
-        }
-
 
 
     }

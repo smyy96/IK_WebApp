@@ -26,7 +26,7 @@
                             <div asp-validation-summary="ModelOnly"></div>
 
                             <div class="row mb-3">
-                                <label for="permissiontype" class="col-md-4 col-lg-3 col-form-label">İzin Türü</label>
+                                <label for="permissionType" class="col-md-4 col-lg-3 col-form-label">İzin Türü</label>
                                 <div class="col-md-8 col-lg-9">
                                     <select name="PermissionType" class="form-select">
                                         <option value="">Bir izin türü seçiniz</option>
@@ -39,7 +39,7 @@
                                 <label for="permissionStartDate" class="col-md-4 col-lg-3 col-form-label">Başlangıç Tarihi</label>
                                 <div class="col-md-8 col-lg-9">
                                     <input name="PermissionStartDate" type="date" class="form-control" id="permissionStartDate"
-                                           value="@(Model.PermissionStartDate == default(DateOnly) ? DateTime.Now.ToString("yyyy-MM-dd") : Model.PermissionStartDate.ToString("yyyy-MM-dd"))">
+                                           value="@(Model.PermissionStartDate.ToString("yyyy-MM-dd"))">
                                     <span asp-validation-for="PermissionStartDate" class="form-text text-danger"></span>
                                 </div>
                             </div>
@@ -47,7 +47,7 @@
                                 <label for="permissionEndDate" class="col-md-4 col-lg-3 col-form-label">Bitiş Tarihi</label>
                                 <div class="col-md-8 col-lg-9">
                                     <input name="PermissionEndDate" type="date" class="form-control" id="permissionEndDate"
-                                           value="@(Model.PermissionEndDate == default(DateOnly) ? DateTime.Now.ToString("yyyy-MM-dd") : Model.PermissionEndDate.ToString("yyyy-MM-dd"))">
+                                           value="@(Model.PermissionEndDate.ToString("yyyy-MM-dd"))">
                                     <span asp-validation-for="PermissionEndDate" class="form-text text-danger"></span>
                                 </div>
                             </div>
@@ -64,62 +64,28 @@
 </section>
 
 
-
-
-
 @section Scripts {
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function () {
-            // sectiona company adlarını yükleme
-            $.get("@Url.Action("GetCompanies", "CompanyManager")", function (data) {
-                var select = $("select[name='CompanyId']");
-                select.empty();
-                select.append('<option value="">Bir şirket seçiniz</option>');
-                $.each(data, function (index, item) {
-                    select.append($('<option>', {
-                        value: item.id,
-                        text: item.name
-                    }));
-                });
-            });
+            // sectiona izin türlerini yükleme
+            var url = "@Url.Action("GetPermissionTypes", "Permission")";
+            console.log("API URL: " + url); // API URL'sini kontrol edin
 
-            // sectiona departman adlarını yükleme
-            $.get("@Url.Action("GetDepartments", "CompanyManager")", function (data) {
-                var select = $("select[name='Department']");
+            $.get(url, function (data) {
+                var select = $("select[name='PermissionType']");
                 select.empty();
-                select.append('<option value="">Bir departman seçiniz</option>');
+                select.append('<option value="">Bir izin türü seçiniz</option>');
                 $.each(data, function (index, item) {
                     select.append($('<option>', {
                         value: item.value,
                         text: item.text
                     }));
                 });
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                console.error("AJAX isteği başarısız oldu: " + textStatus, errorThrown);
             });
         });
     </script>
-
-    <script>
-        // resim secme için
-        function previewImage(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    document.getElementById('profileImagePreview').src = e.target.result;
-                }
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-
-        // seccilen resmi kaldırmak için
-        function removeProfileImage() {
-            document.getElementById('profileImagePreview').src = '/img/imageupload1.jpg';
-            document.getElementById('uploadImageInput').value = '';
-        }
-    </script>
-
-
-
 
 }
