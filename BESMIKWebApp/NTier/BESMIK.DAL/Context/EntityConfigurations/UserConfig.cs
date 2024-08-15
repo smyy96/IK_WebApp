@@ -45,8 +45,8 @@ namespace BESMIK.DAL.Context.EntityConfigurations
                 new AppUser
                 {
                     Id = 2,
-                    Name = "PersonelAdı 1",
-                    Surname = "PersonelSoyadı 1",
+                    Name = "Fadime",
+                    Surname = "Güngörmemiş",
                     UserName = "personel1",
                     NormalizedUserName = "PERSONEL1",
                     Email = "personel1.personel@bilgeadam.com",
@@ -56,18 +56,17 @@ namespace BESMIK.DAL.Context.EntityConfigurations
                     Tc = "14725836914",
                     WorkStartDate = new DateOnly(2000, 1, 1),
                     IsActive = true,
-                    Job = "İK",
+                    Job = "Bilgisayar Mühendisi",
                     Department = Department.ArGe,
-                    Photo = null,
+                    Photo = "AcKedi.jpg",
                     Address = "Ankara, Türkiye",
                     Phone = "+90 123 456 7890",
+                    Wage = 150000,
                     CompanyId = 2,
                     PasswordHash = hasher.HashPassword(null, "Az*123456"),
                     SecurityStamp = Guid.NewGuid().ToString(),
                     EmailConfirmed = true
                 }
-
-
                 );
 
         }
