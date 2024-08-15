@@ -10,6 +10,7 @@
     <h1>Harcama Listesi</h1>
     <nav>
         <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-area="Personal" asp-controller="PersonalHome" asp-action="Index">Anasayfa</a></li>
             <li class="breadcrumb-item">Harcama İşlemleri</li>
             <li class="breadcrumb-item active"><a asp-controller="Spending" asp-action="SpendingList">Harcama Listele</a></li>
         </ol>
@@ -34,7 +35,7 @@
                                 <th>Onay Durumu</th>
                                 <th>Talep Tarihi</th>
                                 <th>Cevaplanma Tarihi</th>
-                                <th>Dosya Ekleme</th>
+                                <th>Dosya Adı</th>
                             </tr>
                         </thead>
                         <tbody>

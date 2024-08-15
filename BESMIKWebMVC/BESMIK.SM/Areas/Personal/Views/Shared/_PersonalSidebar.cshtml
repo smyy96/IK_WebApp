@@ -47,20 +47,6 @@
                         <i class="bi bi-circle"></i><span>İzin Talep</span>
                     </a>
                 </li>
-                <li>
-                    <a asp-area="Personal" asp-controller="Permission" asp-action="PermissionDelete">
-                        <i class="bi bi-circle"></i><span>İzin Talebi Sil</span>
-                    </a>
-                </li>
-                <li>
-                    <a asp-area="Personal" asp-controller="Deneme" asp-action="SpendingList">
-                        <i class="bi bi-circle"></i><span>Deneme liste</span>
-                    </a>
-
-                    <a asp-area="Personal" asp-controller="Deneme" asp-action="Index">
-                        <i class="bi bi-circle"></i><span>Deneme liste index</span>
-                    </a>
-                </li>
 
             </ul>
         </li><!-- End Forms Nav -->
@@ -82,11 +68,6 @@
                         <i class="bi bi-circle"></i><span>Avans Talep</span>
                     </a>
                 </li>
-                <li>
-                    <a asp-controller="Advance" asp-action="AdvanceDelete">
-                        <i class="bi bi-circle"></i><span>Avans Talebi Sil</span>
-                    </a>
-                </li>
 
             </ul>
         </li><!-- End Tables Nav -->
@@ -98,18 +79,13 @@
             </a>
             <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a asp-controller="Spending" asp-action="SpendingList">
+                    <a asp-area="Personal" asp-controller="Spending" asp-action="SpendingList">
                         <i class="bi bi-circle"></i><span>Harcamaları Listele</span>
                     </a>
                 </li>
                 <li>
-                    <a asp-controller="Spending" asp-action="SpendingAdd">
+                    <a asp-area="Personal" asp-controller="Spending" asp-action="SpendingAdd">
                         <i class="bi bi-circle"></i><span>Harcama Talep</span>
-                    </a>
-                </li>
-                <li>
-                    <a asp-controller="Spending" asp-action="SpendingDelete">
-                        <i class="bi bi-circle"></i><span>Harcama Talebi Sil</span>
                     </a>
                 </li>
             </ul>
