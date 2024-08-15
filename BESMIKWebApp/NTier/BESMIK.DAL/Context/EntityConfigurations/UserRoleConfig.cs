@@ -18,6 +18,11 @@ namespace BESMIK.DAL.Context.EntityConfigurations
                 {
                     UserId = 2,
                     RoleId = 3
+                },
+                new IdentityUserRole<int>
+                {
+                    UserId = 3,
+                    RoleId = 3
                 }
             );
         }
