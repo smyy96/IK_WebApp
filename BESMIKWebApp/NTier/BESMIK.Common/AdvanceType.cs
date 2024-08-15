@@ -10,7 +10,7 @@ namespace BESMIK.Common
     {
         MaasAvansi = 1,
         YolAvansi,
-        IsSeyehatiAvansi,
+        IsSeyahatiAvansi,
         ProjeAvansi,
         TatilAvansi
     }

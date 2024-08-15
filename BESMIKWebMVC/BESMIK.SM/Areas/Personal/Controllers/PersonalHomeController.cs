@@ -93,7 +93,7 @@ namespace BESMIK.SM.Areas.Personal.Controllers
 
                 if (response.IsSuccessStatusCode)
                 {
-                    return RedirectToAction("Summary");
+                    return RedirectToAction("Index");
                 }
                 else
                 {
