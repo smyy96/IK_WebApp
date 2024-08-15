@@ -1,4 +1,7 @@
-﻿using BESMIK.BLL.Managers.Abstract;
+﻿using AutoMapper;
+using BESMIK.BLL.Managers.Abstract;
+using BESMIK.BLL.Managers.Profiles;
+using BESMIK.DAL;
 using BESMIK.DAL.Services.Abstract;
 using BESMIK.DAL.Services.Concrete;
 using BESMIK.DTO;
@@ -14,8 +17,18 @@ namespace BESMIK.BLL.Managers.Concrete
 {
     public class AdvanceManager : Manager<AdvanceDto, AdvanceViewModel, Advance>
     {
-        public AdvanceManager(AdvanceService service) : base(service)
+        private readonly BesmikDbContext _context;
+
+        public AdvanceManager(AdvanceService service, BesmikDbContext context) : base(service)
         {
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile<AdvanceProfile>();
+
+            });
+            _context = context;
+
+            base._mapper = config.CreateMapper();
         }
     }
 }
