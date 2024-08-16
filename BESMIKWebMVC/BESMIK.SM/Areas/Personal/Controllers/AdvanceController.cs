@@ -194,6 +194,41 @@ namespace BESMIK.SM.Areas.Personal.Controllers
         [HttpPost]
         public async Task<IActionResult> AdvanceEdit(AdvanceViewModel model)
         {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (userId == null)
+            {
+                ModelState.AddModelError("UserError", "Kullanıcı ID'si bulunamadı.");
+                return View(model);
+            }
+
+            var userResponse = await _httpClient.GetFromJsonAsync<AppUserViewModel>($"https://localhost:7136/api/Advance/GetUser/{userId}");
+
+            if (userResponse != null)
+            {
+                model.AppUserId = (int)userResponse.Id;
+            }
+            else
+            {
+                ModelState.AddModelError("UserError", "Kullanıcı bilgisi alınamadı.");
+                return View(model);
+            }
+
+
+
+
+            // avans limit kontrolü
+            if (userResponse.Wage == null || userResponse.Wage == 0)
+            {
+                ModelState.AddModelError("SalaryError", "Maaş bilgisi geçerli değil.");
+            }
+            else if (model.Amount > (userResponse.Wage * 3))
+            {
+                ModelState.AddModelError("Amount", "Avans miktarı maaşınızın 3 katından fazla olamaz.");
+                ViewBag.Avans = "Avans miktarı maaşınızın 3 katından fazla olamaz.";
+            }
+
+
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -208,6 +243,7 @@ namespace BESMIK.SM.Areas.Personal.Controllers
 
             ModelState.AddModelError("", "Avans güncelleme başarısız.");
             return View(model);
+
         }
 
 
