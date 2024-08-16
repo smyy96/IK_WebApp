@@ -3,6 +3,16 @@
 
 @{
     Layout = "_PersonalLayout";
+
+    //model isvalid çalışmassa
+    // if(ViewBag.Avans!=null)
+    // {
+    //     <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    //         <i class="bi bi-check-circle me-1"></i>
+    //         @ViewBag.Avans
+    //         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    //     </div>
+    // }
 }
 
 <div class="pagetitle">
@@ -22,9 +32,10 @@
             <div class="card">
                 <div class="card-body pt-3">
                     <div class="tab-content pt-2">
-                        <form asp-controller="Advance" asp-action="AdvanceAdd" method="post" enctype="multipart/form-data">
+                        <form id="advanceForm" asp-controller="Advance" asp-action="AdvanceAdd" method="post" enctype="multipart/form-data">
 
-                            <div asp-validation-summary="ModelOnly"></div>                      
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
                             <div class="row mb-3">
                                 <label for="advanceRequestDate" class="col-md-4 col-lg-3 col-form-label">Avans Talep Tarihi</label>
                                 <div class="col-md-8 col-lg-9">
@@ -35,10 +46,6 @@
                             </div>
 
                             <input type="hidden" name="ApprovalStatus" value="1" />
-
-                           @*  <input type="hidden" name="AdvanceResponseDate"
-                                   value="@(Model.AdvanceResponseDate == default(DateOnly) ? DateTime.Now.ToString("yyyy-MM-dd") : Model.AdvanceResponseDate.ToString("yyyy-MM-dd"))" /> *@
-
 
                             <div class="row mb-3">
                                 <label for="amount" class="col-md-4 col-lg-3 col-form-label">Miktar</label>
@@ -74,7 +81,7 @@
                                     </select>
                                     <span asp-validation-for="AdvanceType" class="form-text text-danger"></span>
                                 </div>
-                            </div>                           
+                            </div>
 
                             <div class="text-center">
                                 <button type="submit" class="btn btn-primary">Avans Talebi Oluştur</button>
@@ -87,12 +94,7 @@
     </div>
 </section>
 
-
-
-
-
 @section Scripts {
-
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function () {
@@ -134,13 +136,31 @@
                     }));
                 });
             });
+
+            // // Form validation and submission
+            // $('#advanceForm').on('submit', function (e) {
+            //     e.preventDefault();
+
+            //     var amount = parseFloat($('#amount').val());
+            //     var userId = '@Model.AppUserId';
+
+            //     if (!userId) {
+            //         alert("Kullanıcı ID'si bulunamadı.");
+            //         return;
+            //     }
+
+            //     $.get(`/api/Advance/GetUserWage/${userId}`, function (wage) {
+            //         if (amount > (wage * 3)) {
+            //             alert("Avans miktarı maaşınızın 3 katından fazla olamaz.");
+            //             return;
+            //         }
+
+            //         // If validation passes, submit the form
+            //         $('#advanceForm').off('submit').submit();
+            //     }).fail(function () {
+            //         alert("Maaş bilgisi alınamadı.");
+            //     });
+            // });
         });
     </script>
-
-
-
-
-
 }
-
-

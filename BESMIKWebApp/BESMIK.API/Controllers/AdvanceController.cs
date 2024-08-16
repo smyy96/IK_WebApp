@@ -76,5 +76,19 @@ namespace BESMIK.API.Controllers
             return Ok(user);
         }
 
+
+        [HttpGet("GetUserWage/{id}")]
+        public async Task<IActionResult> GetUserWage(int id)
+        {
+            var user = await _userManager.FindByIdAsync(id.ToString());
+
+            if (user == null)
+            {
+                return NotFound("Kullanıcı bulunamadı.");
+            }
+
+            return Ok(user.Wage);
+        }
+
     }
 }

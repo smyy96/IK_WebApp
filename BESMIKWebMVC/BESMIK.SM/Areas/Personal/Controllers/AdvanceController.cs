@@ -87,6 +87,7 @@ namespace BESMIK.SM.Areas.Personal.Controllers
                 else if (model.Amount > (userResponse.Wage * 3))
                 {
                     ModelState.AddModelError("Amount", "Avans miktarı maaşınızın 3 katından fazla olamaz.");
+                    ViewBag.Avans = "Avans miktarı maaşınızın 3 katından fazla olamaz.";
                 }
 
 
@@ -97,12 +98,26 @@ namespace BESMIK.SM.Areas.Personal.Controllers
 
                 ValidationResult result = _validator.Validate(model);
 
-                if (!ModelState.IsValid)
+                // Add custom validation errors
+                if (!result.IsValid)
                 {
                     ModelState.Clear();
                     result.AddToModelState(ModelState);
+                }
+
+                // Check if ModelState is valid before making API call
+                if (!ModelState.IsValid)
+                {
                     return View(model);
                 }
+
+
+                //if (!ModelState.IsValid)
+                //{
+                //    ModelState.Clear();
+                //    result.AddToModelState(ModelState);
+                //    return View(model);
+                //}
 
                 var response = await _httpClient.PostAsJsonAsync("https://localhost:7136/api/Advance/AddAdvance", model);
 
