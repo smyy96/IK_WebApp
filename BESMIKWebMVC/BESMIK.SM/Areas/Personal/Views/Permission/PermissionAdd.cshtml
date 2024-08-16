@@ -41,8 +41,10 @@
                                 <label for="permissionStartDate" class="col-md-4 col-lg-3 col-form-label">Başlangıç Tarihi</label>
                                 <div class="col-md-8 col-lg-9">
                                     <input name="PermissionStartDate" type="date" class="form-control" id="permissionStartDate"
-                                           value="@(Model.PermissionStartDate.ToString("yyyy-MM-dd"))"
+                                           value="@(Model.PermissionStartDate == default(DateOnly) ? DateTime.Now.ToString("yyyy-MM-dd") : Model.PermissionStartDate.ToString("yyyy-MM-dd"))"
                                            min="@today">
+                                           @* value="@(Model.PermissionStartDate.ToString("yyyy-MM-dd"))"
+                                           min="@today"> *@
                                     <span asp-validation-for="PermissionStartDate" class="form-text text-danger"></span>
                                 </div>
                             </div>
@@ -51,7 +53,7 @@
                                 <label for="permissionEndDate" class="col-md-4 col-lg-3 col-form-label">Bitiş Tarihi</label>
                                 <div class="col-md-8 col-lg-9">
                                     <input name="PermissionEndDate" type="date" class="form-control" id="permissionEndDate"
-                                           value="@(Model.PermissionEndDate.ToString("yyyy-MM-dd"))"
+                                           value="@(Model.PermissionEndDate == default(DateOnly) ? DateTime.Now.ToString("yyyy-MM-dd") : Model.PermissionEndDate.ToString("yyyy-MM-dd"))"
                                            min="@today">
                                     <span asp-validation-for="PermissionEndDate" class="form-text text-danger"></span>
                                 </div>

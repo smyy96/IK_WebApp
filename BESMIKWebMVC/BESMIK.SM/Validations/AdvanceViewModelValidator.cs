@@ -18,10 +18,10 @@ namespace BESMIK.SM.Validations
                 .NotEmpty().WithMessage("Avans talep tarihi boş olamaz");
 
             RuleFor(x => x.Amount)
-                .NotEmpty().WithMessage("Miktar boş olamaz")
+                .NotEmpty().WithMessage("Miktar boş olamaz veya sıfır olamaz");
                 //.MustAsync(async (model, amount, cancellationToken) =>
                 //    await BeWithinSalaryLimit(model, amount, cancellationToken))
-                .WithMessage("Avans miktarı maaşınızın 3 katından fazla olamaz.");
+                //.WithMessage("Avans miktarı maaşınızın 3 katından fazla olamaz.");
 
             RuleFor(x => x.Currency)
                 .IsInEnum().WithMessage("Geçersiz para birimi seçimi")
