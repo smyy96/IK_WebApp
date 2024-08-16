@@ -4,7 +4,7 @@
 @{
     Layout = "_PersonalLayout";
 
-    //model isvalid çalışmassa
+    //model isvalid çalışmazsa
     // if(ViewBag.Avans!=null)
     // {
     //     <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -98,7 +98,6 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function () {
-            // Load Approval Status options
             $.get("@Url.Action("GetAdvanceApprovalStatus", "Advance")", function (data) {
                 var select = $("select[name='ApprovalStatus']");
                 select.empty();
@@ -111,7 +110,6 @@
                 });
             });
 
-            // Load Advance Currency options
             $.get("@Url.Action("GetAdvanceCurrency", "Advance")", function (data) {
                 var select = $("select[name='Currency']");
                 select.empty();
@@ -124,7 +122,6 @@
                 });
             });
 
-            // Load Advance Type options
             $.get("@Url.Action("GetAdvanceType", "Advance")", function (data) {
                 var select = $("select[name='AdvanceType']");
                 select.empty();

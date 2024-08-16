@@ -34,9 +34,9 @@ namespace BESMIK.SM.Validations
                 .IsInEnum().WithMessage("Geçersiz avans türü seçimi")
                 .NotEmpty().WithMessage("Bir avans türü seçiniz");
 
-            //Avans onay durumunu her zaman onay bekliyor olarak göndermek lazım yani avans talebini oluşturan kişi değiştirememeli, hidden olarak gizlenebilir belki.
+            
 
-            //Aynı şekilde avans cevap tarihi, sadece avans talebi yetkili kişi tarafından cevaplandığı zaman olarak değişmeli. Bu iki prop talep oluşturan kişi tarafından görülememeli ve değiştirilememeli.
+            
         }
 
 
