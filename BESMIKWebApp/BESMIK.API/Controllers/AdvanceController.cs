@@ -1,6 +1,7 @@
 ﻿using BESMIK.BLL.Managers.Concrete;
 using BESMIK.Entities.Concrete;
 using BESMIK.ViewModel.Advance;
+using BESMIK.ViewModel.Company;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -49,6 +50,18 @@ namespace BESMIK.API.Controllers
             return Ok(advances);
         }
 
+        [HttpGet("GetAdvance/{id}")]
+        public IActionResult GetAdvance(int id)
+        {
+            var advance = _advanceManager.Get(id);
+
+            if (advance == null)
+                return NotFound("Advance not found.");
+
+            return Ok(advance);
+        }
+
+
 
         [HttpGet("GetUserInfo/{name}")]
         public async Task<IActionResult> GetUserInfo(string name)
@@ -89,6 +102,41 @@ namespace BESMIK.API.Controllers
 
             return Ok(user.Wage);
         }
+
+
+        [HttpDelete("DeleteAdvance/{id}")] 
+        public IActionResult DeleteAdvance(int id)
+        {
+            AdvanceViewModel? advance = _advanceManager.Get(id);
+
+            if (advance == null)
+                return NotFound();
+
+            _advanceManager.Delete(advance);
+
+            return StatusCode(220, "Company deletion is completed.");
+        }
+
+
+        [HttpPut("EditAdvance/{id}")]
+        public IActionResult EditAdvance(int id, [FromBody] AdvanceViewModel updatedAdvance)
+        {
+            var existingAdvance = _advanceManager.Get(id);
+
+            if (existingAdvance == null)
+                return NotFound();
+
+            existingAdvance.Description = updatedAdvance.Description;
+            existingAdvance.Amount = updatedAdvance.Amount;
+            existingAdvance.AdvanceType = updatedAdvance.AdvanceType;
+            existingAdvance.ApprovalStatus = updatedAdvance.ApprovalStatus;
+            existingAdvance.AdvanceRequestDate = updatedAdvance.AdvanceRequestDate;
+
+            _advanceManager.Update(existingAdvance);
+
+            return Ok("Advance has been updated successfully.");
+        }
+
 
     }
 }

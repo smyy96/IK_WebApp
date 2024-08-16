@@ -141,6 +141,67 @@ namespace BESMIK.SM.Areas.Personal.Controllers
 
         //Ajax ile company section doldurma
 
+        [HttpPost]
+        public async Task<IActionResult> DeleteAdvance(int id)
+        {
+            try
+            {
+                // DELETE request to the API
+                var response = await _httpClient.DeleteAsync($"https://localhost:7136/api/Advance/DeleteAdvance/{id}");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("AdvancesList");
+                }
+                else
+                {
+                    ModelState.AddModelError("ApiError", "Avans silinemedi. Lütfen tekrar deneyin.");
+                    return RedirectToAction("AdvancesList");
+                }
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("GeneralException", ex.Message);
+                return RedirectToAction("AdvancesList");
+            }
+        }
+
+
+
+        [HttpGet]
+        public async Task<IActionResult> AdvanceEdit(int id)
+        {
+            var advance = await _httpClient.GetFromJsonAsync<AdvanceViewModel>($"https://localhost:7136/api/Advance/GetAdvance/{id}");
+
+            if (advance == null)
+            {
+                return NotFound("Advance not found.");
+            }
+
+            return View(advance);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AdvanceEdit(AdvanceViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var response = await _httpClient.PutAsJsonAsync($"https://localhost:7136/api/Advance/EditAdvance/{model.Id}", model);
+
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("AdvancesList");
+            }
+
+            ModelState.AddModelError("", "Unable to update the advance.");
+            return View(model);
+        }
+
+
+
 
 
         [HttpGet]
