@@ -27,7 +27,6 @@ namespace BESMIK.SM.Areas.Personal.Controllers
         [HttpGet]
         public async Task<IActionResult> AdvancesList()
         {
-            // Kullanıcının ID'sini al
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             if (userId == null)
@@ -36,7 +35,6 @@ namespace BESMIK.SM.Areas.Personal.Controllers
                 return View(new List<AdvanceViewModel>());
             }
 
-            // Sadece giriş yapan kullanıcının avans taleplerini listele
             var advances = await _httpClient.GetFromJsonAsync<List<AdvanceViewModel>>($"https://localhost:7136/api/Advance/AdvancesList/{userId}");
 
             return View(advances);
@@ -54,8 +52,7 @@ namespace BESMIK.SM.Areas.Personal.Controllers
         {
             try
             {
-                // Kullanıcının ID'sini alın
-                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // User.Identity'den ID'yi alın
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); 
 
                 if (userId == null)
                 {
@@ -63,12 +60,11 @@ namespace BESMIK.SM.Areas.Personal.Controllers
                     return View(model);
                 }
 
-                // Kullanıcının bilgilerini API'den alın
                 var userResponse = await _httpClient.GetFromJsonAsync<AppUserViewModel>($"https://localhost:7136/api/Advance/GetUser/{userId}");
 
                 if (userResponse != null)
                 {
-                    model.AppUserId = (int)userResponse.Id; // AppUserId'yi ayarla
+                    model.AppUserId = (int)userResponse.Id; 
                 }
                 else
                 {
@@ -98,14 +94,12 @@ namespace BESMIK.SM.Areas.Personal.Controllers
 
                 ValidationResult result = _validator.Validate(model);
 
-                // Add custom validation errors
                 if (!result.IsValid)
                 {
                     ModelState.Clear();
                     result.AddToModelState(ModelState);
                 }
 
-                // Check if ModelState is valid before making API call
                 if (!ModelState.IsValid)
                 {
                     return View(model);
