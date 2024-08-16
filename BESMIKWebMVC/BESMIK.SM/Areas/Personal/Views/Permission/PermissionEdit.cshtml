@@ -8,8 +8,8 @@
     <nav>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a asp-area="Personal" asp-controller="PersonalHome" asp-action="Index">Anasayfa</a></li>
-            <li class="breadcrumb-item">Personel Talep İşlemleri</li>
-            <li class="breadcrumb-item active">İzin Talebini Düzenle</li>
+            <li class="breadcrumb-item">Personel İşlemleri</li>
+            <li class="breadcrumb-item active">İzin</li>
         </ol>
     </nav>
 </div>
@@ -20,7 +20,7 @@
             <div class="card">
                 <div class="card-body pt-3">
                     <div class="tab-content pt-2">
-                        <form asp-controller="Permission" asp-action="PermissionAdd" method="post">
+                        <form asp-controller="Permission" asp-action="PermissionEdit" method="post">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
                             <div class="row mb-3">
@@ -43,8 +43,8 @@
                                     <input name="PermissionStartDate" type="date" class="form-control" id="permissionStartDate"
                                            value="@(Model.PermissionStartDate == default(DateOnly) ? DateTime.Now.ToString("yyyy-MM-dd") : Model.PermissionStartDate.ToString("yyyy-MM-dd"))"
                                            min="@today">
-                                           @* value="@(Model.PermissionStartDate.ToString("yyyy-MM-dd"))"
-                                           min="@today"> *@
+                                    @* value="@(Model.PermissionStartDate.ToString("yyyy-MM-dd"))"
+                                    min="@today"> *@
                                     <span asp-validation-for="PermissionStartDate" class="form-text text-danger"></span>
                                 </div>
                             </div>
@@ -60,7 +60,7 @@
                             </div>
                             <input type="hidden" name="OffDaysNumbers" id="offDaysNumbers" value="0">
                             <div class="text-center">
-                                <button type="submit" class="btn btn-primary">İzin Talebi Güncelle</button>
+                                <button type="submit" class="btn btn-primary">İzin Talebi Oluştur</button>
                             </div>
                         </form>
                     </div>
@@ -89,3 +89,4 @@
         });
     </script>
 }
+
