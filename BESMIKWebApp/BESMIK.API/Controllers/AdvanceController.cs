@@ -128,6 +128,7 @@ namespace BESMIK.API.Controllers
 
             existingAdvance.Description = updatedAdvance.Description;
             existingAdvance.Amount = updatedAdvance.Amount;
+            existingAdvance.Currency = updatedAdvance.Currency;
             existingAdvance.AdvanceType = updatedAdvance.AdvanceType;
             existingAdvance.ApprovalStatus = updatedAdvance.ApprovalStatus;
             existingAdvance.AdvanceRequestDate = updatedAdvance.AdvanceRequestDate;

@@ -46,11 +46,12 @@
                                     <td>@item.Amount</td>
                                     <td>@item.AdvanceType</td>
                                     <td>
-                                        <a asp-action="AdvanceEdit" asp-route-id="@item.Id" class="btn btn-sm btn-warning">Edit</a>
-                                        <form asp-action="DeleteAdvance" asp-controller="Advance" asp-route-id="@item.Id" method="post" onsubmit="return confirm('Bu avans talebini silmek istediğinize emin misiniz?');">
-                                            <button type="submit" class="btn btn-danger btn-sm">Sil</button>
-                                        </form>
-
+                                        <div class="btn-group" role="group" style="display: flex; gap: 5px;">
+                                            <a asp-action="AdvanceEdit" asp-route-id="@item.Id" class="btn btn-sm btn-warning" style="border-radius: 4px;">Düzenle</a>
+                                            <form asp-action="DeleteAdvance" asp-controller="Advance" asp-route-id="@item.Id" method="post" onsubmit="return confirm('Bu avans talebini silmek istediğinize emin misiniz?');" style="margin: 0;">
+                                                <button type="submit" class="btn btn-danger btn-sm" style="border-radius: 4px;">Sil</button>
+                                            </form>
+                                        </div>
                                     </td>
                                 </tr>
                             }
