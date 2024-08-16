@@ -28,27 +28,7 @@
                                 <label asp-for="Picture"> </label>
                                 <input asp-for="Picture" type="file" class="form-control" />
                             </div>
-@*                             <div class="row mb-3">
-                                <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Fotoğraf</label>
-                                <div class="col-md-8 col-lg-9">
-                                    <!-- arkaplan resmi -->
-                                    <img id="profileImagePreview" src="@(Model.SpendingFile ?? "/img/imageupload1.jpg")" alt="Profile Image" style="max-width: 150px; max-height: 150px;" />
 
-                                    <!-- ekleme ve silme  -->
-                                    <div class="pt-2">
-                                        <a href="javascript:void(0);" class="btn btn-primary btn-sm" title="Upload new profile image" onclick="document.getElementById('uploadImageInput').click();">
-                                            <i class="bi bi-upload"></i>
-                                        </a>
-                                        <a href="javascript:void(0);" class="btn btn-danger btn-sm" title="Remove my profile image" onclick="removeProfileImage();">
-                                            <i class="bi bi-trash"></i>
-                                        </a>
-                                    </div>
-
-                                    <!-- Resim yükleme -->
-                                    <input type="file" id="uploadImageInput" name="FormFile" style="display: none;" onchange="previewImage(this);" />
-                                    <span asp-validation-for="Picture" class="form-text text-danger"></span>
-                                </div>
-                            </div> *@
 
 
                             <div class="row mb-3">
