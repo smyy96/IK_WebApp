@@ -9,9 +9,9 @@ namespace BESMIK.Common
     public enum AdvanceType
     {
         MaasAvansi = 1,
-        YolAvansi,
-        IsSeyahatiAvansi,
-        ProjeAvansi,
+        SeyahatAvansi,
+        EgitimAvansi,
+        AcilDurumAvansi,
         TatilAvansi
     }
 }
