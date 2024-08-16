@@ -139,14 +139,12 @@ namespace BESMIK.SM.Areas.Personal.Controllers
         //    return View();
         //}
 
-        //Ajax ile company section doldurma
 
         [HttpPost]
         public async Task<IActionResult> DeleteAdvance(int id)
         {
             try
             {
-                // DELETE request to the API
                 var response = await _httpClient.DeleteAsync($"https://localhost:7136/api/Advance/DeleteAdvance/{id}");
 
                 if (response.IsSuccessStatusCode)
@@ -171,15 +169,27 @@ namespace BESMIK.SM.Areas.Personal.Controllers
         [HttpGet]
         public async Task<IActionResult> AdvanceEdit(int id)
         {
-            var advance = await _httpClient.GetFromJsonAsync<AdvanceViewModel>($"https://localhost:7136/api/Advance/GetAdvance/{id}");
+            var response = await _httpClient.GetAsync($"https://localhost:7136/api/Advance/GetAdvance/{id}");
 
-            if (advance == null)
+            if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
             {
-                return NotFound("Advance not found.");
+                TempData["ErrorMessage"] = "Avans bulunamadı.";
+                return RedirectToAction("AdvancesList");
             }
+
+            if (response.StatusCode == System.Net.HttpStatusCode.Forbidden)
+            {
+                TempData["ErrorMessage"] = "Avans talebi onay bekliyor değilse düzenlenemez.";
+                return RedirectToAction("AdvancesList");
+            }
+
+            response.EnsureSuccessStatusCode();
+
+            var advance = await response.Content.ReadFromJsonAsync<AdvanceViewModel>();
 
             return View(advance);
         }
+
 
         [HttpPost]
         public async Task<IActionResult> AdvanceEdit(AdvanceViewModel model)
@@ -196,7 +206,7 @@ namespace BESMIK.SM.Areas.Personal.Controllers
                 return RedirectToAction("AdvancesList");
             }
 
-            ModelState.AddModelError("", "Unable to update the advance.");
+            ModelState.AddModelError("", "Avans güncelleme başarısız.");
             return View(model);
         }
 

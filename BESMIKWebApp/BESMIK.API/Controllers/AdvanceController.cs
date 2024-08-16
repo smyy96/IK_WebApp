@@ -1,4 +1,5 @@
 ﻿using BESMIK.BLL.Managers.Concrete;
+using BESMIK.Common;
 using BESMIK.Entities.Concrete;
 using BESMIK.ViewModel.Advance;
 using BESMIK.ViewModel.Company;
@@ -33,14 +34,13 @@ namespace BESMIK.API.Controllers
                 return BadRequest(ModelState);
             }
 
-            // Assuming the advance is associated with the AppUserId correctly in the Add method of AdvanceManager
             _advanceManager.Add(model);
             return Ok(model);
         }
 
 
         //*--------------------------------------------------------------------------------------------------------------------------------------------*
-        //Avans Taleplerini Listeleme
+        //Avans Taleplerini Listeleme (Her personelin id'sine göre geliyor.)
         [HttpGet("AdvancesList/{userId}")]
         public ActionResult<IEnumerable<AdvanceViewModel>> AdvanceGet(int userId)
         {
@@ -50,19 +50,28 @@ namespace BESMIK.API.Controllers
             return Ok(advances);
         }
 
+
+        //*--------------------------------------------------------------------------------------------------------------------------------------------*
+        //Avans Talebi çağırma (id'ye göre)
         [HttpGet("GetAdvance/{id}")]
         public IActionResult GetAdvance(int id)
         {
             var advance = _advanceManager.Get(id);
 
             if (advance == null)
-                return NotFound("Advance not found.");
+                return NotFound("Avans bulunamadı.");
+
+            if (advance.ApprovalStatus != AdvanceApprovalStatus.OnayBekliyor)
+            {
+                return StatusCode(403, "Avans düzenlenemez çünkü Avans talebi cevaplanmış/onay bekliyor durumunda değil.");
+            }
 
             return Ok(advance);
         }
 
 
-
+        //*--------------------------------------------------------------------------------------------------------------------------------------------*
+        //İsme göre personel bilgileri çağırma
         [HttpGet("GetUserInfo/{name}")]
         public async Task<IActionResult> GetUserInfo(string name)
         {
@@ -76,6 +85,8 @@ namespace BESMIK.API.Controllers
 
         }
 
+        //*--------------------------------------------------------------------------------------------------------------------------------------------*
+        //Id'ye göre personel çağırma
         [HttpGet("GetUser/{id}")]
         public async Task<IActionResult> GetUser(int id)
         {
@@ -89,7 +100,8 @@ namespace BESMIK.API.Controllers
             return Ok(user);
         }
 
-
+        //*--------------------------------------------------------------------------------------------------------------------------------------------*
+        //Id'ye göre personel maaşı bilgisini çağırma
         [HttpGet("GetUserWage/{id}")]
         public async Task<IActionResult> GetUserWage(int id)
         {
@@ -103,7 +115,8 @@ namespace BESMIK.API.Controllers
             return Ok(user.Wage);
         }
 
-
+        //*--------------------------------------------------------------------------------------------------------------------------------------------*
+        //Avans talebi silme
         [HttpDelete("DeleteAdvance/{id}")] 
         public IActionResult DeleteAdvance(int id)
         {
@@ -114,28 +127,29 @@ namespace BESMIK.API.Controllers
 
             _advanceManager.Delete(advance);
 
-            return StatusCode(220, "Company deletion is completed.");
+            return StatusCode(220, "Avans talebi silme işlemi tamamlandı.");
         }
 
-
+        //*--------------------------------------------------------------------------------------------------------------------------------------------*
+        //Avans talebi düzenleme (sadece onay bekliyorsa)
         [HttpPut("EditAdvance/{id}")]
-        public IActionResult EditAdvance(int id, [FromBody] AdvanceViewModel updatedAdvance)
+        public IActionResult EditAdvance(int id, [FromBody] AdvanceViewModel guncellenmisAvans)
         {
-            var existingAdvance = _advanceManager.Get(id);
+            var varolanAvans = _advanceManager.Get(id);
 
-            if (existingAdvance == null)
+            if (varolanAvans == null)
                 return NotFound();
 
-            existingAdvance.Description = updatedAdvance.Description;
-            existingAdvance.Amount = updatedAdvance.Amount;
-            existingAdvance.Currency = updatedAdvance.Currency;
-            existingAdvance.AdvanceType = updatedAdvance.AdvanceType;
-            existingAdvance.ApprovalStatus = updatedAdvance.ApprovalStatus;
-            existingAdvance.AdvanceRequestDate = updatedAdvance.AdvanceRequestDate;
+            varolanAvans.Description = guncellenmisAvans.Description;
+            varolanAvans.Amount = guncellenmisAvans.Amount;
+            varolanAvans.Currency = guncellenmisAvans.Currency;
+            varolanAvans.AdvanceType = guncellenmisAvans.AdvanceType;
+            varolanAvans.ApprovalStatus = guncellenmisAvans.ApprovalStatus;
+            varolanAvans.AdvanceRequestDate = guncellenmisAvans.AdvanceRequestDate;
 
-            _advanceManager.Update(existingAdvance);
+            _advanceManager.Update(varolanAvans);
 
-            return Ok("Advance has been updated successfully.");
+            return Ok("Avans talebi başarıyla güncellendi.");
         }
 
 
