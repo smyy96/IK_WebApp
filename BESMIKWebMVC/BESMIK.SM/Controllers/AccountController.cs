@@ -68,7 +68,7 @@ namespace BESMIK.SM.Controllers
 
                 }
 
-                else if (responseViewModel.Role == "Site Yöneticisi")
+                else if (responseViewModel.Role == "Site Yoneticisi")
                 {
                     return RedirectToAction("Summary", "AppUser");
                 }

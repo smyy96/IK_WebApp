@@ -4,6 +4,7 @@ using BESMIK.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BESMIK.DAL.Migrations
 {
     [DbContext(typeof(BesmikDbContext))]
-    partial class BesmikDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240816215220_rolAdi")]
+    partial class rolAdi
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -200,7 +203,7 @@ namespace BESMIK.DAL.Migrations
                             Address = "Ankara, Türkiye",
                             BirthDate = new DateOnly(2000, 1, 1),
                             BirthPlace = "Yozgat",
-                            ConcurrencyStamp = "86be6d25-09b8-4589-84f2-bd01addd43bd",
+                            ConcurrencyStamp = "7dbdb614-5d5a-4c29-a1b0-8cce19daccfe",
                             Department = 1,
                             Email = "site.yoneticisi@bilgeadam.com",
                             EmailConfirmed = true,
@@ -210,11 +213,11 @@ namespace BESMIK.DAL.Migrations
                             Name = "Site",
                             NormalizedEmail = "SITE.YONETICISI@BILGEADAM.COM",
                             NormalizedUserName = "SITEYONETICISI",
-                            PasswordHash = "AQAAAAIAAYagAAAAED2KHsN3nv2hEsTZjxI/zSua4hWfGSH3slwB8eLSt5kFVQRsxkCEBqAD9BosKG2V+g==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEEzQIAAuc3Qpxay3UER1i5kFk84bk4MkOPjxwSxa9Gp9/G6z4k5Wnv76/XEfH+cnYg==",
                             Phone = "+90 123 456 7890",
                             PhoneNumberConfirmed = false,
                             SecondName = "Yöneticisi",
-                            SecurityStamp = "d07a451a-151f-457c-90e5-6ab39048d784",
+                            SecurityStamp = "ff7305c2-a3bb-46fd-a1c6-ed80344ad4ab",
                             Surname = "Yönetici",
                             Tc = "12345678901",
                             TwoFactorEnabled = false,
@@ -229,7 +232,7 @@ namespace BESMIK.DAL.Migrations
                             BirthDate = new DateOnly(1980, 1, 1),
                             BirthPlace = "Ankara",
                             CompanyId = 2,
-                            ConcurrencyStamp = "8a2ebd25-d259-4890-bbf6-836c29d0ea05",
+                            ConcurrencyStamp = "edc352b7-46c3-4578-a7a6-f1a39dbe7cfb",
                             Department = 9,
                             Email = "fadime.gungormemis@rollinemuhendislik.com",
                             EmailConfirmed = true,
@@ -239,11 +242,11 @@ namespace BESMIK.DAL.Migrations
                             Name = "Fadime",
                             NormalizedEmail = "FADIME.GUNGORMEMIS@ROLLINEMUHENDISLIK.COM",
                             NormalizedUserName = "PERSONEL1",
-                            PasswordHash = "AQAAAAIAAYagAAAAEPW5evq7PTrDF7doXizOdiQ8R6cN2SU9bhV74kLKTDuMYqXcGxZxo6jZMU2H3C1M5A==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEEJpgHA9NS5KrEKWOmd08aOSZoPlj0FeCie+9bz49e5WFMG6Y1HSzXLv9I69hrYsUQ==",
                             Phone = "+90 123 456 7890",
                             PhoneNumberConfirmed = false,
                             Photo = "AcKedi.jpg",
-                            SecurityStamp = "c514a55b-ec64-49bc-bbc1-4f70edb87e29",
+                            SecurityStamp = "13ade061-d3f4-46ee-b463-970a1fe30fb0",
                             Surname = "Güngörmemiş",
                             Tc = "14725836914",
                             TwoFactorEnabled = false,
@@ -259,7 +262,7 @@ namespace BESMIK.DAL.Migrations
                             BirthDate = new DateOnly(1980, 1, 1),
                             BirthPlace = "Ankara",
                             CompanyId = 2,
-                            ConcurrencyStamp = "cf9fbfd8-91d9-496a-af89-7b330c88d754",
+                            ConcurrencyStamp = "ded716b6-66ce-4246-9d9f-addfdcad6d87",
                             Department = 3,
                             Email = "kezban.gunyuzu@rollinemuhendislik.com",
                             EmailConfirmed = true,
@@ -269,11 +272,11 @@ namespace BESMIK.DAL.Migrations
                             Name = "Kezban",
                             NormalizedEmail = "KEZBAN.GUNYUZU@ROLLINEMUHENDISLIK.COM",
                             NormalizedUserName = "PERSONEL2",
-                            PasswordHash = "AQAAAAIAAYagAAAAECCCCgzA6toBh8dZEJ/fnPYZTBUbtlDiudywPsUqCpUdCDpRD4y5tPT26pLOFA3qoQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEPSnkvHf74TyxQPvT48Cv+lQWO4VYUk5j3I/nw6h4i8aCFQU9o4adCGM0hhQiPbn/g==",
                             Phone = "+90 123 456 1111",
                             PhoneNumberConfirmed = false,
                             Photo = "AcKedi.jpg",
-                            SecurityStamp = "c24b9c7a-c9e7-4c62-a07b-7ae834310937",
+                            SecurityStamp = "a717e0b8-f075-43a1-9e38-8a8f6d3bb692",
                             Surname = "Günyüzü",
                             Tc = "14725836985",
                             TwoFactorEnabled = false,
@@ -635,14 +638,14 @@ namespace BESMIK.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            Name = "Site Yoneticisi",
+                            Name = "Site Yöneticisi",
                             NormalizedName = "SITE YONETICISI"
                         },
                         new
                         {
                             Id = 2,
-                            Name = "Sirket Yoneticisi",
-                            NormalizedName = "SIRKET YONETICISI"
+                            Name = "Şirket Yöneticisi",
+                            NormalizedName = "ŞİRKET YÖNETİCİSİ"
                         },
                         new
                         {

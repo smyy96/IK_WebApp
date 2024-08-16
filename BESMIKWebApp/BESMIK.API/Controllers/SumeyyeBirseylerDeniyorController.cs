@@ -1,8 +1,13 @@
 ﻿using BESMIK.Entities.Concrete;
 using BESMIK.ViewModel.AppUser;
+using BESMIK.ViewModel.CompanyManager;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
+using System.Text;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+using BLLCompanyManager = BESMIK.BLL.Managers.Concrete.CompanyManager;
 
 // birseyler denemek için actım sonra silecegim
 namespace BESMIK.API.Controllers
@@ -13,22 +18,27 @@ namespace BESMIK.API.Controllers
     {
         private SignInManager<AppUser> _signIn;
         private UserManager<AppUser> _userManager;
+        private readonly RoleManager<IdentityRole<int>> _roleManager;
+        private readonly IUserStore<AppUser> _userStore;
+        private readonly IUserEmailStore<AppUser> _emailStore;
 
-        public SumeyyeBirseylerDeniyorController(SignInManager<AppUser> signIn, UserManager<AppUser> userManager)
+
+        private BLLCompanyManager _companyManager;
+
+        public SumeyyeBirseylerDeniyorController(SignInManager<AppUser> signIn, UserManager<AppUser> userManager, RoleManager<IdentityRole<int>> roleManager, IUserStore<AppUser> userStore, BLLCompanyManager companyManager)
         {
             _signIn = signIn;
             _userManager = userManager;
-        }
+            _roleManager = roleManager;
+            _userStore = userStore;
+            _emailStore = GetEmailStore();
 
-        //[HttpGet("OturumAcildimi")]
-        //public async Task<IActionResult> Oturum()
-        //{
-        //    return Ok();
-        //}
+            _companyManager = companyManager;
+        }
 
 
         [HttpPost("Guncelle/{username}")]
-        public async Task<IActionResult> Guncelle(string username,[FromBody] AppUserViewModel updatedUser)
+        public async Task<IActionResult> Guncelle(string username, [FromBody] AppUserViewModel updatedUser)
         {
 
             var user = await _userManager.FindByNameAsync(username);
@@ -106,6 +116,154 @@ namespace BESMIK.API.Controllers
             return BadRequest();
         }
 
+
+
+
+
+        [HttpPost("UserAppAdd")]
+        public async Task<IActionResult> UserAppAdd([FromBody] AppUserViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var user = Activator.CreateInstance<AppUser>();
+
+            user.Name = model.Name;
+            user.SecondName = model.SecondName;
+            user.Surname = model.Surname;
+            user.SecondSurname = model.SecondSurname;
+            user.Photo = model.Photo;
+            user.BirthDate = model.BirthDate;
+            user.BirthPlace = model.BirthPlace;
+            user.Tc = model.Tc;
+            user.WorkStartDate = model.WorkStartDate;
+            user.WorkEndDate = model.WorkEndDate;
+            user.IsActive = model.IsActive;
+            user.Job = model.Job;
+            user.Department = model.Department;
+            //user.Email = model.Email;
+            user.Address = model.Address;
+            user.Phone = model.Phone;
+            user.Wage = model.Wage;
+            user.CompanyId = model.CompanyId;
+            var password = "Az*123456";
+
+
+            //burada kullanıcının girdiiği maili mi kullanacagız yok kendimiz mi mail oluşturacagız ona göre ilerleyecegiz
+
+            var createMail = CreateMail(user.CompanyId.Value, user.Name, user.Surname);
+
+            user.Email = await createMail;
+
+            await _userStore.SetUserNameAsync(user, user.Email, CancellationToken.None);
+            await _emailStore.SetEmailAsync(user, user.Email, CancellationToken.None);
+
+            user.EmailConfirmed = true;
+
+            var result = await _userManager.CreateAsync(user, password);
+
+            if (result.Succeeded)
+            {
+                // Yeni kullanıcıya User rolü atama SC
+                if (!await _roleManager.RoleExistsAsync("Sirket Yoneticisi"))
+                {
+                    var roleResult = await _roleManager.CreateAsync(new IdentityRole<int>("Sirket Yoneticisi"));
+                    if (!roleResult.Succeeded)
+                    {
+                        foreach (var error in roleResult.Errors)
+                        {
+                            ModelState.AddModelError(string.Empty, error.Description);
+                        }
+                    }
+                }
+                await _userManager.AddToRoleAsync(user, "Sirket Yoneticisi");
+            }
+
+            return Ok(model);
+        }
+
+
+
+
+
+        private IUserEmailStore<AppUser> GetEmailStore()
+        {
+            if (!_userManager.SupportsUserEmail)
+            {
+                throw new NotSupportedException("The default UI requires a user store with email support.");
+            }
+            return (IUserEmailStore<AppUser>)_userStore;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+        private async Task<string> CreateMail(int id, string name, string surname)
+        {
+            var company = _companyManager.Get(id).Name;
+
+            var companyName = ConvertToEnglishCharacters(company).Replace(" ", "").ToLower();
+            var nameC = ConvertToEnglishCharacters(name).ToLower();
+            var surnameC = ConvertToEnglishCharacters(surname).ToLower();
+
+            string mailCreate = $"{nameC}.{surnameC}@{companyName}.com";
+            int value = 0;
+
+            while (true)
+            {
+
+                var result = await _userManager.FindByEmailAsync(mailCreate);
+
+                if (result == null)
+                {
+                    break;
+                }
+                mailCreate = $"{name.ToLower()}.{surname.ToLower()}{value}@{companyName}.com";
+                value++;
+            }
+            return mailCreate;
+        }
+
+
+
+        private string ConvertToEnglishCharacters(string input)
+        {
+            var replacements = new Dictionary<char, char>
+                                {
+                                    {'ı', 'i'},
+                                    {'ş', 's'},
+                                    {'ç', 'c'},
+                                    {'ü', 'u'},
+                                    {'ğ', 'g'},
+                                    {'ö', 'o'},
+                                    {'İ', 'i'},
+                                    {'Ş', 's'},
+                                    {'Ç', 'c'},
+                                    {'Ü', 'u'},
+                                    {'Ğ', 'g'},
+                                    {'Ö', 'o'}
+                                };
+
+            // Küçük harfe dönüştür ve karakterleri değiştirmek için bir StringBuilder kullan
+            var result = new StringBuilder();
+
+            foreach (var ch in input.ToLower())
+            {
+                result.Append(replacements.TryGetValue(ch, out var replacement) ? replacement : ch);
+            }
+
+            return result.ToString();
+        }
     }
 }
 
@@ -134,3 +292,27 @@ namespace BESMIK.API.Controllers
 //  "Department": 1,
 //  "Email": "siteyoneticisi@gmail.com"
 //}
+
+
+
+
+
+//appuser add
+
+//"created": "2024-08-16T20:02:17.991Z",
+//  "updated": "2024-08-16T20:02:17.991Z",
+//  "name": "sumeyye",
+//  "surname": "coskun",
+//  "birthDate": "2024-08-16",
+//  "birthPlace": "Ankara",
+//  "tc": "14725836912",
+//  "workStartDate": "2024-08-16",
+//  "workEndDate": "2024-08-16",
+//  "isActive": true,
+//  "job": "İK",
+//  "department": 1,
+//  "email": "sumeyye.coskun@gmail.com",
+//  "address": "Ankara",
+//  "phone": "5432057599",
+//  "wage": 15000,
+//  "companyId": 2
