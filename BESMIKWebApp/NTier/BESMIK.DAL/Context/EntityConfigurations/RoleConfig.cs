@@ -17,14 +17,14 @@ namespace BESMIK.DAL.EntityConfigurations
                 new IdentityRole<int>
                 {
                     Id = 1,
-                    Name = "Site Yöneticisi",
+                    Name = "Site Yoneticisi",
                     NormalizedName = "SITE YONETICISI"
                 },
 
                 new IdentityRole<int>
                 {
                     Id = 2,
-                    Name = "Şirket Yöneticisi",
+                    Name = "Sirket Yoneticisi",
                     NormalizedName = "SIRKET YONETICISI"
                 },
 

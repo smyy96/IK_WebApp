@@ -39,13 +39,10 @@ builder.Services.AddIdentity<AppUser, IdentityRole<int>>(
         opt.Password.RequireNonAlphanumeric = true;
         opt.Password.RequiredUniqueChars = 1;
         opt.Password.RequiredLength = 8;
-    }
-                )
-                .AddDefaultTokenProviders()
-                .AddEntityFrameworkStores<BesmikDbContext>();
-
-
-
+    })
+     .AddRoles<IdentityRole<int>>()
+     .AddEntityFrameworkStores<BesmikDbContext>()
+     .AddDefaultTokenProviders();
 
 
 
@@ -69,15 +66,6 @@ builder.Services.AddAuthentication(options =>
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
     };
 });
-
-
-
-
-
-
-
-
-
 
 
 
