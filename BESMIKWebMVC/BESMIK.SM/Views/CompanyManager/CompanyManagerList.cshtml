@@ -1,4 +1,4 @@
-﻿@model List<CompanyManagerViewModel>
+﻿@model List<AppUserViewModel>
 
 @{
     Layout = "_AdminLayout";
@@ -36,7 +36,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (CompanyManagerViewModel item in Model)
+                            @foreach (AppUserViewModel item in Model)
                             {
                                 <tr>
                                     <td>@item.Name</td>

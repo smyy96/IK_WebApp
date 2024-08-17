@@ -1,9 +1,10 @@
-﻿using BESMIK.ViewModel.CompanyManager;
+﻿using BESMIK.ViewModel.AppUser;
+using BESMIK.ViewModel.CompanyManager;
 using FluentValidation;
 
 namespace BESMIK.SM.Validations
 {
-    public class CompanyManagerViewModelValidator : AbstractValidator<CompanyManagerViewModel>
+    public class CompanyManagerViewModelValidator : AbstractValidator<AppUserViewModel>
     {
         public CompanyManagerViewModelValidator()
         {
@@ -25,7 +26,7 @@ namespace BESMIK.SM.Validations
                 .NotEmpty().WithMessage("Telefon alanı boş olamaz")
                 .Matches(@"^\d{10}$").WithMessage("Telefon numarası 10 haneli olmalıdır");
 
-            RuleFor(x => x.TC)
+            RuleFor(x => x.Tc)
                 .NotEmpty().WithMessage("TC Kimlik Numarası boş olamaz")
                 .Matches(@"^\d{11}$").WithMessage("TC Kimlik Numarası 11 haneli olmalıdır")
                  .Must(tc => !string.IsNullOrEmpty(tc) && tc.All(char.IsDigit)).WithMessage("TC Kimlik Numarası sadece rakam içermelidir");

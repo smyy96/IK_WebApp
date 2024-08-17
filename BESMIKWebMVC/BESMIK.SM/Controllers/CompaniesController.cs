@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BESMIK.SM.Controllers
 {
-    [Authorize(Roles = "Site Yöneticisi")]
+    [Authorize(Roles = "Site Yoneticisi")]
     public class CompaniesController : Controller
     {
         private HttpClient _httpClient;

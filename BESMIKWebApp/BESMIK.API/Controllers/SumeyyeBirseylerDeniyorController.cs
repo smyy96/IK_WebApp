@@ -299,7 +299,7 @@ namespace BESMIK.API.Controllers
 
 //appuser add
 
-//"created": "2024-08-16T20:02:17.991Z",
+//  "created": "2024-08-16T20:02:17.991Z",
 //  "updated": "2024-08-16T20:02:17.991Z",
 //  "name": "sumeyye",
 //  "surname": "coskun",
@@ -307,7 +307,6 @@ namespace BESMIK.API.Controllers
 //  "birthPlace": "Ankara",
 //  "tc": "14725836912",
 //  "workStartDate": "2024-08-16",
-//  "workEndDate": "2024-08-16",
 //  "isActive": true,
 //  "job": "İK",
 //  "department": 1,
@@ -316,3 +315,170 @@ namespace BESMIK.API.Controllers
 //  "phone": "5432057599",
 //  "wage": 15000,
 //  "companyId": 2
+
+
+
+//companymanager tablosu ile yapılan kısım api
+
+/*
+ using BESMIK.BLL.Managers.Concrete;
+using BESMIK.Entities.Concrete;
+using BESMIK.ViewModel.AppUser;
+using BESMIK.ViewModel.CompanyManager;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using BLLCompanyManager = BESMIK.BLL.Managers.Concrete.CompanyManager;
+
+namespace BESMIK.API.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class CompanyManagerController : ControllerBase
+    {
+        private readonly CompanyManagerManager _companyManagerService;
+        private readonly BLLCompanyManager _companyManager;
+
+
+        private UserManager<AppUser> _userManager;
+        private readonly RoleManager<IdentityRole<int>> _roleManager;
+        private readonly IUserStore<AppUser> _userStore;
+        private readonly IUserEmailStore<AppUser> _emailStore;
+
+        public CompanyManagerController(CompanyManagerManager companyManagerService, BLLCompanyManager companyManager,  UserManager<AppUser> userManager, RoleManager<IdentityRole<int>> roleManager, IUserStore<AppUser> userStore)
+        {
+            _companyManagerService = companyManagerService;
+            _companyManager = companyManager;
+
+            _userManager = userManager;
+            _roleManager = roleManager;
+            _userStore = userStore;
+            _emailStore = GetEmailStore();
+        }
+
+
+
+        [HttpGet("CompanyManagerList")]
+        public ActionResult<IEnumerable<CompanyManagerViewModel>> GetList()
+        {
+            var managers = _companyManagerService.GetAll();
+            return Ok(managers);
+
+        }
+
+
+
+        //[HttpPost("CompanyManagerAdd")]
+        //public IActionResult Post([FromBody] CompanyManagerViewModel model)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
+
+        //    _companyManagerService.Add(model);
+        //    return Ok(model);
+        //}
+
+
+
+        [HttpPost("CompanyManagerAdd")]
+        public async Task<IActionResult> Post([FromBody] AppUserViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var user = Activator.CreateInstance<AppUser>();
+
+            user.Name = model.Name;
+            user.SecondName = model.SecondName;
+            user.Surname = model.Surname;
+            user.SecondSurname = model.SecondSurname;
+            user.Photo = model.Photo;
+            user.BirthDate = model.BirthDate;
+            user.BirthPlace = model.BirthPlace;
+            user.Tc = model.Tc;
+            user.WorkStartDate = model.WorkStartDate;
+            user.WorkEndDate = model.WorkEndDate;
+            user.IsActive = model.IsActive;
+            user.Job = model.Job;
+            user.Department = model.Department;
+            user.Email = model.Email;
+            user.Address = model.Address;
+            user.Phone = model.Phone;
+            user.Wage = model.Wage;
+            user.CompanyId = model.CompanyId;
+            var password = "Az*123456";
+
+
+
+
+            await _userStore.SetUserNameAsync(user, user.Email, CancellationToken.None);
+            await _emailStore.SetEmailAsync(user, user.Email, CancellationToken.None);
+
+            user.EmailConfirmed = true;
+
+            var result = await _userManager.CreateAsync(user, password);
+
+            if (result.Succeeded)
+            {
+                // Yeni kullanıcıya User rolü atama SC
+                if (!await _roleManager.RoleExistsAsync("Sirket Yoneticisi"))
+                {
+                    var roleResult = await _roleManager.CreateAsync(new IdentityRole<int>("Sirket Yoneticisi"));
+                    if (!roleResult.Succeeded)
+                    {
+                        foreach (var error in roleResult.Errors)
+                        {
+                            ModelState.AddModelError(string.Empty, error.Description);
+                        }
+                    }
+                }
+                await _userManager.AddToRoleAsync(user, "Sirket Yoneticisi");
+            }
+
+            return Ok(model);
+        }
+
+        private IUserEmailStore<AppUser> GetEmailStore()
+        {
+            if (!_userManager.SupportsUserEmail)
+            {
+                throw new NotSupportedException("The default UI requires a user store with email support.");
+            }
+            return (IUserEmailStore<AppUser>)_userStore;
+        }
+
+
+        [HttpGet("GetById/{id}")]
+        public IActionResult GetById(int id)
+        {
+            var manager = _companyManagerService.Get(id);
+            if (manager == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(manager);
+        }
+
+
+
+        [HttpGet("CompanyNameList")]
+        public ActionResult<IEnumerable<CompanyManagerViewModel>> CompanyNameList()
+        {
+            var company = _companyManager.GetAll(); //mvcde namelerini çektim
+            return Ok(company);
+        }
+
+
+    }
+}
+
+ */
