@@ -29,8 +29,8 @@
                                 <th>Harcama Türü</th>
                                 <th>Tutar</th>
                                 <th>Para Birimi</th>
-                                <th>Onay Durumu</th>
                                 <th>Talep Tarihi</th>
+                                <th>Onay Durumu</th>
                                 <th>Cevaplanma Tarihi</th>
                                 <th>Dosya Adı</th>
                                 <th>İşlemler</th>
@@ -43,6 +43,8 @@
                                     <td>@item.SpendingType</td>
                                     <td>@item.Sum</td>
                                     <td>@item.SpendingCurrency</td>
+                                    <td>@item.SpendingRequestDate</td>
+                                    <td>@item.SpendingStatus</td>
                                     <td>
                                         @if (item.SpendingStatus == SpendingStatus.OnayBekliyor)
                                         {
@@ -53,10 +55,8 @@
                                             @item.SpendingResponseDate?.ToString("yyyy-MM-dd")
                                         }
                                     </td>
-                                    <td>@item.SpendingRequestDate</td>
-                                    <td>@item.SpendingResponseDate</td>
                                     <td>@item.SpendingFile</td>
-                                    <td>
+                                   @*  <td>
                                         <div class="btn-group" role="group" style="display: flex; gap: 5px;">
                                             @if (item.SpendingStatus == SpendingStatus.OnayBekliyor)
                                             {
@@ -71,6 +71,19 @@
                                             }
                                             
                                         </div>
+                                    </td> *@
+
+
+                                    <td>
+                                        <div class="btn-group" role="group" style="display: flex; gap: 5px;">
+                                            @if (item.SpendingStatus == SpendingStatus.OnayBekliyor)
+                                            {
+                                                <a asp-action="SpendingEdit" asp-controller="Spending" asp-route-id="@item.Id" class="btn btn-sm btn-warning" style="border-radius: 4px;">Düzenle</a>
+                                                <button type="button" class="btn btn-danger btn-sm" style="border-radius: 4px;" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="@item.Id">Sil</button>
+
+
+                                            }
+                                        </div>
                                     </td>
                                 </tr>
                             }
@@ -82,3 +95,43 @@
         </div>
     </div>
 </section>
+
+
+
+@* silme kısmı için yapılan eklemeler *@
+
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">İzni Sil</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Bu izin talebini silmek istediğinize emin misiniz?
+            </div>
+            <div class="modal-footer">
+                <form asp-action="Delete" asp-controller="Spending" method="post" style="margin: 0;">
+                    <input type="hidden" name="id" id="deleteId" />
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
+                    <button type="submit" class="btn btn-danger">Sil</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        $('#deleteModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var id = button.data('id');
+
+            var modal = $(this);
+            modal.find('#deleteId').val(id);
+        });
+    </script>
+}
