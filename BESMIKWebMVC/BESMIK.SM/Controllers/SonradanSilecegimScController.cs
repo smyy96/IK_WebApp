@@ -1,5 +1,4 @@
 ﻿using BESMIK.Common;
-using BESMIK.ViewModel.AppUser;
 using BESMIK.ViewModel.Company;
 using BESMIK.ViewModel.CompanyManager;
 using FluentValidation;
@@ -12,13 +11,20 @@ using System;
 
 namespace BESMIK.SM.Controllers
 {
+
+
+
+    /// <summary>
+    /// comapny manager tablosu için yazılan kodlar
+    /// </summary>
+
     [Authorize(Roles = "Site Yoneticisi")]
-    public class CompanyManagerController : Controller
+    public class SonradanSilecegimScController : Controller
     {
         private HttpClient _httpClient;
-        private IValidator<AppUserViewModel> _validator;
+        private IValidator<CompanyManagerViewModel> _validator;
 
-        public CompanyManagerController(HttpClient httpClient, IValidator<AppUserViewModel> validator)
+        public SonradanSilecegimScController(HttpClient httpClient, IValidator<CompanyManagerViewModel> validator)
         {
             _httpClient = httpClient;
             _validator = validator;
@@ -27,19 +33,19 @@ namespace BESMIK.SM.Controllers
 
         public async Task<IActionResult> CompanyManagerList()
         {
-            return View(await _httpClient.GetFromJsonAsync<List<AppUserViewModel>>("https://localhost:7136/api/CompanyManager/CompanyManagerList"));
+            return View(await _httpClient.GetFromJsonAsync<List<CompanyManagerViewModel>>("https://localhost:7136/api/CompanyManager/CompanyManagerList"));
         }
 
 
         public async Task<IActionResult> CompanyManagerAdd()
         {
-            return View(new AppUserViewModel());
+            return View(new CompanyManagerViewModel());
         }
 
 
 
         [HttpPost]
-        public async Task<IActionResult> CompanyManagerAdd(AppUserViewModel model)
+        public async Task<IActionResult> CompanyManagerAdd(CompanyManagerViewModel model)
         {
 
             try
@@ -60,27 +66,40 @@ namespace BESMIK.SM.Controllers
 
 
 
-                if (model.Picture != null && model.Picture.FileName != model.Photo)
+                if (model.FormFile != null && model.FormFile.Length > 0)
                 {
-                    model.Photo = model.Picture.FileName;
-                    var konum = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/companyManager", model.Photo);
+                    string fileName = model.FormFile.FileName;
+                    var dosyadakiFileName = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/companyManager", fileName);
+                    var konum = dosyadakiFileName;
 
-
-
-                    var akisOrtami = new FileStream(konum, FileMode.Create);
-
-                    await model.Picture.CopyToAsync(akisOrtami);
-
+                    // Kaydetmek için bir akış ortamı oluşturalım
+                    using (var akisOrtami = new FileStream(konum, FileMode.Create))
+                    {
+                        await model.FormFile.CopyToAsync(akisOrtami);
+                    }
 
                     using (var memory = new MemoryStream())
                     {
-                        await model.Picture.CopyToAsync(memory);
+                        await model.FormFile.CopyToAsync(memory);
+                        model.PictureFile = memory.ToArray();
                     }
-                    akisOrtami.Close();
+
+                    model.Photo = fileName;
+                    model.FormFile = null;
                 }
 
-                model.Picture = null;
-                model.IsActive = true;
+
+
+                else if (model.FormFile == null || model.FormFile.Length == 0)
+                {
+                    model.Photo = null;
+                    model.PictureFile = null;
+
+                    ModelState.AddModelError("FormFile", "Lütfen geçerli bir resim yükleyin.");
+                    return View(model);
+                }
+
+
 
                 var response = await _httpClient.PostAsJsonAsync("https://localhost:7136/api/CompanyManager/CompanyManagerAdd", model);
 

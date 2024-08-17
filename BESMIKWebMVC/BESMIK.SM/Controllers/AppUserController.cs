@@ -10,7 +10,7 @@ using System.Net.Http.Json;
 
 namespace BESMIK.SM.Controllers
 {
-    [Authorize(Roles = "Site Yöneticisi")]
+    [Authorize(Roles = "Site Yoneticisi")]
     public class AppUserController : Controller
     {
         private readonly HttpClient _httpClient;

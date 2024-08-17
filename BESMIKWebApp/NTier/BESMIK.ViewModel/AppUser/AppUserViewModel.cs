@@ -22,7 +22,7 @@ namespace BESMIK.ViewModel.AppUser
         public string Tc { get; set; }
         public DateOnly WorkStartDate { get; set; }
         public DateOnly? WorkEndDate { get; set; }
-        public bool IsActive { get; set; }
+        public bool IsActive { get; set; } = true;
         public string Job { get; set; }
         public Department Department { get; set; }
         public string? Email { get; set; }

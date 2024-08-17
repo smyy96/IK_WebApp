@@ -6,7 +6,7 @@ using System.Diagnostics;
 
 namespace BESMIK.SM.Controllers
 {
-    [Authorize(Roles = "Site Yöneticisi")]
+    [Authorize(Roles = "Site Yoneticisi")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
