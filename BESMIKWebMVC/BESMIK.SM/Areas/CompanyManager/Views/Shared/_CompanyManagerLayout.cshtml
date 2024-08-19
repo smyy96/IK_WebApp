@@ -35,15 +35,15 @@
 
 <body>
 
-    @await Html.PartialAsync("_PersonalHeader")
+    @await Html.PartialAsync("_CompanyManagerHeader")
 
-    @await Html.PartialAsync("_PersonalSidebar")
+    @await Html.PartialAsync("_CompanyManagerSidebar")
 
     <main id="main" class="main">
         @RenderBody()
     </main>
 
-    @await Html.PartialAsync("_PersonalFooter")
+    @await Html.PartialAsync("_CompanyManagerFooter")
 
     @* <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a> *@
 

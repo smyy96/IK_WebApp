@@ -26,6 +26,7 @@ namespace BESMIK.ViewModel.AppUser
         public string Job { get; set; }
         public Department Department { get; set; }
         public string? Email { get; set; }
+        public string? PersonalEmail { get; set; }
         public string? Address { get; set; }
         public string? Phone { get; set; }
 
