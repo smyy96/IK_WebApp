@@ -1,12 +1,17 @@
 ﻿using BESMIK.BLL.Managers.Concrete;
 using BESMIK.Common;
+using BESMIK.DTO;
 using BESMIK.Entities.Concrete;
 using BESMIK.ViewModel.Advance;
+using BESMIK.ViewModel.AppUser;
+using BESMIK.ViewModel.CompanyManager;
 using BESMIK.ViewModel.Permission;
 using BESMIK.ViewModel.Spending;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.Design;
+using BLLCompanyManager = BESMIK.BLL.Managers.Concrete.CompanyManager;
 
 namespace BESMIK.API.Controllers
 {
@@ -16,6 +21,7 @@ namespace BESMIK.API.Controllers
     {
         private readonly PermissionManager _permissionManagerService;
         private readonly UserManager<AppUser> _userManager;
+        private readonly BLLCompanyManager _companyManager;
 
 
         public PermissionController(PermissionManager permissionManagerService, UserManager<AppUser> userManager)
@@ -102,8 +108,37 @@ namespace BESMIK.API.Controllers
             }
 
             return Ok(permission);
+        
         }
+        [HttpGet("PermissionListByCompanyId")]
+        public ActionResult<IEnumerable<AppUserViewModel>> GetPermissionListWithCompany(int companyId)
+        {
+            var permissions = _permissionManagerService.GetAll()
+                                                       .Where(p => p.AppUser.CompanyId == companyId)
+                                                       .ToList();
 
+            //var userViewModels = permissions.GroupBy(p => p.AppUser)
+            //                                .Select(group => new AppUserViewModel
+            //                                {
+            //                                    Id = group.Key.Id,
+            //                                    Name = group.Key.Name,
+            //                                    SecondName = group.Key.SecondName,
+            //                                    Surname = group.Key.Surname,
+            //                                    SecondSurname = group.Key.SecondSurname,
+            //                                    Photo = group.Key.Photo,
+            //                                    Tc = group.Key.Tc,
+            //                                    Department = group.Key.Department,
+            //                                    Job = group.Key.Job,
+            //                                    Wage = group.Key.Wage,
+            //                                    Permissions = group.Select(p => new PermissionViewModel
+            //                                    {
+            //                                        PermissionID = p.PermissionID,
+            //                                        PermissionType = p.PermissionType
+            //                                    }).ToList()
+            //                                }).ToList();
+
+            return Ok(permissions);
+        }
 
     }
 }
