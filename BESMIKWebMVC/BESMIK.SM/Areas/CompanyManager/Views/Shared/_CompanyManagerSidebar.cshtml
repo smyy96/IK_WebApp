@@ -29,6 +29,22 @@
         </li><!-- End Components Nav -->
 
 
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
+                <i class="ri-bank-card-fill"></i>
+
+                <span>HARCAMA TALEPLERİ</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a asp-area="CompanyManager" asp-controller="SpendingManagement" asp-action="SpendingManagementList">
+                        <i class="bi bi-circle"></i><span>Harcamaları Talepleri Listele</span>
+                    </a>
+                </li>
+            </ul>
+        </li><!-- End Tables Nav -->
+
+
 
 @*         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
