@@ -73,7 +73,11 @@ namespace BESMIK.SM.Controllers
                     return RedirectToAction("Summary", "AppUser");
                 }
 
-                
+                else if (responseViewModel.Role == "Sirket Yoneticisi")
+                {
+                    return RedirectToAction("Index", "CompanyManagerHome", new { area = "CompanyManager" });
+                }
+
             }
 
             TempData["ErrorMessage"] = "Kullanıcı bulunamadı veya geçersiz şifre!";
