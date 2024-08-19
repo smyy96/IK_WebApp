@@ -21,8 +21,8 @@ namespace BESMIK.API.Controllers
             _userManager = userManager;
         }
 
-        [HttpGet("SpendingListForManager")]
-        public async Task<ActionResult<IEnumerable<SpendingViewModel>>> GetSpendingListForManager(int CompanyId)
+        [HttpGet("SpendingListForManager/{companyId}")]
+        public async Task<ActionResult<IEnumerable<Spending>>> GetSpendingListForManager(int CompanyId)
         {
             var spendings=_spendingService.GetAll()
                 .Where(s => s.AppUser.CompanyId == CompanyId)
