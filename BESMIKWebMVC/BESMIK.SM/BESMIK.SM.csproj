@@ -59,10 +59,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\CompanyManager\Controllers\" />
     <Folder Include="Areas\CompanyManager\Data\" />
     <Folder Include="Areas\CompanyManager\Models\" />
-    <Folder Include="Areas\CompanyManager\Views\" />
     <Folder Include="Areas\Personal\Data\" />
     <Folder Include="Areas\Personal\Models\" />
     <Folder Include="wwwroot\images\companyManager\" />
