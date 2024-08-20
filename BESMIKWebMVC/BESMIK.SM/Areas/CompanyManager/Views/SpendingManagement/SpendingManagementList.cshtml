@@ -11,7 +11,7 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a asp-area="CompanyManager" asp-controller="CompanyManagerHome" asp-action="Index">Anasayfa</a></li>
             <li class="breadcrumb-item">Harcama İşlemleri</li>
-            <li class="breadcrumb-item active"><a asp-controller="Spending" asp-action="SpendingList">Harcama Listele</a></li>
+            <li class="breadcrumb-item active"><a asp-controller="SpendingManagement" asp-action="SpendingManagementList">Harcama Listele</a></li>
         </ol>
     </nav>
 </div>
@@ -90,8 +90,8 @@
                                         <div class="btn-group" role="group" style="display: flex; gap: 5px;">
                                             @if (item.SpendingStatus == SpendingStatus.OnayBekliyor)
                                             {
-                                                <a asp-action="SpendingEdit" asp-controller="Spending" asp-route-id="@item.Id" class="btn btn-sm btn-warning" style="border-radius: 4px;">
-                                                    Talep İşlemler
+                                                <a asp-action="SpendingManagementDetails" asp-controller="SpendingManagement" asp-route-id="@item.Id" class="btn btn-sm btn-warning" style="border-radius: 4px;">
+                                                    Talep İşlemleri
                                                 </a>
                                             }
                                         </div>
