@@ -16,17 +16,20 @@
 </div>
 
 <div class="container">
-    <form asp-action="Update" method="post">
+    <form asp-action="SpendingManagementUpdate" method="post">
+        <!-- Gizli Id Alanı -->
+        <input type="hidden" asp-for="Id" />
+
         <!-- Kişinin Adı -->
         <div class="form-group">
             <label>Kişinin Adı</label>
-            <input type="text" class="form-control" value="@(TempData["UserName"] ?? "Bilgi Yok")" readonly />
+            <input type="text" class="form-control" value="@Model.AppUser.Name" readonly />
         </div>
 
         <!-- Kişinin Soyadı -->
         <div class="form-group">
             <label>Kişinin Soyadı</label>
-            <input type="text" class="form-control" value="@(TempData["UserSurname"] ?? "Bilgi Yok")" readonly />
+            <input type="text" class="form-control" value="@Model.AppUser.Surname" readonly />
         </div>
 
         <!-- Harcama Türü -->

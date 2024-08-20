@@ -1,4 +1,5 @@
-﻿using BESMIK.ViewModel.AppUser;
+﻿using BESMIK.ViewModel.Advance;
+using BESMIK.ViewModel.AppUser;
 using BESMIK.ViewModel.Spending;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -26,6 +27,11 @@ namespace BESMIK.SM.Areas.CompanyManager.Controllers
         public async Task<IActionResult> SpendingManagementList()
         {
             var user = HttpContext.User.Identity.Name;
+            if (user == null)
+            {
+                return Unauthorized();
+            }
+
             var request = await _httpClient.GetFromJsonAsync<AppUserViewModel>("https://localhost:7136/api/AppUser/GetUserInfo/" + user);
             var companyId = request.CompanyId;
 
@@ -34,38 +40,65 @@ namespace BESMIK.SM.Areas.CompanyManager.Controllers
         }
 
 
-        [HttpGet("/Spending/Details/{id}")]
+
+        [HttpGet]
         public async Task<IActionResult> SpendingManagementDetails(int id)
         {
-            var response = await _httpClient.GetAsync("https://localhost:7136/api/SpendingManagement/"+ id);
+            var response = await _httpClient.GetAsync("https://localhost:7136/api/SpendingManagement/GetSpending/" + id);
 
-            if (!response.IsSuccessStatusCode)
+            if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
             {
-                return NotFound();
+                TempData["ErrorMessage"] = "Harcama bulunamadı.";
+                return RedirectToAction("SpendingManagementList");
             }
 
+            if (response.StatusCode == System.Net.HttpStatusCode.Forbidden)
+            {
+                TempData["ErrorMessage"] = "Harcama talebi onay bekliyor değilse düzenlenemez.";
+                return RedirectToAction("SpendingManagementList");
+            }
 
-            var responseData = await response.Content.ReadAsStringAsync();
-            var spending = JsonConvert.DeserializeObject<SpendingViewModel>(responseData);
+            response.EnsureSuccessStatusCode();
 
-
-
-
-
+            var spending= await response.Content.ReadFromJsonAsync<SpendingViewModel>();
             var appUserId = spending.AppUserId;
-            var userInfo = await _httpClient.GetFromJsonAsync<AppUserViewModel>($"https://localhost:7136/api/Spending/GetUser/{appUserId}");
-            spending.AppUser = userInfo;
+            var userInfo = await _httpClient.GetFromJsonAsync<AppUserViewModel>($"https://localhost:7136/api/Advance/GetUser/{appUserId}");
 
-
-            if (spending == null || spending.AppUser == null)
-            {
-                return NotFound(); 
-            }
-
-           
+            spending.AppUser= userInfo;
 
             return View(spending);
         }
+
+
+        //[HttpGet("/Spending/Details/{id}")]
+        //public async Task<IActionResult> SpendingManagementDetails(int id)
+        //{
+        //    var response = await _httpClient.GetAsync("https://localhost:7136/api/SpendingManagement/"+ id);
+
+        //    if (!response.IsSuccessStatusCode)
+        //    {
+        //        return NotFound();
+        //    }
+
+
+        //    var responseData = await response.Content.ReadAsStringAsync();
+        //    var spending = JsonConvert.DeserializeObject<SpendingViewModel>(responseData);
+
+
+        //    //var appUserId = spending.AppUserId;
+        //    //var userInfo = await _httpClient.GetFromJsonAsync<AppUserViewModel>($"https://localhost:7136/api/Spending/GetUser/{appUserId}");
+        //    //spending.AppUser = userInfo;
+
+
+        //    if (spending == null || spending.AppUser == null)
+        //    {
+        //        return NotFound(); 
+        //    }
+
+
+
+        //    return View(spending);
+        //}
 
         [HttpPost("/Spending/Update")]
         public async Task<IActionResult> SpendingManagementUpdate(SpendingViewModel viewModel)
