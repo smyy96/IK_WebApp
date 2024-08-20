@@ -103,7 +103,7 @@ namespace BESMIK.SM.Areas.CompanyManager.Controllers
             model.SpendingResponseDate = DateOnly.FromDateTime(DateTime.UtcNow);
             model.SpendingFile = spending.SpendingFile;
 
-            var response = await _httpClient.PutAsJsonAsync($"https://localhost:7136/api/SpendingManagement/{model.Id}/update", model);
+            var response = await _httpClient.PutAsJsonAsync($"https://localhost:7136/api/SpendingManagement/EditSpending/{model.Id}", model);
 
             if (response.IsSuccessStatusCode)
             {
@@ -160,34 +160,6 @@ namespace BESMIK.SM.Areas.CompanyManager.Controllers
         //    return View(spending);
         //}
 
-        //[HttpPost("/Spending/Update")]
-        //public async Task<IActionResult> SpendingManagementUpdate(SpendingViewModel viewModel)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return View("SpendingManagementDetails", viewModel); // Hata durumunda tekrar görüntüle
-        //    }
 
-        //    var currentDate = DateOnly.FromDateTime(DateTime.UtcNow);
-
-        //    var spendingToUpdate = new
-        //    {
-        //        viewModel.Id,
-        //        viewModel.SpendingStatus,
-        //        SpendingResponseDate = currentDate
-        //    };
-
-        //    var content = new StringContent(JsonConvert.SerializeObject(spendingToUpdate), Encoding.UTF8, "application/json");
-        //    var response = await _httpClient.PostAsync($"https://localhost:7136/api/SpendingManagement/{viewModel.Id}/update", content);
-
-        //    if (response.IsSuccessStatusCode)
-        //    {
-        //        return RedirectToAction("SpendingManagementDetails", new { id = viewModel.Id });
-        //    }
-
-        //    ModelState.AddModelError("", "A problem occurred while updating the spending.");
-        //    return View("SpendingManagementDetails", viewModel);
-
-        //}
     }
 }
