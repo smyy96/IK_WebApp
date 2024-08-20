@@ -1,0 +1,91 @@
+﻿@model BESMIK.ViewModel.Spending.SpendingViewModel
+
+@{
+    Layout = "_CompanyManagerLayout";
+}
+
+<div class="pagetitle">
+    <h1>Harcama Detayları</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-area="CompanyManager" asp-controller="CompanyManagerHome" asp-action="Index">Anasayfa</a></li>
+            <li class="breadcrumb-item">Harcama İşlemleri</li>
+            <li class="breadcrumb-item active">Harcama Detayları</li>
+        </ol>
+    </nav>
+</div>
+
+<div class="container">
+    <form asp-action="Update" method="post">
+        <!-- Kişinin Adı -->
+        <div class="form-group">
+            <label>Kişinin Adı</label>
+            <input type="text" class="form-control" value="@(TempData["UserName"] ?? "Bilgi Yok")" readonly />
+        </div>
+
+        <!-- Kişinin Soyadı -->
+        <div class="form-group">
+            <label>Kişinin Soyadı</label>
+            <input type="text" class="form-control" value="@(TempData["UserSurname"] ?? "Bilgi Yok")" readonly />
+        </div>
+
+        <!-- Harcama Türü -->
+        <div class="form-group">
+            <label>Harcama Türü:</label>
+            <input type="text" class="form-control" value="@Model.SpendingType" readonly />
+        </div>
+
+        <!-- Tutar -->
+        <div class="form-group">
+            <label>Tutar:</label>
+            <input type="text" class="form-control" value="@Model.Sum" readonly />
+        </div>
+
+        <!-- Para Birimi -->
+        <div class="form-group">
+            <label>Para Birimi:</label>
+            <input type="text" class="form-control" value="@Model.SpendingCurrency" readonly />
+        </div>
+
+        <!-- Talep Tarihi -->
+        <div class="form-group">
+            <label>Talep Tarihi:</label>
+            <input type="text" class="form-control" value="@Model.SpendingRequestDate.ToShortDateString()" readonly />
+        </div>
+
+        <!-- Cevaplanma Tarihi -->
+        <div class="form-group">
+            <label>Cevaplanma Tarihi:</label>
+            <input type="text" class="form-control" value="@Model.SpendingResponseDate?.ToShortDateString()" readonly />
+        </div>
+
+        <!-- Dosya -->
+        <div class="form-group">
+            <label>Dosya:</label>
+            @if (!string.IsNullOrEmpty(Model.SpendingFile))
+            {
+                <a href="@Model.SpendingFile" target="_blank">Dosyayı Görüntüle</a>
+            }
+            else
+            {
+                <p>Dosya mevcut değil.</p>
+            }
+        </div>
+
+        <!-- Onay Durumu -->
+@*         <div class="form-group">
+            <label>Onay Durumu:</label>
+            <select asp-for="SpendingStatus" class="form-control">
+                @foreach (var status in Enum.GetValues(typeof(SpendingStatus)).Cast<SpendingStatus>())
+                {
+                    <option value="@status" @(status == Model.SpendingStatus ? "selected" : "")>@status.ToString()</option>
+                }
+            </select>
+            <span asp-validation-for="SpendingStatus" class="text-danger"></span>
+        </div> *@
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Kaydet</button>
+        </div>
+    </form>
+</div>
