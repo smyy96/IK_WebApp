@@ -60,6 +60,21 @@
                 </li>
             </ul>
         </li><!-- End Forms Nav -->
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#advance-forms-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-building"></i>
+
+                <span>Avans Talepleri</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="advance-forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a asp-area="CompanyManager" asp-controller="AdvanceManagement" asp-action="AdvancesList">
+                        <i class="bi bi-circle"></i><span>Avansları Listele</span>
+                    </a>
+                </li>
+            </ul>
+        </li><!-- End Forms Nav -->
 @* 
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
