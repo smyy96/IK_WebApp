@@ -36,6 +36,35 @@ namespace BESMIK.API.Controllers
         }
 
 
+        //[HttpGet("GetUser/{id}")]
+        //public async Task<IActionResult> GetUser(int id)
+        //{
+        //    var user = await _userManager.FindByIdAsync(id.ToString());
+
+        //    if (user == null)
+        //    {
+        //        return NotFound("Kullanıcı bulunamadı.");
+        //    }
+
+        //    return Ok(user);
+        //}
+
+        //[HttpGet("GetSpending/{id}")]
+        //public IActionResult GetSpending(int id)
+        //{
+        //    var spending = _spendingService.Get(id);
+
+        //    if (spending == null)
+        //        return NotFound("harcama bulunamadı.");
+
+        //    if (spending.SpendingStatus != SpendingStatus.OnayBekliyor)
+        //    {
+        //        return StatusCode(403, "Harcama talebi onay bekliyor statüsünde değil.");
+        //    }
+
+        //    return Ok(spending);
+        }
+
         [HttpGet("{id}")]
         public async Task<ActionResult<Spending>> GetSpendingById(int id)
         {
@@ -64,6 +93,8 @@ namespace BESMIK.API.Controllers
 
             return Ok(viewModel);
         }
+
+
 
 
         [HttpPost("{id}/update")]
