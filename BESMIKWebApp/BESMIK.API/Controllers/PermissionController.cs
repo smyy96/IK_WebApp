@@ -110,32 +110,12 @@ namespace BESMIK.API.Controllers
             return Ok(permission);
         
         }
-        [HttpGet("PermissionListByCompanyId")]
-        public ActionResult<IEnumerable<AppUserViewModel>> GetPermissionListWithCompany(int companyId)
+        [HttpGet("PermissionListByCompanyId/{companyId}")]
+        public ActionResult<IEnumerable<PermissionViewModel>> GetPermissionListWithCompany(int companyId)
         {
             var permissions = _permissionManagerService.GetAll()
                                                        .Where(p => p.AppUser.CompanyId == companyId)
                                                        .ToList();
-
-            //var userViewModels = permissions.GroupBy(p => p.AppUser)
-            //                                .Select(group => new AppUserViewModel
-            //                                {
-            //                                    Id = group.Key.Id,
-            //                                    Name = group.Key.Name,
-            //                                    SecondName = group.Key.SecondName,
-            //                                    Surname = group.Key.Surname,
-            //                                    SecondSurname = group.Key.SecondSurname,
-            //                                    Photo = group.Key.Photo,
-            //                                    Tc = group.Key.Tc,
-            //                                    Department = group.Key.Department,
-            //                                    Job = group.Key.Job,
-            //                                    Wage = group.Key.Wage,
-            //                                    Permissions = group.Select(p => new PermissionViewModel
-            //                                    {
-            //                                        PermissionID = p.PermissionID,
-            //                                        PermissionType = p.PermissionType
-            //                                    }).ToList()
-            //                                }).ToList();
 
             return Ok(permissions);
         }
