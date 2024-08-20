@@ -200,6 +200,14 @@ namespace BESMIK.SM.Areas.Personal.Controllers
                 return View(model);
             }
 
+            var user = HttpContext.User.Identity.Name;
+            var request = await _httpClient.GetFromJsonAsync<AppUserViewModel>($"https://localhost:7136/api/AppUser/GetUserInfo/{user}");
+            if (request == null)
+            {
+                ModelState.AddModelError(string.Empty, "Kullanıcı bilgileri alınamadı.");
+                return View(model);
+            }
+
             try
             {
                 //buradaki SpendingFile resmin adını tutan propumuz picture ise ifromfile dosyamız
@@ -234,10 +242,11 @@ namespace BESMIK.SM.Areas.Personal.Controllers
 
                 }
 
-                string user = HttpContext.User.Identity.Name;
 
-                var request = await _httpClient.GetFromJsonAsync<AppUserViewModel>("https://localhost:7136/api/UserInfo/GetUserInfo/" + user);
-               
+                //string user = HttpContext.User.Identity.Name;
+
+                //var request = await _httpClient.GetFromJsonAsync<AppUserViewModel>("https://localhost:7136/api/UserInfo/GetUserInfo/" + user);
+
                 model.AppUserId = (int)request.Id;
                 model.SpendingStatus = SpendingStatus.OnayBekliyor;
                 model.SpendingRequestDate = DateOnly.FromDateTime(DateTime.UtcNow);

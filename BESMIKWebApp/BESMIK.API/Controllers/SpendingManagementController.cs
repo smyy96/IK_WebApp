@@ -3,6 +3,7 @@ using BESMIK.Common;
 using BESMIK.DAL.Repository.Concrete;
 using BESMIK.DTO;
 using BESMIK.Entities.Concrete;
+using BESMIK.ViewModel.Advance;
 using BESMIK.ViewModel.AppUser;
 using BESMIK.ViewModel.Spending;
 using Microsoft.AspNetCore.Authorization;
@@ -33,6 +34,29 @@ namespace BESMIK.API.Controllers
                 .ToList();
 
             return Ok(spendings);
+        }
+
+
+
+        [HttpPut("EditSpending/{id}")]
+        public IActionResult EditSpending(int id, [FromBody] SpendingViewModel updatedSpending)
+        {
+            var mevcutHarcama = _spendingService.Get(id);
+
+            if (mevcutHarcama == null)
+                return NotFound();
+
+            mevcutHarcama.SpendingType = updatedSpending.SpendingType;
+            mevcutHarcama.Sum = updatedSpending.Sum;
+            mevcutHarcama.SpendingCurrency = updatedSpending.SpendingCurrency;
+            mevcutHarcama.SpendingFile = updatedSpending.SpendingFile;
+            mevcutHarcama.SpendingStatus = updatedSpending.SpendingStatus;
+            mevcutHarcama.SpendingResponseDate = updatedSpending.SpendingResponseDate;
+            mevcutHarcama.SpendingRequestDate = updatedSpending.SpendingRequestDate;
+
+            _spendingService.Update(mevcutHarcama);
+
+            return Ok("harcama başarıyla güncellendi.");
         }
 
 
@@ -97,31 +121,31 @@ namespace BESMIK.API.Controllers
 
 
 
-        [HttpPost("{id}/update")]
-        public async Task<ActionResult> UpdateSpendingStatus(int id, [FromBody] SpendingUpdateModel updateModel)
-        {
-            if (id != updateModel.Id)
-            {
-                return BadRequest();
-            }
+        //[HttpPost("{id}/update")]
+        //public async Task<ActionResult> UpdateSpendingStatus(int id, [FromBody] SpendingUpdateModel updateModel)
+        //{
+        //    if (id != updateModel.Id)
+        //    {
+        //        return BadRequest();
+        //    }
 
-            var existingSpending = _spendingService.Get(id);
-            if (existingSpending == null)
-            {
-                return NotFound();
-            }
+        //    var existingSpending = _spendingService.Get(id);
+        //    if (existingSpending == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            existingSpending.SpendingStatus = updateModel.SpendingStatus;
-            existingSpending.SpendingResponseDate = DateOnly.FromDateTime(DateTime.UtcNow);
+        //    existingSpending.SpendingStatus = updateModel.SpendingStatus;
+        //    existingSpending.SpendingResponseDate = DateOnly.FromDateTime(DateTime.UtcNow);
 
-            var result = _spendingService.Update(existingSpending);
+        //    var result = _spendingService.Update(existingSpending);
 
-            if (result > 0)
-            {
-                return NoContent();
-            }
+        //    if (result > 0)
+        //    {
+        //        return NoContent();
+        //    }
 
-            return StatusCode(500, "A problem happened while handling your request.");
-        }
+        //    return StatusCode(500, "A problem happened while handling your request.");
+        //}
     }
 }
