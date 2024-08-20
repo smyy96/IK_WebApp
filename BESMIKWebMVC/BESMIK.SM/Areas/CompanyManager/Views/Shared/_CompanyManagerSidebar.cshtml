@@ -30,7 +30,7 @@
 
 
 
-@*         <li class="nav-item">
+        <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-building"></i>
 
@@ -38,19 +38,13 @@
             </a>
             <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a asp-area="Personal" asp-controller="Permission" asp-action="PermissionList">
-                        <i class="bi bi-circle"></i><span>İzin Listele</span>
+                    <a asp-area="CompanyManager" asp-controller="PermissionManager" asp-action="PermissionListByCompanyId">
+                        <i class="bi bi-circle"></i><span>İzinleri Listele</span>
                     </a>
                 </li>
-                <li>
-                    <a asp-area="Personal" asp-controller="Permission" asp-action="PermissionAdd">
-                        <i class="bi bi-circle"></i><span>İzin Talep</span>
-                    </a>
-                </li>
-
             </ul>
         </li><!-- End Forms Nav -->
-
+@* 
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-bank"></i>
@@ -89,9 +83,9 @@
                     </a>
                 </li>
             </ul>
-        </li><!-- End Tables Nav --> *@
+        </li><!-- End Tables Nav -->
 
 
-    </ul>
+    </ul> *@
 
 </aside><!-- End Sidebar-->
