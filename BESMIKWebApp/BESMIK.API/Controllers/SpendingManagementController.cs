@@ -36,33 +36,33 @@ namespace BESMIK.API.Controllers
         }
 
 
-        //[HttpGet("GetUser/{id}")]
-        //public async Task<IActionResult> GetUser(int id)
-        //{
-        //    var user = await _userManager.FindByIdAsync(id.ToString());
+        [HttpGet("GetUser/{id}")]
+        public async Task<IActionResult> GetUser(int id)
+        {
+            var user = await _userManager.FindByIdAsync(id.ToString());
 
-        //    if (user == null)
-        //    {
-        //        return NotFound("Kullanıcı bulunamadı.");
-        //    }
+            if (user == null)
+            {
+                return NotFound("Kullanıcı bulunamadı.");
+            }
 
-        //    return Ok(user);
-        //}
+            return Ok(user);
+        }
 
-        //[HttpGet("GetSpending/{id}")]
-        //public IActionResult GetSpending(int id)
-        //{
-        //    var spending = _spendingService.Get(id);
+        [HttpGet("GetSpending/{id}")]
+        public IActionResult GetSpending(int id)
+        {
+            var spending = _spendingService.Get(id);
 
-        //    if (spending == null)
-        //        return NotFound("harcama bulunamadı.");
+            if (spending == null)
+                return NotFound("harcama bulunamadı.");
 
-        //    if (spending.SpendingStatus != SpendingStatus.OnayBekliyor)
-        //    {
-        //        return StatusCode(403, "Harcama talebi onay bekliyor statüsünde değil.");
-        //    }
+            if (spending.SpendingStatus != SpendingStatus.OnayBekliyor)
+            {
+                return StatusCode(403, "Harcama talebi onay bekliyor statüsünde değil.");
+            }
 
-        //    return Ok(spending);
+            return Ok(spending);
         }
 
         [HttpGet("{id}")]

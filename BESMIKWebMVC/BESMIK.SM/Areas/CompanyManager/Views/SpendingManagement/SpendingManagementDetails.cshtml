@@ -17,54 +17,70 @@
 
 <div class="container">
     <form asp-action="SpendingManagementUpdate" method="post">
-        <!-- Gizli Id Alanı -->
+ 
         <input type="hidden" asp-for="Id" />
 
-        <!-- Kişinin Adı -->
         <div class="form-group">
-            <label>Kişinin Adı</label>
+            <label>Ad</label>
             <input type="text" class="form-control" value="@Model.AppUser.Name" readonly />
         </div>
 
-        <!-- Kişinin Soyadı -->
+  
         <div class="form-group">
-            <label>Kişinin Soyadı</label>
+            <label>Soyad</label>
             <input type="text" class="form-control" value="@Model.AppUser.Surname" readonly />
         </div>
 
-        <!-- Harcama Türü -->
         <div class="form-group">
-            <label>Harcama Türü:</label>
+            <label>Email</label>
+            <input type="text" class="form-control" value="@Model.AppUser.Email" readonly />
+        </div>
+
+        <div class="form-group">
+            <label>Departman</label>
+            <input type="text" class="form-control" value="@Model.AppUser.Department" readonly />
+        </div>
+
+ 
+        <div class="form-group">
+            <label>Harcama Türü</label>
             <input type="text" class="form-control" value="@Model.SpendingType" readonly />
         </div>
 
-        <!-- Tutar -->
+  
         <div class="form-group">
-            <label>Tutar:</label>
+            <label>Tutar</label>
             <input type="text" class="form-control" value="@Model.Sum" readonly />
         </div>
 
-        <!-- Para Birimi -->
+
         <div class="form-group">
-            <label>Para Birimi:</label>
+            <label>Para Birimi</label>
             <input type="text" class="form-control" value="@Model.SpendingCurrency" readonly />
         </div>
 
-        <!-- Talep Tarihi -->
+       
         <div class="form-group">
-            <label>Talep Tarihi:</label>
+            <label>Talep Tarihi</label>
             <input type="text" class="form-control" value="@Model.SpendingRequestDate.ToShortDateString()" readonly />
         </div>
 
-        <!-- Cevaplanma Tarihi -->
+
+
         <div class="form-group">
-            <label>Cevaplanma Tarihi:</label>
-            <input type="text" class="form-control" value="@Model.SpendingResponseDate?.ToShortDateString()" readonly />
+            <label for="spendingStatus" class="col-md-4 col-lg-3 col-form-label">Onay Türü</label>
+            <br>
+            <div class="col-md-8 col-lg-9">
+                <select name="SpendingStatus" class="form-select">
+                    <option value="">Bir onay türü seçiniz</option>
+                </select>
+                <span asp-validation-for="SpendingStatus" class="form-text text-danger"></span>
+            </div>
         </div>
 
-        <!-- Dosya -->
+       
         <div class="form-group">
-            <label>Dosya:</label>
+            <label>Dosya</label>
             @if (!string.IsNullOrEmpty(Model.SpendingFile))
             {
                 <a href="@Model.SpendingFile" target="_blank">Dosyayı Görüntüle</a>
@@ -75,20 +91,31 @@
             }
         </div>
 
-        <!-- Onay Durumu -->
-@*         <div class="form-group">
-            <label>Onay Durumu:</label>
-            <select asp-for="SpendingStatus" class="form-control">
-                @foreach (var status in Enum.GetValues(typeof(SpendingStatus)).Cast<SpendingStatus>())
-                {
-                    <option value="@status" @(status == Model.SpendingStatus ? "selected" : "")>@status.ToString()</option>
-                }
-            </select>
-            <span asp-validation-for="SpendingStatus" class="text-danger"></span>
-        </div> *@
 
         <div class="form-group">
             <button type="submit" class="btn btn-primary">Kaydet</button>
         </div>
     </form>
 </div>
+
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            $.get("@Url.Action("GetSpendingStatus", "SpendingManagement")", function (data) {
+                var select = $("select[name='SpendingStatus']");
+                select.empty();
+                select.append('<option value="">Bir onay türü seçiniz</option>');
+                $.each(data, function (index, item) {
+                    select.append($('<option>', {
+                        value: item.value,
+                        text: item.text
+                    }));
+                });
+            });
+
+        });
+    </script>
+}
