@@ -10,6 +10,7 @@
     <Content Remove="Views\Home\BizeUlasin.cshtml" />
     <Content Remove="Views\Home\blog-single.cshtml" />
     <Content Remove="Views\Home\blog.cshtml" />
+    <Content Remove="Views\Home\Hakkimizda.cshtml" />
     <Content Remove="Views\Home\Hizmetlerimiz.cshtml" />
   </ItemGroup>
 
@@ -17,6 +18,7 @@
     <None Include="Views\Home\Blog-Single.cshtml" />
     <None Include="Views\Home\Blog.cshtml" />
     <None Include="Views\Home\BizeUlasin.cshtml" />
+    <None Include="Views\Home\Hakkimizda.cshtml" />
     <None Include="Views\Home\Hizmetlerimiz.cshtml" />
     <None Include="wwwroot\css\.DS_Store" />
     <None Include="wwwroot\fonts\.DS_Store" />
