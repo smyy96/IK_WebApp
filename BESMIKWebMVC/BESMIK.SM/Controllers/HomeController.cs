@@ -6,7 +6,7 @@ using System.Diagnostics;
 
 namespace BESMIK.SM.Controllers
 {
-    [Authorize(Roles = "Site Yoneticisi")]
+    //[Authorize(Roles = "Site Yoneticisi")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -21,12 +21,32 @@ namespace BESMIK.SM.Controllers
         public IActionResult Index()
         {
             return View();
-        }
+        }     
 
-        public async Task<IActionResult> Privacy()
+        public IActionResult BizeUlasin()
         {
-            return View(await _httpClient.GetFromJsonAsync<List<CompanyViewModel>>("https://localhost:7136/WeatherForecast/CompanyList"));
-        }
+            return View();
+        }     
+
+        public IActionResult Blog()
+        {
+            return View();
+        }    
+        
+        //public IActionResult BlogSingle() ?
+        //{
+        //    return View();
+        //}    
+        
+        public IActionResult Hakkimizda()
+        {
+            return View();
+        }     
+
+        public IActionResult Hizmetlerimiz()
+        {
+            return View();
+        }        
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
