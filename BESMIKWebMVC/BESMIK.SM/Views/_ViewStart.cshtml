@@ -1,3 +1,10 @@
 ﻿@{
-    Layout = "_Layout";
+    if (!ViewContext.View.Path.Contains("Index.cshtml"))
+    {
+        Layout = "_Layout";
+    }
+    else
+    {
+        Layout = null;
+    }
 }
