@@ -1,5 +1,4 @@
 ﻿using BESMIK.ViewModel.Company;
-using BESMIK.ViewModel.CompanyManager;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using FluentValidation.Results;

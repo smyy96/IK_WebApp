@@ -1,7 +1,7 @@
 ﻿@model List<AppUserViewModel>
 
 @{
-    Layout = "_AdminLayout";
+    Layout = "_CompanyManagerLayout";
 }
 
 
@@ -9,9 +9,9 @@
     <h1>Şirket Yöneticisi Ekle</h1>
     <nav>
         <ol class="breadcrumb">
-             <li class="breadcrumb-item"><a asp-controller="AppUser" asp-action="Summary">Anasayfa</a></li>
-            <li class="breadcrumb-item">Şirket Yönetici İşlemleri</li>
-            <li class="breadcrumb-item active">Yönetici Listele</li>
+            <li class="breadcrumb-item"><a asp-controller="CompanyManager" asp-action="Index">Anasayfa</a></li>
+            <li class="breadcrumb-item">Personel İşlemleri</li>
+            <li class="breadcrumb-item active">Personel Listele</li>
         </ol>
     </nav>
 </div>
@@ -28,22 +28,28 @@
                     <table class="table datatable">
                         <thead>
                             <tr>
-                                <th>Yönetici Adı</th>
-                                <th>Yönetici Soyadı</th>
+                                <th>Resim</th>
+                                <th>Personel Adı</th>
+                                <th>Personel Soyadı</th>
                                 <th>Telefon</th>
-                                <th>E-Mail</th>
-                                <th>Şirket Adı</th>
+                                <th>Şahsi E-Mail</th>
+                                
                             </tr>
                         </thead>
                         <tbody>
                             @foreach (AppUserViewModel item in Model)
                             {
                                 <tr>
+                                    <td>
+                                        <img id="personel"
+                                             src="@(item.Photo != null ? Url.Content($"~/images/personal/{item.Photo}") : Url.Content("~/img/imageupload1.jpg"))"
+                                             alt="Personel Resmi"
+                                             style="width: 40px; height: 40px; object-fit: cover; border-radius: 50%;">
+                                    </td>
                                     <td>@item.Name</td>
                                     <td>@item.Surname</td>
                                     <td>@item.Phone</td>
                                     <td>@item.PersonalEmail</td>
-                                    <td>@item.Company?.Name</td>
                                 </tr>
                             }
                         </tbody>

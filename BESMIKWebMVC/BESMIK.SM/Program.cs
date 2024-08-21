@@ -1,7 +1,6 @@
 
 using BESMIK.SM.UserProfileViewComponent;
 using BESMIK.SM.Validations;
-using BESMIK.ViewModel.CompanyManager;
 using FluentValidation;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Reflection;

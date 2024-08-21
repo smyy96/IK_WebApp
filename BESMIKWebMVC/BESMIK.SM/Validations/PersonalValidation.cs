@@ -3,9 +3,9 @@ using FluentValidation;
 
 namespace BESMIK.SM.Validations
 {
-    public class CompanyManagerViewModelValidator : AbstractValidator<AppUserViewModel>
+    public class PersonalValidation : AbstractValidator<AppUserViewModel>
     {
-        public CompanyManagerViewModelValidator()
+        public PersonalValidation()
         {
             RuleFor(x => x.Name)
                 .NotEmpty().WithMessage("İsim alanı boş olamaz")
@@ -44,12 +44,30 @@ namespace BESMIK.SM.Validations
             RuleFor(x => x.WorkStartDate)
                 .NotEmpty().WithMessage("İşe Başlama Tarihi boş olamaz");
 
+            RuleFor(x => x.Wage)
+               .NotEmpty().WithMessage("Maaş bilgisi boş olmamalıdır.")
+               .GreaterThan(0).WithMessage("Maaş bilgisi pozitif bir değer olmalıdır.")
+               .Must(BeAValidWage).WithMessage("Maaş bilgisi geçerli bir sayı olmalıdır.");
+
             RuleFor(x => x.Department)
                 .IsInEnum().WithMessage("Geçersiz departman seçimi")
                 .NotEmpty().WithMessage("Bir departman seçiniz");
 
             RuleFor(x => x.CompanyId)
                 .NotEmpty().WithMessage("Bir şirket seçiniz");
+        }
+
+
+        private bool BeAValidWage(float? wage)
+        {
+            if (wage == null)
+            {
+                return false;
+            }
+
+            // Float değeri string'e çevirip regex ile kontrol ediyoruz burada
+            string wageString = wage.Value.ToString("0.##");
+            return System.Text.RegularExpressions.Regex.IsMatch(wageString, @"^\d+(\.\d{1,2})?$");
         }
     }
 }

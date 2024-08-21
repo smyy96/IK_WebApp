@@ -82,9 +82,9 @@ builder.Services.AddScoped<BLLCompanyManager>();
 
 
 
-builder.Services.AddScoped<CompanyManagerRepo>();
-builder.Services.AddScoped<CompanyManagerService>();
-builder.Services.AddScoped<CompanyManagerManager>();
+//builder.Services.AddScoped<CompanyManagerRepo>();
+//builder.Services.AddScoped<CompanyManagerService>();
+//builder.Services.AddScoped<CompanyManagerManager>();
 
 
 

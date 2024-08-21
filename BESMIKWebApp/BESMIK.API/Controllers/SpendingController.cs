@@ -3,7 +3,6 @@ using BESMIK.Common;
 using BESMIK.Entities.Concrete;
 using BESMIK.ViewModel.Advance;
 using BESMIK.ViewModel.AppUser;
-using BESMIK.ViewModel.CompanyManager;
 using BESMIK.ViewModel.Spending;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;

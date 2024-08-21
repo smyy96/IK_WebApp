@@ -1,5 +1,4 @@
 ﻿using BESMIK.ViewModel.AppUser;
-using BESMIK.ViewModel.CompanyManager;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Http;

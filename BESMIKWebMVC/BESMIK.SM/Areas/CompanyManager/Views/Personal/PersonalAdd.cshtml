@@ -1,7 +1,7 @@
 ﻿@model AppUserViewModel
 
 @{
-    Layout = "_AdminLayout";
+    Layout = "_CompanyManagerLayout";
 }
 
 <div class="pagetitle">
@@ -21,7 +21,7 @@
             <div class="card">
                 <div class="card-body pt-3">
                     <div class="tab-content pt-2">
-                        <form asp-controller="CompanyManager" asp-action="CompanyManagerAdd" method="post" enctype="multipart/form-data">
+                        <form asp-controller="Personal" asp-action="PersonalAdd" method="post" enctype="multipart/form-data">
 
                             <div asp-validation-summary="ModelOnly"></div>
                             <div class="row mb-3">
@@ -141,22 +141,20 @@
                             </div>
 
                             <div class="row mb-3">
+                                <label for="wage" class="col-md-4 col-lg-3 col-form-label">Maaş Bilgisi</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input name="Wage" type="text" class="form-control" id="wage" value="@Model.Wage">
+                                    <span asp-validation-for="Wage" class="form-text text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
                                 <label for="department" class="col-md-4 col-lg-3 col-form-label">Departman</label>
                                 <div class="col-md-8 col-lg-9">
                                     <select name="Department" class="form-select">
                                         <option value="">Bir departman seçiniz</option>
                                     </select>
                                     <span asp-validation-for="Department" class="form-text text-danger"></span>
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="company" class="col-md-4 col-lg-3 col-form-label">Şirket</label>
-                                <div class="col-md-8 col-lg-9">
-                                    <select name="CompanyId" class="form-select">
-                                        <option value="">Bir şirket seçiniz</option>
-                                    </select>
-                                    <span asp-validation-for="CompanyId" class="form-text text-danger"></span>
                                 </div>
                             </div>
 
@@ -180,21 +178,8 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function () {
-            // sectiona company adlarını yükleme
-            $.get("@Url.Action("GetCompanies", "CompanyManager")", function (data) {
-                var select = $("select[name='CompanyId']");
-                select.empty();
-                select.append('<option value="">Bir şirket seçiniz</option>');
-                $.each(data, function (index, item) {
-                    select.append($('<option>', {
-                        value: item.id,
-                        text: item.name
-                    }));
-                });
-            });
-
             // sectiona departman adlarını yükleme
-            $.get("@Url.Action("GetDepartments", "CompanyManager")", function (data) {
+            $.get("@Url.Action("GetDepartments", "Personal")", function (data) {
                 var select = $("select[name='Department']");
                 select.empty();
                 select.append('<option value="">Bir departman seçiniz</option>');

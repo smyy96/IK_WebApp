@@ -2,7 +2,6 @@
 using BESMIK.Entities.Concrete;
 using BESMIK.ViewModel.AppUser;
 using BESMIK.ViewModel.Company;
-using BESMIK.ViewModel.CompanyManager;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -10,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Text;
 using BLLCompanyManager = BESMIK.BLL.Managers.Concrete.CompanyManager;
 
 namespace BESMIK.API.Controllers
@@ -68,6 +68,7 @@ namespace BESMIK.API.Controllers
                 Address = user.Address,
                 Phone = user.Phone,
                 Wage = user.Wage,
+                PersonalEmail = user.PersonalEmail,
                 CompanyId = user.CompanyId,
                 Company = new CompanyViewModel
                 {
@@ -106,11 +107,18 @@ namespace BESMIK.API.Controllers
             user.IsActive = model.IsActive;
             user.Job = model.Job;
             user.Department = model.Department;
-            user.Email = model.Email;
+            user.PersonalEmail = model.PersonalEmail;
             user.Address = model.Address;
             user.Phone = model.Phone;
             user.Wage = model.Wage;
             user.CompanyId = model.CompanyId;
+
+
+            var createMail = CreateMail(user.CompanyId.Value, user.Name, user.Surname);
+
+            user.Email = await createMail;
+
+
             var password = "Az*123456";
 
 
@@ -120,8 +128,8 @@ namespace BESMIK.API.Controllers
             await _emailStore.SetEmailAsync(user, user.Email, CancellationToken.None);
 
             user.EmailConfirmed = true;
-           
-            
+
+
 
             var result = await _userManager.CreateAsync(user, password);
 
@@ -161,7 +169,64 @@ namespace BESMIK.API.Controllers
 
 
 
+        private async Task<string> CreateMail(int id, string name, string surname)
+        {
+            var company = _companyManager.Get(id).Name;
 
+            var companyName = ConvertToEnglishCharacters(company).Replace(" ", "").ToLower();
+            var nameC = ConvertToEnglishCharacters(name).ToLower();
+            var surnameC = ConvertToEnglishCharacters(surname).ToLower();
+
+            string mailCreate = $"{nameC}.{surnameC}@{companyName}.com";
+            int value = 0;
+
+            while (true)
+            {
+
+                var result = await _userManager.FindByEmailAsync(mailCreate);
+
+                if (result == null)
+                {
+                    break;
+                }
+                mailCreate = $"{name.ToLower()}.{surname.ToLower()}{value}@{companyName}.com";
+                value++;
+            }
+            return mailCreate;
+        }
+
+
+
+        private string ConvertToEnglishCharacters(string input)
+        {
+            var replacements = new Dictionary<char, char>
+                                {
+                                    {'ı', 'i'},
+                                    {'ş', 's'},
+                                    {'ç', 'c'},
+                                    {'ü', 'u'},
+                                    {'ğ', 'g'},
+                                    {'ö', 'o'},
+                                    {'İ', 'i'},
+                                    {'Ş', 's'},
+                                    {'Ç', 'c'},
+                                    {'Ü', 'u'},
+                                    {'Ğ', 'g'},
+                                    {'Ö', 'o'}
+                                };
+
+            var result = new StringBuilder();
+
+            foreach (var ch in input.ToLower())
+            {
+                result.Append(replacements.TryGetValue(ch, out var replacement) ? replacement : ch);
+            }
+
+            return result.ToString();
+        }
+
+
+        //ileride detay istenirse kullanabilirsin
         [HttpGet("GetById/{id}")]
         public async Task<IActionResult> GetById(int id)
         {
@@ -208,8 +273,9 @@ namespace BESMIK.API.Controllers
 
 
 
+        //sirket adlarını alma mvcde kullanıyorsun
         [HttpGet("CompanyNameList")]
-        public ActionResult<IEnumerable<CompanyManagerViewModel>> CompanyNameList()
+        public ActionResult<IEnumerable<CompanyViewModel>> CompanyNameList()
         {
             var company = _companyManager.GetAll(); //mvcde namelerini çektim
             return Ok(company);

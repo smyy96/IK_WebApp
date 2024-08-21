@@ -1,7 +1,6 @@
 ﻿using BESMIK.BLL.Managers.Concrete;
 using BESMIK.Entities.Concrete;
 using BESMIK.ViewModel.Company;
-using BESMIK.ViewModel.CompanyManager;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using System.Text;
@@ -16,12 +15,12 @@ namespace BESMIK.API.Controllers
     public class CompanyController : Controller
     {
         private readonly BLLCompanyManager _companyManager;
-        private CompanyManagerManager _companyManagerMan;
+        //private CompanyManagerManager _companyManagerMan;
 
-        public CompanyController(BLLCompanyManager companyManager, CompanyManagerManager managerManagerMan)
+        public CompanyController(BLLCompanyManager companyManager)
         {
             _companyManager = companyManager;
-            _companyManagerMan = managerManagerMan;
+           // _companyManagerMan = managerManagerMan;
         }
 
         //*--------------------------------------------------------------------------------------------------------------------------------------------*
@@ -67,25 +66,28 @@ namespace BESMIK.API.Controllers
             return Ok(company);
         }
 
+
+
+        //company manager tablosu silinidigi için kaldırdım sc
         //*--------------------------------------------------------------------------------------------------------------------------------------------*
         //ID'si seçilen şirketin yöneticilerini getirme
-        [HttpGet("{id}/Managers")]
-        public ActionResult<IEnumerable<CompanyManagerViewModel>> GetCompanyManagers(int id)
-        {
-            var company = _companyManager.Get(id);
-            if (company == null)
-            {
-                return NotFound("Company not found.");
-            }
+        //[HttpGet("{id}/Managers")]
+        //public ActionResult<IEnumerable<CompanyManagerViewModel>> GetCompanyManagers(int id)
+        //{
+        //    var company = _companyManager.Get(id);
+        //    if (company == null)
+        //    {
+        //        return NotFound("Company not found.");
+        //    }
 
-            var companyManagers = _companyManagerMan.GetManagersByCompanyID(id);
-            if (companyManagers == null || !companyManagers.Any())
-            {
-                return NotFound("No managers found for the specified company ID.");
-            }
+        //    var companyManagers = _companyManagerMan.GetManagersByCompanyID(id);
+        //    if (companyManagers == null || !companyManagers.Any())
+        //    {
+        //        return NotFound("No managers found for the specified company ID.");
+        //    }
 
-            return Ok(companyManagers);
-        }
+        //    return Ok(companyManagers);
+        //}
 
         //*--------------------------------------------------------------------------------------------------------------------------------------------*
         //Şirket silme, (isterlerde yok)
