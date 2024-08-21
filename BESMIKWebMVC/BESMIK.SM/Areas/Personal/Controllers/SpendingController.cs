@@ -2,7 +2,6 @@
 using BESMIK.ViewModel.Advance;
 using BESMIK.ViewModel.AppUser;
 using BESMIK.ViewModel.Company;
-using BESMIK.ViewModel.CompanyManager;
 using BESMIK.ViewModel.Permission;
 using BESMIK.ViewModel.Spending;
 using FluentValidation;

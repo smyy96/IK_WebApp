@@ -4,6 +4,7 @@ using BESMIK.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BESMIK.DAL.Migrations
 {
     [DbContext(typeof(BesmikDbContext))]
-    partial class BesmikDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240819105754_ikinciMailAdresiEklendiVeCompanyManagerTablosuSilindi")]
+    partial class ikinciMailAdresiEklendiVeCompanyManagerTablosuSilindi
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -203,7 +206,7 @@ namespace BESMIK.DAL.Migrations
                             Address = "Ankara, Türkiye",
                             BirthDate = new DateOnly(2000, 1, 1),
                             BirthPlace = "Yozgat",
-                            ConcurrencyStamp = "7e412bb7-f452-40ae-a8dd-1d269c5c56e6",
+                            ConcurrencyStamp = "323147d1-b0ac-4e4e-809e-f45e47491197",
                             Department = 1,
                             Email = "site.yoneticisi@bilgeadam.com",
                             EmailConfirmed = true,
@@ -213,12 +216,11 @@ namespace BESMIK.DAL.Migrations
                             Name = "Site",
                             NormalizedEmail = "SITE.YONETICISI@BILGEADAM.COM",
                             NormalizedUserName = "SITEYONETICISI",
-                            PasswordHash = "AQAAAAIAAYagAAAAEJ8N/OJ7V91zkcSUwYUDGDEp9YH/ckbwkE+jH+k9OFu5ttFCkc2v5s0WNio8AmyxXg==",
-                            PersonalEmail = "siteyoneticisiyimben@gmail.com",
+                            PasswordHash = "AQAAAAIAAYagAAAAEOlF+ZdD2JoNhqWa2M2sxxnluaBrJym8EnCoF+rTUuhIURAI2hFtDLqa6ZvovR02lQ==",
                             Phone = "+90 123 456 7890",
                             PhoneNumberConfirmed = false,
                             SecondName = "Yöneticisi",
-                            SecurityStamp = "998eca70-d49f-4c4b-9ba9-416434f28455",
+                            SecurityStamp = "37461e03-e5cd-4f5d-965c-b5d0670f1969",
                             Surname = "Yönetici",
                             Tc = "12345678901",
                             TwoFactorEnabled = false,
@@ -233,7 +235,7 @@ namespace BESMIK.DAL.Migrations
                             BirthDate = new DateOnly(1980, 1, 1),
                             BirthPlace = "Ankara",
                             CompanyId = 2,
-                            ConcurrencyStamp = "651a339d-6dfb-4f62-921b-013bac10f972",
+                            ConcurrencyStamp = "df377f4d-b536-4aeb-9a46-5e6961e22982",
                             Department = 9,
                             Email = "fadime.gungormemis@rollinemuhendislik.com",
                             EmailConfirmed = true,
@@ -243,12 +245,11 @@ namespace BESMIK.DAL.Migrations
                             Name = "Fadime",
                             NormalizedEmail = "FADIME.GUNGORMEMIS@ROLLINEMUHENDISLIK.COM",
                             NormalizedUserName = "PERSONEL1",
-                            PasswordHash = "AQAAAAIAAYagAAAAEKF1VmEnBfIvUT+bXt6wR7hL+l0OJ3s9UYTZlrz3BLgrfr7sM3Nupzz4RxZM6gFu9g==",
-                            PersonalEmail = "fadimegungormemis@gmail.com",
+                            PasswordHash = "AQAAAAIAAYagAAAAEDCoc6oEpzol4mY1KVr6aY6BCHoYyfqD4J5Y3yuxqLH2C3lMYEIlihfqlXPh26LIww==",
                             Phone = "+90 123 456 7890",
                             PhoneNumberConfirmed = false,
                             Photo = "AcKedi.jpg",
-                            SecurityStamp = "7b3b6a14-216a-472a-bc05-301713c0a22e",
+                            SecurityStamp = "d0da89bc-ec2c-4004-adba-0b5b6261c5af",
                             Surname = "Güngörmemiş",
                             Tc = "14725836914",
                             TwoFactorEnabled = false,
@@ -264,7 +265,7 @@ namespace BESMIK.DAL.Migrations
                             BirthDate = new DateOnly(1980, 1, 1),
                             BirthPlace = "Ankara",
                             CompanyId = 2,
-                            ConcurrencyStamp = "5c7a32fd-4485-4625-851c-6dfd43cf01bb",
+                            ConcurrencyStamp = "7f657a8b-da63-4c9c-b48d-a228bad49a6e",
                             Department = 3,
                             Email = "kezban.gunyuzu@rollinemuhendislik.com",
                             EmailConfirmed = true,
@@ -274,12 +275,11 @@ namespace BESMIK.DAL.Migrations
                             Name = "Kezban",
                             NormalizedEmail = "KEZBAN.GUNYUZU@ROLLINEMUHENDISLIK.COM",
                             NormalizedUserName = "PERSONEL2",
-                            PasswordHash = "AQAAAAIAAYagAAAAELhZfq54mXptqGlvkXHNUT3/zwz60vuMIIl/8YgBNNR5CAY5sHCurFgip0QC13Q45w==",
-                            PersonalEmail = "kezbangunyuzu@gmail.com",
+                            PasswordHash = "AQAAAAIAAYagAAAAEAShjV5jYYQv40D2JjnoEIC6i4WWPYO7Kgdf/OquYvMpUVAgU2x4AEKcoT93RXXifQ==",
                             Phone = "+90 123 456 1111",
                             PhoneNumberConfirmed = false,
                             Photo = "AcKedi.jpg",
-                            SecurityStamp = "aeab4f1c-7bdf-493b-abcc-cf98739012e2",
+                            SecurityStamp = "dd88b877-fc6d-4217-ad74-565544827a08",
                             Surname = "Günyüzü",
                             Tc = "14725836985",
                             TwoFactorEnabled = false,

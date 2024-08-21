@@ -29,6 +29,7 @@
         </li><!-- End Components Nav -->
 
 
+
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
                 <i class="ri-bank-card-fill"></i>
@@ -96,27 +97,29 @@
 
             </ul>
         </li><!-- End Tables Nav -->
+
+
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
-                <i class="ri-bank-card-fill"></i>
+                <i class="ri-apps-line"></i>
 
-                <span>Harcama Talepleri</span><i class="bi bi-chevron-down ms-auto"></i>
+                <span>Personel İşlemleri</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a asp-area="Personal" asp-controller="Spending" asp-action="SpendingList">
-                        <i class="bi bi-circle"></i><span>Harcamaları Listele</span>
+                    <a asp-area="CompanyManager" asp-controller="Personal" asp-action="PersonalList">
+                        <i class="ri-file-list-3-fill"></i><span>Personel Listele</span>
                     </a>
                 </li>
                 <li>
-                    <a asp-area="Personal" asp-controller="Spending" asp-action="SpendingAdd">
-                        <i class="bi bi-circle"></i><span>Harcama Talep</span>
+                    <a asp-area="CompanyManager" asp-controller="Personal" asp-action="PersonalAdd">
+                        <i class="ri-user-add-fill"></i><span>Personel Ekle</span>
                     </a>
                 </li>
+
             </ul>
         </li><!-- End Tables Nav -->
 
-
-    </ul> *@
+ 
 
 </aside><!-- End Sidebar-->

@@ -1,4 +1,4 @@
-﻿using BESMIK.ViewModel.CompanyManager;
+﻿
 using BESMIK.ViewModel.Spending;
 using FluentValidation;
 

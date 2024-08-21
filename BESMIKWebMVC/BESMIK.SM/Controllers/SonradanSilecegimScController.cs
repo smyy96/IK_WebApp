@@ -1,6 +1,5 @@
 ﻿using BESMIK.Common;
 using BESMIK.ViewModel.Company;
-using BESMIK.ViewModel.CompanyManager;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using FluentValidation.Results;
@@ -21,110 +20,110 @@ namespace BESMIK.SM.Controllers
     [Authorize(Roles = "Site Yoneticisi")]
     public class SonradanSilecegimScController : Controller
     {
-        private HttpClient _httpClient;
-        private IValidator<CompanyManagerViewModel> _validator;
+        //private HttpClient _httpClient;
+        //private IValidator<CompanyManagerViewModel> _validator;
 
-        public SonradanSilecegimScController(HttpClient httpClient, IValidator<CompanyManagerViewModel> validator)
-        {
-            _httpClient = httpClient;
-            _validator = validator;
-        }
-
-
-        public async Task<IActionResult> CompanyManagerList()
-        {
-            return View(await _httpClient.GetFromJsonAsync<List<CompanyManagerViewModel>>("https://localhost:7136/api/CompanyManager/CompanyManagerList"));
-        }
+        //public SonradanSilecegimScController(HttpClient httpClient, IValidator<CompanyManagerViewModel> validator)
+        //{
+        //    _httpClient = httpClient;
+        //    _validator = validator;
+        //}
 
 
-        public async Task<IActionResult> CompanyManagerAdd()
-        {
-            return View(new CompanyManagerViewModel());
-        }
+        //public async Task<IActionResult> CompanyManagerList()
+        //{
+        //    return View(await _httpClient.GetFromJsonAsync<List<CompanyManagerViewModel>>("https://localhost:7136/api/CompanyManager/CompanyManagerList"));
+        //}
 
 
-
-        [HttpPost]
-        public async Task<IActionResult> CompanyManagerAdd(CompanyManagerViewModel model)
-        {
-
-            try
-            {
-                ValidationResult result = _validator.Validate(model);
-
-                ModelState.Remove("Photo");
-                ModelState.Remove("PictureFile");
-
-                if (!ModelState.IsValid)
-                {
-                    ModelState.Clear();
-
-                    result.AddToModelState(ModelState);
-
-                    return View(model);
-                }
+        //public async Task<IActionResult> CompanyManagerAdd()
+        //{
+        //    return View(new CompanyManagerViewModel());
+        //}
 
 
 
-                if (model.FormFile != null && model.FormFile.Length > 0)
-                {
-                    string fileName = model.FormFile.FileName;
-                    var dosyadakiFileName = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/companyManager", fileName);
-                    var konum = dosyadakiFileName;
+        //[HttpPost]
+        //public async Task<IActionResult> CompanyManagerAdd(CompanyManagerViewModel model)
+        //{
 
-                    // Kaydetmek için bir akış ortamı oluşturalım
-                    using (var akisOrtami = new FileStream(konum, FileMode.Create))
-                    {
-                        await model.FormFile.CopyToAsync(akisOrtami);
-                    }
+        //    try
+        //    {
+        //        ValidationResult result = _validator.Validate(model);
 
-                    using (var memory = new MemoryStream())
-                    {
-                        await model.FormFile.CopyToAsync(memory);
-                        model.PictureFile = memory.ToArray();
-                    }
+        //        ModelState.Remove("Photo");
+        //        ModelState.Remove("PictureFile");
 
-                    model.Photo = fileName;
-                    model.FormFile = null;
-                }
+        //        if (!ModelState.IsValid)
+        //        {
+        //            ModelState.Clear();
+
+        //            result.AddToModelState(ModelState);
+
+        //            return View(model);
+        //        }
 
 
 
-                else if (model.FormFile == null || model.FormFile.Length == 0)
-                {
-                    model.Photo = null;
-                    model.PictureFile = null;
+        //        if (model.FormFile != null && model.FormFile.Length > 0)
+        //        {
+        //            string fileName = model.FormFile.FileName;
+        //            var dosyadakiFileName = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/companyManager", fileName);
+        //            var konum = dosyadakiFileName;
 
-                    ModelState.AddModelError("FormFile", "Lütfen geçerli bir resim yükleyin.");
-                    return View(model);
-                }
+        //            // Kaydetmek için bir akış ortamı oluşturalım
+        //            using (var akisOrtami = new FileStream(konum, FileMode.Create))
+        //            {
+        //                await model.FormFile.CopyToAsync(akisOrtami);
+        //            }
 
+        //            using (var memory = new MemoryStream())
+        //            {
+        //                await model.FormFile.CopyToAsync(memory);
+        //                model.PictureFile = memory.ToArray();
+        //            }
 
-
-                var response = await _httpClient.PostAsJsonAsync("https://localhost:7136/api/CompanyManager/CompanyManagerAdd", model);
-
-                if (response.IsSuccessStatusCode)
-                {
-                    return RedirectToAction("CompanyManagerList");
-                }
-                else
-                {
-                    ModelState.AddModelError("ApiError", "Şirket Yöneticisi eklenemedi. Lütfen tekrar deneyin.");
-                    return View(model);
-
-                }
-
-            }
+        //            model.Photo = fileName;
+        //            model.FormFile = null;
+        //        }
 
 
-            catch (Exception ex)
-            {
-                ModelState.AddModelError("GeneralException", ex.Message);
-                ModelState.AddModelError("GeneralInnerException", ex.InnerException?.Message);
-                return View();
-            }
 
-        }
+        //        else if (model.FormFile == null || model.FormFile.Length == 0)
+        //        {
+        //            model.Photo = null;
+        //            model.PictureFile = null;
+
+        //            ModelState.AddModelError("FormFile", "Lütfen geçerli bir resim yükleyin.");
+        //            return View(model);
+        //        }
+
+
+
+        //        var response = await _httpClient.PostAsJsonAsync("https://localhost:7136/api/CompanyManager/CompanyManagerAdd", model);
+
+        //        if (response.IsSuccessStatusCode)
+        //        {
+        //            return RedirectToAction("CompanyManagerList");
+        //        }
+        //        else
+        //        {
+        //            ModelState.AddModelError("ApiError", "Şirket Yöneticisi eklenemedi. Lütfen tekrar deneyin.");
+        //            return View(model);
+
+        //        }
+
+        //    }
+
+
+        //    catch (Exception ex)
+        //    {
+        //        ModelState.AddModelError("GeneralException", ex.Message);
+        //        ModelState.AddModelError("GeneralInnerException", ex.InnerException?.Message);
+        //        return View();
+        //    }
+
+        //}
 
 
 
@@ -144,12 +143,12 @@ namespace BESMIK.SM.Controllers
 
         //Ajax ile company section doldurma
         [HttpGet]
-        public async Task<IActionResult> GetCompanies()
-        {
-            //Şirket adlarını selectte eklemek için
-            var companies = await _httpClient.GetFromJsonAsync<List<CompanyViewModel>>("https://localhost:7136/api/CompanyManager/CompanyNameList");
-            return Json(companies);
-        }
+        //public async Task<IActionResult> GetCompanies()
+        //{
+        //    //Şirket adlarını selectte eklemek için
+        //    var companies = await _httpClient.GetFromJsonAsync<List<CompanyViewModel>>("https://localhost:7136/api/CompanyManager/CompanyNameList");
+        //    return Json(companies);
+        //}
 
 
 

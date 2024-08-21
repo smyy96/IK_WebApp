@@ -19,7 +19,6 @@ namespace BESMIK.DAL
         { }
 
         public DbSet<Company> Companies { get; set; }
-        public DbSet<CompanyManager> CompanyManagers { get; set; }
 
         public DbSet<AppUser> AppUsers { get; set; }
 

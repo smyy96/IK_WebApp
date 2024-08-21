@@ -2,7 +2,6 @@
 using BESMIK.DAL;
 using BESMIK.Entities.Concrete;
 using BESMIK.ViewModel.AppUser;
-using BESMIK.ViewModel.CompanyManager;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;

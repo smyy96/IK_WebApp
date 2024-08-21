@@ -1,7 +1,6 @@
 using BESMIK.BLL.Managers.Concrete;
 using BESMIK.Entities.Concrete;
 using BESMIK.ViewModel.Company;
-using BESMIK.ViewModel.CompanyManager;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using BLLCompanyManager = BESMIK.BLL.Managers.Concrete.CompanyManager;
@@ -19,13 +18,12 @@ namespace BESMIK.API.Controllers
         };
 
         private readonly BLLCompanyManager _companyManager;
-        private CompanyManagerManager _companyManagerMan;
         private readonly ILogger<WeatherForecastController> _logger;
 
-        public WeatherForecastController(BLLCompanyManager companyManager, CompanyManagerManager managerManagerMan)
+        public WeatherForecastController(BLLCompanyManager companyManager)
         {
             _companyManager = companyManager;
-            _companyManagerMan = managerManagerMan;
+        
             //_logger = logger;
         }
 
@@ -36,11 +34,11 @@ namespace BESMIK.API.Controllers
         }
 
 
-        [HttpGet("CompanyManagerList")]
-        public IEnumerable<CompanyManagerViewModel> CompanyManagerGet()
-        {
-            return _companyManagerMan.GetAll();
-        }
+        //[HttpGet("CompanyManagerList")]
+        //public IEnumerable<CompanyManagerViewModel> CompanyManagerGet()
+        //{
+        //    return _companyManagerMan.GetAll();
+        //}
 
         //Þirketi ID'sine göre getirme
         [HttpGet("Company/{id}")]
@@ -51,12 +49,12 @@ namespace BESMIK.API.Controllers
 
         //Þirket yöneticisini ID'sine göre getirme
 
-        [HttpGet("CompanyManager/{id}")]
-        public IActionResult GetManager(int id)
-        {
-            return Ok(_companyManagerMan.Get(id));
+        //[HttpGet("CompanyManager/{id}")]
+        //public IActionResult GetManager(int id)
+        //{
+        //    return Ok(_companyManagerMan.Get(id));
 
-        }
+        //}
 
 
         [HttpDelete("DeleteCompany/{id}")]
@@ -94,18 +92,18 @@ namespace BESMIK.API.Controllers
 
         //Þirket yöneticisi silme
 
-        [HttpDelete("DeleteCompanyManager")]
-        public ActionResult DeleteCompanyManager(int id)
-        {
-            var companyManager = _companyManagerMan.Get(id);
-            if (companyManager == null)
-            {
-                return NotFound();
-            }
-            _companyManagerMan.Delete(id);
-            return NoContent();
+        //[HttpDelete("DeleteCompanyManager")]
+        //public ActionResult DeleteCompanyManager(int id)
+        //{
+        //    var companyManager = _companyManagerMan.Get(id);
+        //    if (companyManager == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    _companyManagerMan.Delete(id);
+        //    return NoContent();
 
-        }
+        //}
 
         [HttpGet(Name = "GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get()

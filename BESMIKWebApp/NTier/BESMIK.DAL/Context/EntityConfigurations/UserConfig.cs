@@ -38,9 +38,11 @@ namespace BESMIK.DAL.Context.EntityConfigurations
                     Photo = null,
                     Address = "Ankara, Türkiye",
                     Phone = "+90 123 456 7890",
+                    PersonalEmail="siteyoneticisiyimben@gmail.com",
                     PasswordHash = hasher.HashPassword(null, "Az*123456"),
                     SecurityStamp = Guid.NewGuid().ToString(),
                     EmailConfirmed = true
+
                 },
                 new AppUser
                 {
@@ -62,6 +64,7 @@ namespace BESMIK.DAL.Context.EntityConfigurations
                     Address = "Ankara, Türkiye",
                     Phone = "+90 123 456 7890",
                     Wage = 150000,
+                    PersonalEmail="fadimegungormemis@gmail.com",
                     CompanyId = 2,
                     PasswordHash = hasher.HashPassword(null, "Az*123456"),
                     SecurityStamp = Guid.NewGuid().ToString(),
@@ -89,6 +92,7 @@ namespace BESMIK.DAL.Context.EntityConfigurations
                     Phone = "+90 123 456 1111",
                     Wage = 250000,
                     CompanyId = 2,
+                    PersonalEmail = "kezbangunyuzu@gmail.com",
                     PasswordHash = hasher.HashPassword(null, "Az*123456"),
                     SecurityStamp = Guid.NewGuid().ToString(),
                     EmailConfirmed = true

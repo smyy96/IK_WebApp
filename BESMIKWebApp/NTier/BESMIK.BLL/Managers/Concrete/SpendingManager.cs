@@ -6,7 +6,6 @@ using BESMIK.DAL.Services.Abstract;
 using BESMIK.DAL.Services.Concrete;
 using BESMIK.DTO;
 using BESMIK.Entities.Concrete;
-using BESMIK.ViewModel.CompanyManager;
 using BESMIK.ViewModel.Spending;
 using Microsoft.EntityFrameworkCore;
 using System;

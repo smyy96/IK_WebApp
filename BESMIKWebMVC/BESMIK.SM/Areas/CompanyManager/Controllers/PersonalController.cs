@@ -1,36 +1,43 @@
 ﻿using BESMIK.Common;
 using BESMIK.ViewModel.AppUser;
-using BESMIK.ViewModel.Company;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using System;
+using System.Text;
 
-namespace BESMIK.SM.Controllers
+namespace BESMIK.SM.Areas.CompanyManager.Controllers
 {
-    [Authorize(Roles = "Site Yoneticisi")]
-    public class CompanyManagerController : Controller
+    [Area("CompanyManager")]
+    [Authorize(Roles = "Sirket Yoneticisi")]
+    public class PersonalController : Controller
     {
-        private HttpClient _httpClient;
+        private readonly HttpClient _httpClient;
         private IValidator<AppUserViewModel> _validator;
+        private static int companyId = 0;
 
-        public CompanyManagerController(HttpClient httpClient, IValidator<AppUserViewModel> validator)
+        public PersonalController(HttpClient httpClient, IValidator<AppUserViewModel> validator)
         {
             _httpClient = httpClient;
             _validator = validator;
         }
 
 
-        public async Task<IActionResult> CompanyManagerList()
+        public async Task<IActionResult> PersonalList()
         {
-            return View(await _httpClient.GetFromJsonAsync<List<AppUserViewModel>>("https://localhost:7136/api/CompanyManager/CompanyManagerList"));
+            var user = HttpContext.User.Identity.Name;
+
+            var request = await _httpClient.GetFromJsonAsync<AppUserViewModel>("https://localhost:7136/api/UserInfo/GetUserInfo/" + user);
+
+            return View(await _httpClient.GetFromJsonAsync<List<AppUserViewModel>>($"https://localhost:7136/api/PersonalAddList/PersonalList/{request.CompanyId}"));
         }
 
 
-        public async Task<IActionResult> CompanyManagerAdd()
+
+
+        public IActionResult PersonalAdd()
         {
             return View(new AppUserViewModel());
         }
@@ -38,8 +45,11 @@ namespace BESMIK.SM.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> CompanyManagerAdd(AppUserViewModel model)
+        public async Task<IActionResult> PersonalAdd(AppUserViewModel model)
         {
+            var user = HttpContext.User.Identity.Name;
+            var userResponse = await _httpClient.GetFromJsonAsync<AppUserViewModel>($"https://localhost:7136/api/UserInfo/GetUserInfo/{user}");
+            model.CompanyId = userResponse.CompanyId;
 
             try
             {
@@ -62,7 +72,7 @@ namespace BESMIK.SM.Controllers
                 if (model.Picture != null && model.Picture.FileName != model.Photo)
                 {
                     model.Photo = model.Picture.FileName;
-                    var konum = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/companyManager", model.Photo);
+                    var konum = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/personal", model.Photo);
 
 
 
@@ -81,15 +91,15 @@ namespace BESMIK.SM.Controllers
                 model.Picture = null;
                 model.IsActive = true;
 
-                var response = await _httpClient.PostAsJsonAsync("https://localhost:7136/api/CompanyManager/CompanyManagerAdd", model);
+                var response = await _httpClient.PostAsJsonAsync("https://localhost:7136/api/PersonalAddList/PersonalAdd", model);
 
                 if (response.IsSuccessStatusCode)
                 {
-                    return RedirectToAction("CompanyManagerList");
+                    return RedirectToAction("PersonalList");
                 }
                 else
                 {
-                    ModelState.AddModelError("ApiError", "Şirket Yöneticisi eklenemedi. Lütfen tekrar deneyin.");
+                    ModelState.AddModelError("ApiError", "Personel eklenemedi. Lütfen tekrar deneyin.");
                     return View(model);
 
                 }
@@ -108,28 +118,27 @@ namespace BESMIK.SM.Controllers
 
 
 
-
-        private async Task<byte[]> GetFileBytesAsync(IFormFile file)
+        [HttpGet("ValidationEmail")]
+        public async Task<IActionResult> ValidationEmail(string usermail, string token, string returnUrl)
         {
-            using (var memoryStream = new MemoryStream())
+            // API'den kullanıcıyı doğrulama isteği gönderin
+            var apiUrl = $"https://localhost:7136/api/PersonalAddList/ValidationEmail?usermail={usermail}&token={token}";
+
+            var response = await _httpClient.GetAsync(apiUrl);
+
+            if (response.IsSuccessStatusCode)
             {
-                await file.CopyToAsync(memoryStream);
-                return memoryStream.ToArray();
+                return Redirect(returnUrl);
+            }
+            else
+            {
+                var errorMessage = await response.Content.ReadAsStringAsync();
+                ModelState.AddModelError("ApiError", errorMessage);
+                return View("Error");
             }
         }
 
 
-
-
-
-        //Ajax ile company section doldurma
-        [HttpGet]
-        public async Task<IActionResult> GetCompanies()
-        {
-            //Şirket adlarını selectte eklemek için
-            var companies = await _httpClient.GetFromJsonAsync<List<CompanyViewModel>>("https://localhost:7136/api/CompanyManager/CompanyNameList");
-            return Json(companies);
-        }
 
 
 
@@ -145,6 +154,5 @@ namespace BESMIK.SM.Controllers
 
             return Json(departments);
         }
-
     }
 }
