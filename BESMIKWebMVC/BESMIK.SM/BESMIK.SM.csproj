@@ -7,11 +7,31 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Views\Home\BizeUlasin.cshtml" />
+    <Content Remove="Views\Home\blog-single.cshtml" />
+    <Content Remove="Views\Home\blog.cshtml" />
+    <Content Remove="Views\Home\Hizmetlerimiz.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\Home\Blog-Single.cshtml" />
+    <None Include="Views\Home\Blog.cshtml" />
+    <None Include="Views\Home\BizeUlasin.cshtml" />
+    <None Include="Views\Home\Hizmetlerimiz.cshtml" />
     <None Include="wwwroot\css\.DS_Store" />
     <None Include="wwwroot\fonts\.DS_Store" />
     <None Include="wwwroot\fonts\icomoon\.DS_Store" />
     <None Include="wwwroot\fonts\ionicons\css\.DS_Store" />
     <None Include="wwwroot\img\.DS_Store" />
+    <None Include="wwwroot\img\flaticon\svg\001-consultation.svg" />
+    <None Include="wwwroot\img\flaticon\svg\002-discussion.svg" />
+    <None Include="wwwroot\img\flaticon\svg\003-turnover.svg" />
+    <None Include="wwwroot\img\flaticon\svg\004-gear.svg" />
+    <None Include="wwwroot\img\flaticon\svg\005-conflict.svg" />
+    <None Include="wwwroot\img\flaticon\svg\006-meeting.svg" />
+    <None Include="wwwroot\img\flaticon\svg\007-brainstorming.svg" />
+    <None Include="wwwroot\img\flaticon\svg\008-brainstorming-1.svg" />
+    <None Include="wwwroot\img\flaticon\svg\009-brainstorming-2.svg" />
     <None Include="wwwroot\js\.DS_Store" />
     <None Include="wwwroot\js\site.js" />
     <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map" />
@@ -65,7 +85,6 @@
     <Folder Include="Areas\Personal\Models\" />
     <Folder Include="wwwroot\images\companyManager\" />
     <Folder Include="wwwroot\images\Spending\" />
-    <Folder Include="wwwroot\img\flaticon\" />
   </ItemGroup>
 
   <ItemGroup>
