@@ -4,7 +4,6 @@ using BESMIK.DTO;
 using BESMIK.Entities.Concrete;
 using BESMIK.ViewModel.Advance;
 using BESMIK.ViewModel.AppUser;
-using BESMIK.ViewModel.CompanyManager;
 using BESMIK.ViewModel.Permission;
 using BESMIK.ViewModel.Spending;
 using Microsoft.AspNetCore.Identity;
