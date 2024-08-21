@@ -3,6 +3,11 @@
 @{
     Layout = "_CompanyManagerLayout";
 }
+<style>
+    .row {
+        margin-bottom: 10px;
+    }
+</style>
 <div class="pagetitle">
     <h1>Profil</h1>
     <nav>
@@ -10,16 +15,19 @@
 
             <li class="breadcrumb-item"><a asp-area="CompanyManager" asp-controller="CompanyManagerHome" asp-action="Index">Anasayfa</a></li>
             <li class="breadcrumb-item">İzin İşlemleri</a></li>
-            <li class="breadcrumb-item active">İzin Onay @Model.AppUserId</li>
+            @* <li class="breadcrumb-item active">İzin Onay @Model.AppUserId</li> *@ 
+
+            @* personel idnin uygulama arayüzünde gözükmemesi gerekiyor sc *@
+            <li class="breadcrumb-item active">İzin Onay</li>
         </ol>
     </nav>
 </div>
 <section class="section profile">
-        <div class="row">
-            <div class="col-xl-12">
-                <div class="card">
-                    <div class="card-body pt-3">
-                        <div class="tab-content pt-2">
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-body pt-3">
+                    <div class="tab-content pt-2">
                         <div class="row mt-3">
                             <div class="col-lg-3 col-md-4 label ">Ad</div>
                             <div class="col-lg-9 col-md-8">@Model.AppUser.Name</div>
@@ -119,33 +127,33 @@
                             <div class="col-lg-3 col-md-4 label ">Telefon</div>
                             <div class="col-lg-9 col-md-8">@Model.AppUser.Phone</div>
                         </div>
-                            <div class="row">
-                                <div class="col-lg-3 col-md-4 label ">İzin Türü</div>
-                                <div class="col-lg-9 col-md-8">@Model.PermissionType</div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-3 col-md-4 label ">Başlangıç Tarihi</div>
-                                <div class="col-lg-9 col-md-8">@Model.PermissionStartDate</div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-3 col-md-4 label ">Bitiş Tarihi</div>
-                                <div class="col-lg-9 col-md-8">@Model.PermissionEndDate</div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-3 col-md-4 label ">İzin Gün Sayısı</div>
-                                <div class="col-lg-9 col-md-8">@Model.OffDaysNumbers</div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-3 col-md-4 label ">Talep Tarihi</div>
-                                <div class="col-lg-9 col-md-8">@Model.PermissionRequestDate</div>
-                            </div>
-                            <a asp-action="PermissionApprove" asp-controller="PermissionManager" asp-route-id="@Model.Id" class="btn btn-sm btn-warning" style="border-radius: 4px;">Talep Onayı</a>
-                            <a href="@Url.Action("PermissionListByCompanyId")">Listeye Dön.</a>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4 label ">İzin Türü</div>
+                            <div class="col-lg-9 col-md-8">@Model.PermissionType</div>
                         </div>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4 label ">Başlangıç Tarihi</div>
+                            <div class="col-lg-9 col-md-8">@Model.PermissionStartDate</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4 label ">Bitiş Tarihi</div>
+                            <div class="col-lg-9 col-md-8">@Model.PermissionEndDate</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4 label ">İzin Gün Sayısı</div>
+                            <div class="col-lg-9 col-md-8">@Model.OffDaysNumbers</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4 label ">Talep Tarihi</div>
+                            <div class="col-lg-9 col-md-8">@Model.PermissionRequestDate</div>
+                        </div>
+                        <a asp-action="PermissionApprove" asp-controller="PermissionManager" asp-route-id="@Model.Id" class="btn btn-sm btn-warning" style="border-radius: 4px; margin:10px 0;">Talep Onayı</a><br />
+                        <a href="@Url.Action("PermissionListByCompanyId")">Listeye Dön.</a>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </section>
 
