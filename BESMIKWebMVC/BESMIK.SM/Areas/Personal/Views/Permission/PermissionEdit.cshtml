@@ -9,7 +9,7 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a asp-area="Personal" asp-controller="PersonalHome" asp-action="Index">Anasayfa</a></li>
             <li class="breadcrumb-item">Personel İşlemleri</li>
-            <li class="breadcrumb-item active">İzin</li>
+            <li class="breadcrumb-item active">İzin Talebi Güncelle</li>
         </ol>
     </nav>
 </div>
@@ -28,7 +28,6 @@
                                 <div class="col-md-8 col-lg-9">
                                     <select name="PermissionType" class="form-select" id="permissionType">
                                         <option value="">Bir izin türü seçiniz</option>
-
                                     </select>
                                     <span asp-validation-for="PermissionType" class="form-text text-danger"></span>
                                 </div>
@@ -61,7 +60,7 @@
                             </div>
                             <input type="hidden" name="OffDaysNumbers" id="offDaysNumbers" value="0">
                             <div class="text-center">
-                                <button type="submit" class="btn btn-primary">İzin Talebi Oluştur</button>
+                                <button type="submit" class="btn btn-primary">İzin Talebi Güncelle</button>
                             </div>
                         </form>
                     </div>
@@ -75,7 +74,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function () {
-            İzin türlerini yükleme
+            // İzin türlerini yükleme
             $.get("@Url.Action("GetPermissionType", "Permission")", function (data) {
                 var select = $("#permissionType");
                 select.empty();
