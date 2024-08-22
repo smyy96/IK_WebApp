@@ -128,8 +128,13 @@ namespace BESMIK.API.Controllers
             if (user == null)
             {
                 return BadRequest("User not found.");
+
             }
-            var result = await _userManager.ResetPasswordAsync(user, model.Code, model.Password);
+
+            //var result = await _userManager.ResetPasswordAsync(user, model.Code, model.Password);
+
+            user.PasswordHash = _userManager.PasswordHasher.HashPassword(user, model.Password);
+            var result = await _userManager.UpdateAsync(user);
 
             if (result.Succeeded)
             {

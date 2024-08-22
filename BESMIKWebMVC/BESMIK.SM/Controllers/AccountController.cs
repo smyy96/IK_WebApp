@@ -182,7 +182,7 @@ namespace BESMIK.SM.Controllers
                     var callbackUrl = Url.Action(
                         "ResetPassword",        // Action Name
                         "Account",              // Controller Name
-                        new { code = code, email = model.Email },    // Route Values
+                        values: new { code = code, email = model.Email },    // Route Values
                         protocol: Request.Scheme);
 
 
