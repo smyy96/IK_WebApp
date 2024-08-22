@@ -34,6 +34,7 @@
                                 <th>İzin Bitiş Tarihi</th>
                                 <th>İzin Gün Sayısı</th>
                                 <th>İzin Durumu</th>
+                                <th>Talep Tarihi</th>
                                 <th>Cevaplanma Tarihi</th>
                                 <th>İşlemler</th>
                             </tr>
@@ -71,7 +72,7 @@
 
                                     </td>
 
-
+                                    <td>@item.PermissionRequestDate</td>
                                     <td>
                                         @if (item.PermissionStatus == PermissionStatus.OnayBekliyor)
                                         {
