@@ -63,9 +63,13 @@
                                         {
                                             <span class="badge bg-warning text-dark">İptal Edildi</span>
                                         }
+                                        else if (item.ApprovalStatus == AdvanceApprovalStatus.Odendi)
+                                        {
+                                            <span class="badge bg-success text-dark">Ödendi</span>
+                                        }
                                         else
                                         {
-                                            <span class="badge bg-light text-dark">Ödendi</span>
+                                            <span class="badge bg-light text-dark">Bilinmeyen Durum</span>
                                         }
 
 
