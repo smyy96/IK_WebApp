@@ -86,7 +86,6 @@
     <Folder Include="Areas\Personal\Data\" />
     <Folder Include="Areas\Personal\Models\" />
     <Folder Include="wwwroot\images\companyManager\" />
-    <Folder Include="wwwroot\images\Spending\" />
   </ItemGroup>
 
   <ItemGroup>
