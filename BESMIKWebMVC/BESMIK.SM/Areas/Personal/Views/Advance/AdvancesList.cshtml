@@ -27,13 +27,13 @@
                     <table class="table datatable">
                         <thead>
                             <tr>
+                                <th>Avans Talep Türü</th>
                                 <th>Avans Açıklaması</th>
+                                <th>Avans Miktarı</th>
+                                <th>Para Birimi</th>
                                 <th>Avans Talep Tarihi</th>
                                 <th>Avans Onay Durumu</th>
                                 <th>Avans Talebi Cevap Tarihi</th>
-                                <th>Avans Miktarı</th>
-                                <th>Para Birimi</th>
-                                <th>Avans Talep Türü</th>
                                 <th>İşlemler</th>
                             </tr>
                         </thead>
@@ -41,9 +41,35 @@
                             @foreach (var item in Model)
                             {
                                 <tr>
+                                    <td>@item.AdvanceType</td>
                                     <td>@item.Description</td>
+                                    <td>@item.Amount</td>
+                                    <td>@item.Currency</td>
                                     <td>@item.AdvanceRequestDate</td>
-                                    <td>@item.ApprovalStatus</td>
+                                    <td>
+                                        @if (item.ApprovalStatus == AdvanceApprovalStatus.OnayBekliyor)
+                                        {
+                                            <span class="badge bg-secondary text-dark">Cevap bekleniyor</span>
+                                        }
+                                        else if (item.ApprovalStatus == AdvanceApprovalStatus.Onaylandı)
+                                        {
+                                            <span class="badge bg-success text-light">Onaylandı</span>
+                                        }
+                                        else if (item.ApprovalStatus == AdvanceApprovalStatus.Reddedildi)
+                                        {
+                                            <span class="badge bg-danger text-light">Reddedildi</span>
+                                        }
+                                        else if (item.ApprovalStatus == AdvanceApprovalStatus.IptalEdildi)
+                                        {
+                                            <span class="badge bg-warning text-dark">İptal Edildi</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-light text-dark">Ödendi</span>
+                                        }
+
+
+                                    </td>
                                     <td>
                                         @if (item.ApprovalStatus == AdvanceApprovalStatus.OnayBekliyor)
                                         {
@@ -56,9 +82,6 @@
                                     </td>
 
 
-                                    <td>@item.Amount</td>
-                                    <td>@item.Currency</td>
-                                    <td>@item.AdvanceType</td>
                                    @*  <td>
                                         <div class="btn-group" role="group" style="display: flex; gap: 5px;">
                                             @if (item.ApprovalStatus == AdvanceApprovalStatus.OnayBekliyor)
