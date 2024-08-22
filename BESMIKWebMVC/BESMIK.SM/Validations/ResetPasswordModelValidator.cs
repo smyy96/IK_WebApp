@@ -19,7 +19,7 @@ namespace BESMIK.SM.Validations
 
             RuleFor(x => x.ConfirmPassword)
                 .NotEmpty().WithMessage("Lütfen şifrenizi doğrulayın.")
-                .Equal(x => x.Password).WithMessage("Şifre ve şifre tekrarı eşleşmiyor.");
+                .Equal(x => x.Password).WithMessage("Şifre tekrarı eşleşmiyor.");
         }
     }
 }

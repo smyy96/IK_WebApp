@@ -169,6 +169,7 @@ namespace BESMIK.SM.Controllers
                     var code = await response.Content.ReadAsStringAsync();
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
 
+
                     //var callbackUrl = Url.Page(
                     //    "/Account/ResetPassword",
                     //    pageHandler: null,
@@ -246,7 +247,6 @@ namespace BESMIK.SM.Controllers
                 {
                     Code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code)),
                     Email = email
-                    //Code = code
                 };
                 return View(model);
             }
@@ -256,6 +256,11 @@ namespace BESMIK.SM.Controllers
         public async Task<IActionResult> ResetPassword(ResetPasswordModel model)
         {
             ValidationResult resultValid = _validator.Validate(model);
+
+            if (!resultValid.IsValid)
+            {
+                resultValid.AddToModelState(ModelState, null); // Hataları ModelState'e ekiyor
+            }
 
             if (!ModelState.IsValid)
             {
@@ -282,15 +287,15 @@ namespace BESMIK.SM.Controllers
                 return RedirectToAction("ResetPasswordConfirmation");
             }
 
-            var errorResponse = await result.Content.ReadFromJsonAsync<ErrorResponse>();
+            //var errorResponse = await result.Content.ReadFromJsonAsync<ErrorResponse>();
 
-            if (errorResponse != null && errorResponse.Errors.Any())
-            {
-                foreach (var error in errorResponse.Errors)
-                {
-                    ModelState.AddModelError(string.Empty, error);
-                }
-            }
+            //if (errorResponse != null && errorResponse.Errors.Any())
+            //{
+            //    foreach (var error in errorResponse.Errors)
+            //    {
+            //        ModelState.AddModelError(string.Empty, error);
+            //    }
+            //}
 
             TempData["ErrorMessage"] = "Hata Oluştu Tekrar Deneyiniz.";
 

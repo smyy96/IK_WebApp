@@ -109,7 +109,6 @@ namespace BESMIK.API.Controllers
                 return NotFound("Kullanıcı bulunamadı.");
             }
             var code = await _userManager.GeneratePasswordResetTokenAsync(user);
-
             return Ok(code);
         }
 
