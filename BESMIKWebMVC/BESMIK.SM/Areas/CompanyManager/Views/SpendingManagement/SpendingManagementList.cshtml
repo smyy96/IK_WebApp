@@ -84,8 +84,25 @@
                                         }
                                     </td>
                                     <td>
-                                        <img class="thumbnail" height="60px" width="60px" src="/images/Spending/@item.SpendingFile" alt="Resim Yok" data-fullsize-url="/images/Spending/@item.SpendingFile" />
+                                        @if (!string.IsNullOrEmpty(item.SpendingFile))
+                                        {
+                                            if (item.SpendingFile.EndsWith(".pdf"))
+                                            {
+                                                <img class="thumbnail" height="60px" width="60px" src="/images/Spending/pdf-icon.png" alt="PDF" data-fullsize-url="/images/Spending/@item.SpendingFile" />
+                                            }
+                                            else
+                                            {
+                                                <img class="thumbnail" height="60px" width="60px" src="/images/Spending/@item.SpendingFile" alt="Resim Yok" data-fullsize-url="/images/Spending/@item.SpendingFile" />
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <span>Dosya yok</span>
+                                        }
                                     </td>
+                                    @* <td>
+                                        <img class="thumbnail" height="60px" width="60px" src="/images/Spending/@item.SpendingFile" alt="Resim Yok" data-fullsize-url="/images/Spending/@item.SpendingFile" />
+                                    </td> *@
                                     <td>
                                         <div class="btn-group" role="group" style="display: flex; gap: 5px;">
                                             @if (item.SpendingStatus == SpendingStatus.OnayBekliyor)
@@ -106,20 +123,21 @@
     </div>
 </section>
 
-<!-- Modal -->
 <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="imageModalLabel">Resim Görüntüleyici</h5>
+                <h5 class="modal-title" id="imageModalLabel">Dosya Görüntüleyici</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <img id="modalImage" src="" class="img-fluid" alt="Büyük Resim" />
+                <img id="modalImage" src="" class="img-fluid d-none" alt="Büyük Resim" />
+                <iframe id="modalPDF" src="" style="width:100%; height:600px;" class="d-none"></iframe>
             </div>
         </div>
     </div>
 </div>
+
 
 
 
@@ -129,26 +147,31 @@
     <script>
         $(document).ready(function () {
             $('.thumbnail').on('click', function () {
-                // `data-fullsize-url` özelliğini al
                 var fullSizeUrl = $(this).data('fullsize-url');
 
-                // URL'yi konsola yazdırarak doğru olup olmadığını kontrol et
-                console.log('Full size image URL:', fullSizeUrl);
-
-                // Eğer URL boşsa, konsola hata mesajı yazdır
                 if (!fullSizeUrl) {
                     console.error('URL bulunamadı. Lütfen HTML ve JavaScript kodlarını kontrol edin.');
                     return;
                 }
 
-                // Modal içindeki büyük resmin src özelliğini ayarla
-                $('#modalImage').attr('src', fullSizeUrl);
+                // Dosya uzantısını kontrol et
+                var isPDF = fullSizeUrl.endsWith(".pdf");
 
-                // Bootstrap modalı göster
+                if (isPDF) {
+                    // PDF ise, iframe göster, img gizle
+                    $('#modalImage').addClass('d-none');
+                    $('#modalPDF').removeClass('d-none').attr('src', fullSizeUrl);
+                } else {
+                    // Resim ise, img göster, iframe gizle
+                    $('#modalPDF').addClass('d-none');
+                    $('#modalImage').removeClass('d-none').attr('src', fullSizeUrl);
+                }
+
                 var imageModal = new bootstrap.Modal(document.getElementById('imageModal'));
                 imageModal.show();
             });
         });
+
     </script>
-    </script>
+        </script>
 }
