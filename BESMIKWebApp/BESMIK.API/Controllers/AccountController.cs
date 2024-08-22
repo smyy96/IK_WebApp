@@ -2,9 +2,15 @@
 using BESMIK.ViewModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.WebUtilities;
+using System.Net.Mail;
+using System.Net;
 using System.Security.Claims;
 using System.Text;
+using System.Text.Encodings.Web;
+using Microsoft.EntityFrameworkCore;
 
 namespace BESMIK.API.Controllers
 {
@@ -90,6 +96,49 @@ namespace BESMIK.API.Controllers
 
             return Ok();
         }
+
+
+
+
+        [HttpGet("ForgotPassword/{mail}")]
+        public async Task<IActionResult> ForgotPassword(string mail)
+        {
+            var user = await _userManager.Users.FirstOrDefaultAsync(u => u.PersonalEmail == mail);
+            if (user == null)
+            {
+                return NotFound("Kullanıcı bulunamadı.");
+            }
+            var code = await _userManager.GeneratePasswordResetTokenAsync(user);
+
+            return Ok(code);
+        }
+
+
+        [HttpGet("FindUser/{mail}")]
+        public async Task<IActionResult> FindUser(string mail)
+        {
+            var user = await _userManager.Users.FirstOrDefaultAsync(u => u.PersonalEmail == mail);
+            return Ok(user);
+        }
+
+
+        [HttpPost("ResetPassword")]
+        public async Task<IActionResult> ResetPassword(ResetPasswordModel model)
+        {
+            var user = await _userManager.Users.FirstOrDefaultAsync(u => u.PersonalEmail == model.Email);
+            if (user == null)
+            {
+                return BadRequest("User not found.");
+            }
+            var result = await _userManager.ResetPasswordAsync(user, model.Code, model.Password);
+
+            if (result.Succeeded)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result.Errors);
+        }
+
 
     }
 }
