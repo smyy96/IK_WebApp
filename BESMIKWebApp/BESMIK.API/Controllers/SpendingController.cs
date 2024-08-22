@@ -75,38 +75,6 @@ namespace BESMIK.API.Controllers
             return NoContent();
         }
 
-        //[HttpPut("Update/{id}")]
-        //public IActionResult Update(int id, [FromBody] SpendingViewModel model)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
-
-        //    var existingSpending = _spendingService.Get(id);
-        //    if (existingSpending == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    // Güncellenmesi gereken alanlar
-        //    if (model.SpendingType != null)
-        //        existingSpending.SpendingType = model.SpendingType;
-
-        //    if (model.Sum != null)
-        //        existingSpending.Sum = model.Sum;
-
-        //    if (model.SpendingCurrency != null)
-        //        existingSpending.SpendingCurrency = model.SpendingCurrency;
-
-        //    if (model.SpendingFile != null)
-        //        existingSpending.SpendingFile = model.SpendingFile;
-
-        //    _spendingService.Update(existingSpending);
-
-        //    return NoContent();
-        //}
-
 
 
         [HttpGet("GetSpending/{id}")]
@@ -115,11 +83,11 @@ namespace BESMIK.API.Controllers
             var spending = _spendingService.Get(id);
 
             if (spending == null)
-                return NotFound("Avans bulunamadı.");
+                return NotFound("AHarcama bulunamadı.");
 
             if (spending.SpendingStatus!= SpendingStatus.OnayBekliyor)
             {
-                return StatusCode(403, "Avans düzenlenemez çünkü Avans talebi cevaplanmış/onay bekliyor durumunda değil.");
+                return StatusCode(403, "Harcama düzenlenemez çünkü harcama talebi cevaplanmış/onay bekliyor durumunda değil.");
             }
 
             return Ok(spending);

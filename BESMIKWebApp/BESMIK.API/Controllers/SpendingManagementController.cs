@@ -118,34 +118,5 @@ namespace BESMIK.API.Controllers
             return Ok(viewModel);
         }
 
-
-
-
-        //[HttpPost("{id}/update")]
-        //public async Task<ActionResult> UpdateSpendingStatus(int id, [FromBody] SpendingUpdateModel updateModel)
-        //{
-        //    if (id != updateModel.Id)
-        //    {
-        //        return BadRequest();
-        //    }
-
-        //    var existingSpending = _spendingService.Get(id);
-        //    if (existingSpending == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    existingSpending.SpendingStatus = updateModel.SpendingStatus;
-        //    existingSpending.SpendingResponseDate = DateOnly.FromDateTime(DateTime.UtcNow);
-
-        //    var result = _spendingService.Update(existingSpending);
-
-        //    if (result > 0)
-        //    {
-        //        return NoContent();
-        //    }
-
-        //    return StatusCode(500, "A problem happened while handling your request.");
-        //}
     }
 }
