@@ -142,11 +142,18 @@
                         <label>Dosya</label>
                         @if (!string.IsNullOrEmpty(Model.SpendingFile))
                         {
-                            <a href="@Model.SpendingFile" target="_blank">Dosyayı Görüntüle</a>
+                            if (Model.SpendingFile.EndsWith(".pdf"))
+                            {
+                                <img class="thumbnail" height="60px" width="60px" src="/images/Spending/pdf-icon.png" alt="PDF" data-fullsize-url="/images/Spending/@Model.SpendingFile" />
+                            }
+                            else
+                            {
+                                <img class="thumbnail" height="60px" width="60px" src="/images/Spending/@Model.SpendingFile" alt="Resim Yok" data-fullsize-url="/images/Spending/@Model.SpendingFile" />
+                            }
                         }
                         else
                         {
-                            <p>Dosya mevcut değil.</p>
+                            <span>Dosya yok</span>
                         }
                     </div>
 
@@ -158,3 +165,159 @@
     </div>
 </div>
 </section>
+
+
+<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="imageModalLabel">Dosya Görüntüleyici</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img id="modalImage" src="" class="img-fluid d-none" alt="Büyük Resim" />
+                <iframe id="modalPDF" src="" style="width:100%; height:600px;" class="d-none"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.thumbnail').on('click', function () {
+                var fullSizeUrl = $(this).data('fullsize-url');
+
+                if (!fullSizeUrl) {
+                    console.error('URL bulunamadı. Lütfen HTML ve JavaScript kodlarını kontrol edin.');
+                    return;
+                }
+
+                // Dosya uzantısını kontrol et
+                var isPDF = fullSizeUrl.endsWith(".pdf");
+
+                if (isPDF) {
+                    // PDF ise, iframe göster, img gizle
+                    $('#modalImage').addClass('d-none');
+                    $('#modalPDF').removeClass('d-none').attr('src', fullSizeUrl);
+                } else {
+                    // Resim ise, img göster, iframe gizle
+                    $('#modalPDF').addClass('d-none');
+                    $('#modalImage').removeClass('d-none').attr('src', fullSizeUrl);
+                }
+
+                var imageModal = new bootstrap.Modal(document.getElementById('imageModal'));
+                imageModal.show();
+            });
+        });
+
+    </script>
+}
+
+<@* div class="container">
+    <form asp-controller="SpendingManagement" asp-action="SpendingManagementDetails" method="post">
+ 
+        <input type="hidden" asp-for="Id" />
+
+        <div class="form-group">
+            <label>Ad</label>
+            <input type="text" class="form-control" value="@Model.AppUser.Name" readonly />
+        </div>
+
+  
+        <div class="form-group">
+            <label>Soyad</label>
+            <input type="text" class="form-control" value="@Model.AppUser.Surname" readonly />
+        </div>
+
+        <div class="form-group">
+            <label>Email</label>
+            <input type="text" class="form-control" value="@Model.AppUser.Email" readonly />
+        </div>
+
+        <div class="form-group">
+            <label>Departman</label>
+            <input type="text" class="form-control" value="@Model.AppUser.Department" readonly />
+        </div>
+
+ 
+        <div class="form-group">
+            <label>Harcama Türü</label>
+            <input type="text" class="form-control" value="@Model.SpendingType" readonly />
+        </div>
+
+  
+        <div class="form-group">
+            <label>Tutar</label>
+            <input type="text" class="form-control" value="@Model.Sum" readonly />
+        </div>
+
+
+        <div class="form-group">
+            <label>Para Birimi</label>
+            <input type="text" class="form-control" value="@Model.SpendingCurrency" readonly />
+        </div>
+
+       
+        <div class="form-group">
+            <label>Talep Tarihi</label>
+            <input type="text" class="form-control" value="@Model.SpendingRequestDate.ToShortDateString()" readonly />
+        </div>
+
+
+
+        <div class="form-group">
+            <label for="spendingStatus" class="col-md-4 col-lg-3 col-form-label">Onay Türü</label>
+            <br>
+            <div class="col-md-8 col-lg-9">
+                <select name="SpendingStatus" class="form-select">
+                    <option value="">Bir onay türü seçiniz</option>
+                </select>
+                <span asp-validation-for="SpendingStatus" class="form-text text-danger"></span>
+            </div>
+        </div>
+
+       
+        <div class="form-group">
+            <label>Dosya</label>
+            @if (!string.IsNullOrEmpty(Model.SpendingFile))
+            {
+                <a href="@Model.SpendingFile" target="_blank">Dosyayı Görüntüle</a>
+            }
+            else
+            {
+                <p>Dosya mevcut değil.</p>
+            }
+        </div>
+
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Kaydet</button>
+        </div>
+    </form>
+</div>
+
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            $.get("@Url.Action("GetSpendingStatus", "SpendingManagement")", function (data) {
+                var select = $("select[name='SpendingStatus']");
+                select.empty();
+                select.append('<option value="">Bir onay türü seçiniz</option>');
+                $.each(data, function (index, item) {
+                    select.append($('<option>', {
+                        value: item.value,
+                        text: item.text
+                    }));
+                });
+            });
+
+        });
+    </script>
+}
+ *@

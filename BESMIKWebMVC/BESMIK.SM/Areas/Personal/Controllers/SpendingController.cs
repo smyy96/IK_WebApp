@@ -56,15 +56,13 @@ namespace BESMIK.SM.Areas.Personal.Controllers
         {
             ValidationResult result = _validator.Validate(model);
 
+            // SpendingFile alanını doğrulama dışında bırakın
             ModelState.Remove("SpendingFile");
-
 
             if (!ModelState.IsValid)
             {
                 ModelState.Clear();
-
                 result.AddToModelState(ModelState);
-
                 return View(model);
             }
 
@@ -72,20 +70,43 @@ namespace BESMIK.SM.Areas.Personal.Controllers
             {
                 if (model.Picture != null)
                 {
-                    // Dosyanın adını model'in SpendingFile alanına atayalım
-                    model.SpendingFile = model.Picture.FileName;
+                    // Dosya uzantısını kontrol edin
+                    var extension = Path.GetExtension(model.Picture.FileName);
+                    var isImage = extension.Equals(".jpg", StringComparison.OrdinalIgnoreCase) ||
+                                  extension.Equals(".jpeg", StringComparison.OrdinalIgnoreCase) ||
+                                  extension.Equals(".png", StringComparison.OrdinalIgnoreCase) ||
+                                  extension.Equals(".gif", StringComparison.OrdinalIgnoreCase);
+                    var isPdf = extension.Equals(".pdf", StringComparison.OrdinalIgnoreCase);
 
-                    // Dosyanın kaydedileceği konumu belirleyelim
-                    var konum = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/Spending", model.SpendingFile);
+                    if (isImage || isPdf)
+                    {
+                        // Dosyanın adını SpendingFile alanına atayın
+                        model.SpendingFile = $"{Guid.NewGuid()}{extension}"; // Benzersiz bir ad oluşturun
 
-                    // Kaydetmek için bir akış ortamı oluşturalım
-                    var akisOrtami = new FileStream(konum, FileMode.Create);
+                        // Dosyanın kaydedileceği klasörü seçin
+                        var folder = isImage ? "images/Spending" : "images/Spending";
+                        var directory = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", folder);
 
-                    // Resmi kaydet
-                    model.Picture.CopyToAsync(akisOrtami);
+                        // Klasör yoksa oluşturun
+                        if (!Directory.Exists(directory))
+                        {
+                            Directory.CreateDirectory(directory);
+                        }
 
-                    akisOrtami.Close();
+                        // Dosyanın tam yolu
+                        var filePath = Path.Combine(directory, model.SpendingFile);
 
+                        // Asenkron olarak dosyayı kaydedin
+                        using (var stream = new FileStream(filePath, FileMode.Create))
+                        {
+                            await model.Picture.CopyToAsync(stream);
+                        }
+                    }
+                    else
+                    {
+                        ModelState.AddModelError(string.Empty, "Sadece resim ve PDF dosyaları yüklenebilir.");
+                        return View(model);
+                    }
                 }
 
                 model.SpendingStatus = SpendingStatus.OnayBekliyor;
@@ -96,8 +117,9 @@ namespace BESMIK.SM.Areas.Personal.Controllers
                 string user = HttpContext.User.Identity.Name;
 
                 var request = await _httpClient.GetFromJsonAsync<AppUserViewModel>("https://localhost:7136/api/UserInfo/GetUserInfo/" + user);
-                model.AppUserId = (int) request.Id;
-                // API'ye POST isteği gönder
+                model.AppUserId = (int)request.Id;
+
+                // API'ye POST isteği gönderin
                 var response = await _httpClient.PostAsJsonAsync<SpendingViewModel>("https://localhost:7136/api/Spending/SpendingAdd", model);
 
                 if (response.IsSuccessStatusCode)
@@ -115,8 +137,74 @@ namespace BESMIK.SM.Areas.Personal.Controllers
                 ModelState.AddModelError(string.Empty, "API çağrısında bir hata oluştu.");
                 return View(model);
             }
-
         }
+
+        //[HttpPost]
+        //public async Task<IActionResult> SpendingAdd(SpendingViewModel model)
+        //{
+        //    ValidationResult result = _validator.Validate(model);
+
+        //    ModelState.Remove("SpendingFile");
+
+
+        //    if (!ModelState.IsValid)
+        //    {
+        //        ModelState.Clear();
+
+        //        result.AddToModelState(ModelState);
+
+        //        return View(model);
+        //    }
+
+        //    try
+        //    {
+        //        if (model.Picture != null)
+        //        {
+        //            // Dosyanın adını model'in SpendingFile alanına atayalım
+        //            model.SpendingFile = model.Picture.FileName;
+
+        //            // Dosyanın kaydedileceği konumu belirleyelim
+        //            var konum = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/Spending", model.SpendingFile);
+
+        //            // Kaydetmek için bir akış ortamı oluşturalım
+        //            var akisOrtami = new FileStream(konum, FileMode.Create);
+
+        //            // Resmi kaydet
+        //            model.Picture.CopyToAsync(akisOrtami);
+
+        //            akisOrtami.Close();
+
+        //        }
+
+        //        model.SpendingStatus = SpendingStatus.OnayBekliyor;
+        //        model.SpendingRequestDate = DateOnly.FromDateTime(DateTime.UtcNow);
+        //        model.SpendingResponseDate = null;
+
+        //        model.Picture = null;
+        //        string user = HttpContext.User.Identity.Name;
+
+        //        var request = await _httpClient.GetFromJsonAsync<AppUserViewModel>("https://localhost:7136/api/UserInfo/GetUserInfo/" + user);
+        //        model.AppUserId = (int) request.Id;
+        //        // API'ye POST isteği gönder
+        //        var response = await _httpClient.PostAsJsonAsync<SpendingViewModel>("https://localhost:7136/api/Spending/SpendingAdd", model);
+
+        //        if (response.IsSuccessStatusCode)
+        //        {
+        //            return RedirectToAction("SpendingList");
+        //        }
+        //        else
+        //        {
+        //            ModelState.AddModelError(string.Empty, "Oluşturma işlemi başarısız oldu.");
+        //            return View(model);
+        //        }
+        //    }
+        //    catch (HttpRequestException)
+        //    {
+        //        ModelState.AddModelError(string.Empty, "API çağrısında bir hata oluştu.");
+        //        return View(model);
+        //    }
+
+        //}
 
 
         [HttpPost]
