@@ -292,6 +292,8 @@ namespace BESMIK.SM.Controllers
                 }
             }
 
+            TempData["ErrorMessage"] = "Hata Oluştu Tekrar Deneyiniz.";
+
             return View(model);
         }
 
