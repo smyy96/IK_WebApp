@@ -26,6 +26,44 @@ namespace BESMIK.SM.Areas.CompanyManager.Controllers
             _validator = validator;
         }
 
+        public async Task<IActionResult> Details(int id)
+        {
+            try
+            {
+                var response = await _httpClient.GetAsync($"https://localhost:7136/api/Advance/GetAdvance/{id}");
+
+                if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
+                {
+                    TempData["ErrorMessage"] = "Avans bulunamadı.";
+                    return RedirectToAction("AdvancesList");
+                }
+
+                if (response.StatusCode == System.Net.HttpStatusCode.Forbidden)
+                {
+                    TempData["ErrorMessage"] = "Avans talebi onay bekliyor değilse düzenlenemez.";
+                    return RedirectToAction("AdvancesList");
+                }
+                response.EnsureSuccessStatusCode();
+
+
+                var advance = await response.Content.ReadFromJsonAsync<AdvanceViewModel>();
+                var appUserId = advance.AppUserId;
+                var userInfo = await _httpClient.GetFromJsonAsync<AppUserViewModel>($"https://localhost:7136/api/Advance/GetUser/{appUserId}");
+
+                advance.AppUser = userInfo;
+
+                return View(advance);
+            }
+            catch (HttpRequestException ex)
+            {
+
+                TempData["ErrorMessage"] = "API çağrısında bir hata oluştu. " + ex.Message;
+                return RedirectToAction("AdvancesList");
+            }
+
+        }
+
+
         public async Task<IActionResult> AdvancesList()
         {
             var user = HttpContext.User.Identity.Name;
