@@ -83,7 +83,7 @@ namespace BESMIK.API.Controllers
             var spending = _spendingService.Get(id);
 
             if (spending == null)
-                return NotFound("AHarcama bulunamadı.");
+                return NotFound("Harcama bulunamadı.");
 
             if (spending.SpendingStatus!= SpendingStatus.OnayBekliyor)
             {
