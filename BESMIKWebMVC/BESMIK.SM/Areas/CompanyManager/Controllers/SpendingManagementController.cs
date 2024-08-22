@@ -116,8 +116,6 @@ namespace BESMIK.SM.Areas.CompanyManager.Controllers
 
         }
 
-
-
         [HttpGet]
         public IActionResult GetSpendingStatus()
         {
