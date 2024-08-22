@@ -116,6 +116,74 @@ namespace BESMIK.SM.Areas.CompanyManager.Controllers
 
         }
 
+
+        [HttpGet]
+        public async Task<IActionResult> SpendingApprove(int id)
+        {
+            try
+            {
+                var response = await _httpClient.GetAsync($"https://localhost:7136/api/Spending/GetSpending/{id}");
+
+                if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
+                {
+                    TempData["ErrorMessage"] = "Harcama bulunamadı.";
+                    return RedirectToAction("SpendingManagementList");
+                }
+
+                if (response.StatusCode == System.Net.HttpStatusCode.Forbidden)
+                {
+                    TempData["ErrorMessage"] = "Harcama talebi onay bekliyor değilse düzenlenemez.";
+                    return RedirectToAction("SpendingManagementList");
+                }
+                response.EnsureSuccessStatusCode();
+
+
+                var spending = await response.Content.ReadFromJsonAsync<SpendingViewModel>();
+
+                return View(spending);
+            }
+            catch (HttpRequestException ex)
+            {
+
+                TempData["ErrorMessage"] = "API çağrısında bir hata oluştu. " + ex.Message;
+                return RedirectToAction("SpendingManagementList");
+            }
+        }
+        [HttpPost]
+        public async Task<IActionResult> SpendingApprove(SpendingViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+
+            var spendingID = model.Id;
+            var result = await _httpClient.GetAsync($"https://localhost:7136/api/Spending/GetSpending/{spendingID}");
+            var spending = await result.Content.ReadFromJsonAsync<SpendingViewModel>();
+
+            model.AppUser = spending.AppUser;
+            model.AppUserId = spending.AppUserId;
+            model.SpendingType = spending.SpendingType;
+            model.Sum = spending.Sum;
+            model.SpendingCurrency = spending.SpendingCurrency;
+            model.SpendingRequestDate = spending.SpendingRequestDate;
+            model.SpendingResponseDate = DateOnly.FromDateTime(DateTime.UtcNow);
+            model.SpendingFile = spending.SpendingFile;
+
+            var response = await _httpClient.PutAsJsonAsync($"https://localhost:7136/api/SpendingManagement/EditSpending/{model.Id}", model);
+
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("SpendingManagementList");
+            }
+
+            ModelState.AddModelError("", "Harcama güncelleme işlemi başarısızdır");
+
+            return View(model);
+        }
+
+
         [HttpGet]
         public IActionResult GetSpendingStatus()
         {
@@ -127,36 +195,6 @@ namespace BESMIK.SM.Areas.CompanyManager.Controllers
             return Json(spendingStatus);
         }
 
-
-        //[HttpGet("/Spending/Details/{id}")]
-        //public async Task<IActionResult> SpendingManagementDetails(int id)
-        //{
-        //    var response = await _httpClient.GetAsync("https://localhost:7136/api/SpendingManagement/"+ id);
-
-        //    if (!response.IsSuccessStatusCode)
-        //    {
-        //        return NotFound();
-        //    }
-
-
-        //    var responseData = await response.Content.ReadAsStringAsync();
-        //    var spending = JsonConvert.DeserializeObject<SpendingViewModel>(responseData);
-
-
-        //    //var appUserId = spending.AppUserId;
-        //    //var userInfo = await _httpClient.GetFromJsonAsync<AppUserViewModel>($"https://localhost:7136/api/Spending/GetUser/{appUserId}");
-        //    //spending.AppUser = userInfo;
-
-
-        //    if (spending == null || spending.AppUser == null)
-        //    {
-        //        return NotFound(); 
-        //    }
-
-
-
-        //    return View(spending);
-        //}
 
 
     }
