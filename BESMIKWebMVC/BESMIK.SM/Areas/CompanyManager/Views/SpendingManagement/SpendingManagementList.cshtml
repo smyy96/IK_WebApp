@@ -47,8 +47,6 @@
                                     <td>@item.Sum</td>
                                     <td>@item.SpendingCurrency</td>
                                     <td>@item.SpendingRequestDate</td>
-
-
                                     <td>
                                         @if (item.SpendingStatus == SpendingStatus.OnayBekliyor)
                                         {
@@ -66,12 +64,14 @@
                                         {
                                             <span class="badge bg-warning text-dark">İptal Edildi</span>
                                         }
+                                        else if (item.SpendingStatus == SpendingStatus.Odendi)
+                                        {
+                                            <span class="badge bg-success text-dark">Odendi</span>
+                                        }
                                         else
                                         {
                                             <span class="badge bg-light text-dark">Bilinmeyen Durum</span>
                                         }
-
-
                                     </td>
                                     <td>
                                         @if (item.SpendingStatus == SpendingStatus.OnayBekliyor)
@@ -84,7 +84,7 @@
                                         }
                                     </td>
                                     <td>
-                                        <img height="60px" width="60px" src="~/images/Spending/@item.SpendingFile" alt="Resim Yok" />
+                                        <img class="thumbnail" height="60px" width="60px" src="/images/Spending/@item.SpendingFile" alt="Resim Yok" data-fullsize-url="/images/Spending/@item.SpendingFile" />
                                     </td>
                                     <td>
                                         <div class="btn-group" role="group" style="display: flex; gap: 5px;">
@@ -100,16 +100,55 @@
                             }
                         </tbody>
                     </table>
-
                 </div>
             </div>
         </div>
     </div>
 </section>
 
+<!-- Modal -->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="imageModalLabel">Resim Görüntüleyici</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img id="modalImage" src="" class="img-fluid" alt="Büyük Resim" />
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 @section Scripts {
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.thumbnail').on('click', function () {
+                // `data-fullsize-url` özelliğini al
+                var fullSizeUrl = $(this).data('fullsize-url');
 
+                // URL'yi konsola yazdırarak doğru olup olmadığını kontrol et
+                console.log('Full size image URL:', fullSizeUrl);
+
+                // Eğer URL boşsa, konsola hata mesajı yazdır
+                if (!fullSizeUrl) {
+                    console.error('URL bulunamadı. Lütfen HTML ve JavaScript kodlarını kontrol edin.');
+                    return;
+                }
+
+                // Modal içindeki büyük resmin src özelliğini ayarla
+                $('#modalImage').attr('src', fullSizeUrl);
+
+                // Bootstrap modalı göster
+                var imageModal = new bootstrap.Modal(document.getElementById('imageModal'));
+                imageModal.show();
+            });
+        });
+    </script>
+    </script>
 }
