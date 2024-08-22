@@ -1,0 +1,163 @@
+﻿@using BESMIK.ViewModel.Advance
+@model AdvanceViewModel
+@{
+    Layout = "_CompanyManagerLayout";
+}
+<style>
+    .row {
+        margin-bottom: 10px;
+    }
+</style>
+<div class="pagetitle">
+    <h1>Profil</h1>
+    <nav>
+        <ol class="breadcrumb">
+
+            <li class="breadcrumb-item"><a asp-area="CompanyManager" asp-controller="CompanyManagerHome" asp-action="Index">Anasayfa</a></li>
+            <li class="breadcrumb-item">Avans İşlemleri</a></li>
+            @* <li class="breadcrumb-item active">İzin Onay @Model.AppUserId</li> *@
+
+            @* personel idnin uygulama arayüzünde gözükmemesi gerekiyor sc *@
+            <li class="breadcrumb-item active">Avans Onay</li>
+        </ol>
+    </nav>
+</div>
+<section class="section profile">
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-body pt-3">
+                    <div class="tab-content pt-2">
+                        <div class="row mt-3">
+                            <div class="col-lg-3 col-md-4 label ">Ad</div>
+                            <div class="col-lg-9 col-md-8">@Model.AppUser.Name</div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4 label ">İkinci Ad</div>
+                            <div class="col-lg-9 col-md-8">
+                                @if (Model.AppUser.SecondName == null)
+                                {
+                                    <span>-</span>
+                                }
+                                else
+                                {
+                                    <span>@Model.AppUser.SecondName</span>
+                                }
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4 label ">Soyad</div>
+                            <div class="col-lg-9 col-md-8">@Model.AppUser.Surname</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4 label ">İkinci Soyad</div>
+                            <div class="col-lg-9 col-md-8">
+                                @if (Model.AppUser.SecondSurname == null)
+                                {
+                                    <span>-</span>
+                                }
+                                else
+                                {
+                                    <span>@Model.AppUser.SecondSurname</span>
+                                }
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4 label ">Doğum Tarihi</div>
+                            <div class="col-lg-9 col-md-8">@Model.AppUser.BirthDate</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4 label ">Doğum Yeri</div>
+                            <div class="col-lg-9 col-md-8">@Model.AppUser.BirthPlace</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4 label ">TC</div>
+                            <div class="col-lg-9 col-md-8">@Model.AppUser.Tc</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4 label ">İşe Giriş Tarihi</div>
+                            <div class="col-lg-9 col-md-8">@Model.AppUser.WorkStartDate</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4 label ">İşten Ayrılma Tarihi</div>
+                            <div class="col-lg-9 col-md-8">
+                                @if (Model.AppUser.WorkEndDate == null)
+                                {
+                                    <span>Halen Çalışmakta</span>
+                                }
+                                else
+                                {
+                                    <span>@Model.AppUser.WorkEndDate.Value.ToString("dd MMMM yyyy")</span>
+                                }
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4 label ">Durumu</div>
+                            <div class="col-lg-9 col-md-8">
+                                @if (Model.AppUser.IsActive)
+                                {
+                                    <span class="badge bg-success">Aktif</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-danger">Pasif</span>
+                                }
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4 label ">Meslek</div>
+                            <div class="col-lg-9 col-md-8">@Model.AppUser.Job</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4 label ">Departman</div>
+                            <div class="col-lg-9 col-md-8">@Model.AppUser.Department.ToString()</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4 label ">Email</div>
+                            <div class="col-lg-9 col-md-8">@Model.AppUser.Email</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4 label ">Adres</div>
+                            <div class="col-lg-9 col-md-8">@Model.AppUser.Address</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4 label ">Telefon</div>
+                            <div class="col-lg-9 col-md-8">@Model.AppUser.Phone</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4 label ">Avans Türü</div>
+                            <div class="col-lg-9 col-md-8">@Model.AdvanceType</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4 label ">Avans Talep Tarihi</div>
+                            <div class="col-lg-9 col-md-8">@Model.AdvanceRequestDate</div>
+                        </div>
+                        @* <div class="row">
+                            <div class="col-lg-3 col-md-4 label ">Talep Cevap Tarihi</div>
+                            <div class="col-lg-9 col-md-8">@Model.AdvanceResponseDate</div>
+                        </div> *@
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4 label ">Avans Miktarı</div>
+                            <div class="col-lg-9 col-md-8">@Model.Amount</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4 label ">Avans Para Birimi</div>
+                            <div class="col-lg-9 col-md-8">@Model.Currency</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4 label ">Avans Açıklaması</div>
+                            <div class="col-lg-9 col-md-8">@Model.Description</div>
+                        </div>
+                        <a asp-action="AdvanceEdit" asp-controller="AdvanceManagement" asp-route-id="@Model.Id" class="btn btn-sm btn-warning" style="border-radius: 4px; margin:10px 0;">Avans Talebine Cevap Ver</a><br />
+                        <a href="@Url.Action("AdvancesList")">Listeye geri dön</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+
