@@ -20,16 +20,19 @@ namespace BESMIK.SM.Controllers
 
         public IActionResult Index()
         {
+            ViewData["Title"] = "Anasayfa";
             return View();
         }     
 
         public IActionResult BizeUlasin()
         {
+            ViewData["Title"] = "Bize Ulaþýn";
             return View();
         }     
 
         public IActionResult Blog()
         {
+            ViewData["Title"] = "Blog";
             return View();
         }    
         
@@ -40,11 +43,13 @@ namespace BESMIK.SM.Controllers
         
         public IActionResult Hakkimizda()
         {
+            ViewData["Title"] = "Hakkýmýzda";
             return View();
         }     
 
         public IActionResult Hizmetlerimiz()
         {
+            ViewData["Title"] = "Hizmetlerimiz";
             return View();
         }        
 

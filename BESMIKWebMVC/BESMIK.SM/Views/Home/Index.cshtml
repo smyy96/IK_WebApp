@@ -2,8 +2,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>BESMIK &mdash;</title>
+    <title>BESMIK &mdash; @ViewData["Title"]</title>
     <link rel="stylesheet" href="~/css/style1.css">
+    <!-- Favicons -->
+    <link href="..//img/pngicon.png" rel="icon">
+    <link href="..//img/apple-touch-icon.png" rel="apple-touch-icon">
+
 </head>
 <body>
 
@@ -27,7 +31,7 @@
 
                         <ul class="sf-menu templateux-menu d-none d-md-block">
                             <li class="active">
-                                <a href="#Index" class="anim1sition-link">Anasayfa</a>
+                                <a href="" @Url.Action("Home", "Index")" class="anim1sition-link">Anasayfa</a>
                             </li>
                             <li><a href="#Hakkimizda" class="anim1sition-link">Hakkýmýzda</a></li>
                             <li>
@@ -56,280 +60,285 @@
                             <li><a href="#BizeUlasin" class="anim1sition-link">Bize Ulaþýn</a></li>
                             <li><a href="@Url.Action("Login", "Account")">Giriþ Yap</a></li>
 
-            </ul> <!-- .templateux-menu -->
+                        </ul> <!-- .templateux-menu -->
 
-          </nav> <!-- .site-nav -->
-          
+                    </nav> <!-- .site-nav -->
 
-        </div> <!-- .row -->
-      </div> <!-- .container -->
-    </header> <!-- .templateux-navba -->
+
+                </div> <!-- .row -->
+            </div> <!-- .container -->
+        </header> <!-- .templateux-navba -->
 
         <div class="templateux-cover" style="background-image: url(/img/hero_1.jpg);">
-      <div class="container">
-        <div class="row align-items-lg-center">
+            <div class="container">
+                <div class="row align-items-lg-center">
 
-          <div class="col-lg-6 order-lg-1">
-            <h1 class="heading mb-3 text-white" data-aos="fade-up">Ýnsan Kaynaklarýnda <strong>Sizin Ortaðýnýz</strong></h1>
+                    <div class="col-lg-6 order-lg-1">
+                        <h1 class="heading mb-3 text-white" data-aos="fade-up">Ýnsan Kaynaklarýnda <strong>Sizin Ortaðýnýz</strong></h1>
                         <p class="lead mb-5 text-white" data-aos="fade-up" data-aos-delay="100">
                             Þirketinizin insan kaynaklarý ihtiyaçlarýný en iyi þekilde karþýlamak için buradayýz.
                         </p>
-            <p data-aos="fade-up" data-aos-delay="200"><a href="#" class="btn btn-primary py-3 px-4 mr-3">Hemen baþla</a> <a href="#" class="text-white">Ayrýntýlý Bilgi</a></p>
-          </div>
-          
-        </div>
-      </div>
-    </div> <!-- .templateux-cover -->
+                                                @*
+                        <p data-aos="fade-up" data-aos-delay="200">
+                        <a href="#BizeUlasin" class="btn btn-primary">Hemen Baþla</a>
+                        <a href="#" class="text-white">Ayrýntýlý Bilgi</a>
+                        </p> *@
+                    </div>
 
-    <div class="templateux-section pt-0 pb-0">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12 templateux-overlap">
-            <div class="row">
-              <div class="col-md-4" data-aos="fade-up" data-aos-delay="600">
-                <div class="media block-icon-1 d-block text-left">
-                  <div class="icon mb-3">
+                </div>
+            </div>
+        </div> <!-- .templateux-cover -->
+
+        <div class="templateux-section pt-0 pb-0">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 templateux-overlap">
+                        <div class="row">
+                            <div class="col-md-4" data-aos="fade-up" data-aos-delay="600">
+                                <div class="media block-icon-1 d-block text-left">
+                                    <div class="icon mb-3">
                                         <img src="/img/flaticon/svg/001-consultation.svg" alt="Image" class="img-fluid">
-                  </div>
-                  <div class="media-body">
-                    <h3 class="h5 mb-4">Þirketlerle Ýþbirliði</h3>
+                                    </div>
+                                    <div class="media-body">
+                                        <h3 class="h5 mb-4">Þirketlerle Ýþbirliði</h3>
                                         <p>
                                             Ýnsan kaynaklarý çözümlerimizle þirketlerin verimliliðini artýrýyoruz.
                                         </p>
-                    <p><a href="#">Ayrýntýlý Bilgi</a></p>
-                  </div>
-                </div> <!-- .block-icon-1 -->
-              </div>
-              <div class="col-md-4" data-aos="fade-up" data-aos-delay="700">
-                <div class="media block-icon-1 d-block text-left">
-                  <div class="icon mb-3">
+                                        <p><a href="#">Ayrýntýlý Bilgi</a></p>
+                                    </div>
+                                </div> <!-- .block-icon-1 -->
+                            </div>
+                            <div class="col-md-4" data-aos="fade-up" data-aos-delay="700">
+                                <div class="media block-icon-1 d-block text-left">
+                                    <div class="icon mb-3">
                                         <img src="/img/flaticon/svg/002-discussion.svg" alt="Image" class="img-fluid">
-                  </div>
-                  <div class="media-body">
-                    <h3 class="h5 mb-4">Stratejik Ortaklar</h3>
+                                    </div>
+                                    <div class="media-body">
+                                        <h3 class="h5 mb-4">Stratejik Ortaklar</h3>
                                         <p>
                                             Ýnsan kaynaklarý stratejilerimizle uzun vadeli iþbirlikleri kuruyoruz.
                                         </p>
-                    <p><a href="#">Ayrýntýlý Bilgi</a></p>
-                  </div>
-                </div> <!-- .block-icon-1 -->
-              </div>
-              <div class="col-md-4" data-aos="fade-up" data-aos-delay="800">
-                <div class="media block-icon-1 d-block text-left">
-                  <div class="icon mb-3">
-                    <img src="/img/flaticon/svg/003-turnover.svg" alt="Image" class="img-fluid">
-                  </div>
-                  <div class="media-body">
-                    <h3 class="h5 mb-4">Sýnýrsýz Olanaklar</h3>
+                                        <p><a href="#">Ayrýntýlý Bilgi</a></p>
+                                    </div>
+                                </div> <!-- .block-icon-1 -->
+                            </div>
+                            <div class="col-md-4" data-aos="fade-up" data-aos-delay="800">
+                                <div class="media block-icon-1 d-block text-left">
+                                    <div class="icon mb-3">
+                                        <img src="/img/flaticon/svg/003-turnover.svg" alt="Image" class="img-fluid">
+                                    </div>
+                                    <div class="media-body">
+                                        <h3 class="h5 mb-4">Sýnýrsýz Olanaklar</h3>
                                         <p>
                                             Çalýþanlarýnýz için sýnýrsýz eðitim ve geliþim fýrsatlarý sunuyoruz.
                                         </p>
-                    <p><a href="#">Ayrýntýlý Bilgi</a></p>
-                  </div>
-                </div> <!-- .block-icon-1 -->
-              </div>
-              
+                                        <p><a href="#">Ayrýntýlý Bilgi</a></p>
+                                    </div>
+                                </div> <!-- .block-icon-1 -->
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </div> <!-- .templateux-section -->
+        </div> <!-- .templateux-section -->
 
         <div class="templateux-section" id="Hakkimizda">
             <div class="container" data-aos="fade-up">
                 <div class="row">
                     <div class="col-lg-7">
                         <h2 class="mb-5">Acenteliðimiz</h2>
-            <div class="owl-carousel wide-slider">
-              <div class="item">
-                <img src="/img/slider-1.jpg" alt="Free template by TemplateUX.com" class="img-fluid">
-              </div>
-              <div class="item">
-                <img src="/img/slider-2.jpg" alt="Free template by TemplateUX.com" class="img-fluid">
-              </div>
-              <div class="item">
-                <img src="/img/slider-3.jpg" alt="Free template by TemplateUX.com" class="img-fluid">
-              </div>
-            </div> <!-- .owl-carousel -->
-          </div>
-          <div class="col-lg-5 pl-lg-5">
-            <h2 class="mb-5">Neden Biz?</h2>
-            <div class="accordion" id="accordionExample">
+                        <div class="owl-carousel wide-slider">
+                            <div class="item">
+                                <img src="/img/slider-1.jpg" alt="Free template by TemplateUX.com" class="img-fluid">
+                            </div>
+                            <div class="item">
+                                <img src="/img/slider-2.jpg" alt="Free template by TemplateUX.com" class="img-fluid">
+                            </div>
+                            <div class="item">
+                                <img src="/img/slider-3.jpg" alt="Free template by TemplateUX.com" class="img-fluid">
+                            </div>
+                        </div> <!-- .owl-carousel -->
+                    </div>
+                    <div class="col-lg-5 pl-lg-5">
+                        <h2 class="mb-5">Neden Biz?</h2>
+                        <div class="accordion" id="accordionExample">
 
 
-              <div class="accordion-item">
-                <h2 class="mb-0 rounded mb-2">
-                  <a href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                  Ýlk Sebep</a>
-                </h2>
+                            <div class="accordion-item">
+                                <h2 class="mb-0 rounded mb-2">
+                                    <a href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        Ýlk Sebep
+                                    </a>
+                                </h2>
 
-                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                  <div class="accordion-body">
+                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                    <div class="accordion-body">
                                         <p>Personel memnuniyeti, þirketin baþarýsý için kritik bir öneme sahiptir. Bu nedenle, Ýnsan Kaynaklarý süreçlerini sürekli olarak iyileþtiriyor ve personel geri bildirimlerini dikkate alýyoruz.</p>
 
-                  </div>
-                </div>
-              </div>
-              
-              <div class="accordion-item">
-                <h2 class="mb-0 rounded mb-2">
-                  <a href="#" class="collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    Ýkinci Sebep
-                  </a>
-                </h2>
-                
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                  <div class="accordion-body">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="mb-0 rounded mb-2">
+                                    <a href="#" class="collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        Ýkinci Sebep
+                                    </a>
+                                </h2>
+
+                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                                    <div class="accordion-body">
                                         <p>Çalýþanlarýn profesyonel geliþimi, iþletmemizin büyümesine doðrudan katkýda bulunur. Geliþim programlarýmýz, çalýþanlarýmýzýn yeteneklerini en üst düzeye çýkarmak için tasarlanmýþtýr.</p>
 
-                  </div>
-                </div>
-              </div>
-              
-              <div class="accordion-item">
-                <h2 class="mb-0 rounded mb-2">
-                  <a href="#" class="collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                    Üçüncü Sebep
-                  </a>
-                </h2>
-                
-                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                  <div class="accordion-body">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="mb-0 rounded mb-2">
+                                    <a href="#" class="collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                        Üçüncü Sebep
+                                    </a>
+                                </h2>
+
+                                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                                    <div class="accordion-body">
                                         <p>Verimli bir iþ gücü, yenilikçi ve motive olmuþ çalýþanlar tarafýndan saðlanýr. Bu nedenle, takým çalýþmasýný ve açýk iletiþimi teþvik eden bir çalýþma ortamý yaratýyoruz.</p>
 
-                  </div>
-                </div>
-              </div>
-              
-              <div class="accordion-item">
-                <h2 class="mb-0 rounded mb-2">
-                  <a href="#" class="collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                    Dördüncü Sebep
-                  </a>
-                </h2>
+                                    </div>
+                                </div>
+                            </div>
 
-                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
-                  <div class="accordion-body">
+                            <div class="accordion-item">
+                                <h2 class="mb-0 rounded mb-2">
+                                    <a href="#" class="collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                        Dördüncü Sebep
+                                    </a>
+                                </h2>
+
+                                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+                                    <div class="accordion-body">
                                         <p>Ýnsan Kaynaklarý departmanýmýz, her çalýþanýn þirkete saðladýðý deðeri en üst düzeye çýkarmak amacýyla etkili stratejiler geliþtirmeye devam ediyor. Bu, uzun vadeli baþarýyý garantiliyor.</p>
 
-                  </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
-              </div>
-              
             </div>
-          </div>
+        </div> <!-- .templateux-section -->
+
+        <div class="templateux-section bg-light py-5" id="templateux-counter-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md">
+                        <div class="templateux-counter text-center">
+                            <span class="templateux-number" data-number="99399">0</span>
+                            <span class="templateux-label">Müþteri Sayýmýz</span>
+                        </div>
+                    </div>
+                    <div class="col-md">
+                        <div class="templateux-counter text-center">
+                            <span class="templateux-number" data-number="199">0</span>
+                            <span class="templateux-label">Personel Sayýmýz</span>
+                        </div>
+                    </div>
+                    <div class="col-md">
+                        <div class="templateux-counter text-center">
+                            <span class="templateux-number" data-number="24">0</span>
+                            <span class="templateux-label">Yýllýk Tecrübe</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
-      </div>
     </div> <!-- .templateux-section -->
 
-    <div class="templateux-section bg-light py-5" id="templateux-counter-section">
-      <div class="container">
-        <div class="row">
-          <div class="col-md">
-            <div class="templateux-counter text-center">
-              <span class="templateux-number" data-number="99399">0</span>
-              <span class="templateux-label">Müþteri Sayýmýz</span>
+    <div class="templateux-section pb-0">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-12">
+                    <h2>Yönetici Kadromuz</h2>
+                </div>
             </div>
-          </div>
-          <div class="col-md">
-            <div class="templateux-counter text-center">
-              <span class="templateux-number" data-number="199">0</span>
-              <span class="templateux-label">Personel Sayýmýz</span>
-            </div>
-          </div>
-          <div class="col-md">
-            <div class="templateux-counter text-center">
-              <span class="templateux-number" data-number="24">0</span>
-              <span class="templateux-label">Yýllýk Tecrübe</span>
-            </div>
-          </div>    
-        </div>
-      </div>
-      
-    </div>
-  </div> <!-- .templateux-section -->
-
-  <div class="templateux-section pb-0">
-    <div class="container">
-      <div class="row text-center mb-5">
-        <div class="col-12">
-          <h2>Yönetici Kadromuz</h2>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-6 col-sm-6 col-md-6 col-lg-4">
-          <div class="staff" class="staff-img" style="background-image: url(/img/person_1.jpg);">
-            <a href="#" class="desc">
+            <div class="row">
+                <div class="col-6 col-sm-6 col-md-6 col-lg-4">
+                    <div class="staff" class="staff-img" style="background-image: url(/img/person_1.jpg);">
+                        <a href="#" class="desc">
                             <h3>Ali Yýlmaz</h3>
-              <span>CEO ve Kurucu Ortak</span>
-              <div class="parag">
-                <p>Açýklama</p>
-              </div>
-            </a>
-          </div>
-        </div>
-        <div class="col-6 col-sm-6 col-md-6 col-lg-4">
-          <div class="staff" class="staff-img" style="background-image: url(/img/person_2.jpg);">
-            <a href="#" class="desc">
+                            <span>CEO ve Kurucu Ortak</span>
+                            <div class="parag">
+                                <p>Açýklama</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-6 col-sm-6 col-md-6 col-lg-4">
+                    <div class="staff" class="staff-img" style="background-image: url(/img/person_2.jpg);">
+                        <a href="#" class="desc">
                             <h3>Ayþe Demir</h3>
-              <span>CEO ve Kurucu Ortak</span>
-              <div class="parag">
-                <p>Açýklama</p>
-              </div>
-            </a>
-          </div>
-        </div>
-        <div class="col-6 col-sm-6 col-md-6 col-lg-4">
-          <div class="staff" class="staff-img" style="background-image: url(/img/person_3.jpg);">
-            <a href="#" class="desc">
+                            <span>CEO ve Kurucu Ortak</span>
+                            <div class="parag">
+                                <p>Açýklama</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-6 col-sm-6 col-md-6 col-lg-4">
+                    <div class="staff" class="staff-img" style="background-image: url(/img/person_3.jpg);">
+                        <a href="#" class="desc">
                             <h3>Mehmet Aksoy</h3>
-              <span>CEO ve Kurucu Ortak</span>
-              <div class="parag">
-                <p>Açýklama</p>
-              </div>
-            </a>
-          </div>
+                            <span>CEO ve Kurucu Ortak</span>
+                            <div class="parag">
+                                <p>Açýklama</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 
-  <div class="templateux-section">
-    <div class="container">
-      <div class="row text-center mb-5">
-        <div class="col-12">
-          <h2>Memnun Müþteriler</h2>
-        </div>
-      </div>
-      <div class="row justify-content-center">
-        <div class="col-md-8 testimonial-wrap">
-          <div class="quote">&ldquo;</div>
-          <div class="owl-carousel wide-slider-testimonial">
-            <div class="item">
-              <blockquote class="block-testomonial">
+    <div class="templateux-section">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-12">
+                    <h2>Memnun Müþteriler</h2>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-8 testimonial-wrap">
+                    <div class="quote">&ldquo;</div>
+                    <div class="owl-carousel wide-slider-testimonial">
+                        <div class="item">
+                            <blockquote class="block-testomonial">
                                 <p>&ldquo;Ýnsan Kaynaklarý ekibimiz, þirketimizin baþarýsýný sürdürülebilir kýlmak için büyük bir özveri ile çalýþýyor. Onlarýn katkýsý olmadan bugün geldiðimiz noktaya ulaþamazdýk.&rdquo;</p>
                                 <p><cite>Ali Yýlmaz, Þirket Müdürü</cite></p>
-              </blockquote>
-            </div>
+                            </blockquote>
+                        </div>
 
-            <div class="item">
-              <blockquote class="block-testomonial">
+                        <div class="item">
+                            <blockquote class="block-testomonial">
                                 <p>&ldquo;Çalýþanlarýmýzýn refahýný saðlamak, onlarýn performanslarýný en üst düzeye çýkarmak için Ýnsan Kaynaklarý süreçlerimizi sürekli olarak geliþtiriyoruz.&rdquo;</p>
                                 <p><cite>Ayþe Demir, Ýnsan Kaynaklarý Direktörü</cite></p>
-              </blockquote>
-            </div>
+                            </blockquote>
+                        </div>
 
-            <div class="item">
-              <blockquote class="block-testomonial">
+                        <div class="item">
+                            <blockquote class="block-testomonial">
                                 <p>&ldquo;Þirketimizin çalýþan memnuniyeti, baþarýya ulaþmamýzýn anahtarýdýr. ÝK süreçlerimizi sürekli olarak iyileþtiriyor ve çalýþanlarýmýzýn ihtiyaçlarýný ön planda tutuyoruz.&rdquo;</p>
                                 <p><cite>Mehmet Aksoy, CEO</cite></p>
-              </blockquote>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </div> <!-- .container -->
-  </div> <!-- .templateux-section -->
+        </div> <!-- .container -->
+    </div> <!-- .templateux-section -->
 
     <div class="templateux-section" id="Hizmetlerimiz">
         <div class="container">
@@ -415,50 +424,50 @@
     </div> <!-- .templateux-section -->
 
 
-  <div class="container templateux-section" id="Blog">
-    <div class="row">
-      <div class="col-12 col-md-7 mx-auto text-center mb-5">
-        <h2>Bloðumuz</h2>
+    <div class="container templateux-section" id="Blog">
+        <div class="row">
+            <div class="col-12 col-md-7 mx-auto text-center mb-5">
+                <h2>Bloðumuz</h2>
                 <p>"Blogumuzda, insan kaynaklarý dünyasýndaki son geliþmeler, trendler ve en iyi uygulamalar hakkýnda güncel bilgiler bulabilirsiniz."</p>
-      </div>
-    </div>
-    <div class="d-flex flex-sm-row">
-      <a href="#" class="block-thumbnail-1 one-third" style="background-image: url('/img/slider-2.jpg'); " data-aos="fade">
-        <div class="block-thumbnail-content">
+            </div>
+        </div>
+        <div class="d-flex flex-sm-row">
+            <a href="#" class="block-thumbnail-1 one-third" style="background-image: url('/img/slider-2.jpg'); " data-aos="fade">
+                <div class="block-thumbnail-content">
                     <h2>
                         Çalýþan Deneyimini Zirveye Taþýmak: Ýpuçlarý ve Stratejiler
                     </h2>
-          <span class="post-meta">June 18, 2024  &bullet; by Admin</span>
-        </div>
-      </a>
-      <a href="#" class="block-thumbnail-1 two-third" style="background-image: url('/img/slider-1.jpg'); " data-aos="fade" data-aos-delay="100">
-        <div class="block-thumbnail-content">
+                    <span class="post-meta">June 18, 2024  &bullet; by Admin</span>
+                </div>
+            </a>
+            <a href="#" class="block-thumbnail-1 two-third" style="background-image: url('/img/slider-1.jpg'); " data-aos="fade" data-aos-delay="100">
+                <div class="block-thumbnail-content">
                     <h2>
                         Dijital Dönüþümde Ýnsan Kaynaklarýnýn Rolü
                     </h2>
-          <span class="post-meta">July 17, 2024 &bullet; by Admin</span>
+                    <span class="post-meta">July 17, 2024 &bullet; by Admin</span>
+                </div>
+            </a>
         </div>
-      </a>
-    </div>
-    <div class="d-flex flex-column flex-sm-row">
-      <a href="#" class="block-thumbnail-1 two-third" style="background-image: url('/img/slider-3.jpg'); " data-aos="fade" data-aos-delay="200">
-        <div class="block-thumbnail-content">
+        <div class="d-flex flex-column flex-sm-row">
+            <a href="#" class="block-thumbnail-1 two-third" style="background-image: url('/img/slider-3.jpg'); " data-aos="fade" data-aos-delay="200">
+                <div class="block-thumbnail-content">
                     <h2>
                         Yetenek Yönetimi: Geleceðin Çalýþanlarýný Bugünden Yetiþtirmek
                     </h2>
-          <span class="post-meta">March 18, 2024  &bullet; by Admin</span>
-        </div>
-      </a>
-      <a href="#" class="block-thumbnail-1 one-third" style="background-image: url('/img/slider-4.jpg'); " data-aos="fade" data-aos-delay="300">
-        <div class="block-thumbnail-content">
+                    <span class="post-meta">March 18, 2024  &bullet; by Admin</span>
+                </div>
+            </a>
+            <a href="#" class="block-thumbnail-1 one-third" style="background-image: url('/img/slider-4.jpg'); " data-aos="fade" data-aos-delay="300">
+                <div class="block-thumbnail-content">
                     <h2>
                         Ýþveren Markasý Oluþturmak: Çalýþanlarýn Gözünden
                     </h2>
-          <span class="post-meta">March 22, 2024  &bullet; by Admin</span>
+                    <span class="post-meta">March 22, 2024  &bullet; by Admin</span>
+                </div>
+            </a>
         </div>
-      </a>
-    </div>
-  </div> <!-- .templateux-section -->
+    </div> <!-- .templateux-section -->
 
     <div class="templateux-section" id="BizeUlasin">
         <div class="container">
@@ -512,86 +521,86 @@
 
 
 
-<footer class="templateux-footer bg-light">
-  <div class="container">
+    <footer class="templateux-footer bg-light">
+        <div class="container">
 
-    <div class="row mb-5">
-      <div class="col-md-4 pr-md-5">
-        <div class="block-footer-widget">
-          <h3>Hakkýmýzda</h3>
+            <div class="row mb-5">
+                <div class="col-md-4 pr-md-5">
+                    <div class="block-footer-widget">
+                        <h3>Hakkýmýzda</h3>
                         <p>Modern ÝK uygulamalarýyla, çalýþanlarýmýzýn iþ hayatýný daha verimli ve keyifli hale getiriyoruz.</p>
-        </div>
-      </div>
+                    </div>
+                </div>
 
-      <div class="col-md-8">
-        <div class="row">
-          <div class="col-md-3">
-            <div class="block-footer-widget">
-              <h3>Daha Fazlasýný Öðren</h3>
-              <ul class="list-unstyled">
-                <li><a href="#">Nasýl Çalýþýr?</a></li>
-                <li><a href="#">Yararlý Araçlar</a></li>
-                <li><a href="#">Fiyatlandýrma</a></li>
-                <li><a href="#">Site Haritasý</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="block-footer-widget">
-              <h3>Destek</h3>
-              <ul class="list-unstyled">
-                <li><a href="#">S.S.S.</a></li>
-                <li><a href="#">Bize Ulaþýn</a></li>
-                <li><a href="#">Yardým Masasý</a></li>
-                <li><a href="#">Bilgi Tabaný</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="block-footer-widget">
-              <h3>Hakkýmýzda</h3>
-              <ul class="list-unstyled">
-                <li><a href="#">Hakkýmýzda</a></li>
-                <li><a href="#">Kariyerler</a></li>
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="block-footer-widget">
+                                <h3>Daha Fazlasýný Öðren</h3>
+                                <ul class="list-unstyled">
+                                    <li><a href="#">Nasýl Çalýþýr?</a></li>
+                                    <li><a href="#">Yararlý Araçlar</a></li>
+                                    <li><a href="#">Fiyatlandýrma</a></li>
+                                    <li><a href="#">Site Haritasý</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="block-footer-widget">
+                                <h3>Destek</h3>
+                                <ul class="list-unstyled">
+                                    <li><a href="#">S.S.S.</a></li>
+                                    <li><a href="#">Bize Ulaþýn</a></li>
+                                    <li><a href="#">Yardým Masasý</a></li>
+                                    <li><a href="#">Bilgi Tabaný</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="block-footer-widget">
+                                <h3>Hakkýmýzda</h3>
+                                <ul class="list-unstyled">
+                                    <li><a href="#">Hakkýmýzda</a></li>
+                                    <li><a href="#">Kariyerler</a></li>
                                     <li><a href="#">Hizmet Þartlarý</a></li>
                                     <li><a href="#">Gizlilik Politikasý</a></li>
-              </ul>
-            </div>
-          </div>
+                                </ul>
+                            </div>
+                        </div>
 
-          <div class="col-md-3">
-            <div class="block-footer-widget">
-              <h3>Bizimle Ýletiþim Kurun</h3>
-              <ul class="list-unstyled block-social">
-                <li><a href="#" class="p-1"><span class="icon-facebook-square"></span></a></li>
-                <li><a href="#" class="p-1"><span class="icon-twitter"></span></a></li>
-                <li><a href="#" class="p-1"><span class="icon-github"></span></a></li>
-              </ul>
-            </div>
-          </div>
-        </div> <!-- .row -->
+                        <div class="col-md-3">
+                            <div class="block-footer-widget">
+                                <h3>Bizimle Ýletiþim Kurun</h3>
+                                <ul class="list-unstyled block-social">
+                                    <li><a href="#" class="p-1"><span class="icon-facebook-square"></span></a></li>
+                                    <li><a href="#" class="p-1"><span class="icon-twitter"></span></a></li>
+                                    <li><a href="#" class="p-1"><span class="icon-github"></span></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div> <!-- .row -->
 
-      </div>
-    </div> <!-- .row -->
+                </div>
+            </div> <!-- .row -->
 
-    <div class="row pt-5 text-center">
-      <div class="col-md-12 text-center"><p>
-        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-        Copyright &copy;<script>document.write(new Date().getFullYear());</script> Tüm haklarýmýz gizlidir.
-        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-      </p></div>
-    </div> <!-- .row -->
+            <div class="row pt-5 text-center">
+                <div class="col-md-12 text-center">
+                    <p>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        Copyright &copy;<script>document.write(new Date().getFullYear());</script> Tüm haklarýmýz gizlidir.
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </p>
+                </div>
+            </div> <!-- .row -->
 
-  </div>
-</footer> <!-- .templateux-footer -->
+        </div>
+    </footer> <!-- .templateux-footer -->
+    </div> <!-- .js-anim1sition -->
 
 
-</div> <!-- .js-anim1sition -->
-
-
-<script src="~/js/scripts-all1.js"></script>
-<script src="~/js/main1.js"></script>
+    <script src="~/js/scripts-all1.js"></script>
+    <script src="~/js/main1.js"></script>
 
 </body>
 </html>
