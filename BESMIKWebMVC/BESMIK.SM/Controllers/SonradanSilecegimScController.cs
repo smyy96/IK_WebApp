@@ -32,7 +32,7 @@ namespace BESMIK.SM.Controllers
 
         //public async Task<IActionResult> CompanyManagerList()
         //{
-        //    return View(await _httpClient.GetFromJsonAsync<List<CompanyManagerViewModel>>("https://localhost:7136/api/CompanyManager/CompanyManagerList"));
+        //    return View(await _httpClient.GetFromJsonAsync<List<CompanyManagerViewModel>>("https://besmikapi20240825115620.azurewebsites.net/api/CompanyManager/CompanyManagerList"));
         //}
 
 
@@ -100,7 +100,7 @@ namespace BESMIK.SM.Controllers
 
 
 
-        //        var response = await _httpClient.PostAsJsonAsync("https://localhost:7136/api/CompanyManager/CompanyManagerAdd", model);
+        //        var response = await _httpClient.PostAsJsonAsync("https://besmikapi20240825115620.azurewebsites.net/api/CompanyManager/CompanyManagerAdd", model);
 
         //        if (response.IsSuccessStatusCode)
         //        {
@@ -146,7 +146,7 @@ namespace BESMIK.SM.Controllers
         //public async Task<IActionResult> GetCompanies()
         //{
         //    //Şirket adlarını selectte eklemek için
-        //    var companies = await _httpClient.GetFromJsonAsync<List<CompanyViewModel>>("https://localhost:7136/api/CompanyManager/CompanyNameList");
+        //    var companies = await _httpClient.GetFromJsonAsync<List<CompanyViewModel>>("https://besmikapi20240825115620.azurewebsites.net/api/CompanyManager/CompanyNameList");
         //    return Json(companies);
         //}
 

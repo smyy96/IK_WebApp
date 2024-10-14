@@ -5,8 +5,14 @@
     <title>BESMIK &mdash; @ViewData["Title"]</title>
     <link rel="stylesheet" href="~/css/style1.css">
     <!-- Favicons -->
-    <link href="..//img/pngicon.png" rel="icon">
-    <link href="..//img/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="../img/pngicon.png" rel="icon">
+    <link href="../img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
 
 </head>
 <body>
@@ -31,40 +37,17 @@
 
                         <ul class="sf-menu templateux-menu d-none d-md-block">
                             <li class="active">
-                                <a href="" @Url.Action("Home", "Index")" class="anim1sition-link">Anasayfa</a>
+                                <a href="@Url.Action("Home", "Index")" class="anim1sition-link">Anasayfa</a>
                             </li>
-                            <li><a href="#Hakkimizda" class="anim1sition-link">Hakkýmýzda</a></li>
+                            <li><a href="#Hakkimizda" class="anim1sition-link">HakkÄ±mÄ±zda</a></li>
                             <li>
                                 <a href="#Hizmetlerimiz" class="anim1sition-link">Hizmetlerimiz</a>
-                                <ul>
-                                    <li><a href="#">ÝK Danýþma</a></li>
-                                    <li><a href="#">Liderlik Eðitimi</a></li>
-                                    <li>
-                                        <a href="#">ÝK Yönetimi</a>
-                                        <ul>
-                                            <li><a href="#">Operasyon Yönetimi</a></li>
-                                            <li><a href="#">Þirket Programý</a></li>
-                                            <li>
-                                                <a href="#">Servis 3</a>
-                                                <ul>
-                                                    <li><a href="#">Servis 1</a></li>
-                                                    <li><a href="#">Servis 2</a></li>
-                                                    <li><a href="#">Servis 3</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
                             </li>
                             <li><a href="#Blog" class="anim1sition-link">Blog</a></li>
-                            <li><a href="#BizeUlasin" class="anim1sition-link">Bize Ulaþýn</a></li>
-                            <li><a href="@Url.Action("Login", "Account")">Giriþ Yap</a></li>
-
+                            <li><a href="#BizeUlasin" class="anim1sition-link">Bize UlaÅŸÄ±n</a></li>
+                            <li><a href="@Url.Action("Login", "Account")">GiriÅŸ Yap</a></li>
                         </ul> <!-- .templateux-menu -->
-
                     </nav> <!-- .site-nav -->
-
-
                 </div> <!-- .row -->
             </div> <!-- .container -->
         </header> <!-- .templateux-navba -->
@@ -72,19 +55,12 @@
         <div class="templateux-cover" style="background-image: url(/img/hero_1.jpg);">
             <div class="container">
                 <div class="row align-items-lg-center">
-
                     <div class="col-lg-6 order-lg-1">
-                        <h1 class="heading mb-3 text-white" data-aos="fade-up">Ýnsan Kaynaklarýnda <strong>Sizin Ortaðýnýz</strong></h1>
+                        <h1 class="heading mb-3 text-white" data-aos="fade-up">Ä°nsan KaynaklarÄ±nda <strong>Sizin OrtaÄŸÄ±nÄ±z</strong></h1>
                         <p class="lead mb-5 text-white" data-aos="fade-up" data-aos-delay="100">
-                            Þirketinizin insan kaynaklarý ihtiyaçlarýný en iyi þekilde karþýlamak için buradayýz.
+                            Åžirketinizin insan kaynaklarÄ± ihtiyaÃ§larÄ±nÄ± en iyi ÅŸekilde karÅŸÄ±lamak iÃ§in buradayÄ±z.
                         </p>
-                                                @*
-                        <p data-aos="fade-up" data-aos-delay="200">
-                        <a href="#BizeUlasin" class="btn btn-primary">Hemen Baþla</a>
-                        <a href="#" class="text-white">Ayrýntýlý Bilgi</a>
-                        </p> *@
                     </div>
-
                 </div>
             </div>
         </div> <!-- .templateux-cover -->
@@ -100,11 +76,11 @@
                                         <img src="/img/flaticon/svg/001-consultation.svg" alt="Image" class="img-fluid">
                                     </div>
                                     <div class="media-body">
-                                        <h3 class="h5 mb-4">Þirketlerle Ýþbirliði</h3>
+                                        <h3 class="h5 mb-4">Åžirketlerle Ä°ÅŸbirliÄŸi</h3>
                                         <p>
-                                            Ýnsan kaynaklarý çözümlerimizle þirketlerin verimliliðini artýrýyoruz.
+                                            Ä°nsan kaynaklarÄ± Ã§Ã¶zÃ¼mlerimizle ÅŸirketlerin verimliliÄŸini artÄ±rÄ±yoruz.
                                         </p>
-                                        <p><a href="#">Ayrýntýlý Bilgi</a></p>
+                                        <p><a href="#">AyrÄ±ntÄ±lÄ± Bilgi</a></p>
                                     </div>
                                 </div> <!-- .block-icon-1 -->
                             </div>
@@ -116,9 +92,9 @@
                                     <div class="media-body">
                                         <h3 class="h5 mb-4">Stratejik Ortaklar</h3>
                                         <p>
-                                            Ýnsan kaynaklarý stratejilerimizle uzun vadeli iþbirlikleri kuruyoruz.
+                                            Ä°nsan kaynaklarÄ± stratejilerimizle uzun vadeli iÅŸbirlikleri kuruyoruz.
                                         </p>
-                                        <p><a href="#">Ayrýntýlý Bilgi</a></p>
+                                        <p><a href="#">AyrÄ±ntÄ±lÄ± Bilgi</a></p>
                                     </div>
                                 </div> <!-- .block-icon-1 -->
                             </div>
@@ -128,15 +104,14 @@
                                         <img src="/img/flaticon/svg/003-turnover.svg" alt="Image" class="img-fluid">
                                     </div>
                                     <div class="media-body">
-                                        <h3 class="h5 mb-4">Sýnýrsýz Olanaklar</h3>
+                                        <h3 class="h5 mb-4">SÄ±nÄ±rsÄ±z Olanaklar</h3>
                                         <p>
-                                            Çalýþanlarýnýz için sýnýrsýz eðitim ve geliþim fýrsatlarý sunuyoruz.
+                                            Ã‡alÄ±ÅŸanlarÄ±nÄ±z iÃ§in sÄ±nÄ±rsÄ±z eÄŸitim ve geliÅŸim fÄ±rsatlarÄ± sunuyoruz.
                                         </p>
-                                        <p><a href="#">Ayrýntýlý Bilgi</a></p>
+                                        <p><a href="#">AyrÄ±ntÄ±lÄ± Bilgi</a></p>
                                     </div>
                                 </div> <!-- .block-icon-1 -->
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -147,16 +122,16 @@
             <div class="container" data-aos="fade-up">
                 <div class="row">
                     <div class="col-lg-7">
-                        <h2 class="mb-5">Acenteliðimiz</h2>
+                        <h2 class="mb-5">AcenteliÄŸimiz</h2>
                         <div class="owl-carousel wide-slider">
                             <div class="item">
-                                <img src="/img/slider-1.jpg" alt="Free template by TemplateUX.com" class="img-fluid">
+                                <img src="/img/slider-1.jpg" alt="Image" class="img-fluid">
                             </div>
                             <div class="item">
-                                <img src="/img/slider-2.jpg" alt="Free template by TemplateUX.com" class="img-fluid">
+                                <img src="/img/slider-2.jpg" alt="Image" class="img-fluid">
                             </div>
                             <div class="item">
-                                <img src="/img/slider-3.jpg" alt="Free template by TemplateUX.com" class="img-fluid">
+                                <img src="/img/slider-3.jpg" alt="Image" class="img-fluid">
                             </div>
                         </div> <!-- .owl-carousel -->
                     </div>
@@ -164,18 +139,15 @@
                         <h2 class="mb-5">Neden Biz?</h2>
                         <div class="accordion" id="accordionExample">
 
-
                             <div class="accordion-item">
                                 <h2 class="mb-0 rounded mb-2">
                                     <a href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        Ýlk Sebep
+                                        Ä°lk Sebep
                                     </a>
                                 </h2>
-
                                 <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                                     <div class="accordion-body">
-                                        <p>Personel memnuniyeti, þirketin baþarýsý için kritik bir öneme sahiptir. Bu nedenle, Ýnsan Kaynaklarý süreçlerini sürekli olarak iyileþtiriyor ve personel geri bildirimlerini dikkate alýyoruz.</p>
-
+                                        <p>Personel memnuniyeti, ÅŸirketin baÅŸarÄ±sÄ± iÃ§in kritik bir Ã¶neme sahiptir. Bu nedenle, Ä°nsan KaynaklarÄ± sÃ¼reÃ§lerini sÃ¼rekli olarak iyileÅŸtiriyor ve personel geri bildirimlerini dikkate alÄ±yoruz.</p>
                                     </div>
                                 </div>
                             </div>
@@ -183,14 +155,12 @@
                             <div class="accordion-item">
                                 <h2 class="mb-0 rounded mb-2">
                                     <a href="#" class="collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                        Ýkinci Sebep
+                                        Ä°kinci Sebep
                                     </a>
                                 </h2>
-
                                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                                     <div class="accordion-body">
-                                        <p>Çalýþanlarýn profesyonel geliþimi, iþletmemizin büyümesine doðrudan katkýda bulunur. Geliþim programlarýmýz, çalýþanlarýmýzýn yeteneklerini en üst düzeye çýkarmak için tasarlanmýþtýr.</p>
-
+                                        <p>Ã‡alÄ±ÅŸanlarÄ±n profesyonel geliÅŸimi, iÅŸletmemizin bÃ¼yÃ¼mesine doÄŸrudan katkÄ±da bulunur. GeliÅŸim programlarÄ±mÄ±z, Ã§alÄ±ÅŸanlarÄ±mÄ±zÄ±n yeteneklerini en Ã¼st dÃ¼zeye Ã§Ä±karmak iÃ§in tasarlanmÄ±ÅŸtÄ±r.</p>
                                     </div>
                                 </div>
                             </div>
@@ -198,29 +168,27 @@
                             <div class="accordion-item">
                                 <h2 class="mb-0 rounded mb-2">
                                     <a href="#" class="collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                        Üçüncü Sebep
+                                        ÃœÃ§Ã¼ncÃ¼ Sebep
                                     </a>
-                                </h2>
 
-                                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                                    <div class="accordion-body">
-                                        <p>Verimli bir iþ gücü, yenilikçi ve motive olmuþ çalýþanlar tarafýndan saðlanýr. Bu nedenle, takým çalýþmasýný ve açýk iletiþimi teþvik eden bir çalýþma ortamý yaratýyoruz.</p>
 
+                                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                                        <div class="accordion-body">
+                                            <p>Åžirketimizin benzersiz bir Ã§alÄ±ÅŸma kÃ¼ltÃ¼rÃ¼ vardÄ±r. Ã‡alÄ±ÅŸanlarÄ±mÄ±zÄ±n motivasyonunu yÃ¼ksek tutmak ve iÅŸe baÄŸlÄ±lÄ±klarÄ±nÄ± artÄ±rmak iÃ§in sÃ¼rekli olarak yenilikÃ§i projeler geliÅŸtiriyoruz.</p>
+                                        </div>
                                     </div>
-                                </div>
                             </div>
 
                             <div class="accordion-item">
                                 <h2 class="mb-0 rounded mb-2">
                                     <a href="#" class="collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                        Dördüncü Sebep
+                                        DÃ¶rdÃ¼ncÃ¼ Sebep
                                     </a>
                                 </h2>
 
                                 <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
                                     <div class="accordion-body">
-                                        <p>Ýnsan Kaynaklarý departmanýmýz, her çalýþanýn þirkete saðladýðý deðeri en üst düzeye çýkarmak amacýyla etkili stratejiler geliþtirmeye devam ediyor. Bu, uzun vadeli baþarýyý garantiliyor.</p>
-
+                                        <p>Ä°nsan KaynaklarÄ± departmanÄ±mÄ±z, her Ã§alÄ±ÅŸanÄ±n ÅŸirkete saÄŸladÄ±ÄŸÄ± deÄŸeri en Ã¼st dÃ¼zeye Ã§Ä±karmak amacÄ±yla etkili stratejiler geliÅŸtirmeye devam ediyor. Bu, uzun vadeli baÅŸarÄ±yÄ± garantiliyor.</p>
                                     </div>
                                 </div>
                             </div>
@@ -237,370 +205,387 @@
                     <div class="col-md">
                         <div class="templateux-counter text-center">
                             <span class="templateux-number" data-number="99399">0</span>
-                            <span class="templateux-label">Müþteri Sayýmýz</span>
+                            <span class="templateux-label">MÃ¼ÅŸteri SayÄ±mÄ±z</span>
                         </div>
                     </div>
                     <div class="col-md">
                         <div class="templateux-counter text-center">
                             <span class="templateux-number" data-number="199">0</span>
-                            <span class="templateux-label">Personel Sayýmýz</span>
+                            <span class="templateux-label">Personel SayÄ±mÄ±z</span>
                         </div>
                     </div>
                     <div class="col-md">
                         <div class="templateux-counter text-center">
                             <span class="templateux-number" data-number="24">0</span>
-                            <span class="templateux-label">Yýllýk Tecrübe</span>
+                            <span class="templateux-label">YÄ±llÄ±k TecrÃ¼be</span>
                         </div>
                     </div>
                 </div>
             </div>
 
-        </div>
-    </div> <!-- .templateux-section -->
+        </div> <!-- .templateux-section -->
 
-    <div class="templateux-section pb-0">
-        <div class="container">
-            <div class="row text-center mb-5">
-                <div class="col-12">
-                    <h2>Yönetici Kadromuz</h2>
+        <div class="templateux-section pb-0">
+            <div class="container">
+                <div class="row text-center mb-5">
+                    <div class="col-12">
+                        <h2>YÃ¶netici Kadromuz</h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-3">
+                        <div class="staff" class="staff-img" style="background-image: url(/img/sum.jpg);">
+                            <a href="https://www.linkedin.com/in/sumeyyecoskun/" class="desc">
+                                <h3>SÃ¼meyye CoÅŸkun</h3>
+                                <span>CEO ve Kurucu Ortak</span>
+                                <div class="parag">
+                                    <p>Bizi iÅŸe mi almak istiyorsunuz? TÄ±klayÄ±n.</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-3">
+                        <div class="staff" class="staff-img" style="background-image: url(/img/bengu.jpg);">
+                            <a href="https://www.linkedin.com/in/benguurgendemir/" class="desc">
+                                <h3>BengÃ¼ Ãœrgen Demir</h3>
+                                <span>CEO ve Kurucu Ortak</span>
+                                <div class="parag">
+                                    <p>Bizi iÅŸe mi almak istiyorsunuz? TÄ±klayÄ±n.</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-3">
+                        <div class="staff" class="staff-img" style="background-image: url(/img/eysan.jpg);">
+                            <a href="https://www.linkedin.com/in/eysantekinsoy/" class="desc">
+                                <h3>Eysan Tekinsoy</h3>
+                                <span>CEO ve Kurucu Ortak</span>
+                                <div class="parag">
+                                    <p>Bizi iÅŸe mi almak istiyorsunuz? TÄ±klayÄ±n.</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-3">
+                        <div class="staff" class="staff-img" style="background-image: url(/img/person_3.jpg);">
+                            <a href="https://www.linkedin.com" class="desc">
+                                <h3>Mehmet Ã‡aÄŸrÄ± Ã‡elenk</h3>
+                                <span>CEO ve Kurucu Ortak</span>
+                                <div class="parag">
+                                    <p>Bizi iÅŸe mi almak istiyorsunuz? TÄ±klayÄ±n.</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </div>
+
+        <div class="templateux-section">
+            <div class="container">
+                <div class="row text-center mb-5">
+                    <div class="col-12">
+                        <h2>Memnun MÃ¼ÅŸteriler</h2>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-md-8 testimonial-wrap">
+                        <div class="quote">&ldquo;</div>
+                        <div class="owl-carousel wide-slider-testimonial">
+                            <div class="item">
+                                <blockquote class="block-testomonial">
+                                    <p>&ldquo;Ä°nsan KaynaklarÄ± ekibimiz, ÅŸirketimizin baÅŸarÄ±sÄ±nÄ± sÃ¼rdÃ¼rÃ¼lebilir kÄ±lmak iÃ§in bÃ¼yÃ¼k bir Ã¶zveri ile Ã§alÄ±ÅŸÄ±yor. OnlarÄ±n katkÄ±sÄ± olmadan bugÃ¼n geldiÄŸimiz noktaya ulaÅŸamazdÄ±k.&rdquo;</p>
+                                    <p><cite>Ali YÄ±lmaz, Åžirket MÃ¼dÃ¼rÃ¼</cite></p>
+                                </blockquote>
+                            </div>
+
+                            <div class="item">
+                                <blockquote class="block-testomonial">
+                                    <p>&ldquo;Ã‡alÄ±ÅŸanlarÄ±mÄ±zÄ±n refahÄ±nÄ± saÄŸlamak, onlarÄ±n performanslarÄ±nÄ± en Ã¼st dÃ¼zeye Ã§Ä±karmak iÃ§in Ä°nsan KaynaklarÄ± sÃ¼reÃ§lerimizi sÃ¼rekli olarak geliÅŸtiriyoruz.&rdquo;</p>
+                                    <p><cite>AyÅŸe Demir, Ä°nsan KaynaklarÄ± DirektÃ¶rÃ¼</cite></p>
+                                </blockquote>
+                            </div>
+
+                            <div class="item">
+                                <blockquote class="block-testomonial">
+                                    <p>&ldquo;Åžirketimizin Ã§alÄ±ÅŸan memnuniyeti, baÅŸarÄ±ya ulaÅŸmamÄ±zÄ±n anahtarÄ±dÄ±r. Ä°K sÃ¼reÃ§lerimizi sÃ¼rekli olarak iyileÅŸtiriyor ve Ã§alÄ±ÅŸanlarÄ±mÄ±zÄ±n ihtiyaÃ§larÄ±nÄ± Ã¶n planda tutuyoruz.&rdquo;</p>
+                                    <p><cite>Mehmet Aksoy, CEO</cite></p>
+                                </blockquote>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- .container -->
+        </div> <!-- .templateux-section -->
+
+        <div class="templateux-section" id="Hizmetlerimiz">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <h2 class="mb-5">Hizmetlerimiz</h2>
+                    </div>
+                </div> <!-- Ilk row sonu -->
+                <div class="row">
+                    <div class="col-md-4 mb-4" data-aos="fade-up">
+                        <div class="media block-icon-1 d-block text-center">
+                            <div class="icon mb-3">
+                                <img src="/img/flaticon/svg/004-gear.svg" alt="Image" class="img-fluid">
+                            </div>
+                            <div class="media-body">
+                                <h3 class="h5 mb-4">DÃ¼zenli GÃ¼ncelleme</h3>
+                                <p>Ä°nsan KaynaklarÄ± politikalarÄ±mÄ±zÄ± ve sÃ¼reÃ§lerimizi, ÅŸirket hedeflerine uygun ÅŸekilde dÃ¼zenli olarak gÃ¼ncelliyoruz.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                        <div class="media block-icon-1 d-block text-center">
+                            <div class="icon mb-3">
+                                <img src="/img/flaticon/svg/005-conflict.svg" alt="Image" class="img-fluid">
+                            </div>
+                            <div class="media-body">
+                                <h3 class="h5 mb-4">SÄ±nÄ±rsÄ±z Olanaklar</h3>
+                                <p>Ã‡alÄ±ÅŸanlarÄ±mÄ±z iÃ§in sÃ¼rekli eÄŸitim ve kariyer geliÅŸimi fÄ±rsatlarÄ± sunuyoruz, bÃ¶ylece yeteneklerini en Ã¼st dÃ¼zeye Ã§Ä±karabiliyorlar.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                        <div class="media block-icon-1 d-block text-center">
+                            <div class="icon mb-3">
+                                <img src="/img/flaticon/svg/006-meeting.svg" alt="Image" class="img-fluid">
+                            </div>
+                            <div class="media-body">
+                                <h3 class="h5 mb-4">Ä°yi GÃ¼venlik</h3>
+                                <p>Ä°nsan KaynaklarÄ± sÃ¼reÃ§lerimizde, Ã§alÄ±ÅŸanlarÄ±mÄ±zÄ±n iÅŸ gÃ¼venliÄŸi ve huzurunu Ã¶n planda tutuyoruz.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="300">
+                        <div class="media block-icon-1 d-block text-center">
+                            <div class="icon mb-3">
+                                <img src="/img/flaticon/svg/007-brainstorming.svg" alt="Image" class="img-fluid">
+                            </div>
+                            <div class="media-body">
+                                <h3 class="h5 mb-4">Ä°K YÃ¶netimi</h3>
+                                <p>Åžirketimizin baÅŸarÄ±sÄ± iÃ§in gÃ¼Ã§lÃ¼ bir Ä°nsan KaynaklarÄ± yÃ¶netimi stratejisi benimsiyoruz.</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="400">
+                        <div class="media block-icon-1 d-block text-center">
+                            <div class="icon mb-3">
+                                <img src="/img/flaticon/svg/001-consultation.svg" alt="Image" class="img-fluid">
+                            </div>
+                            <div class="media-body">
+                                <h3 class="h5 mb-4">Sezgisel DÃ¼ÅŸÃ¼nme</h3>
+                                <p>Ä°nsan KaynaklarÄ± sÃ¼reÃ§lerimizi geliÅŸtirirken, yenilikÃ§i ve sezgisel dÃ¼ÅŸÃ¼nme yÃ¶ntemlerini kullanÄ±yoruz.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="500">
+                        <div class="media block-icon-1 d-block text-center">
+                            <div class="icon mb-3">
+                                <img src="/img/flaticon/svg/009-brainstorming-2.svg" alt="Image" class="img-fluid">
+                            </div>
+                            <div class="media-body">
+                                <h3 class="h5 mb-4">SÃ¼rdÃ¼rÃ¼lebilir Ä°K</h3>
+                                <p>Ã‡evreye duyarlÄ±, sosyal sorumluluk projelerine Ã¶nem veren Ä°K uygulamalarÄ±.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- ï¿½kinci row sonu -->
+                <div class="row">
+                    <div class="col-md-12 text-center" data-aos="fade-up" data-aos-delay="100">
+                        <p><a href="#" class="btn btn-black py-3 px-4">Daha FazlasÄ±</a></p>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- .templateux-section -->
+
+
+        <div class="container templateux-section" id="Blog">
             <div class="row">
-                <div class="col-6 col-sm-6 col-md-6 col-lg-4">
-                    <div class="staff" class="staff-img" style="background-image: url(/img/person_1.jpg);">
-                        <a href="#" class="desc">
-                            <h3>Ali Yýlmaz</h3>
-                            <span>CEO ve Kurucu Ortak</span>
-                            <div class="parag">
-                                <p>Açýklama</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-6 col-sm-6 col-md-6 col-lg-4">
-                    <div class="staff" class="staff-img" style="background-image: url(/img/person_2.jpg);">
-                        <a href="#" class="desc">
-                            <h3>Ayþe Demir</h3>
-                            <span>CEO ve Kurucu Ortak</span>
-                            <div class="parag">
-                                <p>Açýklama</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-6 col-sm-6 col-md-6 col-lg-4">
-                    <div class="staff" class="staff-img" style="background-image: url(/img/person_3.jpg);">
-                        <a href="#" class="desc">
-                            <h3>Mehmet Aksoy</h3>
-                            <span>CEO ve Kurucu Ortak</span>
-                            <div class="parag">
-                                <p>Açýklama</p>
-                            </div>
-                        </a>
-                    </div>
+                <div class="col-12 col-md-7 mx-auto text-center mb-5">
+                    <h2>Blogumuz</h2>
+                    <p>"Blogumuzda, insan kaynaklarÄ± dÃ¼nyasÄ±ndaki son geliÅŸmeler, trendler ve en iyi uygulamalar hakkÄ±nda gÃ¼ncel bilgiler bulabilirsiniz."</p>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <div class="templateux-section">
-        <div class="container">
-            <div class="row text-center mb-5">
-                <div class="col-12">
-                    <h2>Memnun Müþteriler</h2>
-                </div>
+            <div class="d-flex flex-sm-row">
+                <a href="#" class="block-thumbnail-1 one-third" style="background-image: url('/img/slider-2.jpg');" data-aos="fade">
+                    <div class="block-thumbnail-content">
+                        <h2>Ã‡alÄ±ÅŸan Deneyimini Zirveye TaÅŸÄ±mak: Ä°puÃ§larÄ± ve Stratejiler</h2>
+                        <span class="post-meta">June 18, 2024 &bullet; by Admin</span>
+                    </div>
+                </a>
+                <a href="#" class="block-thumbnail-1 two-third" style="background-image: url('/img/slider-1.jpg');" data-aos="fade" data-aos-delay="100">
+                    <div class="block-thumbnail-content">
+                        <h2>Dijital DÃ¶nÃ¼ÅŸÃ¼mde Ä°nsan KaynaklarÄ±nÄ±n RolÃ¼</h2>
+                        <span class="post-meta">July 17, 2024 &bullet; by Admin</span>
+                    </div>
+                </a>
             </div>
-            <div class="row justify-content-center">
-                <div class="col-md-8 testimonial-wrap">
-                    <div class="quote">&ldquo;</div>
-                    <div class="owl-carousel wide-slider-testimonial">
-                        <div class="item">
-                            <blockquote class="block-testomonial">
-                                <p>&ldquo;Ýnsan Kaynaklarý ekibimiz, þirketimizin baþarýsýný sürdürülebilir kýlmak için büyük bir özveri ile çalýþýyor. Onlarýn katkýsý olmadan bugün geldiðimiz noktaya ulaþamazdýk.&rdquo;</p>
-                                <p><cite>Ali Yýlmaz, Þirket Müdürü</cite></p>
-                            </blockquote>
-                        </div>
+            <div class="d-flex flex-column flex-sm-row">
+                <a href="#" class="block-thumbnail-1 two-third" style="background-image: url('/img/slider-3.jpg');" data-aos="fade" data-aos-delay="200">
+                    <div class="block-thumbnail-content">
+                        <h2>Yetenek YÃ¶netimi: GeleceÄŸin Ã‡alÄ±ÅŸanlarÄ±nÄ± BugÃ¼nden YetiÅŸtirmek</h2>
+                        <span class="post-meta">March 18, 2024 &bullet; by Admin</span>
+                    </div>
+                </a>
+                <a href="#" class="block-thumbnail-1 one-third" style="background-image: url('/img/slider-4.jpg');" data-aos="fade" data-aos-delay="300">
+                    <div class="block-thumbnail-content">
+                        <h2>Ä°ÅŸveren MarkasÄ± OluÅŸturmak: Ã‡alÄ±ÅŸanlarÄ±n GÃ¶zÃ¼nden</h2>
+                        <span class="post-meta">March 22, 2024 &bullet; by Admin</span>
+                    </div>
+                </a>
+            </div>
+        </div> <!-- .templateux-section -->
 
-                        <div class="item">
-                            <blockquote class="block-testomonial">
-                                <p>&ldquo;Çalýþanlarýmýzýn refahýný saðlamak, onlarýn performanslarýný en üst düzeye çýkarmak için Ýnsan Kaynaklarý süreçlerimizi sürekli olarak geliþtiriyoruz.&rdquo;</p>
-                                <p><cite>Ayþe Demir, Ýnsan Kaynaklarý Direktörü</cite></p>
-                            </blockquote>
-                        </div>
+        <div class="templateux-section" id="BizeUlasin">
+            <div class="container">
+                <div class="row mb-5">
+                    <div class="col-md-7 pr-md-7 mb-5">
+                        <form action="#" method="post">
+                            <div class="form-group">
+                                <label for="name">Ä°sim</label>
+                                <input type="text" class="form-control" id="name">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control" id="email">
+                            </div>
+                            <div class="form-group">
+                                <label for="message">MesajÄ±nÄ±z</label>
+                                <textarea name="message" id="message" cols="30" rows="10" class="form-control"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-primary py-3 px-5" value="GÃ¶nder">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="media block-icon-1 d-block text-center">
+                            <div class="icon mb-3"><span class="ion-ios-location-outline"></span></div>
+                            <div class="media-body">
+                                <h3 class="h5 mb-4">Ziyabey Cd. NO:38, 06520 Ã‡ankaya/Ankara</h3>
+                            </div>
+                        </div> <!-- .block-icon-1 -->
 
-                        <div class="item">
-                            <blockquote class="block-testomonial">
-                                <p>&ldquo;Þirketimizin çalýþan memnuniyeti, baþarýya ulaþmamýzýn anahtarýdýr. ÝK süreçlerimizi sürekli olarak iyileþtiriyor ve çalýþanlarýmýzýn ihtiyaçlarýný ön planda tutuyoruz.&rdquo;</p>
-                                <p><cite>Mehmet Aksoy, CEO</cite></p>
-                            </blockquote>
+                        <div class="media block-icon-1 d-block text-center">
+                            <div class="icon mb-3"><span class="ion-ios-telephone-outline"></span></div>
+                            <div class="media-body">
+                                <h3 class="h5 mb-4">+0313 283 1343</h3>
+                            </div>
+                        </div> <!-- .block-icon-1 -->
+
+                        <div class="media block-icon-1 d-block text-center">
+                            <div class="icon mb-3"><span class="ion-ios-email-outline"></span></div>
+                            <div class="media-body">
+                                <h3 class="h5 mb-4">info@besmik.com</h3>
+                            </div>
+                        </div> <!-- .block-icon-1 -->
+                    </div>
+                </div> <!-- .row -->
+            </div>
+        </div> <!-- .templateux-section -->
+
+        <footer class="templateux-footer bg-light">
+            <div class="container">
+                <div class="row mb-5">
+                    <div class="col-md-4 pr-md-5">
+                        <div class="block-footer-widget">
+                            <h3>HakkÄ±mÄ±zda</h3>
+                            <p>Modern Ä°K uygulamalarÄ±yla, Ã§alÄ±ÅŸanlarÄ±mÄ±zÄ±n iÅŸ hayatÄ±nÄ± daha verimli ve keyifli hale getiriyoruz.</p>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div> <!-- .container -->
-    </div> <!-- .templateux-section -->
 
-    <div class="templateux-section" id="Hizmetlerimiz">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2 class="mb-5">Hizmetlerimiz</h2>
-                </div>
-            </div> <!-- Ýlk row sonu -->
-            <div class="row">
-                <div class="col-md-4 mb-4" data-aos="fade-up">
-                    <div class="media block-icon-1 d-block text-center">
-                        <div class="icon mb-3">
-                            <img src="/img/flaticon/svg/004-gear.svg" alt="Image" class="img-fluid">
-                        </div>
-                        <div class="media-body">
-                            <h3 class="h5 mb-4">Düzenli Güncelleme</h3>
-                            <p>Ýnsan Kaynaklarý politikalarýmýzý ve süreçlerimizi, þirket hedeflerine uygun þekilde düzenli olarak güncelliyoruz.</p>
-                        </div>
-                    </div> <!-- .block-icon-1 -->
-                </div>
-                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="media block-icon-1 d-block text-center">
-                        <div class="icon mb-3">
-                            <img src="/img/flaticon/svg/005-conflict.svg" alt="Image" class="img-fluid">
-                        </div>
-                        <div class="media-body">
-                            <h3 class="h5 mb-4">Sýnýrsýz Olanaklar</h3>
-                            <p>Çalýþanlarýmýz için sürekli eðitim ve kariyer geliþimi fýrsatlarý sunuyoruz, böylece yeteneklerini en üst düzeye çýkarabiliyorlar.</p>
-                        </div>
-                    </div> <!-- .block-icon-1 -->
-                </div>
-                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
-                    <div class="media block-icon-1 d-block text-center">
-                        <div class="icon mb-3">
-                            <img src="/img/flaticon/svg/006-meeting.svg" alt="Image" class="img-fluid">
-                        </div>
-                        <div class="media-body">
-                            <h3 class="h5 mb-4">Ýyi Güvenlik</h3>
-                            <p>Ýnsan Kaynaklarý süreçlerimizde, çalýþanlarýmýzýn iþ güvenliði ve huzurunu ön planda tutuyoruz.</p>
-                        </div>
-                    </div> <!-- .block-icon-1 -->
-                </div>
-                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="300">
-                    <div class="media block-icon-1 d-block text-center">
-                        <div class="icon mb-3">
-                            <img src="/img/flaticon/svg/007-brainstorming.svg" alt="Image" class="img-fluid">
-                        </div>
-                        <div class="media-body">
-                            <h3 class="h5 mb-4">ÝK Yönetimi</h3>
-                            <p>Þirketimizin baþarýsý için güçlü bir Ýnsan Kaynaklarý yönetimi stratejisi benimsiyoruz.</p>
-                        </div>
-                    </div> <!-- .block-icon-1 -->
-                </div>
-                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="400">
-                    <div class="media block-icon-1 d-block text-center">
-                        <div class="icon mb-3">
-                            <img src="/img/flaticon/svg/001-consultation.svg" alt="Image" class="img-fluid">
-                        </div>
-                        <div class="media-body">
-                            <h3 class="h5 mb-4">Sezgisel Düþünme</h3>
-                            <p>Ýnsan Kaynaklarý süreçlerimizi geliþtirirken, yenilikçi ve sezgisel düþünme yöntemlerini kullanýyoruz.</p>
-                        </div>
-                    </div> <!-- .block-icon-1 -->
-                </div>
-                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="500">
-                    <div class="media block-icon-1 d-block text-center">
-                        <div class="icon mb-3">
-                            <img src="/img/flaticon/svg/009-brainstorming-2.svg" alt="Image" class="img-fluid">
-                        </div>
-                        <div class="media-body">
-                            <h3 class="h5 mb-4">Sürdürülebilir ÝK</h3>
-                            <p>Çevreye duyarlý, sosyal sorumluluk projelerine önem veren ÝK uygulamalarý.</p>
-                        </div>
-                    </div> <!-- .block-icon-1 -->
-                </div>
-            </div> <!-- Ýkinci row sonu -->
-            <div class="row">
-                <div class="col-md-12 text-center" data-aos="fade-up" data-aos-delay="100">
-                    <p><a href="#" class="btn btn-black py-3 px-4">Daha Fazlasý</a></p>
-                </div>
-            </div>
-        </div>
-    </div> <!-- .templateux-section -->
+                    <div class="col-md-8">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="block-footer-widget">
+                                    <h3>Daha FazlasÄ±nÄ± Ã–ÄŸren</h3>
+                                    <ul class="list-unstyled">
+                                        <li><a href="#">NasÄ±l Ã‡alÄ±ÅŸÄ±r?</a></li>
+                                        <li><a href="#">YararlÄ± AraÃ§lar</a></li>
+                                        <li><a href="#">FiyatlandÄ±rma</a></li>
+                                        <li><a href="#">Site HaritasÄ±</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="block-footer-widget">
+                                    <h3>Destek</h3>
+                                    <ul class="list-unstyled">
+                                        <li><a href="#">S.S.S.</a></li>
+                                        <li><a href="#">Bize UlaÅŸÄ±n</a></li>
+                                        <li><a href="#">YardÄ±m MasasÄ±</a></li>
+                                        <li><a href="#">Bilgi TabanÄ±</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="block-footer-widget">
+                                    <h3>HakkÄ±mÄ±zda</h3>
+                                    <ul class="list-unstyled">
+                                        <li><a href="#">HakkÄ±mÄ±zda</a></li>
+                                        <li><a href="#">Kariyerler</a></li>
+                                        <li><a href="#">Hizmet ÅžartlarÄ±</a></li>
+                                        <li><a href="#">Gizlilik PolitikasÄ±</a></li>
+                                    </ul>
+                                </div>
+                            </div>
 
-
-    <div class="container templateux-section" id="Blog">
-        <div class="row">
-            <div class="col-12 col-md-7 mx-auto text-center mb-5">
-                <h2>Bloðumuz</h2>
-                <p>"Blogumuzda, insan kaynaklarý dünyasýndaki son geliþmeler, trendler ve en iyi uygulamalar hakkýnda güncel bilgiler bulabilirsiniz."</p>
-            </div>
-        </div>
-        <div class="d-flex flex-sm-row">
-            <a href="#" class="block-thumbnail-1 one-third" style="background-image: url('/img/slider-2.jpg'); " data-aos="fade">
-                <div class="block-thumbnail-content">
-                    <h2>
-                        Çalýþan Deneyimini Zirveye Taþýmak: Ýpuçlarý ve Stratejiler
-                    </h2>
-                    <span class="post-meta">June 18, 2024  &bullet; by Admin</span>
-                </div>
-            </a>
-            <a href="#" class="block-thumbnail-1 two-third" style="background-image: url('/img/slider-1.jpg'); " data-aos="fade" data-aos-delay="100">
-                <div class="block-thumbnail-content">
-                    <h2>
-                        Dijital Dönüþümde Ýnsan Kaynaklarýnýn Rolü
-                    </h2>
-                    <span class="post-meta">July 17, 2024 &bullet; by Admin</span>
-                </div>
-            </a>
-        </div>
-        <div class="d-flex flex-column flex-sm-row">
-            <a href="#" class="block-thumbnail-1 two-third" style="background-image: url('/img/slider-3.jpg'); " data-aos="fade" data-aos-delay="200">
-                <div class="block-thumbnail-content">
-                    <h2>
-                        Yetenek Yönetimi: Geleceðin Çalýþanlarýný Bugünden Yetiþtirmek
-                    </h2>
-                    <span class="post-meta">March 18, 2024  &bullet; by Admin</span>
-                </div>
-            </a>
-            <a href="#" class="block-thumbnail-1 one-third" style="background-image: url('/img/slider-4.jpg'); " data-aos="fade" data-aos-delay="300">
-                <div class="block-thumbnail-content">
-                    <h2>
-                        Ýþveren Markasý Oluþturmak: Çalýþanlarýn Gözünden
-                    </h2>
-                    <span class="post-meta">March 22, 2024  &bullet; by Admin</span>
-                </div>
-            </a>
-        </div>
-    </div> <!-- .templateux-section -->
-
-    <div class="templateux-section" id="BizeUlasin">
-        <div class="container">
-            <div class="row mb-5">
-                <div class="col-md-7 pr-md-7 mb-5">
-                    <form action="#" method="post">
-                        <div class="form-group">
-                            <label for="name">Ýsim</label>
-                            <input type="text" class="form-control" id="name">
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" class="form-control" id="email">
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Mesajýnýz</label>
-                            <textarea name="message" id="message" cols="30" rows="10" class="form-control"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <input type="submit" class="btn btn-primary py-3 px-5" value="Gönder">
-                        </div>
-                    </form>
-                </div>
-                <div class="col-md-5">
-                    <div class="media block-icon-1 d-block text-center">
-                        <div class="icon mb-3"><span class="ion-ios-location-outline"></span></div>
-                        <div class="media-body">
-                            <h3 class="h5 mb-4">Ziyabey Cd. NO:38, 06520 Çankaya/Ankara</h3>
-                        </div>
-                    </div> <!-- .block-icon-1 -->
-
-                    <div class="media block-icon-1 d-block text-center">
-                        <div class="icon mb-3"><span class="ion-ios-telephone-outline"></span></div>
-                        <div class="media-body">
-                            <h3 class="h5 mb-4">+0313 283 1343</h3>
-                        </div>
-                    </div> <!-- .block-icon-1 -->
-
-                    <div class="media block-icon-1 d-block text-center">
-                        <div class="icon mb-3"><span class="ion-ios-email-outline"></span></div>
-                        <div class="media-body">
-                            <h3 class="h5 mb-4">info@besmik.com</h3>
-                        </div>
-                    </div> <!-- .block-icon-1 -->
-
-                </div>
-            </div> <!-- .row -->
-
-        </div>
-    </div> <!-- .templateux-section -->
-
-
-
-    <footer class="templateux-footer bg-light">
-        <div class="container">
-
-            <div class="row mb-5">
-                <div class="col-md-4 pr-md-5">
-                    <div class="block-footer-widget">
-                        <h3>Hakkýmýzda</h3>
-                        <p>Modern ÝK uygulamalarýyla, çalýþanlarýmýzýn iþ hayatýný daha verimli ve keyifli hale getiriyoruz.</p>
+                            <div class="col-md-3">
+                                <div class="block-footer-widget">
+                                    <h3>Bizimle Ä°letiÅŸim Kurun</h3>
+                                    <ul class="list-unstyled block-social">
+                                        <li><a href="#" class="p-1"><span class="icon-facebook-square"></span></a></li>
+                                        <li><a href="#" class="p-1"><span class="icon-twitter"></span></a></li>
+                                        <li><a href="#" class="p-1"><span class="icon-github"></span></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div> <!-- .row -->
                     </div>
-                </div>
+                </div> <!-- .row -->
 
-                <div class="col-md-8">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <div class="block-footer-widget">
-                                <h3>Daha Fazlasýný Öðren</h3>
-                                <ul class="list-unstyled">
-                                    <li><a href="#">Nasýl Çalýþýr?</a></li>
-                                    <li><a href="#">Yararlý Araçlar</a></li>
-                                    <li><a href="#">Fiyatlandýrma</a></li>
-                                    <li><a href="#">Site Haritasý</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="block-footer-widget">
-                                <h3>Destek</h3>
-                                <ul class="list-unstyled">
-                                    <li><a href="#">S.S.S.</a></li>
-                                    <li><a href="#">Bize Ulaþýn</a></li>
-                                    <li><a href="#">Yardým Masasý</a></li>
-                                    <li><a href="#">Bilgi Tabaný</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="block-footer-widget">
-                                <h3>Hakkýmýzda</h3>
-                                <ul class="list-unstyled">
-                                    <li><a href="#">Hakkýmýzda</a></li>
-                                    <li><a href="#">Kariyerler</a></li>
-                                    <li><a href="#">Hizmet Þartlarý</a></li>
-                                    <li><a href="#">Gizlilik Politikasý</a></li>
-                                </ul>
-                            </div>
-                        </div>
+                <div class="row pt-5 text-center">
+                    <div class="col-md-12 text-center">
+                        <p>
+                            Copyright &copy;<script>document.write(new Date().getFullYear());</script> TÃ¼m haklarÄ±mÄ±z gizlidir.
+                        </p>
+                    </div>
+                </div> <!-- .row -->
+            </div>
+        </footer> <!-- .templateux-footer -->
 
-                        <div class="col-md-3">
-                            <div class="block-footer-widget">
-                                <h3>Bizimle Ýletiþim Kurun</h3>
-                                <ul class="list-unstyled block-social">
-                                    <li><a href="#" class="p-1"><span class="icon-facebook-square"></span></a></li>
-                                    <li><a href="#" class="p-1"><span class="icon-twitter"></span></a></li>
-                                    <li><a href="#" class="p-1"><span class="icon-github"></span></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div> <!-- .row -->
-
-                </div>
-            </div> <!-- .row -->
-
-            <div class="row pt-5 text-center">
-                <div class="col-md-12 text-center">
-                    <p>
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        Copyright &copy;<script>document.write(new Date().getFullYear());</script> Tüm haklarýmýz gizlidir.
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                    </p>
-                </div>
-            </div> <!-- .row -->
-
-        </div>
-    </footer> <!-- .templateux-footer -->
     </div> <!-- .js-anim1sition -->
 
 
     <script src="~/js/scripts-all1.js"></script>
     <script src="~/js/main1.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    @*  <script>
+    $(document).ready(function () {
+    $(".anim1sition-link").on('click', function (event) {
+    if (this.hash !== "") {
+    event.preventDefault();
+
+    var hash = this.hash;
+
+    $('html, body').animate({
+    scrollTop: $(hash).offset().top
+    }, 1000); // 1000 milisaniye (1 saniye) geï¿½iï¿½ sï¿½resi
+
+    window.location.hash = hash;
+    }
+    });
+    });</script> *@
 
 </body>
 </html>
