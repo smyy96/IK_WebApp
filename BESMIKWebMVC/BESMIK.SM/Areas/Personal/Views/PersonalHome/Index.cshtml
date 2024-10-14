@@ -1,0 +1,378 @@
+﻿@model AppUserViewModel
+
+@{
+    Layout = "_PersonalLayout";
+}
+
+<div class="pagetitle">
+    <h1>Profil</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-area="Personal" asp-controller="PersonalHome" asp-action="Index">Anasayfa</a></li>
+            <li class="breadcrumb-item">Personel İşlemleri</a></li>
+            <li class="breadcrumb-item active">Profil</li>
+        </ol>
+    </nav>
+</div><!-- End Page Title -->
+
+<section class="section profile">
+    <div class="row">
+        <div class="col-xl-4">
+
+            <div class="card">
+                <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+                    <img src="~/images/personal/@Model.Photo" alt="Profil" style="width: 100px; height: 100px; object-fit: cover; border-radius: 50%;">
+                    <h2>@Model.Name @Model.Surname</h2>
+                    <h3>@Model.Job</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-8">
+
+            <div class="card">
+                <div class="card-body pt-3">
+                    <!-- Bordered Tabs -->
+                    <ul class="nav nav-tabs nav-tabs-bordered">
+                        <li class="nav-item">
+                            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Profil Özet</button>
+                        </li>
+
+                        <li class="nav-item">
+                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-details">Profil Detay</button>
+                        </li>
+
+                        <li class="nav-item">
+                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Profil Güncelleme</button>
+                        </li>
+                    </ul>
+
+
+
+                    <div class="tab-content pt-2">
+                        @* Index *@
+                        <div class="tab-pane fade show active profile-overview" id="profile-overview">
+                            <div class="row mt-3">
+                                <div class="col-lg-3 col-md-4 label ">Ad</div>
+                                <div class="col-lg-9 col-md-8">@Model.Name</div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label ">Soyad</div>
+                                <div class="col-lg-9 col-md-8">@Model.Surname</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label ">E-Posta</div>
+                                <div class="col-lg-9 col-md-8">@Model.Email</div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label ">Telefon</div>
+                                <div class="col-lg-9 col-md-8">@Model.Phone</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label ">Adres</div>
+                                <div class="col-lg-9 col-md-8">@Model.Address</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label ">Meslek</div>
+                                <div class="col-lg-9 col-md-8">@Model.Job</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label ">Departman</div>
+                                <div class="col-lg-9 col-md-8">@Model.Department.ToString()</div>
+                            </div>
+                        </div>
+
+                        @*  Details *@
+                        <div class="tab-pane fade profile-overview" id="profile-details">
+                            @* <div class="tab-pane fade profile-details" id="profile-details"> *@
+                            <div class="row mt-3">
+                                <div class="col-lg-3 col-md-4 label ">Ad</div>
+                                <div class="col-lg-9 col-md-8">@Model.Name</div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label ">İkinci Ad</div>
+                                <div class="col-lg-9 col-md-8">
+                                    @if (Model.SecondName == null)
+                                    {
+                                        <span>-</span>
+                                    }
+                                    else
+                                    {
+                                        <span>@Model.SecondName</span>
+                                    }
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label ">Soyad</div>
+                                <div class="col-lg-9 col-md-8">@Model.Surname</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label ">İkinci Soyad</div>
+                                <div class="col-lg-9 col-md-8">
+                                    @if (Model.SecondSurname == null)
+                                    {
+                                        <span>-</span>
+                                    }
+                                    else
+                                    {
+                                        <span>@Model.SecondSurname</span>
+                                    }
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label ">Doğum Tarihi</div>
+                                <div class="col-lg-9 col-md-8">@Model.BirthDate</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label ">Doğum Yeri</div>
+                                <div class="col-lg-9 col-md-8">@Model.BirthPlace</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label ">TC</div>
+                                <div class="col-lg-9 col-md-8">@Model.Tc</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label ">İşe Giriş Tarihi</div>
+                                <div class="col-lg-9 col-md-8">@Model.WorkStartDate</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label ">İşten Ayrılma Tarihi</div>
+                                <div class="col-lg-9 col-md-8">
+                                    @if (Model.WorkEndDate == null)
+                                    {
+                                        <span>Halen Çalışmakta</span>
+                                    }
+                                    else
+                                    {
+                                        <span>@Model.WorkEndDate.Value.ToString("dd MMMM yyyy")</span>
+                                    }
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label ">Durumu</div>
+                                <div class="col-lg-9 col-md-8">
+                                    @if (Model.IsActive)
+                                    {
+                                        <span class="badge bg-success">Aktif</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-danger">Pasif</span>
+                                    }
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label ">Meslek</div>
+                                <div class="col-lg-9 col-md-8">@Model.Job</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label ">Departman</div>
+                                <div class="col-lg-9 col-md-8">@Model.Department.ToString()</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label ">Şahsi Email</div>
+                                <div class="col-lg-9 col-md-8">@Model.PersonalEmail</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label ">Şirket Email</div>
+                                <div class="col-lg-9 col-md-8">@Model.Email</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label ">Adres</div>
+                                <div class="col-lg-9 col-md-8">@Model.Address</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label ">Telefon</div>
+                                <div class="col-lg-9 col-md-8">@Model.Phone</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label ">Maaş</div>
+                                <div class="col-lg-9 col-md-8">@Model.Wage</div>
+                            </div>
+                        </div>
+
+
+
+                        @* Edit *@   @* Validationları kaldırıyorum çünkü bu veriler kullanılmadığı için *@
+
+                        <div class="tab-pane fade profile-edit pt-3 readonlyBg" id="profile-edit">
+                            <form asp-area="Personal" asp-controller="PersonalHome" asp-action="Edit" method="post" enctype="multipart/form-data">
+
+                                <input hidden asp-for="Photo" />
+                                <div class="form-group">
+                                    @{
+                                        if (ViewBag.Picture != null)
+                                        {
+                                            <label>Resim Adı: @ViewBag.Picture</label>
+                                        }
+                                    }
+                                    <td> <img id="currentImage" height="100px" width="100px" class="mb-3" src="~/images/personal/@Model.Photo" alt="Resim Yok" /> </td>
+                                    <br />
+                                    <label asp-for="Picture" class="mb-2"> Resim Seç:</label></br>
+                                    @* <input asp-for="Picture" type="file" class="form-control mb-4" /> *@
+                                    <input asp-for="Picture" type="file" class="form-control mb-4" onchange="previewImage(event)" />
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label asp-for="Name" class="col-md-4 col-lg-3 col-form-label">Ad</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <input asp-for="Name" type=text class="form-control" readonly />
+                                    </div>
+                                </div>
+
+                                <div hidden class="row mb-3">
+                                    <label asp-for="SecondName" class="col-md-4 col-lg-3 col-form-label">İkinci Ad</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <input asp-for="SecondName" type=text class="form-control" readonly />
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label asp-for="Surname" class="col-md-4 col-lg-3 col-form-label">Soyad</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <input asp-for="Surname" type=text class="form-control" readonly />
+                                    </div>
+                                </div>
+
+                                <div hidden class="row mb-3">
+                                    <label asp-for="SecondSurname" class="col-md-4 col-lg-3 col-form-label">İkinci Soyad</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <input asp-for="SecondSurname" type=text class="form-control" readonly />
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label asp-for="BirthDate" class="col-md-4 col-lg-3 col-form-label">Doğum Tarihi</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <input asp-for="BirthDate" type=text class="form-control" readonly />
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label asp-for="BirthPlace" class="col-md-4 col-lg-3 col-form-label">Doğum Yeri</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <input asp-for="BirthPlace" type=text class="form-control" readonly />
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label asp-for="Tc" class="col-md-4 col-lg-3 col-form-label">TC</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <input asp-for="Tc" type=text class="form-control" readonly />
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label asp-for="WorkStartDate" class="col-md-4 col-lg-3 col-form-label">İşe Başlama Tarihi</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <input asp-for="WorkStartDate" type=text class="form-control" readonly />
+                                    </div>
+                                </div>
+
+                                <div hidden class="row mb-3">
+                                    <label asp-for="WorkEndDate" class="col-md-4 col-lg-3 col-form-label">İşten Ayrılma Tarihi</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <input asp-for="WorkEndDate" type=text class="form-control" readonly />
+                                    </div>
+                                </div>
+
+                                <div hidden class="row mb-3">
+                                    <label asp-for="IsActive" class="col-md-4 col-lg-3 col-form-label">Durumu</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <input asp-for="IsActive" type="checkbox" class="form-control" readonly />
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label asp-for="Job" class="col-md-4 col-lg-3 col-form-label">Meslek</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <input asp-for="Job" type=text class="form-control" readonly />
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label asp-for="Department" class="col-md-4 col-lg-3 col-form-label">Departman</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <input asp-for="Department" type=text class="form-control" readonly />
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label asp-for="Email" class="col-md-4 col-lg-3 col-form-label">Şirket E-Posta</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <input asp-for="Email" type=text class="form-control" readonly />
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label asp-for="PersonalEmail" class="col-md-4 col-lg-3 col-form-label">Şahsi E-Posta</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <input asp-for="PersonalEmail" type=text class="form-control" readonly />
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label asp-for="Address" class="col-md-4 col-lg-3 col-form-label">Adres</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <input asp-for="Address" type=text class="form-control" />
+                                        <span asp-validation-for="Address" class="text-danger" id="Address" value="@Model.Address"></span>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label asp-for="Phone" class="col-md-4 col-lg-3 col-form-label">Telefon</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <input asp-for="Phone" type=text class="form-control" />
+                                        <span asp-validation-for="Phone" class="text-danger" id="Phone" value="@Model.Phone"></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-success">Güncelle</button>
+                                </div>
+
+                            </form><!-- End Profile Edit Form -->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+
+
+@section Scripts {
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var readonlyInputs = document.querySelectorAll('.readonlyBg input[readonly]');
+            readonlyInputs.forEach(function (input) {
+                input.style.backgroundColor = '#f0f0f0';
+                input.style.border = '1px solid #dcdcdc';
+                input.style.cursor = 'not-allowed';
+                input.style.color = '#666';
+            });
+        });
+    </script>
+
+
+    <script>
+        function previewImage(event) {
+            const reader = new FileReader();
+            reader.onload = function () {
+                const output = document.getElementById('currentImage');
+                output.src = reader.result;
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
+}

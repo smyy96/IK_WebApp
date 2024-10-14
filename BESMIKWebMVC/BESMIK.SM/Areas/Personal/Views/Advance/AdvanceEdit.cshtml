@@ -1,0 +1,141 @@
+﻿@model BESMIK.ViewModel.Advance.AdvanceViewModel
+
+@{
+    Layout = "_PersonalLayout";
+}
+
+<div class="pagetitle">
+    <h1>Avans Talebini Düzenle</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-area="Personal" asp-controller="PersonalHome" asp-action="Index">Anasayfa</a></li>
+            <li class="breadcrumb-item">Avans Talebi İşlemleri</li>
+            <li class="breadcrumb-item active">Avans Talebini Düzenle</li>
+        </ol>
+    </nav>
+</div>
+
+<section class="section profile">
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-body pt-3">
+                    <div class="tab-content pt-2">
+                        <form id="advanceEditForm" asp-controller="Advance" asp-action="AdvanceEdit" method="post" enctype="multipart/form-data">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                            <div class="row mb-3">
+                                <label for="advanceRequestDate" class="col-md-4 col-lg-3 col-form-label">Avans Talep Tarihi</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input name="AdvanceRequestDate" type="date" class="form-control" id="advanceRequestDate"
+                                           value="@(Model.AdvanceRequestDate == default(DateOnly) ? DateTime.Now.ToString("yyyy-MM-dd") : Model.AdvanceRequestDate.ToString("yyyy-MM-dd"))">
+                                    <span asp-validation-for="AdvanceRequestDate" class="form-text text-danger"></span>
+                                </div>
+                            </div>
+
+                            <input type="hidden" name="ApprovalStatus" value="@Model.ApprovalStatus" />
+
+                            <div class="row mb-3">
+                                <label for="amount" class="col-md-4 col-lg-3 col-form-label">Miktar</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input name="Amount" type="text" class="form-control" id="amount" value="@Model.Amount">
+                                    <span asp-validation-for="Amount" class="form-text text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="currency" class="col-md-4 col-lg-3 col-form-label">Para Birimi</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <select name="Currency" class="form-select">
+                                        <option value="">Para Birimi Seçiniz</option>
+                                    </select>
+                                    <span asp-validation-for="Currency" class="form-text text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="description" class="col-md-4 col-lg-3 col-form-label">Açıklama</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input name="Description" type="text" class="form-control" id="description" value="@Model.Description">
+                                    <span asp-validation-for="Description" class="form-text text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="advanceType" class="col-md-4 col-lg-3 col-form-label">Avans Türü</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <select name="AdvanceType" class="form-select">
+                                        <option value="">Avans Türü Seçiniz</option>
+                                    </select>
+                                    <span asp-validation-for="AdvanceType" class="form-text text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary">Avans Talebini Güncelle</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $.get("@Url.Action("GetAdvanceCurrency", "Advance")", function (data) {
+                var select = $("select[name='Currency']");
+                select.empty();
+                select.append('<option value="">Para Birimi Seçiniz</option>');
+                $.each(data, function (index, item) {
+                    select.append($('<option>', {
+                        value: item.value,
+                        text: item.text,
+                        selected: item.value == '@Model.Currency'
+                    }));
+                });
+            });
+
+            $.get("@Url.Action("GetAdvanceType", "Advance")", function (data) {
+                var select = $("select[name='AdvanceType']");
+                select.empty();
+                select.append('<option value="">Avans Türü Seçiniz</option>');
+                $.each(data, function (index, item) {
+                    select.append($('<option>', {
+                        value: item.value,
+                        text: item.text,
+                        selected: item.value == '@Model.AdvanceType'
+                    }));
+                });
+            });
+
+            // // Optional: You can include the validation logic for the amount
+            // $('#advanceEditForm').on('submit', function (e) {
+            //     e.preventDefault();
+
+            //     var amount = parseFloat($('#amount').val());
+            //     var userId = '@Model.AppUserId';
+
+            //     if (!userId) {
+            //         alert("Kullanıcı ID'si bulunamadı.");
+            //         return;
+            //     }
+
+            //     $.get(`/api/Advance/GetUserWage/${userId}`, function (wage) {
+            //         if (amount > (wage * 3)) {
+            //             alert("Avans miktarı maaşınızın 3 katından fazla olamaz.");
+            //             return;
+            //         }
+
+            //         // If validation passes, submit the form
+            //         $('#advanceEditForm').off('submit').submit();
+            //     }).fail(function () {
+            //         alert("Maaş bilgisi alınamadı.");
+            //     });
+            // });
+        });
+    </script>
+}

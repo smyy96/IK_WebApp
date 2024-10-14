@@ -1,0 +1,88 @@
+﻿<aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+        <li class="nav-heading">İŞLEMLER</li>
+
+   
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-person-fill"></i><span>PERSONEL İŞLEMLERİ</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a asp-area="Personal" asp-controller="PersonalHome" asp-action="Index">
+                        <i class="bi bi-circle"></i><span>Profil İşlemleri</span>
+                    </a>
+                </li>
+
+            </ul>
+        </li><!-- End Components Nav -->
+
+
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-building"></i>
+
+                <span>İZİN TALEPLERİ</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a asp-area="Personal" asp-controller="Permission" asp-action="PermissionList">
+                        <i class="bi bi-circle"></i><span>İzin Listele</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-area="Personal" asp-controller="Permission" asp-action="PermissionAdd">
+                        <i class="bi bi-circle"></i><span>İzin Talep</span>
+                    </a>
+                </li>
+
+            </ul>
+        </li><!-- End Forms Nav -->
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-bank"></i>
+
+                <span>AVANS TALEPLERİ</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                 <li>
+                    <a asp-controller="Advance" asp-action="AdvancesList">
+                        <i class="bi bi-circle"></i><span>Avans Listele</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="Advance" asp-action="AdvanceAdd">
+                        <i class="bi bi-circle"></i><span>Avans Talep</span>
+                    </a>
+                </li>
+
+            </ul>
+        </li><!-- End Tables Nav -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
+                <i class="ri-bank-card-fill"></i>
+
+                <span>HARCAMA TALEPLERİ</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a asp-area="Personal" asp-controller="Spending" asp-action="SpendingList">
+                        <i class="bi bi-circle"></i><span>Harcamaları Listele</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-area="Personal" asp-controller="Spending" asp-action="SpendingAdd">
+                        <i class="bi bi-circle"></i><span>Harcama Talep</span>
+                    </a>
+                </li>
+            </ul>
+        </li><!-- End Tables Nav -->
+
+
+    </ul>
+
+</aside><!-- End Sidebar-->

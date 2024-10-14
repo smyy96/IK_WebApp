@@ -1,0 +1,127 @@
+﻿@model SpendingViewModel
+
+@{
+    Layout = "_PersonalLayout";
+}
+
+<div class="pagetitle">
+    <h1>Harcama Güncelle</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-area="Personal" asp-controller="PersonalHome" asp-action="Index">Anasayfa</a></li>
+            <li class="breadcrumb-item">Harcama İşlemleri</li>
+            <li class="breadcrumb-item active">Harcama Güncelle</li>
+        </ol>
+    </nav>
+</div>
+
+<section class="section profile">
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-body pt-3">
+                    <form id="advanceEditForm" asp-controller="Spending" asp-action="SpendingEdit" method="post" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+
+                        <input hidden asp-for="SpendingFile" />
+                        <div class="form-group">
+                            @{
+                                if (ViewBag.Picture != null)
+                                {
+                                    <label>Resim Adı: @ViewBag.Picture</label>
+                                }
+                            }
+                            <td> <img id="currentImage" height="100px" width="100px" class="mb-3" src="~/images/Spending/@Model.SpendingFile" alt="Resim Yok" /> </td>
+                            <br />
+                            <label asp-for="Picture" class="mb-2"> Resim Seç:</label></br>
+                            @* <input asp-for="Picture" type="file" class="form-control mb-4" /> *@
+                            <input asp-for="Picture" type="file" class="form-control mb-4" onchange="previewImage(event)" />
+                        </div>
+
+
+                        <div class="row mb-3">
+                            <label for="spendingType" class="col-md-4 col-lg-3 col-form-label">Harcama Türü</label>
+                            <div class="col-md-8 col-lg-9">
+                                <select name="SpendingType" class="form-select">
+                                    <option value="">Bir harcama türü seçiniz</option>
+                                </select>
+                                <span asp-validation-for="SpendingType" class="form-text text-danger"></span>
+                            </div>
+                        </div>
+
+
+                        @{
+                            var today = DateTime.Now.ToString("yyyy-MM-dd");
+                        }
+
+
+
+                        <div class="row mb-3">
+                            <label for="sum" class="col-md-4 col-lg-3 col-form-label">Tutar</label>
+                            <div class="col-md-8 col-lg-9">
+                                <input name="Sum" type="text" class="form-control" id="amount" value="@Model.Sum">
+                                <span asp-validation-for="Sum" class="form-text text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="spendingCurrency" class="col-md-4 col-lg-3 col-form-label">Para Birimi</label>
+                            <div class="col-md-8 col-lg-9">
+                                <select name="SpendingCurrency" class="form-select">
+                                    <option value="">Bir para birimi seçiniz</option>
+                                </select>
+                                <span asp-validation-for="SpendingCurrency" class="form-text text-danger"></span>
+                            </div>
+                        </div>
+
+
+
+
+                        <input type="hidden" name="SpendingStatus" value="@Model.SpendingStatus" />
+
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">Harcama Talebini Güncelle</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // sectiona harcama türlerini yükleme
+            $.get("@Url.Action("GetSpendingType", "Spending")", function (data) {
+                var select = $("select[name='SpendingType']");
+                select.empty();
+                select.append('<option value="">Bir harcama türü seçiniz</option>');
+                $.each(data, function (index, item) {
+                    select.append($('<option>', {
+                        value: item.value,
+                        text: item.text
+                    }));
+                });
+            });
+
+            // sectiona para birimleri yükleme
+            $.get("@Url.Action("GetSpendingCurrency", "Spending")", function (data) {
+                var select = $("select[name='SpendingCurrency']");
+                select.empty();
+                select.append('<option value="">Bir para birimi seçiniz</option>');
+                $.each(data, function (index, item) {
+                    select.append($('<option>', {
+                        value: item.value,
+                        text: item.text
+                    }));
+                });
+            });
+
+        });
+    </script>
+    }

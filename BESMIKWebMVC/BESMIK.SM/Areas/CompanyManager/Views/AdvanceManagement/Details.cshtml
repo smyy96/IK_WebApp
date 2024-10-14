@@ -1,0 +1,76 @@
+﻿@using BESMIK.ViewModel.Advance
+@model AdvanceViewModel
+@{
+    Layout = "_CompanyManagerLayout";
+}
+
+<div class="pagetitle">
+    <h1>Avans Detayları</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-area="CompanyManager" asp-controller="CompanyManagerHome" asp-action="Index">Anasayfa</a></li>
+            <li class="breadcrumb-item">Avans İşlemleri</li>
+            <li class="breadcrumb-item active">Avans Onay</li>
+        </ol>
+    </nav>
+</div>
+
+<section class="section profile">
+    <div class="row">
+        <!-- Kullanıcı Bilgileri Kartı -->
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-header">
+                    <h5>Kullanıcı Bilgileri</h5>
+                </div>
+                <div class="card-body">
+                    <p><strong>Ad:</strong> @Model.AppUser.Name</p>
+                    <p><strong>İkinci Ad:</strong> @(Model.AppUser.SecondName ?? "-")</p>
+                    <p><strong>Soyad:</strong> @Model.AppUser.Surname</p>
+                    <p><strong>İkinci Soyad:</strong> @(Model.AppUser.SecondSurname ?? "-")</p>
+                    <p><strong>TC:</strong> @Model.AppUser.Tc</p>
+                    <p><strong>İşe Giriş Tarihi:</strong> @Model.AppUser.WorkStartDate.ToString("dd MMMM yyyy")</p>
+                    <p>
+                        <strong>Durumu:</strong>
+                        @if (Model.AppUser.IsActive)
+                        {
+                            <span class="badge bg-success">Aktif</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-danger">Pasif</span>
+                        }
+                    </p>
+                    <p><strong>Meslek:</strong> @Model.AppUser.Job</p>
+                    <p><strong>Departman:</strong> @Model.AppUser.Department.ToString()</p>
+                    <p><strong>Email:</strong> @Model.AppUser.Email</p>
+                    <p><strong>Telefon:</strong> @Model.AppUser.Phone</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Avans Bilgileri Kartı -->
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-header">
+                    <h5>Avans Bilgileri</h5>
+                </div>
+                <div class="card-body">
+                    <p><strong>Avans Türü:</strong> @Model.AdvanceType</p>
+                    <p><strong>Avans Talep Tarihi:</strong> @Model.AdvanceRequestDate.ToString("dd MMMM yyyy")</p>
+                    <p><strong>Avans Miktarı:</strong> @Model.Amount</p>
+                    <p><strong>Para Birimi:</strong> @Model.Currency</p>
+                    <p><strong>Açıklama:</strong> @Model.Description</p>
+
+                    <a asp-action="AdvanceEdit" asp-controller="AdvanceManagement" asp-route-id="@Model.Id" class="btn btn-warning w-100">Avans Onayı</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <a href="@Url.Action("AdvancesList")" class="btn btn-secondary mt-3">Listeye Dön</a>
+        </div>
+    </div>
+</section>

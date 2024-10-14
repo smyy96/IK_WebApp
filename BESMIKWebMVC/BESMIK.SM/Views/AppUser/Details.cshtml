@@ -1,0 +1,93 @@
+﻿@model AppUserViewModel
+
+@{
+    Layout = "_AdminLayout";
+}
+
+<h2>Kullanıcı Detay Bilgi</h2>
+
+<div class="card">
+    <div class="card-header">
+        <h3>@Model.Name @Model.Surname</h3>
+    </div>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3">Fotoğraf</dt>
+            <dd class="col-sm-9">
+                @if (!string.IsNullOrEmpty(Model.Photo))
+                {
+                    <td> <img height="60px" width="60px" src="~/images/appUser/@Model.Photo" alt="Resim Yok" /> </td>
+                    <br />
+                }
+                else
+                {
+                    <span>Fotoğraf mevcut değil</span>
+                }
+            </dd>
+
+            <dt class="col-sm-3">Ad</dt>
+            <dd class="col-sm-9">@Model.Name</dd>
+
+            <dt class="col-sm-3">İkinci Ad</dt>
+            <dd class="col-sm-9">@Model.SecondName</dd>
+
+            <dt class="col-sm-3">İkinci Soyad</dt>
+            <dd class="col-sm-9">@Model.Surname</dd>
+
+            <dt class="col-sm-3">İkinci Soyad</dt>
+            <dd class="col-sm-9">@Model.SecondSurname</dd>
+
+            <dt class="col-sm-3">Doğum Tarihi</dt>
+            <dd class="col-sm-9">@Model.BirthDate.ToShortDateString()</dd>
+
+            <dt class="col-sm-3">Doğum Yeri</dt>
+            <dd class="col-sm-9">@Model.BirthPlace</dd>
+
+            <dt class="col-sm-3">TC Kimlik No</dt>
+            <dd class="col-sm-9">@Model.Tc</dd>
+
+            <dt class="col-sm-3">İşe Başlama Tarihi</dt>
+            <dd class="col-sm-9">@Model.WorkStartDate.ToShortDateString()</dd>
+
+            <dt class="col-sm-3">İşten Ayrılma Tarihi</dt>
+            <dd class="col-sm-9">
+                @if (Model.WorkEndDate.HasValue)
+                {
+                    @Model.WorkEndDate.Value.ToShortDateString()
+                }
+                else
+                {
+                    <span>Halen çalışıyor</span>
+                }
+            </dd>
+
+            <dt class="col-sm-3">Aktiflik Durumu</dt>
+            <dd class="col-sm-9">
+                @if (Model.IsActive)
+                {
+                    <span class="badge bg-success">Aktif</span>
+                }
+                else
+                {
+                    <span class="badge bg-danger">Pasif</span>
+                }
+            </dd>
+
+            <dt class="col-sm-3">Meslek</dt>
+            <dd class="col-sm-9">@Model.Job</dd>
+
+            <dt class="col-sm-3">Departman</dt>
+            <dd class="col-sm-9">@Model.Department.ToString()</dd>
+
+            <dt class="col-sm-3">E-posta</dt>
+            <dd class="col-sm-9">@Model.Email</dd>
+
+            <dt class="col-sm-3">Adres</dt>
+            <dd class="col-sm-9">@Model.Address</dd>
+
+            <dt class="col-sm-3">Telefon</dt>
+            <dd class="col-sm-9">@Model.Phone</dd>
+
+        </dl>
+    </div>
+</div>

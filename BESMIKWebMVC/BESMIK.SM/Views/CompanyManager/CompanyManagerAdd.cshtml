@@ -1,0 +1,235 @@
+﻿@model AppUserViewModel
+
+@{
+    Layout = "_AdminLayout";
+}
+
+<div class="pagetitle">
+    <h1>Şirket Yöneticisi Ekle</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-controller="AppUser" asp-action="Summary">Anasayfa</a></li>
+            <li class="breadcrumb-item">Şirket Yönetici İşlemleri</li>
+            <li class="breadcrumb-item active">Yönetici Ekle</li>
+        </ol>
+    </nav>
+</div>
+
+<section class="section profile">
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-body pt-3">
+                    <div class="tab-content pt-2">
+                        <form asp-controller="CompanyManager" asp-action="CompanyManagerAdd" method="post" enctype="multipart/form-data">
+
+                            <div asp-validation-summary="ModelOnly"></div>
+                            <div class="row mb-3">
+                                <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profil Resmi</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <!-- arkaplan resmi -->
+                                    <img id="profileImagePreview" src="@(Model.Photo ?? "/img/imageupload1.jpg")" alt="Profile Image" style="max-width: 150px; max-height: 150px;" />
+
+                                    <!-- ekleme ve silme  -->
+                                    <div class="pt-2">
+                                        <a href="javascript:void(0);" class="btn btn-primary btn-sm" title="Upload new profile image" onclick="document.getElementById('uploadImageInput').click();">
+                                            <i class="bi bi-upload"></i>
+                                        </a>
+                                        <a href="javascript:void(0);" class="btn btn-danger btn-sm" title="Remove my profile image" onclick="removeProfileImage();">
+                                            <i class="bi bi-trash"></i>
+                                        </a>
+                                    </div>
+
+                                    <!-- Resim yükleme -->
+                                    <input type="file" id="uploadImageInput" name="Picture" style="display: none;" onchange="previewImage(this);" />
+                                    <span asp-validation-for="Picture" class="form-text text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="name" class="col-md-4 col-lg-3 col-form-label">İsim</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input name="Name" type="text" class="form-control" id="name" value="@Model.Name">
+                                    <span asp-validation-for="Name" class="form-text text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="name" class="col-md-4 col-lg-3 col-form-label">İkindi İsim</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input name="SecondName" type="text" class="form-control" id="secondName" value="@Model.SecondName">
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="surname" class="col-md-4 col-lg-3 col-form-label">Soyad</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input name="Surname" type="text" class="form-control" id="surname" value="@Model.Surname">
+                                    <span asp-validation-for="Surname" class="form-text text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="surname" class="col-md-4 col-lg-3 col-form-label">İkinci Soyad</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input name="SecondSurname" type="text" class="form-control" id="secondSurname" value="@Model.SecondSurname">
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="phone" class="col-md-4 col-lg-3 col-form-label">Telefon</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input name="Phone" type="text" class="form-control" id="phone" value="@Model.Phone">
+                                    <span asp-validation-for="Phone" class="form-text text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="personalEmail" class="col-md-4 col-lg-3 col-form-label">E-posta</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input name="PersonalEmail" type="email" class="form-control" id="personalEmail" value="@Model.PersonalEmail">
+                                    <span asp-validation-for="PersonalEmail" class="form-text text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="job" class="col-md-4 col-lg-3 col-form-label">Meslek</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input name="Job" type="text" class="form-control" id="profession" value="@Model.Job">
+                                    <span asp-validation-for="Job" class="form-text text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="birthDate" class="col-md-4 col-lg-3 col-form-label">Doğum Tarihi</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input name="BirthDate" type="date" class="form-control" id="birthDate"
+                                           value="@(Model.BirthDate == default(DateOnly) ? DateTime.Now.ToString("yyyy-MM-dd") : Model.BirthDate.ToString("yyyy-MM-dd"))">
+                                    <span asp-validation-for="BirthDate" class="form-text text-danger"></span>
+                                </div>
+                            </div>
+
+
+                            <div class="row mb-3">
+                                <label for="birthPlace" class="col-md-4 col-lg-3 col-form-label">Doğum Yeri</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input name="BirthPlace" type="text" class="form-control" id="birthPlace" value="@Model.BirthPlace">
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="tc" class="col-md-4 col-lg-3 col-form-label">TC Kimlik Numarası</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input name="TC" type="text" class="form-control" id="tc" value="@Model.Tc">
+                                    <span asp-validation-for="Tc" class="form-text text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="address" class="col-md-4 col-lg-3 col-form-label">Adres</label> <div class="col-md-8 col-lg-9">
+                                    <input name="Address" type="text" class="form-control" id="address" value="@Model.Address">
+                                    <span asp-validation-for="Address" class="form-text text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="workStartDate" class="col-md-4 col-lg-3 col-form-label">İşe Başlama Tarihi</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input name="WorkStartDate" type="date" class="form-control" id="workStartDate"
+                                           value="@(Model.WorkStartDate == default(DateOnly) ? DateTime.Now.ToString("yyyy-MM-dd") : Model.WorkStartDate.ToString("yyyy-MM-dd"))">
+                                    <span asp-validation-for="WorkStartDate" class="form-text text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="department" class="col-md-4 col-lg-3 col-form-label">Departman</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <select name="Department" class="form-select">
+                                        <option value="">Bir departman seçiniz</option>
+                                    </select>
+                                    <span asp-validation-for="Department" class="form-text text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="company" class="col-md-4 col-lg-3 col-form-label">Şirket</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <select name="CompanyId" class="form-select">
+                                        <option value="">Bir şirket seçiniz</option>
+                                    </select>
+                                    <span asp-validation-for="CompanyId" class="form-text text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary">Değişiklikleri Kaydet</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+@section Scripts {
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // sectiona company adlarını yükleme
+            $.get("@Url.Action("GetCompanies", "CompanyManager")", function (data) {
+                var select = $("select[name='CompanyId']");
+                select.empty();
+                select.append('<option value="">Bir şirket seçiniz</option>');
+                $.each(data, function (index, item) {
+                    select.append($('<option>', {
+                        value: item.id,
+                        text: item.name
+                    }));
+                });
+            });
+
+            // sectiona departman adlarını yükleme
+            $.get("@Url.Action("GetDepartments", "CompanyManager")", function (data) {
+                var select = $("select[name='Department']");
+                select.empty();
+                select.append('<option value="">Bir departman seçiniz</option>');
+                $.each(data, function (index, item) {
+                    select.append($('<option>', {
+                        value: item.value,
+                        text: item.text
+                    }));
+                });
+            });
+        });
+    </script>
+
+    <script>
+        // resim secme için
+        function previewImage(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById('profileImagePreview').src = e.target.result;
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        // seccilen resmi kaldırmak için
+        function removeProfileImage() {
+            document.getElementById('profileImagePreview').src = '/img/imageupload1.jpg';
+            document.getElementById('uploadImageInput').value = '';
+        }
+    </script>
+
+
+
+
+}
+
+

@@ -1,0 +1,144 @@
+﻿@model BESMIK.ViewModel.Spending.SpendingViewModel
+
+@{
+    Layout = "_CompanyManagerLayout";
+}
+
+<div class="pagetitle">
+    <h1>Harcama Detayları</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-area="CompanyManager" asp-controller="CompanyManagerHome" asp-action="Index">Anasayfa</a></li>
+            <li class="breadcrumb-item">Harcama İşlemleri</li>
+            <li class="breadcrumb-item active">Harcama Detayları</li>
+        </ol>
+    </nav>
+</div>
+
+<section class="section">
+    <div class="row">
+        <!-- Kullanıcı Bilgileri Kartı -->
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-header">
+                    <h5>Kullanıcı Bilgileri</h5>
+                </div>
+                <div class="card-body">
+                    <p><strong>Ad:</strong> @Model.AppUser.Name</p>
+                    <p><strong>İkinci Ad:</strong> @(Model.AppUser.SecondName ?? "-")</p>
+                    <p><strong>Soyad:</strong> @Model.AppUser.Surname</p>
+                    <p><strong>İkinci Soyad:</strong> @(Model.AppUser.SecondSurname ?? "-")</p>
+                    <p><strong>TC:</strong> @Model.AppUser.Tc</p>
+                    <p><strong>İşe Giriş Tarihi:</strong> @Model.AppUser.WorkStartDate.ToString("dd MMMM yyyy")</p>
+                    <p>
+                        <strong>Durumu:</strong>
+                        @if (Model.AppUser.IsActive)
+                        {
+                            <span class="badge bg-success">Aktif</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-danger">Pasif</span>
+                        }
+                    </p>
+                    <p><strong>Meslek:</strong> @Model.AppUser.Job</p>
+                    <p><strong>Departman:</strong> @Model.AppUser.Department.ToString()</p>
+                    <p><strong>Email:</strong> @Model.AppUser.Email</p>
+                    <p><strong>Telefon:</strong> @Model.AppUser.Phone</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Harcama Bilgileri Kartı -->
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-header">
+                    <h5>Harcama Bilgileri</h5>
+                </div>
+                <div class="card-body">
+                    <p><strong>Harcama Türü:</strong> @Model.SpendingType</p>
+                    <p><strong>Tutar:</strong> @Model.Sum</p>
+                    <p><strong>Para Birimi:</strong> @Model.SpendingCurrency</p>
+                    <p><strong>Talep Tarihi:</strong> @Model.SpendingRequestDate.ToString("dd MMMM yyyy")</p>
+
+                    <!-- Dosya Bilgisi -->
+                    <div class="form-group mb-4">
+                        <label><strong>Dosya:</strong></label>
+                        @if (!string.IsNullOrEmpty(Model.SpendingFile))
+                        {
+                            @if (Model.SpendingFile.EndsWith(".pdf"))
+                            {
+                                <img class="thumbnail" height="60px" width="60px" src="/images/Spending/pdf-icon.png" alt="PDF" data-fullsize-url="/images/Spending/@Model.SpendingFile" />
+                            }
+                            else
+                            {
+                                <img class="thumbnail" height="60px" width="60px" src="/images/Spending/@Model.SpendingFile" alt="Dosya" data-fullsize-url="/images/Spending/@Model.SpendingFile" />
+                            }
+                        }
+                        else
+                        {
+                            <span>Dosya yok</span>
+                        }
+                    </div>
+
+                    <a asp-action="SpendingApprove" asp-controller="SpendingManagement" asp-route-id="@Model.Id" class="btn btn-warning w-100">Talep Onayı</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <a href="@Url.Action("SpendingManagementList")" class="btn btn-secondary mt-3">Listeye Dön</a>
+        </div>
+    </div>
+</section>
+
+<!-- Modal for PDF or Image Preview -->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="imageModalLabel">Dosya Görüntüleyici</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img id="modalImage" src="" class="img-fluid d-none" alt="Büyük Resim" />
+                <iframe id="modalPDF" src="" style="width:100%; height:600px;" class="d-none"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.thumbnail').on('click', function () {
+                var fullSizeUrl = $(this).data('fullsize-url');
+
+                if (!fullSizeUrl) {
+                    console.error('URL bulunamadı. Lütfen HTML ve JavaScript kodlarını kontrol edin.');
+                    return;
+                }
+
+                // Dosya uzantısını kontrol et
+                var isPDF = fullSizeUrl.endsWith(".pdf");
+
+                if (isPDF) {
+                    // PDF ise, iframe göster, img gizle
+                    $('#modalImage').addClass('d-none');
+                    $('#modalPDF').removeClass('d-none').attr('src', fullSizeUrl);
+                } else {
+                    // Resim ise, img göster, iframe gizle
+                    $('#modalPDF').addClass('d-none');
+                    $('#modalImage').removeClass('d-none').attr('src', fullSizeUrl);
+                }
+
+                var imageModal = new bootstrap.Modal(document.getElementById('imageModal'));
+                imageModal.show();
+            });
+        });
+    </script>
+}

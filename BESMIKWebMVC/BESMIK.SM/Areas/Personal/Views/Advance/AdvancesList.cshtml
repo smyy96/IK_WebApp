@@ -1,0 +1,163 @@
+﻿@using BESMIK.Common
+@using BESMIK.ViewModel.Advance
+@model List<AdvanceViewModel>
+
+@{
+    Layout = "_PersonalLayout";
+}
+
+<div class="pagetitle">
+    <h1>Avans Talepleri Listesi</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-area="Personal" asp-controller="PersonalHome" asp-action="Index">Anasayfa</a></li>
+            <li class="breadcrumb-item">Avans Talepleri</li>
+            <li class="breadcrumb-item active">Avans Talepleri Listesi</li>
+        </ol>
+    </nav>
+</div>
+
+<section class="section">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Avans Listesi</h5>
+
+                    <table class="table datatable">
+                        <thead>
+                            <tr>
+                                <th>Avans Talep Türü</th>
+                                <th>Avans Açıklaması</th>
+                                <th>Avans Miktarı</th>
+                                <th>Para Birimi</th>
+                                <th>Avans Talep Tarihi</th>
+                                <th>Avans Onay Durumu</th>
+                                <th>Avans Talebi Cevap Tarihi</th>
+                                <th>İşlemler</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.AdvanceType</td>
+                                    <td>@item.Description</td>
+                                    <td>@item.Amount</td>
+                                    <td>@item.Currency</td>
+                                    <td>@item.AdvanceRequestDate</td>
+                                    <td>
+                                        @if (item.ApprovalStatus == AdvanceApprovalStatus.OnayBekliyor)
+                                        {
+                                            <span class="badge bg-secondary text-dark">Cevap bekleniyor</span>
+                                        }
+                                        else if (item.ApprovalStatus == AdvanceApprovalStatus.Onaylandı)
+                                        {
+                                            <span class="badge bg-success text-light">Onaylandı</span>
+                                        }
+                                        else if (item.ApprovalStatus == AdvanceApprovalStatus.Reddedildi)
+                                        {
+                                            <span class="badge bg-danger text-light">Reddedildi</span>
+                                        }
+                                        else if (item.ApprovalStatus == AdvanceApprovalStatus.IptalEdildi)
+                                        {
+                                            <span class="badge bg-warning text-dark">İptal Edildi</span>
+                                        }
+                                        else if (item.ApprovalStatus == AdvanceApprovalStatus.Odendi)
+                                        {
+                                            <span class="badge bg-success text-dark">Ödendi</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-light text-dark">Bilinmeyen Durum</span>
+                                        }
+
+
+                                    </td>
+                                    <td>
+                                        @if (item.ApprovalStatus == AdvanceApprovalStatus.OnayBekliyor)
+                                        {
+                                            @:Cevap bekleniyor
+                                        }
+                                        else
+                                        {
+                                            @item.AdvanceResponseDate?.ToString("yyyy-MM-dd")
+                                        }
+                                    </td>
+
+
+                                   @*  <td>
+                                        <div class="btn-group" role="group" style="display: flex; gap: 5px;">
+                                            @if (item.ApprovalStatus == AdvanceApprovalStatus.OnayBekliyor)
+                                            {
+                                                <a asp-action="AdvanceEdit" asp-route-id="@item.Id" class="btn btn-sm btn-warning" style="border-radius: 4px;">Düzenle</a>
+
+                                            }
+                                            <form asp-action="DeleteAdvance" asp-controller="Advance" asp-route-id="@item.Id" method="post" onsubmit="return confirm('Bu avans talebini silmek istediğinize emin misiniz?');" style="margin: 0;">
+                                                <button type="submit" class="btn btn-danger btn-sm" style="border-radius: 4px;">Sil</button>
+                                            </form>
+                                        </div>
+                                    </td> *@
+
+
+                                    <td>
+                                        <div class="btn-group" role="group" style="display: flex; gap: 5px;">
+                                            @if (item.ApprovalStatus == AdvanceApprovalStatus.OnayBekliyor)
+                                            {
+                                                <a asp-action="AdvanceEdit" asp-controller="Advance" asp-route-id="@item.Id" class="btn btn-sm btn-warning" style="border-radius: 4px;">Düzenle</a>
+                                                <button type="button" class="btn btn-danger btn-sm" style="border-radius: 4px;" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="@item.Id">Sil</button>
+
+
+                                            }
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+@* silme kısmı için yapılan eklemeler *@
+
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">İzni Sil</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Bu izin talebini silmek istediğinize emin misiniz?
+            </div>
+            <div class="modal-footer">
+                <form asp-action="DeleteAdvance" asp-controller="Advance" method="post" style="margin: 0;">
+                    <input type="hidden" name="id" id="deleteId" />
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
+                    <button type="submit" class="btn btn-danger">Sil</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        $('#deleteModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var id = button.data('id');
+
+            var modal = $(this);
+            modal.find('#deleteId').val(id);
+        });
+    </script>
+}

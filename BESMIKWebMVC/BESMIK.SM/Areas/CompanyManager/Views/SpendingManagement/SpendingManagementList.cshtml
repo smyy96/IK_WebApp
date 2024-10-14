@@ -1,0 +1,181 @@
+﻿@using BESMIK.Common
+@model List<SpendingViewModel>
+
+@{
+    Layout = "_CompanyManagerLayout";
+}
+
+<style>
+    .row {
+        margin-bottom: 10px;
+    }
+</style>
+<div class="pagetitle">
+    <h1>Harcama Listesi</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-area="CompanyManager" asp-controller="CompanyManagerHome" asp-action="Index">Anasayfa</a></li>
+            <li class="breadcrumb-item">Harcama İşlemleri</li>
+            <li class="breadcrumb-item active"><a asp-controller="SpendingManagement" asp-action="SpendingManagementList">Harcama Listele</a></li>
+        </ol>
+    </nav>
+</div>
+
+<section class="section">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Harcama Listesi</h5>
+                    <table class="table datatable">
+                        <thead>
+                            <tr>
+                                <th>Adı</th>
+                                <th>Soyadı</th>
+                                <th>Harcama Türü</th>
+                                <th>Tutar</th>
+                                <th>Para Birimi</th>
+                                <th>Talep Tarihi</th>
+                                <th>Onay Durumu</th>
+                                <th>Cevaplanma Tarihi</th>
+                                <th>Dosya</th>
+                                <th>İşlemler</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.AppUser.Name</td>
+                                    <td>@item.AppUser.Surname</td>
+                                    <td>@item.SpendingType</td>
+                                    <td>@item.Sum</td>
+                                    <td>@item.SpendingCurrency</td>
+                                    <td>@item.SpendingRequestDate</td>
+                                    <td>
+                                        @if (item.SpendingStatus == SpendingStatus.OnayBekliyor)
+                                        {
+                                            <span class="badge bg-secondary text-dark">Cevap bekleniyor</span>
+                                        }
+                                        else if (item.SpendingStatus == SpendingStatus.Onaylandi)
+                                        {
+                                            <span class="badge bg-success text-light">Onaylandı</span>
+                                        }
+                                        else if (item.SpendingStatus == SpendingStatus.Reddedildi)
+                                        {
+                                            <span class="badge bg-danger text-light">Reddedildi</span>
+                                        }
+                                        else if (item.SpendingStatus == SpendingStatus.IptalEdildi)
+                                        {
+                                            <span class="badge bg-warning text-dark">İptal Edildi</span>
+                                        }
+                                        else if (item.SpendingStatus == SpendingStatus.Odendi)
+                                        {
+                                            <span class="badge bg-success text-dark">Odendi</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-light text-dark">Bilinmeyen Durum</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (item.SpendingStatus == SpendingStatus.OnayBekliyor)
+                                        {
+                                            @:Cevap bekleniyor
+                                        }
+                                        else
+                                        {
+                                            @item.SpendingResponseDate?.ToString("yyyy-MM-dd")
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (!string.IsNullOrEmpty(item.SpendingFile))
+                                        {
+                                            if (item.SpendingFile.EndsWith(".pdf"))
+                                            {
+                                                <img class="thumbnail" height="60px" width="60px" src="/images/Spending/pdf-icon.png" alt="PDF" data-fullsize-url="/images/Spending/@item.SpendingFile" />
+                                            }
+                                            else
+                                            {
+                                                <img class="thumbnail" height="60px" width="60px" src="/images/Spending/@item.SpendingFile" alt="Resim Yok" data-fullsize-url="/images/Spending/@item.SpendingFile" />
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <span>Dosya yok</span>
+                                        }
+                                    </td>
+                                    @* <td>
+                                <img class="thumbnail" height="60px" width="60px" src="/images/Spending/@item.SpendingFile" alt="Resim Yok" data-fullsize-url="/images/Spending/@item.SpendingFile" />
+                                </td> *@
+                                    <td>
+                                        <div class="btn-group" role="group" style="display: flex; gap: 5px;">
+                                            @if (item.SpendingStatus == SpendingStatus.OnayBekliyor)
+                                            {
+                                                <a asp-action="SpendingManagementDetails" asp-controller="SpendingManagement" asp-route-id="@item.Id" class="btn btn-sm btn-warning" style="border-radius: 4px;">
+                                                    Talep İşlemleri
+                                                </a>
+                                            }
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="imageModalLabel">Dosya Görüntüleyici</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img id="modalImage" src="" class="img-fluid d-none" alt="Büyük Resim" />
+                <iframe id="modalPDF" src="" style="width:100%; height:600px;" class="d-none"></iframe>
+            </div>
+        </div>
+    </div>
+</div> *@
+
+
+
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+   @*  <script>
+        $(document).ready(function () {
+            $('.thumbnail').on('click', function () {
+                var fullSizeUrl = $(this).data('fullsize-url');
+
+                if (!fullSizeUrl) {
+                    console.error('URL bulunamadı. Lütfen HTML ve JavaScript kodlarını kontrol edin.');
+                    return;
+                }
+
+                // Dosya uzantısını kontrol et
+                var isPDF = fullSizeUrl.endsWith(".pdf");
+
+                if (isPDF) {
+                    // PDF ise, iframe göster, img gizle
+                    $('#modalImage').addClass('d-none');
+                    $('#modalPDF').removeClass('d-none').attr('src', fullSizeUrl);
+                } else {
+                    // Resim ise, img göster, iframe gizle
+                    $('#modalPDF').addClass('d-none');
+                    $('#modalImage').removeClass('d-none').attr('src', fullSizeUrl);
+                }
+
+                var imageModal = new bootstrap.Modal(document.getElementById('imageModal'));
+                imageModal.show();
+            });
+        });
+
+    </script> *@
+}

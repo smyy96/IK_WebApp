@@ -1,0 +1,74 @@
+﻿@using BESMIK.Common
+@using BESMIK.ViewModel.Advance
+@model BESMIK.ViewModel.Advance.AdvanceViewModel
+
+@{
+    Layout = "_CompanyManagerLayout";
+}
+
+<div class="pagetitle">
+    <h1>Avans Talepleri Listesi</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-area="CompanyManager" asp-controller="CompanyManagerHome" asp-action="Index">Anasayfa</a></li>
+            <li class="breadcrumb-item">Avans Talepleri</li>
+            <li class="breadcrumb-item active">Avans Talepleri Listesi</li>
+        </ol>
+    </nav>
+</div>
+
+<section class="section profile">
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-body pt-3">
+                    <div class="tab-content pt-2">
+                        <form id="advanceEditForm" asp-controller="AdvanceManagement" asp-action="AdvanceEdit" method="post">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                            <input type="hidden" name="AdvanceRequestDate" value="@Model.AdvanceRequestDate.ToString("yyyy-MM-dd")" />
+                            <input type="hidden" name="Amount" value="@Model.Amount" />
+                            <input type="hidden" name="Currency" value="@Model.Currency" />
+                            <input type="hidden" name="Description" value="@Model.Description" />
+                            <input type="hidden" name="AdvanceType" value="@Model.AdvanceType" />
+
+                            <div class="row mb-3">
+                                <label for="approvalStatus" class="col-md-4 col-lg-3 col-form-label">Onay Durumu</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <select id="approvalStatus" name="ApprovalStatus" class="form-select">
+                                        <option value="">Onay Durumu Seçiniz</option>
+                                    </select>
+                                    <span asp-validation-for="ApprovalStatus" class="form-text text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-info">Avans Talebini Güncelle</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $.get("@Url.Action("GetAdvanceApprovalStatus", "AdvanceManagement")", function (data) {
+                var select = $("#approvalStatus");
+                select.empty();
+                select.append('<option value="">Onay Durumu Seçiniz</option>');
+                $.each(data, function (index, item) {
+                    select.append($('<option>', {
+                        value: item.value,
+                        text: item.text,
+                        selected: item.value == '@Model.ApprovalStatus'
+                    }));
+                });
+            });
+        });
+    </script>
+}

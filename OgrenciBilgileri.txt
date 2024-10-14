@@ -1,0 +1,3 @@
+site yöneticisi için oturum açmak için kullanılacak mail ve şifre
+Şifre: site.yoneticisi@bilgeadam.com
+Parola: Az*123456

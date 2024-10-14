@@ -1,0 +1,91 @@
+﻿@model CompanyViewModel
+
+@{
+    Layout = "_AdminLayout";
+}
+
+<div class="pagetitle">
+</div>
+
+<section class="section">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        Şirket  
+                        Detayları
+                    </h5>
+
+                    <table class="table">
+                        <tr>
+                            <th style="vertical-align: middle;">
+                                <div style="display: flex; align-items: center;">
+                                    <span style="margin-right: 5px;">Şirket Logosu</span>
+                                </div>
+                            </th>
+                            <td>
+                                <img id="companyLogoPreview"
+                                     src="@(Model.Logo != null ? Url.Content($"~/images/company/{Model.Logo}") : Url.Content("~/images/company/ornekCompanyLogo.png"))"
+                                     alt="Company Logo"
+                                     style="width: 80px; height: 80px; object-fit: cover; border-radius: 50%; border: 1px solid #ddd;">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Şirket Adı</th>
+                            <td>@Model.Name</td>
+                        </tr>
+                        <tr>
+                            <th>Şirket Ünvanı</th>
+                            <td>@Model.TitleName</td>
+                        </tr>
+                        <tr>
+                            <th>Şirket Mersis Numarası</th>
+                            <td>@Model.MersisNumber</td>
+                        </tr>
+                        <tr>
+                            <th>Şirket Vergi Numarası</th>
+                            <td>@Model.TaxNumber</td>
+                        </tr>
+                        <tr>
+                            <th>Şirket Vergi Dairesi</th>
+                            <td>@Model.TaxAdministration</td>
+                        </tr>
+                        <tr>
+                            <th>Şirket Telefonu</th>
+                            <td>@Model.Phone</td>
+                        </tr>
+                        <tr>
+                            <th>Şirket Adresi</th>
+                            <td>@Model.Address</td>
+                        </tr>
+                        <tr>
+                            <th>Şirket Email</th>
+                            <td>@Model.Email</td>
+                        </tr>
+                        <tr>
+                            <th>Şirket Çalışan Sayısı</th>
+                            <td>@Model.EmployeesNumber</td>
+                        </tr>
+                        <tr>
+                            <th>Şirket Kuruluş Tarihi</th>
+                            <td>@Model.EstablishmentYear</td>
+                        </tr>
+                        <tr>
+                            <th>Şirket Sözleşme Başlangıç Tarihi</th>
+                            <td>@Model.ContractStartYear</td>
+                        </tr>
+                        <tr>
+                            <th>Şirket Sözleşme Bitiş Tarihi</th>
+                            <td>@Model.ContractEndYear</td>
+                        </tr>
+                        <tr>
+                            <th>Şirket Aktiflik Durumu</th>
+                            <td>@Model.IsActive</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,211 @@
+﻿@model CompanyViewModel
+
+@{
+    Layout = "_AdminLayout";
+}
+
+
+<div class="pagetitle">
+    <h1>Şirket Ekle</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-controller="AppUser" asp-action="Summary">Anasayfa</a></li>
+            <li class="breadcrumb-item">Şirket İşlemleri</li>
+            <li class="breadcrumb-item active">Şirket Ekle</li>
+        </ol>
+    </nav>
+</div>
+<section class="section profile">
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-body pt-3">
+                    <div class="tab-content pt-2">
+                        <form asp-controller="Companies" asp-action="CompanyAdd" method="post" enctype="multipart/form-data">
+
+                            <div asp-validation-summary="ModelOnly"></div>
+                            <div class="row mb-3">
+                                <label for="companyLogo" class="col-md-4 col-lg-3 col-form-label">Şirket Logosu</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <img id="companyLogoPreview" src="@(Model.Logo ?? "/img/defaultCompany.jpeg")" alt="Company Logo" style="max-width: 150px; max-height: 150px;" />
+
+                                    <div class="pt-2">
+                                        <a href="javascript:void(0);" class="btn btn-primary btn-sm" title="Upload new company logo" onclick="document.getElementById('uploadImageInput').click();">
+                                            <i class="bi bi-upload"></i>
+                                        </a>
+                                        <a href="javascript:void(0);" class="btn btn-danger btn-sm" title="Remove my company logo" onclick="removeProfileImage();">
+                                            <i class="bi bi-trash"></i>
+                                        </a>
+                                    </div>
+
+                                    <input type="file" id="uploadImageInput" name="FormFile" style="display: none;" onchange="previewImage(this);" />
+                                    <span asp-validation-for="FormFile" class="form-text text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="name" class="col-md-4 col-lg-3 col-form-label">Şirket Adı</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input name="Name" type="text" class="form-control" id="name" value="@Model.Name">
+                                    <span asp-validation-for="Name" class="form-text text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="name" class="col-md-4 col-lg-3 col-form-label">Şirket Ünvanı</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input name="TitleName" type="text" class="form-control" id="titleName" value="@Model.TitleName">
+                                    <span asp-validation-for="TitleName" class="form-text text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="mersisNumber" class="col-md-4 col-lg-3 col-form-label">Mersis No</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input name="MersisNumber" type="text" class="form-control" id="mersisNumber" value="@Model.MersisNumber">
+                                    <span asp-validation-for="MersisNumber" class="form-text text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="taxNumber" class="col-md-4 col-lg-3 col-form-label">Vergi No</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input name="TaxNumber" type="text" class="form-control" id="taxNumber" value="@Model.TaxNumber">
+                                    <span asp-validation-for="TaxNumber" class="form-text text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="taxAdministration" class="col-md-4 col-lg-3 col-form-label">Vergi Dairesi</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input name="TaxAdministration" type="text" class="form-control" id="taxAdministration" value="@Model.TaxAdministration">
+                                    <span asp-validation-for="TaxAdministration" class="form-text text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="phone" class="col-md-4 col-lg-3 col-form-label">Telefon</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input name="Phone" type="text" class="form-control" id="phone" value="@Model.Phone">
+                                    <span asp-validation-for="Phone" class="form-text text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="email" class="col-md-4 col-lg-3 col-form-label">E-posta</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input name="Email" type="email" class="form-control" id="email" value="@Model.Email">
+                                    <span asp-validation-for="Email" class="form-text text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="employeesNumber" class="col-md-4 col-lg-3 col-form-label">Çalışan Sayısı</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input name="EmployeesNumber" type="text" class="form-control" id="employeesNumber" value="@Model.EmployeesNumber">
+                                    <span asp-validation-for="EmployeesNumber" class="form-text text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="address" class="col-md-4 col-lg-3 col-form-label">Adres</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input name="Address" type="text" class="form-control" id="address" value="@Model.Address">
+                                    <span asp-validation-for="Address" class="form-text text-danger"></span>
+                                </div>
+                            </div>
+
+
+                            <div class="row mb-3">
+                                <label for="establishmentYear" class="col-md-4 col-lg-3 col-form-label">Kuruluş Tarihi</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input name="EstablishmentYear" type="date" class="form-control" id="establishmentYear"
+                                           value="@(Model.EstablishmentYear == default(DateOnly) ? DateTime.Now.ToString("yyyy-MM-dd") : new DateTime(Model.EstablishmentYear.Year, Model.EstablishmentYear.Month, Model.EstablishmentYear.Day).ToString("yyyy-MM-dd"))">
+                                    <span asp-validation-for="EstablishmentYear" class="form-text text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="contractStartYear" class="col-md-4 col-lg-3 col-form-label">Sözleşme Başlangıç Tarihi</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input name="ContractStartYear" type="date" class="form-control" id="contractStartYear"
+                                           value="@(Model.ContractStartYear.HasValue ? new DateTime(Model.ContractStartYear.Value.Year, Model.ContractStartYear.Value.Month, Model.ContractStartYear.Value.Day).ToString("yyyy-MM-dd") : DateTime.Now.ToString("yyyy-MM-dd"))">
+                                    <span asp-validation-for="ContractStartYear" class="form-text text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="contractEndYear" class="col-md-4 col-lg-3 col-form-label">Sözleşme Bitiş Tarihi</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <input name="contractEndYear" type="date" class="form-control" id="contractEndYear"
+                                           value="@(Model.ContractEndYear.HasValue ? new DateTime(Model.ContractEndYear.Value.Year, Model.ContractEndYear.Value.Month, Model.ContractEndYear.Value.Day).ToString("yyyy-MM-dd") : DateTime.Now.ToString("yyyy-MM-dd"))">
+                                    <span asp-validation-for="ContractEndYear" class="form-text text-danger"></span>
+                                </div>
+                            </div>
+
+
+                            <div class="row mb-3">
+                                <label for="isActive" class="col-md-4 col-lg-3 col-form-label">Aktiflik Durumu</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="IsActive" id="isActiveTrue" value="true" @(Model.IsActive ? "checked" : "")>
+                                        <label class="form-check-label" for="isActiveTrue">
+                                            Aktif
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="IsActive" id="isActiveFalse" value="false" @(!Model.IsActive ? "checked" : "")>
+                                        <label class="form-check-label" for="isActiveFalse">
+                                            Pasif
+                                        </label>
+                                    </div>
+                                    <span asp-validation-for="IsActive" class="form-text text-danger"></span>
+                                </div>
+                            </div>
+
+
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary">Şirketi Ekle</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@section Scripts {
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        function previewImage(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById('companyLogoPreview').src = e.target.result;
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        function removeProfileImage() {
+            document.getElementById('companyLogoPreview').src = '/img/defaultCompany.jpeg';
+            document.getElementById('uploadImageInput').value = '';
+        }
+    </script>
+
+
+
+
+}
+
+
+
+@* <div class="row mb-3">
+    <label for="tc" class="col-md-4 col-lg-3 col-form-label">TC Kimlik Numarası</label>
+    <div class="col-md-8 col-lg-9">
+        <input name="TC" type="text" class="form-control" id="tc" value="@Model.TC">
+        <span asp-validation-for="TC" class="form-text text-danger"></span>
+    </div>
+</div> *@

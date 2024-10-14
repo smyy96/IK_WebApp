@@ -1,0 +1,63 @@
+﻿@model List<CompanyViewModel>
+
+@{
+    Layout = "_AdminLayout";
+}
+
+<div class="pagetitle">
+    <h1>Şirket Listesi</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-controller="AppUser" asp-action="Summary">Anasayfa</a></li>
+            <li class="breadcrumb-item">Şirket İşlemleri</li>
+            <li class="breadcrumb-item active">Şirket Listele</li>
+        </ol>
+    </nav>
+</div>
+
+<section class="section">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Şirket Listesi</h5>
+
+                    <table class="table datatable">
+                        <thead>
+                            <tr>
+                                <th>Şirket Logosu</th> 
+                                <th>Şirket Adı</th>
+                                <th>Şirket Ünvanı</th>
+                                <th>Telefon</th> 
+                                <th>E-Mail</th> 
+                                <th>Detaylar</th> 
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <img id="companyLogoPreview"
+                                             src="@(item.Logo != null ? Url.Content($"~/images/company/{item.Logo}") : Url.Content("~/images/company/ornekCompanyLogo.png"))"
+                                             alt="Company Logo"
+                                             style="width: 40px; height: 40px; object-fit: cover; border-radius: 50%;">
+                                    </td>
+
+
+                                    <td>@item.Name</td>
+                                    <td>@item.TitleName</td>
+                                    <td>@item.Phone</td>
+                                    <td>@item.Email</td>
+                                    <td>
+                                        <a asp-controller="Companies" asp-action="CompanyDetails" asp-route-id="@item.Id" class="btn btn-primary">Detaylar</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

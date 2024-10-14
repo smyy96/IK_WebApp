@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "mssql1": {
+      "serviceConnectorResourceId": "/subscriptions/[parameters('subscriptionId')]/resourcegroups/[parameters('resourceGroupName')]/providers/Microsoft.Web/sites/BESMIKAPI20240825115620/providers/Microsoft.ServiceLinker/linkers/ConnectionStringsDefaultConnection_2FC949FBC8",
+      "secretStore": "AzureAppSettings",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/grup3-ik/databases/besmikdb",
+      "type": "mssql.azure",
+      "connectionId": "ConnectionStrings:DefaultConnection",
+      "dynamicId": null
+    },
+    "apis2": {
+      "apiEndpoint": "https://besmikapimcc.azure-api.net/",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.ApiManagement/service/BESMIKAPIMCC/apis/BESMIKAPI",
+      "type": "apis.azure"
+    }
+  }
+}

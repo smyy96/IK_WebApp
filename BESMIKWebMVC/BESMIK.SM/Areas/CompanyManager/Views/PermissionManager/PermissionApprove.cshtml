@@ -1,0 +1,67 @@
+﻿@using BESMIK.ViewModel.Permission
+@model PermissionViewModel
+@{
+    Layout = "_CompanyManagerLayout";
+}
+<div class="pagetitle">
+    <h1>Profil</h1>
+    <nav>
+        <ol class="breadcrumb">
+
+            <li class="breadcrumb-item"><a asp-area="CompanyManager" asp-controller="CompanyManagerHome" asp-action="Index">Anasayfa</a></li>
+            <li class="breadcrumb-item">İzin İşlemleri</a></li>
+            <li class="breadcrumb-item active">İzinleri Listle</li>
+        </ol>
+    </nav>
+</div>
+
+
+<section class="section profile">
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-body pt-3">
+                    <div class="tab-content pt-2">
+                        <form asp-controller="PermissionManager" asp-action="PermissionApprove" method="post">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                            <div class="row mb-3">
+                                <label for="permissionStatus" class="col-md-4 col-lg-3 col-form-label">İzin Onayı</label>
+                                <div class="col-md-8 col-lg-9">
+                                    <select name="PermissionStatus" class="form-select" id="permissionStatus">
+                                        <option value="">Bir izin yanıtı seçiniz</option>
+                                    </select>
+                                    <span asp-validation-for="PermissionStatus" class="form-text text-danger"></span>
+                                </div>
+                            </div>
+                            <input type="hidden" name="OffDaysNumbers" id="offDaysNumbers" value="0">
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary">İzin Talebini Yanıtla</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // İzin Status yükleme
+            $.get("@Url.Action("GetPermissionStatus", "PermissionManager")", function (data) {
+                var select = $("#permissionStatus");
+                select.empty();
+                select.append('<option value="">Onay Durumu Seçiniz</option>');
+                $.each(data, function (index, item) {
+                    select.append($('<option>', {
+                        value: item.value,
+                        text: item.text
+                    }));
+                });
+            });
+        });
+    </script>
+}

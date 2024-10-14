@@ -1,0 +1,166 @@
+﻿@using BESMIK.Common
+@using BESMIK.ViewModel.Spending
+
+@model List<SpendingViewModel>
+
+@{
+    Layout = "_PersonalLayout";
+}
+
+<div class="pagetitle">
+    <h1>Harcama Listesi</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-area="Personal" asp-controller="PersonalHome" asp-action="Index">Anasayfa</a></li>
+            <li class="breadcrumb-item">Harcama İşlemleri</li>
+            <li class="breadcrumb-item active"><a asp-controller="Spending" asp-action="SpendingList">Harcama Listele</a></li>
+        </ol>
+    </nav>
+</div>
+
+<section class="section">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Harcama Listesi</h5>
+
+                    <table class="table datatable">
+                        <thead>
+                            <tr>
+                                <th>Harcama Türü</th>
+                                <th>Tutar</th>
+                                <th>Para Birimi</th>
+                                <th>Talep Tarihi</th>
+                                <th>Harcama Durumu</th>
+                                <th>Cevaplanma Tarihi</th>
+                                <th>Dosya Adı</th>
+                                <th>İşlemler</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (SpendingViewModel item in Model)
+                            {
+                                <tr>
+                                    <td>@item.SpendingType</td>
+                                    <td>@item.Sum</td>
+                                    <td>@item.SpendingCurrency</td>
+                                    <td>@item.SpendingRequestDate</td>
+                                    <td>
+                                        @if (item.SpendingStatus == SpendingStatus.OnayBekliyor)
+                                        {
+                                            <span class="badge bg-secondary text-dark">Cevap bekleniyor</span>
+                                        }
+                                        else if (item.SpendingStatus == SpendingStatus.Onaylandi)
+                                        {
+                                            <span class="badge bg-success text-light">Onaylandı</span>
+                                        }
+                                        else if (item.SpendingStatus == SpendingStatus.Reddedildi)
+                                        {
+                                            <span class="badge bg-danger text-light">Reddedildi</span>
+                                        }
+                                        else if (item.SpendingStatus == SpendingStatus.IptalEdildi)
+                                        {
+                                            <span class="badge bg-warning text-dark">İptal Edildi</span>
+                                        }
+                                        else if (item.SpendingStatus == SpendingStatus.Odendi)
+                                        {
+                                            <span class="badge bg-success text-dark">Ödendi</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-light text-dark">Bilinmeyen Durum</span>
+                                        }
+
+
+                                    </td>
+                                    <td>
+                                        @if (item.SpendingStatus == SpendingStatus.OnayBekliyor)
+                                        {
+                                            @:Cevap bekleniyor
+                                        }
+                                        else
+                                        {
+                                            @item.SpendingResponseDate?.ToString("yyyy-MM-dd")
+                                        }
+                                    </td>
+                                    <td>@item.SpendingFile</td>
+                                   @*  <td>
+                                        <div class="btn-group" role="group" style="display: flex; gap: 5px;">
+                                            @if (item.SpendingStatus == SpendingStatus.OnayBekliyor)
+                                            {
+                                                <a asp-action="SpendingEdit" asp-controller="Spending" asp-route-id="@item.Id" class="btn btn-sm btn-warning"
+                                                   style="margin-right: 5px;">
+                                                    Güncelle
+                                                </a>
+
+                                                <form asp-action="Delete" asp-controller="Spending" asp-route-id="@item.Id" method="post" onsubmit="return confirm('Bu harcama talebini silmek istediğinize emin misiniz?');" style="margin: 0;">
+                                                    <button type="submit" class="btn btn-danger btn-sm" style="border-radius: 4px;">Sil</button>
+                                                </form>
+                                            }
+                                            
+                                        </div>
+                                    </td> *@
+
+
+                                    <td>
+                                        <div class="btn-group" role="group" style="display: flex; gap: 5px;">
+                                            @if (item.SpendingStatus == SpendingStatus.OnayBekliyor)
+                                            {
+                                                <a asp-action="SpendingEdit" asp-controller="Spending" asp-route-id="@item.Id" class="btn btn-sm btn-warning" style="border-radius: 4px;">Düzenle</a>
+                                                <button type="button" class="btn btn-danger btn-sm" style="border-radius: 4px;" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="@item.Id">Sil</button>
+
+
+                                            }
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+@* silme kısmı için yapılan eklemeler *@
+
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">İzni Sil</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Bu izin talebini silmek istediğinize emin misiniz?
+            </div>
+            <div class="modal-footer">
+                <form asp-action="Delete" asp-controller="Spending" method="post" style="margin: 0;">
+                    <input type="hidden" name="id" id="deleteId" />
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
+                    <button type="submit" class="btn btn-danger">Sil</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        $('#deleteModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var id = button.data('id');
+
+            var modal = $(this);
+            modal.find('#deleteId').val(id);
+        });
+    </script>
+}

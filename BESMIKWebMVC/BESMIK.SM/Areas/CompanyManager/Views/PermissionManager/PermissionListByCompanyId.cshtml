@@ -1,0 +1,111 @@
+﻿@using BESMIK.Common
+@using BESMIK.ViewModel.Permission
+@model List<PermissionViewModel>
+
+    @{
+        Layout = "_CompanyManagerLayout";
+    }
+<div class="pagetitle">
+    <h1>Profil</h1>
+    <nav>
+        <ol class="breadcrumb">
+
+            <li class="breadcrumb-item"><a asp-area="CompanyManager" asp-controller="CompanyManagerHome" asp-action="Index">Anasayfa</a></li>
+            <li class="breadcrumb-item">İzin İşlemleri</a></li>
+            <li class="breadcrumb-item active">İzinleri Listle</li>
+        </ol>
+    </nav>
+</div>
+
+
+<section class="section">
+    <div class="row">
+        <div class="col-lg-12">
+
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">İzin Listesi</h5>
+
+                    <table class="table datatable">
+                        <thead>
+                            <tr>
+                                <th>Ad</th>
+                                <th>Soyad</th>
+                                <th>Görevi</th>
+                                <th>İzin Türü</th>
+                                <th>İzin Başlangıç Tarihi</th>
+                                <th>İzin Bitiş Tarihi</th>
+                                <th>İzin Gün Sayısı</th>
+                                <th>İzin Durumu</th>
+                                <th>Cevaplanma Tarihi</th>
+                                <th>İşlemler</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (PermissionViewModel item in Model)
+                            {
+                                <tr>
+                                    <td>@item.AppUser.Name @item.AppUser.SecondName</td>
+                                    <td>@item.AppUser.Surname @item.AppUser.SecondSurname</td>
+                                    <td>@item.AppUser.Job</td>
+                                    <td>@item.PermissionType</td>
+                                    <td>@item.PermissionStartDate</td>
+                                    <td>@item.PermissionEndDate</td>
+                                    <td>@item.OffDaysNumbers</td>
+                                    <td>
+                                        @if (item.PermissionStatus == PermissionStatus.OnayBekliyor)
+                                        {
+                                            <span class="badge bg-secondary text-dark">Cevap bekleniyor</span>
+                                        }
+                                        else if (item.PermissionStatus == PermissionStatus.Onaylandı)
+                                        {
+                                            <span class="badge bg-success text-light">Onaylandı</span>
+                                        }
+                                        else if (item.PermissionStatus == PermissionStatus.Reddedildi)
+                                        {
+                                            <span class="badge bg-danger text-light">Reddedildi</span>
+                                        }
+                                        else if (item.PermissionStatus == PermissionStatus.IptalEdildi)
+                                        {
+                                            <span class="badge bg-warning text-dark">İptal Edildi</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-light text-dark">Bilinmeyen Durum</span>
+                                        }
+
+
+                                    </td>
+
+
+                                    <td>
+                                        @if (item.PermissionStatus == PermissionStatus.OnayBekliyor)
+                                        {
+                                            @:Cevap bekleniyor
+                                        }
+                                        else
+                                        {
+                                            @item.PermissionResponseDate?.ToString("yyyy-MM-dd")
+                                        }
+                                    </td>
+
+                                    <td>
+                                        <div class="btn-group" role="group" style="display: flex; gap: 5px;">
+                                            @if (item.PermissionStatus == PermissionStatus.OnayBekliyor)
+                                            {
+                                                <a asp-action="Details" asp-controller="PermissionManager" asp-route-id="@item.Id" class="btn btn-sm btn-warning" style="border-radius: 4px;">Talebi Görüntüle</a>
+                                            }
+                                        </div>
+                                    </td>
+
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
