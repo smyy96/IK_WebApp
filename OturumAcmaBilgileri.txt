@@ -1,5 +1,5 @@
-site yöneticisi için oturum açmak için kullanılacak mail ve şifre
+site yöneticisi olarak oturum açmak için kullanılacak mail ve şifre
 Şifre: site.yoneticisi@bilgeadam.com
 Parola: Az*123456
 
-siteye yönetici eklediğiniz zaman oluşturulan şirket maili ile ve aynı parolayla giriş yapabilirsiniz.
+siteye, şirket yönetici eklediğiniz zaman oluşturulan şirket maili ile ve aynı parolayla giriş yapabilirsiniz.
