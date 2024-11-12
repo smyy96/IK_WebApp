@@ -57,6 +57,18 @@ Giriş ekranında şifre sıfırlama özelliği ile kullanıcılar şifrelerini 
 
 <img src="https://github.com/user-attachments/assets/c5871b65-f0d4-4dff-8e16-7807bfbfa322" alt="login" width="400"/>
 
+
+## 🎥 Proje Tanıtım Videosu
+
+Projenin ayrıntılarını görmek ve uygulamanın nasıl çalıştığını izlemek için YouTube videomuzu izleyebilirsiniz:
+
+<a href="https://www.youtube.com/watch?v=yVY7h8e5vdo" target="_blank">
+  <img src="https://github.com/user-attachments/assets/cda7bcad-3789-45b5-9fe5-91823dc340ee" alt="Proje Tanıtım Videosu" width="500"/>
+</a>
+
+📹 [İK Uygulaması Proje Tanıtımı - YouTube](https://www.youtube.com/watch?v=yVY7h8e5vdo)
+
+
 ## 📧 İletişim
 Proje hakkında herhangi bir sorunuz varsa lütfen iletişime geçin:
 📧 [sumeyyecoskun.sc@gmail.com](mailto:sumeyyecoskun.sc@gmail.com)
